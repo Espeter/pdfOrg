@@ -15,6 +15,9 @@
 		C3F0F99425AC98970004B66B /* pdfOrg.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C3F0F99225AC98970004B66B /* pdfOrg.xcdatamodeld */; };
 		C3F0F99F25AC98970004B66B /* pdfOrgTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F0F99E25AC98970004B66B /* pdfOrgTests.swift */; };
 		C3F0F9AA25AC98970004B66B /* pdfOrgUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F0F9A925AC98970004B66B /* pdfOrgUITests.swift */; };
+		C3F0F9BD25AC9E910004B66B /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F0F9BC25AC9E910004B66B /* LibraryView.swift */; };
+		C3F0F9C325ACA43F0004B66B /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F0F9C225ACA43F0004B66B /* SearchBar.swift */; };
+		C3F0F9CB25ACB3DA0004B66B /* LibraryViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F0F9CA25ACB3DA0004B66B /* LibraryViewExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		C3F0F9A525AC98970004B66B /* pdfOrgUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pdfOrgUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3F0F9A925AC98970004B66B /* pdfOrgUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pdfOrgUITests.swift; sourceTree = "<group>"; };
 		C3F0F9AB25AC98970004B66B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C3F0F9BC25AC9E910004B66B /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
+		C3F0F9C225ACA43F0004B66B /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		C3F0F9CA25ACB3DA0004B66B /* LibraryViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +105,7 @@
 		C3F0F98625AC98960004B66B /* pdfOrg */ = {
 			isa = PBXGroup;
 			children = (
+				C3F0F9BA25AC9DED0004B66B /* ui */,
 				C3F0F98725AC98960004B66B /* pdfOrgApp.swift */,
 				C3F0F98925AC98960004B66B /* ContentView.swift */,
 				C3F0F98B25AC98970004B66B /* Assets.xcassets */,
@@ -134,6 +141,32 @@
 				C3F0F9AB25AC98970004B66B /* Info.plist */,
 			);
 			path = pdfOrgUITests;
+			sourceTree = "<group>";
+		};
+		C3F0F9BA25AC9DED0004B66B /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				C3F0F9C125ACA3F90004B66B /* extensions */,
+				C3F0F9BB25AC9DF80004B66B /* library */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
+		C3F0F9BB25AC9DF80004B66B /* library */ = {
+			isa = PBXGroup;
+			children = (
+				C3F0F9BC25AC9E910004B66B /* LibraryView.swift */,
+				C3F0F9CA25ACB3DA0004B66B /* LibraryViewExtension.swift */,
+			);
+			path = library;
+			sourceTree = "<group>";
+		};
+		C3F0F9C125ACA3F90004B66B /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C3F0F9C225ACA43F0004B66B /* SearchBar.swift */,
+			);
+			path = extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,9 +299,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3F0F99125AC98970004B66B /* Persistence.swift in Sources */,
+				C3F0F9CB25ACB3DA0004B66B /* LibraryViewExtension.swift in Sources */,
 				C3F0F99425AC98970004B66B /* pdfOrg.xcdatamodeld in Sources */,
 				C3F0F98A25AC98960004B66B /* ContentView.swift in Sources */,
+				C3F0F9BD25AC9E910004B66B /* LibraryView.swift in Sources */,
 				C3F0F98825AC98960004B66B /* pdfOrgApp.swift in Sources */,
+				C3F0F9C325ACA43F0004B66B /* SearchBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
