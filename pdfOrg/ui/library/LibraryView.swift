@@ -19,36 +19,43 @@ struct LibraryView: View {
     var body: some View {
         NavigationView(){
             VStack{
-               
-                Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-              //  List(){
-                    
-                    ForEach(books) { book in
-//                        NavigationLink(destination: PDFOverviewView(pdf: pdf)) {
-                            Text(book.title ?? "error")
-                        if book.coverSheet != nil {
-                            Image(uiImage: UIImage(data: book.coverSheet!)!).cornerRadius(0.55).frame(width: 210, height: 297)
-                        }
-                            
-//                        }
-   //                 }
-                
+                HStack{
+                    Text("All")
+                        .font(.title)
+                        .padding()
+                        .padding(.bottom, -40)
+                        .multilineTextAlignment(.center)
+                    Spacer()
                 }
-            }.background(Color(UIColor.systemBlue).opacity(0.15))
+                ScrollView(.horizontal) {
+                    HStack(){
+                        ForEach(books) { book in
+                            
+                            CoverSheetView(book: book)
+                        }
+                    }.frame(height: 300).padding(.bottom, -20)
+                }
+                Divider()
+                Spacer()
+                Text("foo")
+            }.background(Color(UIColor.systemBlue).opacity(0.05))
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarItems(leading:
                                     HStack{
-                                    SearchBar(text: $searchText).frame(width: 300)
+                                        SearchBar(text: $searchText).frame(width: 300)
                                         Image(systemName: "house").padding()
                                         Text("Gorne")
                                         Text("|")
                                         Text("Autor")
                                     }
                                 ,trailing:
+                                    HStack{
                                     Button(action: {
                                         openFile.toggle()
+                                      
                                     }) {
                                         Image(systemName: "square.and.arrow.down")
+                                    }
                                     }
             )
             .fileImporter(isPresented: $openFile, allowedContentTypes: [.pdf])

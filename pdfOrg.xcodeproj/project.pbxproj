@@ -18,6 +18,7 @@
 		C3F0F9BD25AC9E910004B66B /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F0F9BC25AC9E910004B66B /* LibraryView.swift */; };
 		C3F0F9C325ACA43F0004B66B /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F0F9C225ACA43F0004B66B /* SearchBar.swift */; };
 		C3F0F9CB25ACB3DA0004B66B /* LibraryViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F0F9CA25ACB3DA0004B66B /* LibraryViewExtension.swift */; };
+		C3F9466F25ACEC78000C5CF1 /* CoverSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F9466E25ACEC78000C5CF1 /* CoverSheetView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		C3F0F9BC25AC9E910004B66B /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
 		C3F0F9C225ACA43F0004B66B /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		C3F0F9CA25ACB3DA0004B66B /* LibraryViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewExtension.swift; sourceTree = "<group>"; };
+		C3F9466E25ACEC78000C5CF1 /* CoverSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverSheetView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 			children = (
 				C3F0F9BC25AC9E910004B66B /* LibraryView.swift */,
 				C3F0F9CA25ACB3DA0004B66B /* LibraryViewExtension.swift */,
+				C3F9466E25ACEC78000C5CF1 /* CoverSheetView.swift */,
 			);
 			path = library;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 			files = (
 				C3F0F99125AC98970004B66B /* Persistence.swift in Sources */,
 				C3F0F9CB25ACB3DA0004B66B /* LibraryViewExtension.swift in Sources */,
+				C3F9466F25ACEC78000C5CF1 /* CoverSheetView.swift in Sources */,
 				C3F0F99425AC98970004B66B /* pdfOrg.xcdatamodeld in Sources */,
 				C3F0F98A25AC98960004B66B /* ContentView.swift in Sources */,
 				C3F0F9BD25AC9E910004B66B /* LibraryView.swift in Sources */,
