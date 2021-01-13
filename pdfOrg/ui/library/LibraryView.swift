@@ -16,9 +16,13 @@ struct LibraryView: View {
     @State private var searchText = ""
     @State private var openFile = false
     
+    @State private var navigationLinkActive = false
+    
     var body: some View {
         NavigationView(){
+            
             VStack{
+        
                 HStack{
                     Text("All")
                         .font(.title)
@@ -31,7 +35,7 @@ struct LibraryView: View {
                     HStack(){
                         ForEach(books) { book in
                             
-                            CoverSheetView(book: book)
+                            CoverSheetView(navigationLinkActive: $navigationLinkActive, book: book)
                         }
                     }.frame(height: 300).padding(.bottom, -20)
                 }
@@ -50,12 +54,11 @@ struct LibraryView: View {
                                     }
                                 ,trailing:
                                     HStack{
-                                    Button(action: {
-                                        openFile.toggle()
-                                      
-                                    }) {
-                                        Image(systemName: "square.and.arrow.down")
-                                    }
+                                        Button(action: {
+                                            openFile.toggle()
+                                        }) {
+                                            Image(systemName: "square.and.arrow.down")
+                                        }
                                     }
             )
             .fileImporter(isPresented: $openFile, allowedContentTypes: [.pdf])
@@ -68,7 +71,6 @@ struct LibraryView: View {
                 catch {
                     print("error")
                 }
-                
             }
         }.navigationViewStyle(StackNavigationViewStyle())
     }

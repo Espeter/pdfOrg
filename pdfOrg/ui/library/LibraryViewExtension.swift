@@ -28,9 +28,6 @@ extension LibraryView {
         }  catch {
             print("error: \(error)")
         }
-        
-       
-        
         saveContext()
         url.stopAccessingSecurityScopedResource()
     }
