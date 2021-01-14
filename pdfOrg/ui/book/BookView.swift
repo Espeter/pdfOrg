@@ -9,13 +9,17 @@ import SwiftUI
 
 struct BookView: View {
     
+    @Environment(\.managedObjectContext) var viewContext
+    
     @State var book: Book
+    @State var showingPopup = false
+    @State var editMode = false
     
     var body: some View {
         
         HStack{
             VStack{
-                BookInfoView(book: book)
+                BookInfoView(book: book, editMode: $editMode)
                     .padding()
                     .shadow( radius: 15, x: 3, y: 5)
                 BookPDFView(book: book)
@@ -23,7 +27,7 @@ struct BookView: View {
                     .shadow( radius: 15, x: 3, y: 5)
 
             }
-            BookmarkCollectionView(book: book)
+            BookSongCollectionView(book: book)
                 .padding()
                 .frame(width: 650)
                 .shadow( radius: 15, x: 3, y: 5)
@@ -34,18 +38,43 @@ struct BookView: View {
         .navigationBarItems(trailing:
                 HStack{
                     Button(action: {
+                        if editMode {
+                            saveContext()
+                        }
+                        editMode.toggle()
+                        
+                    }) {
+                        if editMode {
+                            Text("save").padding()
+                        } else {
+                            Text("edit").padding()
+                        }
+                        
+                    }
+                    Button(action: {
                         print("foo1")
                     }) {
                         Image(systemName: "square.and.arrow.down")
-
                     }
                     Button(action: {
-                        print("foo2")
+                        showingPopup.toggle()
                     }) {
                         Image(systemName: "plus").padding()
+                            .popover(isPresented: self.$showingPopup) {
+                                AddSongPopoverView(book: book, showingPopup: $showingPopup)
+                            }
                     }
-                    
                 }
         )
+    }
+    
+    private func saveContext(){
+        do{
+            try viewContext.save()
+        }
+        catch {
+            let error = error as NSError
+            fatalError("error addBook: \(error)")
+        }
     }
 }

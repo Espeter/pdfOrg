@@ -11,7 +11,8 @@
 		C36A6E6925AEF7AE005EB5F1 /* BookInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36A6E6825AEF7AE005EB5F1 /* BookInfoView.swift */; };
 		C36A6E6E25AEFD59005EB5F1 /* BookPDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36A6E6D25AEFD59005EB5F1 /* BookPDFView.swift */; };
 		C36A6E7325AEFE0E005EB5F1 /* PDFKitBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36A6E7225AEFE0D005EB5F1 /* PDFKitBookView.swift */; };
-		C36A6E7B25AF4E4E005EB5F1 /* BookmarkCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36A6E7A25AF4E4E005EB5F1 /* BookmarkCollectionView.swift */; };
+		C36A6E7B25AF4E4E005EB5F1 /* BookSongCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36A6E7A25AF4E4E005EB5F1 /* BookSongCollectionView.swift */; };
+		C36A6E8925AF691A005EB5F1 /* AddSongPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36A6E8825AF691A005EB5F1 /* AddSongPopoverView.swift */; };
 		C3F0F98825AC98960004B66B /* pdfOrgApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F0F98725AC98960004B66B /* pdfOrgApp.swift */; };
 		C3F0F98A25AC98960004B66B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F0F98925AC98960004B66B /* ContentView.swift */; };
 		C3F0F98C25AC98970004B66B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3F0F98B25AC98970004B66B /* Assets.xcassets */; };
@@ -48,7 +49,8 @@
 		C36A6E6825AEF7AE005EB5F1 /* BookInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookInfoView.swift; sourceTree = "<group>"; };
 		C36A6E6D25AEFD59005EB5F1 /* BookPDFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookPDFView.swift; sourceTree = "<group>"; };
 		C36A6E7225AEFE0D005EB5F1 /* PDFKitBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFKitBookView.swift; sourceTree = "<group>"; };
-		C36A6E7A25AF4E4E005EB5F1 /* BookmarkCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkCollectionView.swift; sourceTree = "<group>"; };
+		C36A6E7A25AF4E4E005EB5F1 /* BookSongCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSongCollectionView.swift; sourceTree = "<group>"; };
+		C36A6E8825AF691A005EB5F1 /* AddSongPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSongPopoverView.swift; sourceTree = "<group>"; };
 		C3F0F98425AC98960004B66B /* pdfOrg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pdfOrg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3F0F98725AC98960004B66B /* pdfOrgApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pdfOrgApp.swift; sourceTree = "<group>"; };
 		C3F0F98925AC98960004B66B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -100,7 +102,8 @@
 				C36A6E6325AEEFA4005EB5F1 /* BookView.swift */,
 				C36A6E6825AEF7AE005EB5F1 /* BookInfoView.swift */,
 				C36A6E6D25AEFD59005EB5F1 /* BookPDFView.swift */,
-				C36A6E7A25AF4E4E005EB5F1 /* BookmarkCollectionView.swift */,
+				C36A6E7A25AF4E4E005EB5F1 /* BookSongCollectionView.swift */,
+				C36A6E8825AF691A005EB5F1 /* AddSongPopoverView.swift */,
 			);
 			path = book;
 			sourceTree = "<group>";
@@ -326,7 +329,8 @@
 			files = (
 				C36A6E6425AEEFA4005EB5F1 /* BookView.swift in Sources */,
 				C3F0F99125AC98970004B66B /* Persistence.swift in Sources */,
-				C36A6E7B25AF4E4E005EB5F1 /* BookmarkCollectionView.swift in Sources */,
+				C36A6E7B25AF4E4E005EB5F1 /* BookSongCollectionView.swift in Sources */,
+				C36A6E8925AF691A005EB5F1 /* AddSongPopoverView.swift in Sources */,
 				C3F0F9CB25ACB3DA0004B66B /* LibraryViewExtension.swift in Sources */,
 				C3F9466F25ACEC78000C5CF1 /* CoverSheetView.swift in Sources */,
 				C3F0F99425AC98970004B66B /* pdfOrg.xcdatamodeld in Sources */,

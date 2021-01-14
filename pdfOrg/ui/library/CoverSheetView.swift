@@ -35,6 +35,7 @@ struct CoverSheetView: View {
                         Text("title: \(book.title ?? "n.a.")")
                         Text("version: \(book.version ?? "n.a.")")
                         Text("tonArt: \(book.tonArt ?? "n.a.")")
+                        Text("\(String(book.songs!.count)) Songs")
                         Button(action: {
                             viewContext.delete(book)
                             saveContext()
