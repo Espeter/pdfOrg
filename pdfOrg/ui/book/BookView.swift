@@ -15,6 +15,7 @@ struct BookView: View {
     @State var showingPopup = false
     @State var editMode = false
     @State var openFile = false
+    @State var page: Int = 0
     
     var body: some View {
         
@@ -23,12 +24,12 @@ struct BookView: View {
                 BookInfoView(book: book, editMode: $editMode)
                     .padding()
                     .shadow( radius: 15, x: 3, y: 5)
-                BookPDFView(book: book)
+                BookPDFView(book: book, page: $page)
                     .padding()
                     .shadow( radius: 15, x: 3, y: 5)
 
             }
-            BookSongCollectionView(book: book, editMode: $editMode)
+            BookSongCollectionView(book: book, editMode: $editMode, page: $page)
                 .padding()
                 .frame(width: 650)
                 .shadow( radius: 15, x: 3, y: 5)

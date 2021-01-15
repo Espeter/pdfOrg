@@ -11,7 +11,7 @@ struct BookPDFView: View {
     
     @State var book: Book
     
-    @State var page = 0
+    @Binding var page: Int //= 0
     
     var body: some View {
         VStack{
