@@ -11,7 +11,27 @@ import CoreData
 struct ContentView: View {
     var body: some View {
         
-        LibraryView()
+        
+        TabView{
+            LibraryView()
+                .tabItem {
+                    Image(systemName: "books.vertical")
+                 //   Text("PDF")
+                }
+                
+            Text("gig")
+                .tabItem {
+                    Image(systemName: "music.note.list")
+                //    Text("Gig")
+                }
+            Text("all Songs")
+                .tabItem{
+                    Image(systemName: "play.circle")
+                //    Text("Live")
+                }
+        }
+        
+        
     }
 }
 

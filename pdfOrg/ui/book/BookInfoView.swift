@@ -11,6 +11,7 @@ struct BookInfoView: View {
     
     @ObservedObject var book: Book
     @Binding var editMode: Bool
+    @State var showingPopup = false
     
     var body: some View {
         
@@ -27,7 +28,6 @@ struct BookInfoView: View {
             }.padding(.bottom, 4)
 
             HStack{
-                
                 Text("version: ")
                 if editMode {
                     TextField("\(book.version ?? "nil")", text: umwantler(binding: $book.version, fallback: "error")).padding(0).background(Color(UIColor.systemGray6)).cornerRadius(15.0)
@@ -36,15 +36,12 @@ struct BookInfoView: View {
                 }
                 Spacer()
             }.padding(.bottom, 4)
-
-
             
             HStack{
                 Text("\(String(book.songs!.count)) Songs")
                 Spacer()
             }.padding(.bottom, 4)
-
-
+            
             HStack{
                 Text("pageOfset: ")
                 if editMode {
@@ -55,13 +52,15 @@ struct BookInfoView: View {
                 }
                 
                 Button(action: {
-                    print("info")
+                    showingPopup.toggle()
                 }) {
                     Image(systemName: "info.circle")
+                        .popover(isPresented: self.$showingPopup) {
+                            Text("das sind die Infos zu dem pageOfset").padding()
+                    }
                 }
             }.padding(.bottom, 4).padding(.top, 4)
-
-        }.frame( height: 125)
+        }.frame(minWidth: 315, maxHeight: .infinity)
         .padding()
         .background(Color(UIColor.white))
         .cornerRadius(15.0)
