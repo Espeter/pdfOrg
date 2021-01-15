@@ -13,6 +13,9 @@
 		C36A6E7325AEFE0E005EB5F1 /* PDFKitBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36A6E7225AEFE0D005EB5F1 /* PDFKitBookView.swift */; };
 		C36A6E7B25AF4E4E005EB5F1 /* BookSongCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36A6E7A25AF4E4E005EB5F1 /* BookSongCollectionView.swift */; };
 		C36A6E8925AF691A005EB5F1 /* AddSongPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36A6E8825AF691A005EB5F1 /* AddSongPopoverView.swift */; };
+		C397F1C325B1DE3B006735EF /* GigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C397F1C225B1DE3B006735EF /* GigView.swift */; };
+		C397F1C825B1E47A006735EF /* SelectGigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C397F1C725B1E47A006735EF /* SelectGigView.swift */; };
+		C397F1CD25B20A4D006735EF /* AddGigSongPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C397F1CC25B20A4D006735EF /* AddGigSongPopoverView.swift */; };
 		C3F0F98825AC98960004B66B /* pdfOrgApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F0F98725AC98960004B66B /* pdfOrgApp.swift */; };
 		C3F0F98A25AC98960004B66B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F0F98925AC98960004B66B /* ContentView.swift */; };
 		C3F0F98C25AC98970004B66B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3F0F98B25AC98970004B66B /* Assets.xcassets */; };
@@ -52,6 +55,9 @@
 		C36A6E7225AEFE0D005EB5F1 /* PDFKitBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFKitBookView.swift; sourceTree = "<group>"; };
 		C36A6E7A25AF4E4E005EB5F1 /* BookSongCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSongCollectionView.swift; sourceTree = "<group>"; };
 		C36A6E8825AF691A005EB5F1 /* AddSongPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSongPopoverView.swift; sourceTree = "<group>"; };
+		C397F1C225B1DE3B006735EF /* GigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigView.swift; sourceTree = "<group>"; };
+		C397F1C725B1E47A006735EF /* SelectGigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectGigView.swift; sourceTree = "<group>"; };
+		C397F1CC25B20A4D006735EF /* AddGigSongPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGigSongPopoverView.swift; sourceTree = "<group>"; };
 		C3F0F98425AC98960004B66B /* pdfOrg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pdfOrg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3F0F98725AC98960004B66B /* pdfOrgApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pdfOrgApp.swift; sourceTree = "<group>"; };
 		C3F0F98925AC98960004B66B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -109,6 +115,16 @@
 				C36A6E8825AF691A005EB5F1 /* AddSongPopoverView.swift */,
 			);
 			path = book;
+			sourceTree = "<group>";
+		};
+		C397F1C125B1DC6E006735EF /* gig */ = {
+			isa = PBXGroup;
+			children = (
+				C397F1C225B1DE3B006735EF /* GigView.swift */,
+				C397F1C725B1E47A006735EF /* SelectGigView.swift */,
+				C397F1CC25B20A4D006735EF /* AddGigSongPopoverView.swift */,
+			);
+			path = gig;
 			sourceTree = "<group>";
 		};
 		C3F0F97B25AC98960004B66B = {
@@ -178,6 +194,7 @@
 				C3F0F9C125ACA3F90004B66B /* extensions */,
 				C3F0F9BB25AC9DF80004B66B /* library */,
 				C36A6E6225AEEF7E005EB5F1 /* book */,
+				C397F1C125B1DC6E006735EF /* gig */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -340,10 +357,13 @@
 				C36A6E6925AEF7AE005EB5F1 /* BookInfoView.swift in Sources */,
 				C3F0F98A25AC98960004B66B /* ContentView.swift in Sources */,
 				C3FA6B9925B0795B00747734 /* SongRowView.swift in Sources */,
+				C397F1C325B1DE3B006735EF /* GigView.swift in Sources */,
+				C397F1CD25B20A4D006735EF /* AddGigSongPopoverView.swift in Sources */,
 				C36A6E6E25AEFD59005EB5F1 /* BookPDFView.swift in Sources */,
 				C3F0F9BD25AC9E910004B66B /* LibraryView.swift in Sources */,
 				C3F0F98825AC98960004B66B /* pdfOrgApp.swift in Sources */,
 				C3F0F9C325ACA43F0004B66B /* SearchBar.swift in Sources */,
+				C397F1C825B1E47A006735EF /* SelectGigView.swift in Sources */,
 				C36A6E7325AEFE0E005EB5F1 /* PDFKitBookView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

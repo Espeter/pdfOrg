@@ -60,7 +60,7 @@ struct BookInfoView: View {
                     }
                 }
             }.padding(.bottom, 4).padding(.top, 4)
-        }.frame(minWidth: 315, maxHeight: .infinity)
+        }.frame(minWidth: 300, maxHeight: .infinity)
         .padding()
         .background(Color(UIColor.white))
         .cornerRadius(15.0)

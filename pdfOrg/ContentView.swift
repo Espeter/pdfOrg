@@ -16,18 +16,15 @@ struct ContentView: View {
             LibraryView()
                 .tabItem {
                     Image(systemName: "books.vertical")
-                 //   Text("PDF")
                 }
                 
-            Text("gig")
+            GigView()
                 .tabItem {
                     Image(systemName: "music.note.list")
-                //    Text("Gig")
                 }
             Text("all Songs")
                 .tabItem{
                     Image(systemName: "play.circle")
-                //    Text("Live")
                 }
         }
         

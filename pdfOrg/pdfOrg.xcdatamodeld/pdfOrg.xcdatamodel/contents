@@ -10,6 +10,10 @@
         <attribute name="version" optional="YES" attributeType="String"/>
         <relationship name="songs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Song" inverseName="book" inverseEntity="Song"/>
     </entity>
+    <entity name="Gig" representedClassName="Gig" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="Song" representedClassName="Song" syncable="YES" codeGenerationType="class">
         <attribute name="author" optional="YES" attributeType="String"/>
         <attribute name="endPage" optional="YES" attributeType="String"/>
@@ -21,5 +25,6 @@
     <elements>
         <element name="Book" positionX="-63" positionY="-18" width="128" height="149"/>
         <element name="Song" positionX="228.07421875" positionY="11.90625" width="128" height="119"/>
+        <element name="Gig" positionX="81" positionY="54" width="128" height="59"/>
     </elements>
 </model>

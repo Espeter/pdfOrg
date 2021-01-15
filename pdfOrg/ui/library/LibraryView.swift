@@ -41,7 +41,7 @@ struct LibraryView: View {
                 }
                 Divider()
                 Spacer()
-                Text("foo")
+                Text("")
             }.background(Color(UIColor.systemBlue).opacity(0.05))
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarItems(leading:
