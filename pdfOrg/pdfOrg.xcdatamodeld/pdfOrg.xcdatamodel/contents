@@ -3,7 +3,7 @@
     <entity name="Book" representedClassName="Book" syncable="YES" codeGenerationType="class">
         <attribute name="coverSheet" optional="YES" attributeType="Binary"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="pageOfset" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="pageOfset" optional="YES" attributeType="String"/>
         <attribute name="pdf" optional="YES" attributeType="Binary"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="tonArt" optional="YES" attributeType="String"/>
@@ -12,14 +12,14 @@
     </entity>
     <entity name="Song" representedClassName="Song" syncable="YES" codeGenerationType="class">
         <attribute name="author" optional="YES" attributeType="String"/>
-        <attribute name="endPage" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="endPage" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="startPage" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="startPage" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="book" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="songs" inverseEntity="Book"/>
     </entity>
     <elements>
         <element name="Book" positionX="-63" positionY="-18" width="128" height="149"/>
-        <element name="Song" positionX="228.07421875" positionY="11.90625" width="128" height="133"/>
+        <element name="Song" positionX="228.07421875" positionY="11.90625" width="128" height="119"/>
     </elements>
 </model>

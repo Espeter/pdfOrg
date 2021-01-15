@@ -15,7 +15,7 @@ extension LibraryView {
         let newBook = Book(context: viewContext)
         newBook.id = UUID()
         newBook.title = url.lastPathComponent
-        newBook.pageOfset = 0
+        newBook.pageOfset = "0"
         newBook.tonArt = "n.a."
         newBook.version = "n.a."
         

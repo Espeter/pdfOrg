@@ -14,6 +14,7 @@ struct BookView: View {
     @State var book: Book
     @State var showingPopup = false
     @State var editMode = false
+    @State var openFile = false
     
     var body: some View {
         
@@ -27,7 +28,7 @@ struct BookView: View {
                     .shadow( radius: 15, x: 3, y: 5)
 
             }
-            BookSongCollectionView(book: book)
+            BookSongCollectionView(book: book, editMode: $editMode)
                 .padding()
                 .frame(width: 650)
                 .shadow( radius: 15, x: 3, y: 5)
@@ -52,7 +53,7 @@ struct BookView: View {
                         
                     }
                     Button(action: {
-                        print("foo1")
+                        openFile.toggle()
                     }) {
                         Image(systemName: "square.and.arrow.down")
                     }
@@ -66,6 +67,17 @@ struct BookView: View {
                     }
                 }
         )
+        .fileImporter(isPresented: $openFile, allowedContentTypes: [.text])
+        { (res) in
+            do {
+                let fileUrl = try res.get()
+                importSongs(url: fileUrl)
+            }
+            catch {
+                print("error")
+            }
+            
+        }
     }
     
     private func saveContext(){
@@ -76,5 +88,45 @@ struct BookView: View {
             let error = error as NSError
             fatalError("error addBook: \(error)")
         }
+    }
+    
+    private func importSongs(url: URL) {
+        
+        var txt = String()
+        
+        do{
+            guard url.startAccessingSecurityScopedResource() else {
+                return
+            }
+            txt = try NSString(contentsOf: url, encoding: String.Encoding.ascii.rawValue) as String
+            
+        }  catch {
+            print(error)
+        }
+        
+        txt.enumerateLines(invoking: { (line, stop) -> () in
+            let lineSplit = line.components(separatedBy:";")
+            
+            if lineSplit.count == 2 {
+                addSong(name: lineSplit[0], startSide: lineSplit[1], author: nil)
+            } else {
+                addSong(name: lineSplit[0], startSide: lineSplit[1], author: lineSplit[2])
+            }
+        })
+        url.stopAccessingSecurityScopedResource()
+    }
+    
+    func addSong(name: String, startSide: String, author: String?) {
+        
+        let song: Song = Song(context: viewContext)
+        
+        song.id = UUID()
+        song.title = name
+        song.startPage = startSide
+        song.author = author ?? "n.a."
+        
+        book.addToSongs(song)
+        
+        saveContext()
     }
 }

@@ -12,49 +12,57 @@ struct BookInfoView: View {
     @ObservedObject var book: Book
     @Binding var editMode: Bool
     
-    @State var foo = ""
-    
     var body: some View {
         
-        VStack{
-            if editMode {
-                HStack{
-                    Text("tonArt: ")
-                    TextField("\(book.tonArt ?? "nil")", text: umwantler(binding: $book.tonArt, fallback: "error")).background(Color(UIColor.systemGray6)).cornerRadius(15.0)
+        VStack {
+            
+            HStack{
+                Text("tonArt: ")
+                if editMode {
+                    TextField("\(book.tonArt ?? "nil")", text: umwantler(binding: $book.tonArt, fallback: "error")).padding(0).background(Color(UIColor.systemGray6)).cornerRadius(15.0)
+                } else {
+                    Text("\(book.tonArt ?? "nil")")
                 }
-                HStack{
-                    Text("version: ")
-                    TextField("\(book.version ?? "nil")", text: umwantler(binding: $book.version, fallback: "error")).background(Color(UIColor.systemGray6)).cornerRadius(15.0)
+                Spacer()
+            }.padding(.bottom, 4)
+
+            HStack{
+                
+                Text("version: ")
+                if editMode {
+                    TextField("\(book.version ?? "nil")", text: umwantler(binding: $book.version, fallback: "error")).padding(0).background(Color(UIColor.systemGray6)).cornerRadius(15.0)
+                } else {
+                    Text("\(book.version ?? "nil")")
                 }
+                Spacer()
+            }.padding(.bottom, 4)
+
+
+            
+            HStack{
                 Text("\(String(book.songs!.count)) Songs")
-                Divider()
-                HStack{
-                    Text("pageOfset: \(String(book.pageOfset))")
+                Spacer()
+            }.padding(.bottom, 4)
+
+
+            HStack{
+                Text("pageOfset: ")
+                if editMode {
+                    TextField("\(book.pageOfset ?? "nil")", text: umwantler(binding: $book.pageOfset, fallback: "error")).padding(0).background(Color(UIColor.systemGray6)).cornerRadius(15.0)
+                } else {
+                    Text("\(book.pageOfset ?? "nil")")
                     Spacer()
-                    Button(action: {
-                        print("\(editMode)")
-                    }) {
-                        Image(systemName: "info.circle")
-                    }
                 }
                 
-            } else {
-                
-                Text("tonArt: \(book.tonArt ?? "nil")")
-                Text("version: \(book.version ?? "nil")")
-                Text("\(String(book.songs!.count)) Songs")
-                Divider()
-                HStack{
-                    Text("pageOfset: \(String(book.pageOfset))")
-                    Spacer()
-                    Button(action: {
-                        print("\(editMode)")
-                    }) {
-                        Image(systemName: "info.circle")
-                    }
+                Button(action: {
+                    print("info")
+                }) {
+                    Image(systemName: "info.circle")
                 }
-            }
-        }.padding()
+            }.padding(.bottom, 4).padding(.top, 4)
+
+        }.frame( height: 125)
+        .padding()
         .background(Color(UIColor.white))
         .cornerRadius(15.0)
         

@@ -12,33 +12,25 @@ struct BookSongCollectionView: View {
     @Environment(\.managedObjectContext) var viewContext
     
     @ObservedObject var book: Book
+    @Binding var editMode: Bool
+
     
     var body: some View {
         VStack{
             HStack{
                 
-                Text("title")
-                Spacer()
-                Text("|")
-                Spacer()
-                Text("page")
-                Spacer()
-                Text("|")
-                Spacer()
-                Text("author")
+                Text("title").frame(maxWidth: .infinity, alignment: .leading)
+
+                Text("page").frame(maxWidth: .infinity, alignment: .leading)
+
+                Text("author").frame(maxWidth: .infinity, alignment: .leading)
                 
             }.padding().background(Color(UIColor.systemGray6))
             
             List() {
                 
                 ForEach(getArraySong(book.songs!)) { song in
-                    HStack{
-                        Text("\(song.title ?? "nil")")
-                        Spacer()
-                        Text("\(song.startPage)")
-                        Spacer()
-                        Text("\(song.author ?? "nil")")
-                    }
+                    SongRowView(song: song, editMode: $editMode)
                 }.onDelete(perform: deleteSong)
             }
         }
@@ -50,7 +42,7 @@ struct BookSongCollectionView: View {
         
         let songs = snSet.allObjects as! [Song]
         
-        let sortedSongs = songs.sorted {$0.startPage < $1.startPage}
+        let sortedSongs = songs.sorted {$0.title ?? "0" < $1.title ?? "0"}
         
         return sortedSongs
     }

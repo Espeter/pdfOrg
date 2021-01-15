@@ -49,7 +49,7 @@ struct AddSongPopoverView: View {
         
         song.id = UUID()
         song.title = title
-        song.startPage = (Int16(startSide) ?? 1)
+        song.startPage = startSide 
         song.author = author
         
         book.addToSongs(song)
