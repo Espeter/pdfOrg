@@ -13,6 +13,8 @@
 		C36A6E7325AEFE0E005EB5F1 /* PDFKitBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36A6E7225AEFE0D005EB5F1 /* PDFKitBookView.swift */; };
 		C36A6E7B25AF4E4E005EB5F1 /* BookSongCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36A6E7A25AF4E4E005EB5F1 /* BookSongCollectionView.swift */; };
 		C36A6E8925AF691A005EB5F1 /* AddSongPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36A6E8825AF691A005EB5F1 /* AddSongPopoverView.swift */; };
+		C379904125B34DD400D58D28 /* CampfireView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C379904025B34DD400D58D28 /* CampfireView.swift */; };
+		C379904A25B34E3700D58D28 /* AllSongsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C379904925B34E3700D58D28 /* AllSongsView.swift */; };
 		C397F1C325B1DE3B006735EF /* GigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C397F1C225B1DE3B006735EF /* GigView.swift */; };
 		C397F1C825B1E47A006735EF /* SelectGigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C397F1C725B1E47A006735EF /* SelectGigView.swift */; };
 		C397F1CD25B20A4D006735EF /* AddGigSongPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C397F1CC25B20A4D006735EF /* AddGigSongPopoverView.swift */; };
@@ -55,6 +57,8 @@
 		C36A6E7225AEFE0D005EB5F1 /* PDFKitBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFKitBookView.swift; sourceTree = "<group>"; };
 		C36A6E7A25AF4E4E005EB5F1 /* BookSongCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSongCollectionView.swift; sourceTree = "<group>"; };
 		C36A6E8825AF691A005EB5F1 /* AddSongPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSongPopoverView.swift; sourceTree = "<group>"; };
+		C379904025B34DD400D58D28 /* CampfireView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampfireView.swift; sourceTree = "<group>"; };
+		C379904925B34E3700D58D28 /* AllSongsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSongsView.swift; sourceTree = "<group>"; };
 		C397F1C225B1DE3B006735EF /* GigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigView.swift; sourceTree = "<group>"; };
 		C397F1C725B1E47A006735EF /* SelectGigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectGigView.swift; sourceTree = "<group>"; };
 		C397F1CC25B20A4D006735EF /* AddGigSongPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGigSongPopoverView.swift; sourceTree = "<group>"; };
@@ -115,6 +119,15 @@
 				C36A6E8825AF691A005EB5F1 /* AddSongPopoverView.swift */,
 			);
 			path = book;
+			sourceTree = "<group>";
+		};
+		C379903F25B34DB800D58D28 /* campfire */ = {
+			isa = PBXGroup;
+			children = (
+				C379904025B34DD400D58D28 /* CampfireView.swift */,
+				C379904925B34E3700D58D28 /* AllSongsView.swift */,
+			);
+			path = campfire;
 			sourceTree = "<group>";
 		};
 		C397F1C125B1DC6E006735EF /* gig */ = {
@@ -195,6 +208,7 @@
 				C3F0F9BB25AC9DF80004B66B /* library */,
 				C36A6E6225AEEF7E005EB5F1 /* book */,
 				C397F1C125B1DC6E006735EF /* gig */,
+				C379903F25B34DB800D58D28 /* campfire */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -354,6 +368,7 @@
 				C3F0F9CB25ACB3DA0004B66B /* LibraryViewExtension.swift in Sources */,
 				C3F9466F25ACEC78000C5CF1 /* CoverSheetView.swift in Sources */,
 				C3F0F99425AC98970004B66B /* pdfOrg.xcdatamodeld in Sources */,
+				C379904A25B34E3700D58D28 /* AllSongsView.swift in Sources */,
 				C36A6E6925AEF7AE005EB5F1 /* BookInfoView.swift in Sources */,
 				C3F0F98A25AC98960004B66B /* ContentView.swift in Sources */,
 				C3FA6B9925B0795B00747734 /* SongRowView.swift in Sources */,
@@ -365,6 +380,7 @@
 				C3F0F9C325ACA43F0004B66B /* SearchBar.swift in Sources */,
 				C397F1C825B1E47A006735EF /* SelectGigView.swift in Sources */,
 				C36A6E7325AEFE0E005EB5F1 /* PDFKitBookView.swift in Sources */,
+				C379904125B34DD400D58D28 /* CampfireView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

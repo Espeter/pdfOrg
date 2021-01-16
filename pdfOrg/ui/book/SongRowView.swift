@@ -13,6 +13,7 @@ struct SongRowView: View {
     @Binding var editMode: Bool
     @Binding var page: Int
     
+    
     var body: some View {
         
         if editMode {

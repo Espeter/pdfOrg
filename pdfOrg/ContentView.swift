@@ -22,9 +22,9 @@ struct ContentView: View {
                 .tabItem {
                     Image(systemName: "music.note.list")
                 }
-            Text("all Songs")
+            CampfireView()
                 .tabItem{
-                    Image(systemName: "play.circle")
+                    Image(systemName: "flame")
                 }
         }
         

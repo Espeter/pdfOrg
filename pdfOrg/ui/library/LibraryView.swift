@@ -16,6 +16,10 @@ struct LibraryView: View {
     @State private var searchText = ""
     @State private var openFile = false
     
+    @State private var popupIsActive = false
+    @State private var currentBook: Book?
+
+    
     @State private var navigationLinkActive = false
     
     var body: some View {
@@ -35,7 +39,7 @@ struct LibraryView: View {
                     HStack(){
                         ForEach(books) { book in
                             
-                            CoverSheetView(navigationLinkActive: $navigationLinkActive, book: book)
+                            CoverSheetView(navigationLinkActive: $navigationLinkActive, book: book, popupIsActive: $popupIsActive, currentBook: $currentBook)
                         }
                     }.frame(height: 300).padding(.bottom, -20)
                 }

@@ -25,7 +25,13 @@ struct BookSongCollectionView: View {
                 Text("page").frame(maxWidth: .infinity, alignment: .leading)
 
                 Text("author").frame(maxWidth: .infinity, alignment: .leading)
-                
+                Button(action: {
+                    getArraySong(book.songs!).forEach { song in
+                        viewContext.delete(song)
+                    }
+                }) {
+                    Image(systemName: "trash").padding()
+                }
             }.padding().background(Color(UIColor.systemGray6))
             
             List() {

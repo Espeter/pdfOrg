@@ -15,67 +15,80 @@ struct CoverSheetView: View {
     
     @State var book: Book
     @State private var showingPopup = false
+    @Binding var popupIsActive: Bool
+    @Binding var currentBook: Book?
+
     
     var body: some View {
         
         if book.coverSheet != nil {
             VStack{
-                NavigationLink(destination: BookView(book: book), isActive: $navigationLinkActive) { EmptyView() }
-            Image(uiImage: UIImage(data: book.coverSheet!)!)
-                .resizable()
-                .frame(width: 151.2, height: 213.84)
-                .cornerRadius(15.0)
-                .shadow( radius: 15, x: 3, y: 5)
-                .padding()
-                .onTapGesture {
-                    showingPopup.toggle()
+                if currentBook != nil {
+                    NavigationLink(destination: BookView(book: currentBook!), isActive: $navigationLinkActive) { EmptyView() }.animation(nil)
                 }
-                .popover(isPresented: self.$showingPopup) {
-                    VStack{
-                        Text("title: \(book.title ?? "n.a.")")
-                        Text("version: \(book.version ?? "n.a.")")
-                        Text("tonArt: \(book.tonArt ?? "n.a.")")
-                        Text("\(String(book.songs!.count)) Songs")
-                        Button(action: {
-                            viewContext.delete(book)
-                            saveContext()
-                        }) {
-                            Image(systemName: "trash").padding()
-                        }
-                        Button(action: {
-                            navigationLinkActive.toggle()
-                            showingPopup = false
-                        }) {
-                            Image(systemName: "book").padding()
+                Image(uiImage: UIImage(data: book.coverSheet!)!)
+                    .resizable()
+                    .frame(width: 151.2, height: 213.84)
+                    .cornerRadius(15.0)
+                    .shadow( radius: 15, x: 3, y: 5)
+                    .padding()
+                    .onTapGesture { //TODO: das ist noch nicht perfekt muss doch auch irgt wie ander gesehen
+                        if popupIsActive {
+                            popupIsActive = false
+                        } else {
+                            showingPopup.toggle()
+                            popupIsActive = true
                         }
                         
-                    }.padding().frame(width: 200, height: 300)
-                }
-            }
-        } else {
-            
-            Rectangle()
-                .fill(Color.yellow)
-                .frame(width: 151.2, height: 213.84)
-                .cornerRadius(15.0)
-                .shadow( radius: 15, x: 3, y: 5)
-                .padding()
-                .onTapGesture {
-                    showingPopup.toggle()
-                }
-                .popover(isPresented: self.$showingPopup) { //trailing
-                    VStack{
-                        Text("title: \(book.title ?? "n.a.")")
-                        Text("version: \(book.version ?? "n.a.")")
-                        Text("tonArt: \(book.tonArt ?? "n.a.")")
-                        Button(action: {
-                            viewContext.delete(book)
-                            saveContext()
-                        }) {
-                            Image(systemName: "trash")
+                    }
+                    .popover(isPresented: self.$showingPopup) {
+                        VStack{
+                            Text("title: \(book.title ?? "n.a.")")
+                            Text("version: \(book.version ?? "n.a.")")
+                            Text("tonArt: \(book.tonArt ?? "n.a.")")
+                            Text("\(String(book.songs!.count)) Songs")
+                            Button(action: {
+                                viewContext.delete(book)
+                                saveContext()
+                            }) {
+                                Image(systemName: "trash").padding()
+                            }
+                            Button(action: {
+                                currentBook = book
+                                navigationLinkActive.toggle()
+                                showingPopup = false
+                            }) {
+                                Image(systemName: "book").padding()
+                            }
+                        }.padding().frame(width: 200, height: 300).onDisappear{
+                            popupIsActive = false
                         }
-                    }.padding().frame(width: 200, height: 300)
-                }
+                    }
+            }
+//        } else {
+//
+//            Rectangle()
+//                .fill(Color.yellow)
+//                .frame(width: 151.2, height: 213.84)
+//                .cornerRadius(15.0)
+//                .shadow( radius: 15, x: 3, y: 5)
+//                .padding()
+//                .onTapGesture {
+//                    showingPopup.toggle()
+//                }
+//                .popover(isPresented: self.$showingPopup) { //trailing
+//                    VStack{
+//                        Text("title: \(book.title ?? "n.a.")")
+//                        Text("version: \(book.version ?? "n.a.")")
+//                        Text("tonArt: \(book.tonArt ?? "n.a.")")
+//                        Button(action: {
+//                            viewContext.delete(book)
+//                            saveContext()
+//                        }) {
+//                            Image(systemName: "trash")
+//                        }
+//                    }.padding().frame(width: 200, height: 300)
+//                }
         }
     }
     
