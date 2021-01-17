@@ -62,9 +62,11 @@ struct PDFPreviewControllerCampire: UIViewControllerRepresentable {
             uiViewController.pdfView.displayMode = PDFDisplayMode.singlePage
         }
         
-        let pageIndexInt = Int(pageIndex)
+        let pageIndexInt = Int(pageIndex)!
+        var calculatedPage: Int = pageIndexInt + Int(book.pageOfset ?? "0")!
+        calculatedPage = calculatedPage - 1
         
-        if let myPage = uiViewController.pdfView.document?.page(at: (pageIndexInt ?? 0)) {
+        if let myPage = uiViewController.pdfView.document?.page(at: (calculatedPage )) {
             uiViewController.pdfView.go(to: myPage)
         }
         if presentationModde{

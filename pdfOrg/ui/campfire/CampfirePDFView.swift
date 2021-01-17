@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct CampfirePDFView: View {
-    
+        
+    @EnvironmentObject var ec : EnvironmentController
+
     @Binding var song: Song
     
     var body: some View {
@@ -22,6 +24,10 @@ struct CampfirePDFView: View {
         .padding()
         .background(Color(UIColor.white))
         .cornerRadius(15.0)
+        .onTapGesture {
+            ec.song = song
+            ec.presentationMode = true
+        }
         .shadow( radius: 15, x: 3, y: 5)
     }
     
