@@ -15,7 +15,7 @@ struct BookPDFView: View {
     
     var body: some View {
         VStack{
-            PDFKitView(book: book, pageIndex: $page).frame(width: 300, height: 380.5)
+            PDFKitBookView(book: book, pageIndex: $page).frame(width: 300, height: 380.5)
         }
         .padding()
         .background(Color(UIColor.white))

@@ -8,7 +8,7 @@
 import SwiftUI
 import PDFKit
 
-struct PDFKitView: View {
+struct PDFKitBookView: View {
     @State var book: Book
     @Binding var pageIndex: Int
   //  @State var presentationModde: Bool

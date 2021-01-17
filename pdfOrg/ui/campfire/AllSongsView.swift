@@ -9,15 +9,14 @@ import SwiftUI
 
 struct AllSongsView: View {
     
-    @Environment(\.managedObjectContext) private var viewContext
     
-    @FetchRequest(sortDescriptors: [])
-    private var songs: FetchedResults<Song>
-    
+    @State var songs: [Song]
     @Binding var song: Song?
     
     @State private var searchText = ""
-    let alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+    let alphabet : [String]
+    
+    @State var segmentSongs: [String: [Song]]
     
     
     var body: some View {
@@ -32,7 +31,6 @@ struct AllSongsView: View {
                             Button("\(song.title!)"){
                                 self.song = song
                             }
-                            
                         }
                     }
                 }
@@ -45,34 +43,45 @@ struct AllSongsView: View {
                             
                             ForEach(alphabet, id: \.self){ char in
                                 
-                                if foo(char: char) {
-                                    
-                                    Section(header: Text(char).id(char)){
-                                        
-                                        ForEach(getArraySong(), id: \.self) { (song: Song) in
-                                            if song.title?.lowercased().first == char.lowercased().first {
-                                                Button("\(song.title!)"){
-                                                    print("foo")
-                                                    self.song = song
-                                                }
-                                                
-                                            }
-                                        }
-                                    }
-                                }
-                                if getSpecialCharacterSongs().count != 0 {
-                                    
-                                    Section(header: Text("#").id("#")){
-                                        
-                                        ForEach(getSpecialCharacterSongs(), id: \.self) { (song: Song) in
-                                            
+                                if segmentSongs[char]!.count > 0 {
+                                    Section(header: Text(char).id(char)) {
+                                        ForEach(segmentSongs[char]!, id: \.self) { (song: Song) in
                                             Button("\(song.title!)"){
+                                                print("foo")
                                                 self.song = song
                                             }
-                                            
                                         }
+                                        
                                     }
                                 }
+                                //                                if foo(char: char) {
+                                //
+                                //                                    Section(header: Text(char).id(char)){
+                                //
+                                //                                        ForEach(songs, id: \.self) { (song: Song) in
+                                //                                            if song.title?.lowercased().first == char.lowercased().first {
+                                //                                                Button("\(song.title!)"){
+                                //                                                    print("foo")
+                                //                                                    self.song = song
+                                //                                                }
+                                //
+                                //                                            }
+                                //                                        }
+                                //                                    }
+                                //                                }
+                                //                               if getSpecialCharacterSongs().count != 0 {
+                                //
+                                //                                    Section(header: Text("#").id("#")){
+                                //
+                                //                                        ForEach(getSpecialCharacterSongs(), id: \.self) { (song: Song) in
+                                //
+                                //                                            Button("\(song.title!)"){
+                                //                                                self.song = song
+                                //                                            }
+                                //
+                                //                                        }
+                                //                                    }
+                                //                                }
                             }
                         }
                         VStack{
@@ -93,8 +102,18 @@ struct AllSongsView: View {
         }.padding().background(Color(UIColor.white)).cornerRadius(15.0).shadow( radius: 15, x: 3, y: 5)
     }
     
+    //     func setSongsArray() -> [Song] {
+    //        print("ich war hier")
+    //        let x = getArraySong()
+    //
+    //        self.songsArray = x
+    //        return x
+    //
+    //    }
+    
+    
     func compared(_ string: String, searchText: String) -> Bool {
-        
+        print("2")
         var bool = false
         
         var splitSearchText = searchText.components(separatedBy: " ")
@@ -126,8 +145,8 @@ struct AllSongsView: View {
     }
     
     func getSpecialCharacterSongs() -> [Song] {
-        
-        let songs = getArraySong()
+        print("3")
+        //  let songs = songsArray ?? setSongsArray()
         var songs123: [Song] = []
         
         songs.forEach { song in
@@ -149,24 +168,25 @@ struct AllSongsView: View {
         return songs123
     }
     
-    func getArraySong() -> [Song] {
-        var songsArray: [Song] = []
-        
-        songs.forEach{ song in
-            songsArray.append(song)
-        }
-        
-        songsArray.sort {
-            $0.title! < $1.title!
-        }
-        return songsArray
-    }
+    //    func getArraySong() -> [Song] {
+    //        print("4")
+    //        var songsArray: [Song] = []
+    //
+    //        songs.forEach{ song in
+    //            songsArray.append(song)
+    //        }
+    //
+    //        songsArray.sort {
+    //            $0.title! < $1.title!
+    //        }
+    //        return songsArray
+    //    }
     
     func foo(char: String) -> Bool {
-        
+        print("5")
         var isIncluded = false
         
-        let songs = getArraySong()
+        //     let songs = songsArray ?? setSongsArray()
         
         songs.forEach{ song in
             
@@ -174,7 +194,28 @@ struct AllSongsView: View {
                 isIncluded = true
             }
         }
-        
         return isIncluded
+    }
+    
+    func getSegmentSongs() -> [String: [Song]] {
+        print("getSegmentSongs()")
+        var dictionary: [String: [Song]] = [:]
+        
+        alphabet.forEach{ char in
+            dictionary[char] = []
+        }
+        dictionary["#"] = []
+        
+        songs.forEach{ song in
+            let firstLetter = song.title?.first?.lowercased()
+            
+            if (dictionary[firstLetter!] != nil) {
+                dictionary[firstLetter!]?.append(song)
+            } else {
+                dictionary["#"]?.append(song)
+            }
+        }
+        segmentSongs = dictionary
+        return dictionary
     }
 }
