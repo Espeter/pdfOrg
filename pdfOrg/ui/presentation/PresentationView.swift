@@ -18,7 +18,7 @@ struct PresentationView: View {
     var body: some View {
         NavigationView(){
             ZStack(alignment: .topTrailing){
-                PDFKitCampireView(book: umwantler(binding: $song.book, fallback: Book()), pageIndex: $page, presentationModde: true)
+                PDFKitCampirePresentationView(book: umwantler(binding: $song.book, fallback: Book()), pageIndex: $page, presentationModde: true)
                     .navigationBarTitle("\(song.title!)", displayMode: .inline)
                     .navigationBarItems(leading:
                                             HStack{
