@@ -17,6 +17,7 @@ struct CampfireView: View {
     @State var songsArray: [Song]?
     @State var song: Song?
     @State var i: Int = 3
+    @State var pageIndex: String?
 
     
     let alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","#"]
@@ -28,7 +29,7 @@ struct CampfireView: View {
             VStack{
                 Text("Info")
                 if song != nil {
-                    CampfirePDFView(song: umwantler(binding: $song, fallback: Song()))
+                    CampfirePDFView(song: umwantler(binding: $song, fallback: Song()), pageIndex: umwantler(binding: $pageIndex, fallback: "1"))
                //     Text("\(song?.title ?? "papa")")
                     
                 } else {
@@ -40,7 +41,7 @@ struct CampfireView: View {
                         .shadow( radius: 15, x: 3, y: 5)
                 }
             }
-            AllSongsView(songs: getArraySong(), song: $song, alphabet: alphabet, segmentSongs: getSegmentSongs())
+            AllSongsView(songs: getArraySong(), song: $song, pageIndex: $pageIndex, alphabet: alphabet, segmentSongs: getSegmentSongs())
             .padding()
         }
         .background(Color(UIColor.systemBlue).opacity(0.05))

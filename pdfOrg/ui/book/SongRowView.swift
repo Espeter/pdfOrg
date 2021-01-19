@@ -29,6 +29,10 @@ struct SongRowView: View {
                     TextField("\(song.startPage ?? "nil")", text: umwantler(binding: $song.startPage, fallback: "error"))
                         .background(Color(UIColor.systemGray6))
                         .cornerRadius(15.0)
+                    Text("-")
+                    TextField("\(song.endPage ?? "")", text: umwantler(binding: $song.endPage, fallback: ""))
+                        .background(Color(UIColor.systemGray6))
+                        .cornerRadius(15.0)
                     Spacer()
                     TextField("\(song.author ?? "nil")", text: umwantler(binding: $song.author, fallback: "error"))
                         .background(Color(UIColor.systemGray6))
@@ -43,7 +47,13 @@ struct SongRowView: View {
                 HStack{
                     Text("\(song.title ?? "nil")").frame(maxWidth: .infinity, alignment: .leading)
                     Spacer()
-                    Text("\(song.startPage ?? "nil")").frame(maxWidth: .infinity, alignment: .leading)
+                    HStack{
+                    Text("\(song.startPage ?? "nil")")
+                    if song.endPage != nil && song.endPage != song.startPage{
+                        Text("-")
+                        Text("\(song.endPage ?? "nil")")
+                    }
+                    }.frame(maxWidth: .infinity, alignment: .leading)
                     Spacer()
                     Text("\(song.author ?? "nil")").frame(maxWidth: .infinity, alignment: .leading)
                 }

@@ -12,6 +12,8 @@ struct AllSongsView: View {
     
     @State var songs: [Song]
     @Binding var song: Song?
+    @Binding var pageIndex: String?
+
     
     @State private var searchText = ""
     let alphabet : [String]
@@ -30,6 +32,7 @@ struct AllSongsView: View {
                             
                             Button("\(song.title!)"){
                                 self.song = song
+                                pageIndex = song.startPage
                             }
                         }
                     }
@@ -49,6 +52,7 @@ struct AllSongsView: View {
                                             Button("\(song.title!)"){
                                                 print("foo")
                                                 self.song = song
+                                                pageIndex = song.startPage
                                             }
                                         }
                                         

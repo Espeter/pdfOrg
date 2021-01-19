@@ -31,7 +31,7 @@ struct ContentView: View {
                 }.tag(3)
         }
         } else if ec.presentationMode == true {
-            PresentationView(song: $ec.song)
+            PresentationView(song: $ec.song, page: ec.song.startPage!)
         } else {
             BookPresentationView()
         }
