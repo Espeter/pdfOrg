@@ -17,6 +17,7 @@ struct AddSongPopoverView: View {
     @State private var title: String = ""
     @State private var startSide: String = ""
     @State private var author: String = ""
+    @State private var endPage: String = ""
     
     var body: some View {
     
@@ -28,6 +29,8 @@ struct AddSongPopoverView: View {
             HStack{
             Text("Page: ")
             TextField("1", text: $startSide)
+            Text("-")
+            TextField("1", text: $endPage)
             }
             HStack{
             Text("Author: ")
@@ -51,6 +54,7 @@ struct AddSongPopoverView: View {
         song.title = title
         song.startPage = startSide 
         song.author = author
+        song.endPage = endPage
         
         book.addToSongs(song)
         

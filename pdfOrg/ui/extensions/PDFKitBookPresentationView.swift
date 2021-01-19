@@ -1,27 +1,29 @@
 //
-//  PDFKitCampireView.swift
+//  PDFKitBookPresentationView.swift
 //  pdfOrg
 //
-//  Created by Carl Espeter on 17.01.21.
+//  Created by Carl Espeter on 19.01.21.
 //
+
+import SwiftUI
 
 import SwiftUI
 import PDFKit
 
-struct PDFKitCampireView: View {
+struct PDFKitBookPresentationView: View {
     @Binding var book: Book
-    @Binding var pageIndex: String
+    @Binding var pageIndex: Int
     @State var presentationModde: Bool
     
     
     var body: some View {
         VStack{
-            PDFPreviewControllerCampire(book: $book , pageIndex: $pageIndex, presentationModde: $presentationModde )
+            PDFPreviewControllerBook(book: $book , pageIndex: $pageIndex, presentationModde: $presentationModde )
         }
     }
 }
 
-class PDFPreviewViewControllerCampire: UIViewController {
+class PDFPreviewViewControllerBook: UIViewController {
     
     public var pdfView: PDFView!
     
@@ -37,32 +39,32 @@ class PDFPreviewViewControllerCampire: UIViewController {
     }
 }
 
-struct PDFPreviewControllerCampire: UIViewControllerRepresentable {
+struct PDFPreviewControllerBook: UIViewControllerRepresentable {
     
     @Binding var book: Book
-    @Binding var pageIndex: String
+    @Binding var pageIndex: Int
     @Binding var presentationModde: Bool
     
-    init(book: Binding<Book>, pageIndex: Binding<String>, presentationModde: Binding<Bool>) {
+    init(book: Binding<Book>, pageIndex: Binding<Int>, presentationModde: Binding<Bool>) {
         _book = book
         _pageIndex = pageIndex
         _presentationModde = presentationModde
     }
     
-    func makeUIViewController(context: UIViewControllerRepresentableContext<PDFPreviewControllerCampire>) -> PDFPreviewViewControllerCampire {
+    func makeUIViewController(context: UIViewControllerRepresentableContext<PDFPreviewControllerBook>) -> PDFPreviewViewControllerBook {
         
-        return PDFPreviewViewControllerCampire()
+        return PDFPreviewViewControllerBook()
     }
     
-    func updateUIViewController(_ uiViewController: PDFPreviewViewControllerCampire, context: UIViewControllerRepresentableContext<PDFPreviewControllerCampire>) {
+    func updateUIViewController(_ uiViewController: PDFPreviewViewControllerBook, context: UIViewControllerRepresentableContext<PDFPreviewControllerBook>) {
         
         uiViewController.pdfView.document = PDFDocument(data: book.pdf!)
         
         if presentationModde {
-            uiViewController.pdfView.displayMode = PDFDisplayMode.singlePage
+            uiViewController.pdfView.displayMode = PDFDisplayMode.twoUp
         }
         
-        let pageIndexInt = Int(pageIndex)!
+        let pageIndexInt = pageIndex
         var calculatedPage: Int = pageIndexInt + Int(book.pageOfset ?? "0")!
         calculatedPage = calculatedPage - 1
         uiViewController.pdfView.backgroundColor = UIColor.white
@@ -82,10 +84,10 @@ struct PDFPreviewControllerCampire: UIViewControllerRepresentable {
     
     class Coordinator: NSObject {
         
-        @Binding var pageIndex: String
+        @Binding var pageIndex: Int
         @Binding var book: Book
         
-        init(book: Binding<Book>, pageIndex: Binding<String>) {
+        init(book: Binding<Book>, pageIndex: Binding<Int>) {
             _pageIndex = pageIndex
             _book = book
         }

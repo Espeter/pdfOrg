@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C31D403F25B63492009A3EF7 /* BookPresentationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31D403E25B63492009A3EF7 /* BookPresentationView.swift */; };
+		C31D404425B700DF009A3EF7 /* PDFKitBookPresentationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31D404325B700DF009A3EF7 /* PDFKitBookPresentationView.swift */; };
 		C342EF2125B463060004FD38 /* CampfirePDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C342EF2025B463060004FD38 /* CampfirePDFView.swift */; };
 		C342EF2625B463DC0004FD38 /* PDFKitCampireView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C342EF2525B463DC0004FD38 /* PDFKitCampireView.swift */; };
 		C36A6E6425AEEFA4005EB5F1 /* BookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36A6E6325AEEFA4005EB5F1 /* BookView.swift */; };
@@ -55,6 +57,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C31D403E25B63492009A3EF7 /* BookPresentationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookPresentationView.swift; sourceTree = "<group>"; };
+		C31D404325B700DF009A3EF7 /* PDFKitBookPresentationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFKitBookPresentationView.swift; sourceTree = "<group>"; };
 		C342EF2025B463060004FD38 /* CampfirePDFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampfirePDFView.swift; sourceTree = "<group>"; };
 		C342EF2525B463DC0004FD38 /* PDFKitCampireView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFKitCampireView.swift; sourceTree = "<group>"; };
 		C36A6E6325AEEFA4005EB5F1 /* BookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookView.swift; sourceTree = "<group>"; };
@@ -143,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				C385D4A725B4BC2A000D1452 /* PresentationView.swift */,
+				C31D403E25B63492009A3EF7 /* BookPresentationView.swift */,
 			);
 			path = presentation;
 			sourceTree = "<group>";
@@ -248,6 +253,7 @@
 				C3F0F9C225ACA43F0004B66B /* SearchBar.swift */,
 				C36A6E7225AEFE0D005EB5F1 /* PDFKitBookView.swift */,
 				C342EF2525B463DC0004FD38 /* PDFKitCampireView.swift */,
+				C31D404325B700DF009A3EF7 /* PDFKitBookPresentationView.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -397,8 +403,10 @@
 				C397F1C325B1DE3B006735EF /* GigView.swift in Sources */,
 				C397F1CD25B20A4D006735EF /* AddGigSongPopoverView.swift in Sources */,
 				C36A6E6E25AEFD59005EB5F1 /* BookPDFView.swift in Sources */,
+				C31D404425B700DF009A3EF7 /* PDFKitBookPresentationView.swift in Sources */,
 				C3F0F9BD25AC9E910004B66B /* LibraryView.swift in Sources */,
 				C385D49F25B4A88D000D1452 /* EnvironmentController.swift in Sources */,
+				C31D403F25B63492009A3EF7 /* BookPresentationView.swift in Sources */,
 				C3F0F98825AC98960004B66B /* pdfOrgApp.swift in Sources */,
 				C3F0F9C325ACA43F0004B66B /* SearchBar.swift in Sources */,
 				C397F1C825B1E47A006735EF /* SelectGigView.swift in Sources */,

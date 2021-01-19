@@ -14,7 +14,7 @@ struct ContentView: View {
     
     var body: some View {
         
-        if ec.presentationMode == false {
+        if ec.presentationMode == false && ec.presentationModeBook == false {
         TabView(selection: $ec.tabTag){
             LibraryView()
                 .tabItem {
@@ -30,8 +30,10 @@ struct ContentView: View {
                     Image(systemName: "flame")
                 }.tag(3)
         }
-        } else {
+        } else if ec.presentationMode == true {
             PresentationView(song: $ec.song)
+        } else {
+            BookPresentationView()
         }
         
     }

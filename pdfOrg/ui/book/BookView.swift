@@ -15,7 +15,7 @@ struct BookView: View {
     @State var showingPopup = false
     @State var editMode = false
     @State var openFile = false
-    @State var page: Int = 0
+    @State var page: Int = 1
     
     var body: some View {
         
@@ -31,7 +31,7 @@ struct BookView: View {
             }
             BookSongCollectionView(book: book, editMode: $editMode, page: $page)
                 .padding()
-                .frame(width: 650)
+               // .frame(width: 650)
                 .shadow( radius: 15, x: 3, y: 5)
 
             
@@ -108,22 +108,27 @@ struct BookView: View {
         txt.enumerateLines(invoking: { (line, stop) -> () in
             let lineSplit = line.components(separatedBy:";")
             
-            if lineSplit.count == 2 {
-                addSong(name: lineSplit[0], startSide: lineSplit[1], author: nil)
+            if lineSplit.count == 3 {
+                addSong(name: lineSplit[0], startSide: lineSplit[1], endPage: lineSplit[2], author: nil)
             } else {
-                addSong(name: lineSplit[0], startSide: lineSplit[1], author: lineSplit[2])
+                addSong(name: lineSplit[0], startSide: lineSplit[1],endPage: lineSplit[2], author: lineSplit[3])
             }
         })
         url.stopAccessingSecurityScopedResource()
     }
     
-    func addSong(name: String, startSide: String, author: String?) {
+    func addSong(name: String, startSide: String, endPage: String, author: String?) {
         
         let song: Song = Song(context: viewContext)
         
         song.id = UUID()
         song.title = name
         song.startPage = startSide
+        if endPage != ""{
+            song.endPage = endPage
+        } else {
+            song.endPage = startSide
+        }
         song.author = author ?? "n.a."
         
         book.addToSongs(song)
