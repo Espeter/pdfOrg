@@ -27,22 +27,25 @@ struct CampfireView: View {
     var body: some View {
         HStack{
             VStack{
-                Text("Info")
+            //    Text("Info")
                 if song != nil {
-                    CampfirePDFView(song: umwantler(binding: $song, fallback: Song()), pageIndex: umwantler(binding: $pageIndex, fallback: "1"))
+                    CampfirePDFView(song: umwantler(binding: $song, fallback: Song()), pageIndex: umwantler(binding: $pageIndex, fallback: "1")).padding().frame(minWidth: 300, idealWidth: .infinity, maxWidth: .infinity, minHeight: 380.5, idealHeight: .infinity, maxHeight: .infinity)
                //     Text("\(song?.title ?? "papa")")
                     
                 } else {
                     Text("selekt Song")
-                        .frame(width: 300, height: 380.5)
-                        .padding()
+                       // .frame(width: 300, height: 380.5)
+                        .frame(minWidth: 300, idealWidth: .infinity, maxWidth: .infinity, minHeight: 380.5, idealHeight: .infinity, maxHeight: .infinity)
+                      //  .padding()
                         .background(Color(UIColor.white))
                         .cornerRadius(15.0)
                         .shadow( radius: 15, x: 3, y: 5)
+                        .padding()
+                        
                 }
             }
             AllSongsView(songs: getArraySong(), song: $song, pageIndex: $pageIndex, alphabet: alphabet, segmentSongs: getSegmentSongs())
-            .padding()
+            .padding().padding(.leading, -20)
         }
         .background(Color(UIColor.systemBlue).opacity(0.05))
     }

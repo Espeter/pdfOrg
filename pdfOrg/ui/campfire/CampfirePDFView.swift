@@ -42,7 +42,7 @@ struct CampfirePDFView: View {
             } else {
                 Text("selekt Song")
             }
-        }.frame(width: 300, height: 380.5)
+        }//.frame(width: 300, height: 380.5)
         .padding()
         .background(Color(UIColor.white))
         .cornerRadius(15.0)
@@ -50,8 +50,9 @@ struct CampfirePDFView: View {
             ec.song = song
             ec.presentationMode = true
         }
-        .gesture(DragGesture(minimumDistance: 100, coordinateSpace: .local)
+        .gesture(DragGesture(minimumDistance: 50, coordinateSpace: .local)
                     .onEnded({ value in
+                        print(value)
                         if value.translation.width <= 0 {
                             nextPage()
                         }

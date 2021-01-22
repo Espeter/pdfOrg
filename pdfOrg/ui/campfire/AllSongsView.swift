@@ -13,7 +13,7 @@ struct AllSongsView: View {
     @State var songs: [Song]
     @Binding var song: Song?
     @Binding var pageIndex: String?
-
+    
     
     @State private var searchText = ""
     let alphabet : [String]
@@ -58,34 +58,6 @@ struct AllSongsView: View {
                                         
                                     }
                                 }
-                                //                                if foo(char: char) {
-                                //
-                                //                                    Section(header: Text(char).id(char)){
-                                //
-                                //                                        ForEach(songs, id: \.self) { (song: Song) in
-                                //                                            if song.title?.lowercased().first == char.lowercased().first {
-                                //                                                Button("\(song.title!)"){
-                                //                                                    print("foo")
-                                //                                                    self.song = song
-                                //                                                }
-                                //
-                                //                                            }
-                                //                                        }
-                                //                                    }
-                                //                                }
-                                //                               if getSpecialCharacterSongs().count != 0 {
-                                //
-                                //                                    Section(header: Text("#").id("#")){
-                                //
-                                //                                        ForEach(getSpecialCharacterSongs(), id: \.self) { (song: Song) in
-                                //
-                                //                                            Button("\(song.title!)"){
-                                //                                                self.song = song
-                                //                                            }
-                                //
-                                //                                        }
-                                //                                    }
-                                //                                }
                             }
                         }
                         VStack{
@@ -94,9 +66,6 @@ struct AllSongsView: View {
                                 Button(char){
                                     scroll.scrollTo(char, anchor: .top)
                                 }
-                            }
-                            Button("#"){
-                                scroll.scrollTo("#", anchor: .top)
                             }
                         }
                         
