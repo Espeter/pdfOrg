@@ -22,6 +22,11 @@ struct GigView: View {
     
     @State var updateView: Bool = true
     
+    @State var songIsSelectet: Bool = false
+    @State var gigSongIsSelectet: Bool = false
+ 
+    @State var pageIndex: String = "1"
+    
     let alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","#"]
     
     var body: some View {
@@ -33,27 +38,17 @@ struct GigView: View {
                     if showingAddGigSongView {
                         VStack{
                             GigInfoView(gig: umwantler(binding: $gig, fallback: Gig()), updateView: $updateView).padding()
-                            Text("selekt Song")
-                                // .frame(width: 300, height: 380.5)
-                                .frame(minWidth: 300, idealWidth: .infinity, maxWidth: .infinity, minHeight: 380.5, idealHeight: .infinity, maxHeight: .infinity)
-                                //  .padding()
-                                .background(Color(UIColor.white))
-                                .cornerRadius(15.0)
-                                .shadow( radius: 15, x: 3, y: 5)
+                            GigPDFView(songIsSelectet: $songIsSelectet, gigSongIsSelectet: $gigSongIsSelectet, song: $song, pageIndex: $pageIndex)
                                 .padding()
+                                .padding(.top, -20)
                         }
-                        SelectGigSongView(songs: getArraySong(), gig: umwantler(binding: $gig, fallback: Gig()), alphabet: alphabet, segmentSongs: getSegmentSongs(), updateView: $updateView).padding()
+                        SelectGigSongView(songs: getArraySong(), gig:  umwantler(binding: $gig, fallback: Gig()), alphabet: alphabet, segmentSongs: getSegmentSongs(), updateView: $updateView, songIsSelectet: $songIsSelectet, gigSongIsSelectet: $gigSongIsSelectet, songSelectet: $song, pageIndex: $pageIndex)
+                            .padding()
+                            .padding(.leading, -20)
                         
                     } else {
-                        Text("selekt Song")
-                            // .frame(width: 300, height: 380.5)
-                            .frame(minWidth: 300, idealWidth: .infinity, maxWidth: .infinity, minHeight: 380.5, idealHeight: .infinity, maxHeight: .infinity)
-                            //  .padding()
-                            .background(Color(UIColor.white))
-                            .cornerRadius(15.0)
-                            .shadow( radius: 15, x: 3, y: 5)
-                            .padding()
-                        GigInfoView(gig: umwantler(binding: $gig, fallback: Gig()), updateView: $updateView).padding()
+                        GigPDFView(songIsSelectet: $songIsSelectet, gigSongIsSelectet: $gigSongIsSelectet, song: $song, pageIndex: $pageIndex).padding()
+                        GigInfoView(gig: umwantler(binding: $gig, fallback: Gig()), updateView: $updateView).padding().padding(.leading, -20)
                     }
                 
             } else {

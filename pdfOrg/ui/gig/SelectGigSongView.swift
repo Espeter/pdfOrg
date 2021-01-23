@@ -16,6 +16,11 @@ struct SelectGigSongView: View {
     @State var segmentSongs: [String: [Song]]
     @Binding var updateView: Bool
     
+    @Binding var songIsSelectet: Bool
+    @Binding var gigSongIsSelectet: Bool
+    @Binding var songSelectet: Song?
+    @Binding var pageIndex: String
+    
     var body: some View {
         
         VStack{
@@ -24,8 +29,8 @@ struct SelectGigSongView: View {
                 List {
                     ForEach(songs, id: \.self) { (song: Song) in
                         if(compared(song.title!.lowercased(), searchText: self.searchText.lowercased())){
-                            
-                            SongRowInGigView(song: song, gig: $gig, updateView: $updateView)
+                            SongRowInGigView(song: song, gig: $gig, updateView: $updateView, songIsSelectet: $songIsSelectet, gigSongIsSelectet: $gigSongIsSelectet, songSelectet: $songSelectet, pageIndex: $pageIndex)
+                       //     SongRowInGigView(song: song, gig: $gig, updateView: $updateView, )
                         }
                     }
                 }
@@ -40,7 +45,7 @@ struct SelectGigSongView: View {
                                     Section(header: Text(char).id(char)) {
                                         ForEach(segmentSongs[char]!, id: \.self) { (song: Song) in
                                             
-                                            SongRowInGigView(song: song, gig: $gig, updateView: $updateView)
+                                            SongRowInGigView(song: song, gig: $gig, updateView: $updateView, songIsSelectet: $songIsSelectet, gigSongIsSelectet: $gigSongIsSelectet, songSelectet: $songSelectet, pageIndex: $pageIndex)
                                         }
                                     }
                                 }

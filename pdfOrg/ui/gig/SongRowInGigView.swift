@@ -14,36 +14,44 @@ struct SongRowInGigView: View {
     @State var song: Song
     @Binding var gig: Gig
     @Binding var updateView: Bool
- //   @State var songIsSelectet: Bool = false
+    //   @State var songIsSelectet: Bool = false
+    
+    @Binding var songIsSelectet: Bool
+    @Binding var gigSongIsSelectet: Bool
+    @Binding var songSelectet: Song?
+    @Binding var pageIndex: String
+
     
     var body: some View {
         HStack{
-            Text("\(song.title!)")
-                .onTapGesture {
-                    print("foo")
-                }
+            Button(action: {
+                print("\(song.title!)")
+                gigSongIsSelectet = false
+                songIsSelectet = true
+                songSelectet = song
+                pageIndex = song.startPage!
+            }) {
+                Text("\(song.title!)")
+            }
+            
             Spacer()
-            if songIsSelectet() {
+            if thsSongIsSelectet() {
                 
                 Image(systemName: "checkmark.square").onTapGesture {
                     deleteSongToGig()
                 }
-//                Button(action: {
-//                    deleteSongToGig()
-//                }) {
-//                    Image(systemName: "checkmark.square")
-//                }
+                
             } else {
                 Image(systemName: "square").onTapGesture {
                     addSongToGig()
                 }
                 
-//                Button(action: {
-//                    print("addSongToGig()")
-//                    addSongToGig()
-//                }) {
-//                    Image(systemName: "square")
-//                }
+                //                Button(action: {
+                //                    print("addSongToGig()")
+                //                    addSongToGig()
+                //                }) {
+                //                    Image(systemName: "square")
+                //                }
             }
         }
     }
@@ -75,7 +83,7 @@ struct SongRowInGigView: View {
         }
     }
     
-    func songIsSelectet() -> Bool {
+    func thsSongIsSelectet() -> Bool {
         
         var songIsSelectet: Bool = false
         
