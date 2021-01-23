@@ -13,14 +13,36 @@ struct GigInfoView: View {
     @Binding var gig: Gig
     @Binding var updateView: Bool
     
+    @Binding var songIsSelectet: Bool
+    @Binding var gigSongIsSelectet: Bool
+    @Binding var songInGig: SongInGig?
+    @Binding var pageIndex: String
+    @Binding var song: Song?
+
+    
     var body: some View {
         
         List{
             ForEach(getArraySong(gig.songsInGig!)) { songinGig in
-                HStack{
-                Text("\(songinGig.position + 1)")
-                Text("\(songinGig.song!.title!)")
+                
+                Button(action: {
+                    print("fofoofofofofof")
+                    print("\(songinGig.position + 1)")
+                    
+                    songIsSelectet = false
+                    gigSongIsSelectet = true
+                    pageIndex = (songinGig.song?.startPage)!
+                    self.songInGig = songinGig
+                    song = (songInGig?.song)!
+                    
+                }) {
+                    HStack{
+                    Text("\(songinGig.position + 1)")
+                    Text("\(songinGig.song!.title!)")
+                    }
                 }
+                
+               
             }.onDelete(perform: deleteSong)
             .onMove(perform: move)
             

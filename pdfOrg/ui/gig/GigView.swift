@@ -19,6 +19,7 @@ struct GigView: View {
     
     @State var gig: Gig?
     @State var song: Song?
+    @State var songInGig: SongInGig?
     
     @State var updateView: Bool = true
     
@@ -37,8 +38,10 @@ struct GigView: View {
                     if gig != nil {
                     if showingAddGigSongView {
                         VStack{
-                            GigInfoView(gig: umwantler(binding: $gig, fallback: Gig()), updateView: $updateView).padding()
-                            GigPDFView(songIsSelectet: $songIsSelectet, gigSongIsSelectet: $gigSongIsSelectet, song: $song, pageIndex: $pageIndex)
+                      //      GigInfoView(gig: umwantler(binding: $gig, fallback: Gig()), updateView: $updateView)
+                            GigInfoView(gig: umwantler(binding: $gig, fallback: Gig()), updateView: $updateView, songIsSelectet: $songIsSelectet, gigSongIsSelectet: $gigSongIsSelectet, songInGig: $songInGig, pageIndex: $pageIndex, song: $song)
+                                .padding()
+                            GigPDFView(songIsSelectet: $songIsSelectet, gigSongIsSelectet: $gigSongIsSelectet, song: $song, pageIndex: $pageIndex, songInGig: $songInGig, gig: gig ?? Gig())
                                 .padding()
                                 .padding(.top, -20)
                         }
@@ -47,8 +50,11 @@ struct GigView: View {
                             .padding(.leading, -20)
                         
                     } else {
-                        GigPDFView(songIsSelectet: $songIsSelectet, gigSongIsSelectet: $gigSongIsSelectet, song: $song, pageIndex: $pageIndex).padding()
-                        GigInfoView(gig: umwantler(binding: $gig, fallback: Gig()), updateView: $updateView).padding().padding(.leading, -20)
+                        GigPDFView(songIsSelectet: $songIsSelectet, gigSongIsSelectet: $gigSongIsSelectet, song: $song, pageIndex: $pageIndex, songInGig: $songInGig, gig: gig ?? Gig()).padding()
+                   //     GigInfoView(gig: umwantler(binding: $gig, fallback: Gig()), updateView: $updateView)
+                        GigInfoView(gig: umwantler(binding: $gig, fallback: Gig()), updateView: $updateView, songIsSelectet: $songIsSelectet, gigSongIsSelectet: $gigSongIsSelectet, songInGig: $songInGig, pageIndex: $pageIndex, song: $song)
+                            .padding()
+                            .padding(.leading, -20)
                     }
                 
             } else {

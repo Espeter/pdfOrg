@@ -24,6 +24,20 @@ struct SongRowInGigView: View {
     
     var body: some View {
         HStack{
+            
+            if thsSongIsSelectet() {
+                
+                Image(systemName: "checkmark.square").foregroundColor(Color(UIColor.systemGray))
+                    .onTapGesture {
+                    deleteSongToGig()
+                }
+                
+            } else {
+                Image(systemName: "square").foregroundColor(Color(UIColor.systemGray))
+                    .onTapGesture {
+                    addSongToGig()
+                }
+            }
             Button(action: {
                 print("\(song.title!)")
                 gigSongIsSelectet = false
@@ -35,16 +49,7 @@ struct SongRowInGigView: View {
             }
             
             Spacer()
-            if thsSongIsSelectet() {
-                
-                Image(systemName: "checkmark.square").onTapGesture {
-                    deleteSongToGig()
-                }
-                
-            } else {
-                Image(systemName: "square").onTapGesture {
-                    addSongToGig()
-                }
+            
                 
                 //                Button(action: {
                 //                    print("addSongToGig()")
@@ -52,7 +57,7 @@ struct SongRowInGigView: View {
                 //                }) {
                 //                    Image(systemName: "square")
                 //                }
-            }
+            
         }
     }
     

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C314602C25BC395900D4246F /* GigPDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C314602B25BC395900D4246F /* GigPDFView.swift */; };
+		C314603125BC5D1700D4246F /* GigSongPDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C314603025BC5D1700D4246F /* GigSongPDFView.swift */; };
 		C31D403F25B63492009A3EF7 /* BookPresentationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31D403E25B63492009A3EF7 /* BookPresentationView.swift */; };
 		C31D404425B700DF009A3EF7 /* PDFKitBookPresentationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31D404325B700DF009A3EF7 /* PDFKitBookPresentationView.swift */; };
 		C31D404925B7659F009A3EF7 /* PDFKitCampirePresentationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31D404825B7659F009A3EF7 /* PDFKitCampirePresentationView.swift */; };
@@ -62,6 +63,7 @@
 
 /* Begin PBXFileReference section */
 		C314602B25BC395900D4246F /* GigPDFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigPDFView.swift; sourceTree = "<group>"; };
+		C314603025BC5D1700D4246F /* GigSongPDFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigSongPDFView.swift; sourceTree = "<group>"; };
 		C31D403E25B63492009A3EF7 /* BookPresentationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookPresentationView.swift; sourceTree = "<group>"; };
 		C31D404325B700DF009A3EF7 /* PDFKitBookPresentationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFKitBookPresentationView.swift; sourceTree = "<group>"; };
 		C31D404825B7659F009A3EF7 /* PDFKitCampirePresentationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFKitCampirePresentationView.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				C3D57F2E25B9E16700339082 /* GigInfoView.swift */,
 				C3D57F3625BB193700339082 /* SongRowInGigView.swift */,
 				C314602B25BC395900D4246F /* GigPDFView.swift */,
+				C314603025BC5D1700D4246F /* GigSongPDFView.swift */,
 			);
 			path = gig;
 			sourceTree = "<group>";
@@ -425,6 +428,7 @@
 				C3F0F9C325ACA43F0004B66B /* SearchBar.swift in Sources */,
 				C3D57F2F25B9E16700339082 /* GigInfoView.swift in Sources */,
 				C397F1C825B1E47A006735EF /* SelectGigView.swift in Sources */,
+				C314603125BC5D1700D4246F /* GigSongPDFView.swift in Sources */,
 				C342EF2125B463060004FD38 /* CampfirePDFView.swift in Sources */,
 				C36A6E7325AEFE0E005EB5F1 /* PDFKitBookView.swift in Sources */,
 				C379904125B34DD400D58D28 /* CampfireView.swift in Sources */,
