@@ -26,9 +26,6 @@ struct GigInfoView: View {
             ForEach(getArraySong(gig.songsInGig!)) { songinGig in
                 
                 Button(action: {
-                    print("fofoofofofofof")
-                    print("\(songinGig.position + 1)")
-                    
                     songIsSelectet = false
                     gigSongIsSelectet = true
                     pageIndex = (songinGig.song?.startPage)!

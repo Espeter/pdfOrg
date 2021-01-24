@@ -14,7 +14,7 @@ struct ContentView: View {
     
     var body: some View {
         
-        if ec.presentationMode == false && ec.presentationModeBook == false {
+        if ec.presentationMode == false && ec.presentationModeBook == false && ec.presentationModeGig == false{
         TabView(selection: $ec.tabTag){
             LibraryView()
                 .tabItem {
@@ -32,10 +32,11 @@ struct ContentView: View {
         }
         } else if ec.presentationMode == true {
             PresentationView(song: $ec.song, page: ec.song.startPage!)
-        } else {
+        } else if ec.presentationModeBook == true {
             BookPresentationView()
+        } else{
+            GigPresentationView(song: ec.song, pageIndex: ec.pageIndexString, songInGig: ec.songInGig, gig: ec.gig)
         }
-        
     }
 }
 

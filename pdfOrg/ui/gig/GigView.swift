@@ -41,7 +41,7 @@ struct GigView: View {
                       //      GigInfoView(gig: umwantler(binding: $gig, fallback: Gig()), updateView: $updateView)
                             GigInfoView(gig: umwantler(binding: $gig, fallback: Gig()), updateView: $updateView, songIsSelectet: $songIsSelectet, gigSongIsSelectet: $gigSongIsSelectet, songInGig: $songInGig, pageIndex: $pageIndex, song: $song)
                                 .padding()
-                            GigPDFView(songIsSelectet: $songIsSelectet, gigSongIsSelectet: $gigSongIsSelectet, song: $song, pageIndex: $pageIndex, songInGig: $songInGig, gig: gig ?? Gig())
+                            GigPDFView(songIsSelectet: $songIsSelectet, gigSongIsSelectet: $gigSongIsSelectet, song: $song, pageIndex: $pageIndex, songInGig: $songInGig, gig: umwantler(binding: $gig, fallback: Gig()))
                                 .padding()
                                 .padding(.top, -20)
                         }
@@ -50,7 +50,7 @@ struct GigView: View {
                             .padding(.leading, -20)
                         
                     } else {
-                        GigPDFView(songIsSelectet: $songIsSelectet, gigSongIsSelectet: $gigSongIsSelectet, song: $song, pageIndex: $pageIndex, songInGig: $songInGig, gig: gig ?? Gig()).padding()
+                        GigPDFView(songIsSelectet: $songIsSelectet, gigSongIsSelectet: $gigSongIsSelectet, song: $song, pageIndex: $pageIndex, songInGig: $songInGig, gig: umwantler(binding: $gig, fallback: Gig())).padding()
                    //     GigInfoView(gig: umwantler(binding: $gig, fallback: Gig()), updateView: $updateView)
                         GigInfoView(gig: umwantler(binding: $gig, fallback: Gig()), updateView: $updateView, songIsSelectet: $songIsSelectet, gigSongIsSelectet: $gigSongIsSelectet, songInGig: $songInGig, pageIndex: $pageIndex, song: $song)
                             .padding()

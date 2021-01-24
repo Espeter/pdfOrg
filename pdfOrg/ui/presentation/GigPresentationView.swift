@@ -1,5 +1,5 @@
 //
-//  GigPDFView.swift
+//  GigPresentationView.swift
 //  pdfOrg
 //
 //  Created by Carl Espeter on 23.01.21.
@@ -7,71 +7,58 @@
 
 import SwiftUI
 
-struct GigPDFView: View {
+struct GigPresentationView: View {
+    
     @EnvironmentObject var ec : EnvironmentController
+    
+    @State var song: Song
+    @State var pageIndex: String
+    @State var navigationBarHidden = true
+    @State var songInGig: SongInGig?
+    @State var gig: Gig
 
-    @Binding var songIsSelectet: Bool
-    @Binding var gigSongIsSelectet: Bool
-    @Binding var song: Song?
-    @Binding var pageIndex: String
-    @Binding var songInGig: SongInGig?
-    @Binding var gig: Gig
     
     var body: some View {
-        VStack{
-            if songIsSelectet {
-                CampfirePDFView(song: umwantler(binding: $song, fallback: Song()), pageIndex: $pageIndex)
-            } else if gigSongIsSelectet {
-                HStack{
-                    Button(action: {
-                        print("back")
-                        backPage()
-                        print(pageIndex)
-                    }) {
-                        Image(systemName: "lessthan")
+        NavigationView(){
+            ZStack(alignment: .topTrailing){
+                PDFKitCampirePresentationView(book: umwantler(binding: $song.book, fallback: Book()), pageIndex: $pageIndex, presentationModde: true)
+                    .navigationBarTitle("\(song.title!)", displayMode: .inline)
+                    .navigationBarItems(leading:
+                                            HStack{
+                                                Button(action: {
+                                                    ec.presentationModeGig = false
+                                                }) {
+                                                    HStack{
+                                                        Image(systemName: "lessthan")
+                                                        Text("Back")
+                                                    }
+                                                }
+                                            }
+                    )
+                    .navigationBarHidden(navigationBarHidden)
+                    .onTapGesture {
+                        navigationBarHidden.toggle()
                     }
-                    GigSongPDFView(pageIndex: $pageIndex, song: umwantler(binding: $song, fallback: Song()))
-                    Button(action: {
-                        nextPage()
-                    }) {
-                        Image(systemName: "greaterthan")
-                    }
+                Button(action: {
+                    ec.presentationModeGig = false
+                }) {
+                    Image(systemName:"multiply").foregroundColor(Color(UIColor.systemGray)).padding().padding()
                 }
-            } else {
-                Text("selekt Song")
             }
-        }
-        .frame(minWidth: 300,
-               idealWidth: .infinity,
-               maxWidth: .infinity,
-               minHeight: 380.5,
-               idealHeight: .infinity,
-               maxHeight: .infinity)
-        .gesture(DragGesture(minimumDistance: 100, coordinateSpace: .local)
-                    .onEnded({ value in
-                        if value.translation.width <= 0 {
-                            nextPage()
-                        }
-                        if value.translation.width >= 0 {
-                            backPage()                        }
-                    }))
-        .onTapGesture {
-            
-            ec.song = song!
-            ec.pageIndexString = pageIndex
-            ec.songInGig = songInGig!
-            ec.gig = gig
-            ec.presentationModeGig = true
-        }
-        .background(Color(UIColor.white))
-        .cornerRadius(15.0)
-        .shadow( radius: 15, x: 3, y: 5)
+            .gesture(DragGesture(minimumDistance: 100, coordinateSpace: .local)
+                        .onEnded({ value in
+                            if value.translation.width <= 0 {
+                                nextPage()
+                            }
+                            if value.translation.width >= 0 {
+                                backPage()                        }
+                        }))
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
-    
     
     func backPage() {
         
-        if Int((song?.startPage)!) ==  Int(pageIndex) {
+        if Int((song.startPage)!) ==  Int(pageIndex) {
             
             let currentSongPosition = songInGig?.position
             let songsInGig = getArraySongInGig(gig.songsInGig!)
@@ -79,7 +66,7 @@ struct GigPDFView: View {
             songsInGig.forEach{ songInGig in
                 
                 if songInGig.position < currentSongPosition!  {
-                    song = songInGig.song
+                    song = songInGig.song!
                     self.songInGig = songInGig
                     if songInGig.song?.endPage != nil {
                         pageIndex = (songInGig.song?.endPage)!
@@ -97,9 +84,9 @@ struct GigPDFView: View {
     
     func nextPage() {
         
-        if song?.endPage != nil {
+        if song.endPage != nil {
             
-            if Int((song?.endPage)!) == Int(pageIndex) { // TODO: Hir höte ein buck sein
+            if Int((song.endPage)!) == Int(pageIndex) { // TODO: Hir höte ein buck sein
                 
                 let currentSongPosition = songInGig?.position
                 let songsInGig = getArraySongInGig(gig.songsInGig!)
@@ -109,7 +96,7 @@ struct GigPDFView: View {
                 songsInGig.forEach{ songInGig in
                     
                     if songInGig.position > currentSongPosition! && bool {
-                        song = songInGig.song
+                        song = songInGig.song!
                         self.songInGig = songInGig
                         pageIndex = (songInGig.song?.startPage)!
                         bool = false
@@ -130,7 +117,7 @@ struct GigPDFView: View {
             songsInGig.forEach{ songInGig in
                 
                 if songInGig.position > currentSongPosition! && bool {
-                    song = songInGig.song
+                    song = songInGig.song!
                     self.songInGig = songInGig
                     pageIndex = (songInGig.song?.startPage)!
                     bool = false
@@ -160,4 +147,3 @@ struct GigPDFView: View {
         })
     }
 }
-
