@@ -11,6 +11,13 @@ import CoreData
 struct ContentView: View {
     
     @EnvironmentObject var ec : EnvironmentController
+    @Environment(\.managedObjectContext) private var viewContext
+
+    @FetchRequest(sortDescriptors: [])
+    private var songsFR: FetchedResults<Song>
+    
+    @FetchRequest(sortDescriptors: [])
+    private var gigs: FetchedResults<Gig>
     
     var body: some View {
         
@@ -21,7 +28,7 @@ struct ContentView: View {
                     Image(systemName: "books.vertical")
                 }.tag(1)
                 
-            GigView()
+            GigView(gig: getFavoritGig())
                 .tabItem {
                     Image(systemName: "music.note.list")
                 }.tag(2)
@@ -38,6 +45,56 @@ struct ContentView: View {
             GigPresentationView(song: ec.song, pageIndex: ec.pageIndexString, songInGig: ec.songInGig, gig: ec.gig)
         }
     }
+    
+    func getFavoritGig() -> Gig {
+        
+        var favoritGig: Gig? = nil
+        
+        gigs.forEach{ gig in
+            if gig.title == "Favorits" {
+                favoritGig = gig
+            }
+        }
+        
+        if favoritGig == nil {
+            
+            
+            let newFavoritGig = Gig(context: viewContext)
+            newFavoritGig.title = "Favorits"
+            var i = 0
+            
+            getArraySong().forEach { song in
+                
+                if song.isFavorit {
+                    
+                    let songInGig = SongInGig(context: viewContext)
+                    songInGig.position = Int64(i)
+                    songInGig.song = song
+                    
+                    newFavoritGig.addToSongsInGig(songInGig)
+                    i = i + 1
+                }
+            }
+            favoritGig = newFavoritGig
+        }
+        
+        return favoritGig!
+    }
+    
+    func getArraySong() -> [Song] {
+        var songsArray: [Song] = []
+        
+        songsFR.forEach{ song in
+            songsArray.append(song)
+        }
+        
+        songsArray.sort {
+            $0.title! < $1.title!
+        }
+        return songsArray
+    }
+    
+    
 }
 
 struct ContentView_Previews: PreviewProvider {

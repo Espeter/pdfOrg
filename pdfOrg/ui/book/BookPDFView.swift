@@ -11,6 +11,15 @@ struct BookPDFView: View {
     
     @EnvironmentObject var ec : EnvironmentController
     @Environment(\.managedObjectContext) private var viewContext
+    
+    @FetchRequest(sortDescriptors: [])
+    private var songsFR: FetchedResults<Song>
+    
+    @FetchRequest(sortDescriptors: [])
+    private var gigs: FetchedResults<Gig>
+    
+    @FetchRequest(sortDescriptors: [])
+    private var songsInGig: FetchedResults<SongInGig>
 
     @State var book: Book
     @Binding var song: Song?
@@ -39,6 +48,10 @@ struct BookPDFView: View {
                     if song!.isFavorit {
                         Button(action: {
                             song!.isFavorit = false
+                            
+                          
+                            removeSongInFavoritGig()
+                            
                             saveContext()
                         }) {
                             Image(systemName: "star.fill").foregroundColor(Color(UIColor.systemGray)).padding().padding()
@@ -46,6 +59,7 @@ struct BookPDFView: View {
                     } else {
                         Button(action: {
                             song!.isFavorit = true
+                            addSongToFavoritGig()
                             saveContext()
                         }) {
                             Image(systemName: "star").foregroundColor(Color(UIColor.systemGray)).padding().padding()
@@ -120,32 +134,85 @@ struct BookPDFView: View {
         }
     }
     
-//    func pageIsSong() -> Bool {
-//
-//        var isSong = false
-//        let songs = book.songs
-//
-//        songs?.forEach { song in
-//
-//            if (song as! Song).startPage != (song as! Song).endPage {
-//
-//                let startPage = Int((song as! Song).startPage!)
-//                let endPage = Int((song as! Song).endPage ?? (song as! Song).startPage!)
-//                let pageCount = endPage! - startPage!
-//
-//                (0..<(pageCount + 1)).forEach { i in
-//                    if (startPage! + i) == page {
-//                        isSong = true
-//                        self.song = (song as! Song)
-//                    }
-//                }
-//            } else {
-//                if (song as! Song).startPage == String(page) {
-//                    isSong = true
-//                    self.song = (song as! Song)
-//                }
-//            }
-//        }
-//        return isSong
-//    }
+    
+    func removeSongInFavoritGig() {
+        
+        let gig = getFavoritGig()
+        
+        songsInGig.forEach { songInGig in
+            
+            if songInGig.song == song && songInGig.gig == gig {
+                
+                gig.removeFromSongsInGig(songInGig)
+                saveContext()
+            }
+        }
+    }
+    
+    func addSongToFavoritGig() {
+        
+        let gig = getFavoritGig()
+        
+        let newSongInGig = SongInGig(context: viewContext)
+        newSongInGig.song = song
+
+        let position = gig.songsInGig!.count + 1
+        
+        newSongInGig.position = Int64(position)
+        
+        gig.addToSongsInGig(newSongInGig)
+        saveContext()
+    }
+    
+    
+    func getFavoritGig() -> Gig {
+        
+        var favoritGig: Gig? = nil
+        
+        gigs.forEach{ gig in
+            if gig.title == "Favorits" {
+                favoritGig = gig
+            }
+        }
+        
+        if favoritGig == nil {
+            
+            
+            let newFavoritGig = Gig(context: viewContext)
+            newFavoritGig.title = "Favorits"
+            var i = 0
+            
+            getArraySong().forEach { song in
+                
+                if song.isFavorit {
+                    
+                    let songInGig = SongInGig(context: viewContext)
+                    songInGig.position = Int64(i)
+                    songInGig.song = song
+                    
+                    newFavoritGig.addToSongsInGig(songInGig)
+                    i = i + 1
+                }
+            }
+            favoritGig = newFavoritGig
+        }
+        
+        return favoritGig!
+    }
+    
+    func getArraySong() -> [Song] {
+        var songsArray: [Song] = []
+        
+        songsFR.forEach{ song in
+            songsArray.append(song)
+        }
+        
+        songsArray.sort {
+            $0.title! < $1.title!
+        }
+        return songsArray
+    }
+    
+    
+    
 }

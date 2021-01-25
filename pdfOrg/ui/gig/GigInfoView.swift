@@ -98,6 +98,10 @@ struct GigInfoView: View {
     
     private func deleteSong(offsets: IndexSet) {
         withAnimation {
+            
+            if gig.title == "Favorits" {
+            offsets.map {getArraySong(gig.songsInGig!)[$0]}.first?.song?.isFavorit = false
+            }
             offsets.map {getArraySong(gig.songsInGig!)[$0]}.forEach(viewContext.delete)
             saveContext()
         }

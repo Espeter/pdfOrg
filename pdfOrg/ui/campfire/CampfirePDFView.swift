@@ -12,6 +12,15 @@ struct CampfirePDFView: View {
 
     @EnvironmentObject var ec : EnvironmentController
     
+    @FetchRequest(sortDescriptors: [])
+    private var songsFR: FetchedResults<Song>
+    
+    @FetchRequest(sortDescriptors: [])
+    private var gigs: FetchedResults<Gig>
+    
+    @FetchRequest(sortDescriptors: [])
+    private var songsInGig: FetchedResults<SongInGig>
+    
     @Binding var song: Song
     @Binding var pageIndex: String
     
@@ -48,6 +57,7 @@ struct CampfirePDFView: View {
             if song.isFavorit {
                 Button(action: {
                     song.isFavorit = false
+                    removeSongInFavoritGig()
                     saveContext()
                 }) {
                     Image(systemName: "star.fill").foregroundColor(Color(UIColor.systemGray)).padding().padding()
@@ -55,6 +65,7 @@ struct CampfirePDFView: View {
             } else {
                 Button(action: {
                     song.isFavorit = true
+                    addSongToFavoritGig()
                     saveContext()
                 }) {
                     Image(systemName: "star").foregroundColor(Color(UIColor.systemGray)).padding().padding()
@@ -117,6 +128,84 @@ struct CampfirePDFView: View {
             let error = error as NSError
             fatalError("error addBook: \(error)")
         }
+    }
+    
+    func removeSongInFavoritGig() {
+        
+        let gig = getFavoritGig()
+        
+        songsInGig.forEach { songInGig in
+            
+            if songInGig.song == song && songInGig.gig == gig {
+                
+                gig.removeFromSongsInGig(songInGig)
+                saveContext()
+            }
+        }
+    }
+    
+    func addSongToFavoritGig() {
+        
+        let gig = getFavoritGig()
+        
+        let newSongInGig = SongInGig(context: viewContext)
+        newSongInGig.song = song
+
+        let position = gig.songsInGig!.count + 1
+        
+        newSongInGig.position = Int64(position)
+        
+        gig.addToSongsInGig(newSongInGig)
+        saveContext()
+    }
+    
+    
+    func getFavoritGig() -> Gig {
+        
+        var favoritGig: Gig? = nil
+        
+        gigs.forEach{ gig in
+            if gig.title == "Favorits" {
+                favoritGig = gig
+            }
+        }
+        
+        if favoritGig == nil {
+            
+            
+            let newFavoritGig = Gig(context: viewContext)
+            newFavoritGig.title = "Favorits"
+            var i = 0
+            
+            getArraySong().forEach { song in
+                
+                if song.isFavorit {
+                    
+                    let songInGig = SongInGig(context: viewContext)
+                    songInGig.position = Int64(i)
+                    songInGig.song = song
+                    
+                    newFavoritGig.addToSongsInGig(songInGig)
+                    i = i + 1
+                }
+            }
+            favoritGig = newFavoritGig
+        }
+        
+        return favoritGig!
+    }
+    
+    func getArraySong() -> [Song] {
+        var songsArray: [Song] = []
+        
+        songsFR.forEach{ song in
+            songsArray.append(song)
+        }
+        
+        songsArray.sort {
+            $0.title! < $1.title!
+        }
+        return songsArray
     }
 }
 

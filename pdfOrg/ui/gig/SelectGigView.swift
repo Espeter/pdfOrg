@@ -14,7 +14,7 @@ struct SelectGigView: View {
     @FetchRequest(sortDescriptors: [])
     private var gigs: FetchedResults<Gig>
     
-    @Binding var gig: Gig?
+    @Binding var gig: Gig
     @Binding var showingPopup: Bool
 
     
