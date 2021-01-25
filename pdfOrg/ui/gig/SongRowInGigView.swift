@@ -49,7 +49,10 @@ struct SongRowInGigView: View {
             }
             
             Spacer()
-            
+            if song.isFavorit {
+                Spacer()
+                Image(systemName: "star.fill").foregroundColor(Color(UIColor.systemGray))
+            }
                 
                 //                Button(action: {
                 //                    print("addSongToGig()")

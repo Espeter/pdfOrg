@@ -52,7 +52,7 @@ struct LibraryView: View {
                                     HStack{
                                         SearchBar(text: $searchText).frame(width: 300)
                                         Image(systemName: "house").padding()
-                                        Text("Gerne")
+                                        Text("Genre")
                                         Text("|")
                                         Text("Autor")
                                     }

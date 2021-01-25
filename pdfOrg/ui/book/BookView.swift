@@ -17,6 +17,9 @@ struct BookView: View {
     @State var openFile = false
     @State var page: Int = 1
     
+    @Binding var selectedSong: Song?
+
+    
     var body: some View {
         
         HStack{
@@ -24,12 +27,12 @@ struct BookView: View {
                 BookInfoView(book: book, editMode: $editMode)
                     .padding()
                     .shadow( radius: 15, x: 3, y: 5)
-                BookPDFView(book: book, page: $page)
+                BookPDFView(book: book, song: $selectedSong, page: $page)
                     .padding()
                     .shadow( radius: 15, x: 3, y: 5)
 
             }
-            BookSongCollectionView(book: book, editMode: $editMode, page: $page)
+            BookSongCollectionView(book: book, editMode: $editMode, page: $page, selectedSong: $selectedSong)
                 .padding()
                // .frame(width: 650)
                 .shadow( radius: 15, x: 3, y: 5)
@@ -122,6 +125,7 @@ struct BookView: View {
         let song: Song = Song(context: viewContext)
         
         song.id = UUID()
+        song.isFavorit = false
         song.title = name
         song.startPage = startSide
         if endPage != ""{

@@ -17,6 +17,7 @@ struct CoverSheetView: View {
     @State private var showingPopup = false
     @Binding var popupIsActive: Bool
     @Binding var currentBook: Book?
+    @State var selectedSong: Song?
 
     
     var body: some View {
@@ -24,7 +25,7 @@ struct CoverSheetView: View {
         if book.coverSheet != nil {
             VStack{
                 if currentBook != nil {
-                    NavigationLink(destination: BookView(book: currentBook!), isActive: $navigationLinkActive) { EmptyView() }.animation(nil)
+                    NavigationLink(destination: BookView(book: currentBook!, selectedSong: $selectedSong), isActive: $navigationLinkActive) { EmptyView() }.animation(nil)
                 }
                 Image(uiImage: UIImage(data: book.coverSheet!)!)
                     .resizable()

@@ -8,39 +8,57 @@
 import SwiftUI
 
 struct CampfirePDFView: View {
-    
+    @Environment(\.managedObjectContext) private var viewContext
+
     @EnvironmentObject var ec : EnvironmentController
     
     @Binding var song: Song
     @Binding var pageIndex: String
     
     var body: some View {
-        VStack{
-            if song.title != nil {
-                if song.endPage != nil && song.endPage != song.startPage {
-                    
-                    HStack{
-                        Button(action: {
-                            print("back")
-                            backPage()
-                            print(pageIndex)
-                        }) {
-                            Image(systemName: "lessthan")
+        ZStack(alignment: .topTrailing){
+            VStack{
+                if song.title != nil {
+                    if song.endPage != nil && song.endPage != song.startPage {
+                        
+                        HStack{
+                            Button(action: {
+                                print("back")
+                                backPage()
+                                print(pageIndex)
+                            }) {
+                                Image(systemName: "lessthan")
+                            }
+                            PDFKitCampireView(book: umwantler(binding: $song.book, fallback: Book()), pageIndex: $pageIndex, presentationModde: true)
+                            Button(action: {
+                                print("nex")
+                                nextPage()
+                                print(pageIndex)
+                            }) {
+                                Image(systemName: "greaterthan")
+                            }
                         }
+                    } else {
                         PDFKitCampireView(book: umwantler(binding: $song.book, fallback: Book()), pageIndex: $pageIndex, presentationModde: true)
-                        Button(action: {
-                            print("nex")
-                            nextPage()
-                            print(pageIndex)
-                        }) {
-                            Image(systemName: "greaterthan")
-                        }
                     }
                 } else {
-                    PDFKitCampireView(book: umwantler(binding: $song.book, fallback: Book()), pageIndex: $pageIndex, presentationModde: true)
+                    Text("selekt Song")
+                }
+            }
+            if song.isFavorit {
+                Button(action: {
+                    song.isFavorit = false
+                    saveContext()
+                }) {
+                    Image(systemName: "star.fill").foregroundColor(Color(UIColor.systemGray)).padding().padding()
                 }
             } else {
-                Text("selekt Song")
+                Button(action: {
+                    song.isFavorit = true
+                    saveContext()
+                }) {
+                    Image(systemName: "star").foregroundColor(Color(UIColor.systemGray)).padding().padding()
+                }
             }
         }//.frame(width: 300, height: 380.5)
         .padding()
@@ -89,6 +107,16 @@ struct CampfirePDFView: View {
         }, set: {
             binding.wrappedValue = $0
         })
+    }
+    
+    private func saveContext(){
+        do{
+            try viewContext.save()
+        }
+        catch {
+            let error = error as NSError
+            fatalError("error addBook: \(error)")
+        }
     }
 }
 

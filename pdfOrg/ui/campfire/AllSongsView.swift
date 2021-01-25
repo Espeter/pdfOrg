@@ -30,10 +30,25 @@ struct AllSongsView: View {
                     ForEach(songs, id: \.self) { (song: Song) in
                         if(compared(song.title!.lowercased(), searchText: self.searchText.lowercased())){
                             
-                            Button("\(song.title!)"){
+                            
+                            Button(action: {
                                 self.song = song
                                 pageIndex = song.startPage
+                            }) {
+                                HStack{
+                                Text("\(song.title!)")
+                                    if song.isFavorit {
+                                        Spacer()
+                                        Image(systemName: "star.fill").foregroundColor(Color(UIColor.systemGray))
+                                    }
+                                }
                             }
+                            
+                            
+//                            Button("\(song.title!)"){
+//                                self.song = song
+//                                pageIndex = song.startPage
+//                            }
                         }
                     }
                 }
@@ -49,10 +64,22 @@ struct AllSongsView: View {
                                 if segmentSongs[char]!.count > 0 {
                                     Section(header: Text(char).id(char)) {
                                         ForEach(segmentSongs[char]!, id: \.self) { (song: Song) in
-                                            Button("\(song.title!)"){
-                                                print("foo")
+//                                            Button("\(song.title!)"){
+//                                                print("foo")
+//                                                self.song = song
+//                                                pageIndex = song.startPage
+//                                            }
+                                            Button(action: {
                                                 self.song = song
                                                 pageIndex = song.startPage
+                                            }) {
+                                                HStack{
+                                                Text("\(song.title!)")
+                                                    if song.isFavorit {
+                                                        Spacer()
+                                                        Image(systemName: "star.fill").foregroundColor(Color(UIColor.systemGray))
+                                                    }
+                                                }
                                             }
                                         }
                                         

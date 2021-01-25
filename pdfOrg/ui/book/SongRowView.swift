@@ -12,6 +12,7 @@ struct SongRowView: View {
     @State var song: Song
     @Binding var editMode: Bool
     @Binding var page: Int
+    @Binding var selectedSong: Song?
     
     
     var body: some View {
@@ -20,6 +21,7 @@ struct SongRowView: View {
             Button(action: {
                 page = 0
                 page = Int(song.startPage ?? "0") ?? 0
+                selectedSong = song
             }) {
                 HStack{
                     TextField("\(song.title ?? "nil")", text: umwantler(binding: $song.title, fallback: "error"))
@@ -43,6 +45,7 @@ struct SongRowView: View {
             Button(action: {
                 page = 0
                 page = Int(song.startPage ?? "0") ?? 0
+                selectedSong = song
             }) {
                 HStack{
                     Text("\(song.title ?? "nil")").frame(maxWidth: .infinity, alignment: .leading)
@@ -55,7 +58,13 @@ struct SongRowView: View {
                     }
                     }.frame(maxWidth: .infinity, alignment: .leading)
                     Spacer()
+                    HStack{
                     Text("\(song.author ?? "nil")").frame(maxWidth: .infinity, alignment: .leading)
+                  //  Spacer()
+                    if song.isFavorit {
+                        Image(systemName: "star.fill").foregroundColor(Color(UIColor.systemGray))
+                    }
+                    }.frame(maxWidth: .infinity, alignment: .leading)
                 }
             }
         }
