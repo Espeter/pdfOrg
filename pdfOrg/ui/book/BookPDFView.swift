@@ -38,7 +38,7 @@ struct BookPDFView: View {
                 Image(systemName: "lessthan")
             }
             ZStack(alignment: .topTrailing) {
-            PDFKitBookView(book: book, pageIndex: $page).frame(width: 300, height: 380.5)
+            PDFKitBookView(book: book, pageIndex: $page)//.frame(width: 300, height: 380.5)
                 .onTapGesture {
                     ec.presentationModeBook = true
                     ec.pageIndex = page

@@ -17,61 +17,80 @@ struct BookView: View {
     @State var openFile = false
     @State var page: Int = 1
     @State var updateView: Bool = true
-
+    @State var pageOfset: String = ""
+    @State var infoPopup: Bool = false
+    
     
     @Binding var selectedSong: Song?
-
+    
     
     var body: some View {
         
         HStack{
             VStack{
-                BookInfoView(book: book, editMode: $editMode)
-                    .padding()
-                    .shadow( radius: 15, x: 3, y: 5)
+//                BookInfoView(book: book, editMode: $editMode)
+//                    .padding()
+//                    .shadow( radius: 15, x: 3, y: 5)
                 BookPDFView(book: book, song: $selectedSong, updateView: $updateView, page: $page)
+                    .frame(idealHeight: .infinity)
                     .padding()
                     .shadow( radius: 15, x: 3, y: 5)
-
+                
             }
             BookSongCollectionView(book: book, editMode: $editMode, page: $page, selectedSong: $selectedSong, updateView: $updateView)
                 .padding()
-               // .frame(width: 650)
+                // .frame(width: 650)
                 .shadow( radius: 15, x: 3, y: 5)
-
+            
             
         }.background(Color(UIColor.systemBlue).opacity(0.05))
         .navigationBarTitle("\(book.title ?? "nil")")
-        .navigationBarItems(trailing:
-                HStack{
-                    Button(action: {
-                        if editMode {
-                            saveContext()
-                        }
-                        editMode.toggle()
-                        
-                    }) {
-                        if editMode {
-                            Text("save").padding()
-                        } else {
-                            Text("edit").padding()
-                        }
-                        
-                    }
-                    Button(action: {
-                        openFile.toggle()
-                    }) {
-                        Image(systemName: "square.and.arrow.down")
-                    }
-                    Button(action: {
-                        showingPopup.toggle()
-                    }) {
-                        Image(systemName: "plus").padding()
-                            .popover(isPresented: self.$showingPopup) {
-                                AddSongPopoverView(book: book, showingPopup: $showingPopup)
-                            }
-                    }
-                }
+        .navigationBarItems( leading:
+                                HStack{
+                                    Text("pageOfSet: ")
+                                    TextField(book.pageOfset!, text: umwantler(binding: $book.pageOfset, fallback: "0"), onEditingChanged: {(changed) in
+                                        if changed == false {
+                                            saveContext()
+                                        }
+                                    })
+                                }.frame(width: 240)
+                             ,
+                             trailing:
+                                HStack{
+                                    Button(action: {
+                                        infoPopup.toggle()
+                                    }) {
+                                        Image(systemName: "info.circle").popover(isPresented: self.$infoPopup ) {
+                                            BookInfoView(book: book, editMode: $editMode)
+                                        }
+                                    }
+                                    Button(action: {
+                                        if editMode {
+                                            saveContext()
+                                        }
+                                        editMode.toggle()
+                                        
+                                    }) {
+                                        if editMode {
+                                            Text("save").padding()
+                                        } else {
+                                            Text("edit").padding()
+                                        }
+                                    }
+                                    Button(action: {
+                                        openFile.toggle()
+                                    }) {
+                                        Image(systemName: "square.and.arrow.down")
+                                    }
+                                    Button(action: {
+                                        showingPopup.toggle()
+                                    }) {
+                                        Image(systemName: "plus").padding()
+                                            .popover(isPresented: self.$showingPopup) {
+                                                AddSongPopoverView(book: book, showingPopup: $showingPopup)
+                                            }
+                                    }
+                                }
         )
         .fileImporter(isPresented: $openFile, allowedContentTypes: [.text])
         { (res) in
@@ -104,7 +123,7 @@ struct BookView: View {
             guard url.startAccessingSecurityScopedResource() else {
                 return
             }
-          //  txt = try NSString(contentsOf: url, encoding: String.Encoding.ascii.rawValue) as String
+            //  txt = try NSString(contentsOf: url, encoding: String.Encoding.ascii.rawValue) as String
             txt = try NSString(contentsOf: url, encoding: String.Encoding.utf8.rawValue) as String
         }  catch {
             print(error)
@@ -140,5 +159,13 @@ struct BookView: View {
         book.addToSongs(song)
         
         saveContext()
+    }
+    
+    func umwantler<T>(binding: Binding<T?>, fallback: T) -> Binding<T> {
+        return Binding(get: {
+            binding.wrappedValue ?? fallback
+        }, set: {
+            binding.wrappedValue = $0
+        })
     }
 }
