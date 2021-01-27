@@ -48,6 +48,10 @@ struct SongRowInGigView: View {
                 Text("\(song.title!)")
             }
             
+            if updateView {
+                Text("").frame(width: 0, height: 0)
+            }
+            
             Spacer()
             if song.isFavorit {
                 Spacer()
@@ -67,12 +71,14 @@ struct SongRowInGigView: View {
     func addSongToGig() {
         let newGigSong: SongInGig = SongInGig(context: viewContext)
         newGigSong.song = song
-        
+        renewPosition(songsInGig: gig.songsInGig!)
+
         let gigSongsCaunt = gig.songsInGig?.count
         
-        newGigSong.position = Int64(gigSongsCaunt ?? 0) + 1
+        newGigSong.position = Int64(gigSongsCaunt ?? 0) //+ 1
         
         gig.addToSongsInGig(newGigSong)
+        updateView.toggle()
         saveContext()
     }
     
@@ -85,10 +91,25 @@ struct SongRowInGigView: View {
                 let songInGigAs: SongInGig = songInGig as! SongInGig
                 print("delit")
                 gig.removeFromSongsInGig(songInGigAs)
+                renewPosition(songsInGig: gig.songsInGig!)
                 saveContext()
                 updateView.toggle()
             }
         }
+    }
+    
+    func renewPosition(songsInGig: NSSet) {
+        
+        var i = 0
+        
+        songsInGig.forEach{ songInGig in
+            
+            (songInGig as! SongInGig).position = Int64(i)
+            i = i + 1
+        }
+        saveContext()
+       
+        updateView.toggle()
     }
     
     func thsSongIsSelectet() -> Bool {

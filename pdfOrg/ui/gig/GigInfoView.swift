@@ -111,6 +111,7 @@ struct GigInfoView: View {
             offsets.map {getArraySong(gig.songsInGig!)[$0]}.first?.song?.isFavorit = false
             }
             offsets.map {getArraySong(gig.songsInGig!)[$0]}.forEach(viewContext.delete)
+            renewPosition(songsInGig: getArraySongInGig(gig.songsInGig!))
             saveContext()
             updateView.toggle()
         }
