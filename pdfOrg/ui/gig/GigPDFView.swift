@@ -16,11 +16,12 @@ struct GigPDFView: View {
     @Binding var pageIndex: String
     @Binding var songInGig: SongInGig?
     @Binding var gig: Gig
+    @State var updateView: Bool = false
     
     var body: some View {
         VStack{
             if songIsSelectet {
-                CampfirePDFView(song: umwantler(binding: $song, fallback: Song()), pageIndex: $pageIndex)
+                CampfirePDFView(song: umwantler(binding: $song, fallback: Song()), pageIndex: $pageIndex, updateView: $updateView)
             } else if gigSongIsSelectet {
                 HStack{
                     Button(action: {

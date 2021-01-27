@@ -15,6 +15,8 @@ struct BookSongCollectionView: View {
     @Binding var editMode: Bool
     @Binding var page: Int
     @Binding var selectedSong: Song?
+    @Binding var updateView: Bool
+
 
     
     var body: some View {
@@ -38,7 +40,7 @@ struct BookSongCollectionView: View {
             List() {
                 
                 ForEach(getArraySong(book.songs!)) { song in
-                    SongRowView(song: song, editMode: $editMode, page: $page, selectedSong: $selectedSong)
+                    SongRowView(song: song, editMode: $editMode, page: $page, selectedSong: $selectedSong, updateView: $updateView)
                 }.onDelete(perform: deleteSong)
             }
         }

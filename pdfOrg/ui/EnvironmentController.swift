@@ -20,4 +20,5 @@ class EnvironmentController: ObservableObject {
     @Published var book: Book = Book()
     @Published var songInGig: SongInGig = SongInGig()
     @Published var gig: Gig = Gig()
+    @Published var updateGigInfoView: Bool = false
 }

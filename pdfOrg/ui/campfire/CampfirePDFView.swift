@@ -24,6 +24,9 @@ struct CampfirePDFView: View {
     @Binding var song: Song
     @Binding var pageIndex: String
     
+    @Binding var updateView: Bool
+
+    
     var body: some View {
         ZStack(alignment: .topTrailing){
             VStack{
@@ -59,6 +62,8 @@ struct CampfirePDFView: View {
                     song.isFavorit = false
                     removeSongInFavoritGig()
                     saveContext()
+                    updateView.toggle()
+                    ec.updateGigInfoView.toggle()
                 }) {
                     Image(systemName: "star.fill").foregroundColor(Color(UIColor.systemGray)).padding().padding()
                 }
@@ -67,6 +72,8 @@ struct CampfirePDFView: View {
                     song.isFavorit = true
                     addSongToFavoritGig()
                     saveContext()
+                    updateView.toggle()
+                    ec.updateGigInfoView.toggle()
                 }) {
                     Image(systemName: "star").foregroundColor(Color(UIColor.systemGray)).padding().padding()
                 }
@@ -139,9 +146,11 @@ struct CampfirePDFView: View {
             if songInGig.song == song && songInGig.gig == gig {
                 
                 gig.removeFromSongsInGig(songInGig)
-                saveContext()
+               
             }
         }
+        renewPosition(songsInGig: gig.songsInGig!)
+        saveContext()
     }
     
     func addSongToFavoritGig() {
@@ -150,8 +159,9 @@ struct CampfirePDFView: View {
         
         let newSongInGig = SongInGig(context: viewContext)
         newSongInGig.song = song
-
-        let position = gig.songsInGig!.count + 1
+        // updatit position hallo Kiati wie geht es dir heute ???? mir geht es gut =)
+        renewPosition(songsInGig: gig.songsInGig!)
+        let position = gig.songsInGig!.count// + 1
         
         newSongInGig.position = Int64(position)
         
@@ -206,6 +216,17 @@ struct CampfirePDFView: View {
             $0.title! < $1.title!
         }
         return songsArray
+    }
+    
+    func renewPosition(songsInGig: NSSet) {
+        
+        var i = 0
+        
+        songsInGig.forEach{ songInGig in
+            
+            (songInGig as! SongInGig).position = Int64(i)
+            i = i + 1
+        }
     }
 }
 

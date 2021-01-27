@@ -16,6 +16,8 @@ struct BookView: View {
     @State var editMode = false
     @State var openFile = false
     @State var page: Int = 1
+    @State var updateView: Bool = true
+
     
     @Binding var selectedSong: Song?
 
@@ -27,12 +29,12 @@ struct BookView: View {
                 BookInfoView(book: book, editMode: $editMode)
                     .padding()
                     .shadow( radius: 15, x: 3, y: 5)
-                BookPDFView(book: book, song: $selectedSong, page: $page)
+                BookPDFView(book: book, song: $selectedSong, updateView: $updateView, page: $page)
                     .padding()
                     .shadow( radius: 15, x: 3, y: 5)
 
             }
-            BookSongCollectionView(book: book, editMode: $editMode, page: $page, selectedSong: $selectedSong)
+            BookSongCollectionView(book: book, editMode: $editMode, page: $page, selectedSong: $selectedSong, updateView: $updateView)
                 .padding()
                // .frame(width: 650)
                 .shadow( radius: 15, x: 3, y: 5)

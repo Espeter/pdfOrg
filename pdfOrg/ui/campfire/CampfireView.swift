@@ -18,6 +18,8 @@ struct CampfireView: View {
     @State var song: Song?
     @State var i: Int = 3
     @State var pageIndex: String?
+    @State var updateView: Bool = true
+
 
     
     let alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","#"]
@@ -29,7 +31,7 @@ struct CampfireView: View {
             VStack{
             //    Text("Info")
                 if song != nil {
-                    CampfirePDFView(song: umwantler(binding: $song, fallback: Song()), pageIndex: umwantler(binding: $pageIndex, fallback: "1")).padding().frame(minWidth: 300, idealWidth: .infinity, maxWidth: .infinity, minHeight: 380.5, idealHeight: .infinity, maxHeight: .infinity)
+                    CampfirePDFView(song: umwantler(binding: $song, fallback: Song()), pageIndex: umwantler(binding: $pageIndex, fallback: "1"), updateView: $updateView).padding().frame(minWidth: 300, idealWidth: .infinity, maxWidth: .infinity, minHeight: 380.5, idealHeight: .infinity, maxHeight: .infinity)
                //     Text("\(song?.title ?? "papa")")
                     
                 } else {
@@ -44,7 +46,7 @@ struct CampfireView: View {
                         
                 }
             }
-            AllSongsView(songs: getArraySong(), song: $song, pageIndex: $pageIndex, alphabet: alphabet, segmentSongs: getSegmentSongs())
+            AllSongsView(songs: getArraySong(), song: $song, pageIndex: $pageIndex, alphabet: alphabet, segmentSongs: getSegmentSongs(), updateView: $updateView)
             .padding().padding(.leading, -20)
         }
         .background(Color(UIColor.systemBlue).opacity(0.05))
@@ -60,7 +62,6 @@ struct CampfireView: View {
     
     func getArraySong() -> [Song] {
         var songsArray: [Song] = []
-        print("1")
         songsFR.forEach{ song in
             songsArray.append(song)
         }
@@ -72,7 +73,6 @@ struct CampfireView: View {
     }
     
     func getSegmentSongs() -> [String: [Song]] {
-        print("getSegmentSongs()")
         var dictionary: [String: [Song]] = [:]
         
         alphabet.forEach{ char in

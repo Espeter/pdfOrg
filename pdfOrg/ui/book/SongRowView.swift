@@ -14,6 +14,9 @@ struct SongRowView: View {
     @Binding var page: Int
     @Binding var selectedSong: Song?
     
+    @Binding var updateView: Bool
+
+    
     
     var body: some View {
         
@@ -39,6 +42,9 @@ struct SongRowView: View {
                     TextField("\(song.author ?? "nil")", text: umwantler(binding: $song.author, fallback: "error"))
                         .background(Color(UIColor.systemGray6))
                         .cornerRadius(15.0)
+                    if updateView {
+                        Text("").frame(width: 0, height: 0)
+                    }
                 }
             }
         } else {
@@ -61,9 +67,13 @@ struct SongRowView: View {
                     HStack{
                     Text("\(song.author ?? "nil")").frame(maxWidth: .infinity, alignment: .leading)
                   //  Spacer()
+                        if updateView {
+                            Text("").frame(width: 0, height: 0)
+                        }
                     if song.isFavorit {
                         Image(systemName: "star.fill").foregroundColor(Color(UIColor.systemGray))
                     }
+                        
                     }.frame(maxWidth: .infinity, alignment: .leading)
                 }
             }

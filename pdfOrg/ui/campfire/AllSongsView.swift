@@ -19,6 +19,7 @@ struct AllSongsView: View {
     let alphabet : [String]
     
     @State var segmentSongs: [String: [Song]]
+    @Binding var updateView: Bool
     
     
     var body: some View {
@@ -37,6 +38,9 @@ struct AllSongsView: View {
                             }) {
                                 HStack{
                                 Text("\(song.title!)")
+                                    if updateView {
+                                        Text("").frame(width: 0, height: 0)
+                                    }
                                     if song.isFavorit {
                                         Spacer()
                                         Image(systemName: "star.fill").foregroundColor(Color(UIColor.systemGray))
@@ -75,6 +79,9 @@ struct AllSongsView: View {
                                             }) {
                                                 HStack{
                                                 Text("\(song.title!)")
+                                                    if updateView {
+                                                        Text("").frame(width: 0, height: 0)
+                                                    }
                                                     if song.isFavorit {
                                                         Spacer()
                                                         Image(systemName: "star.fill").foregroundColor(Color(UIColor.systemGray))

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GigInfoView: View {
     @Environment(\.managedObjectContext) var viewContext
+    @EnvironmentObject var ec : EnvironmentController
 
     @Binding var gig: Gig
     @Binding var updateView: Bool
@@ -36,6 +37,12 @@ struct GigInfoView: View {
                     HStack{
                     Text("\(songinGig.position + 1)")
                     Text("\(songinGig.song!.title!)")
+                        if updateView {
+                            Text("").frame(width: 0, height: 0)
+                        }
+                        if                     ec.updateGigInfoView {
+                            Text("").frame(width: 0, height: 0)
+                        }
                     }
                 }
                 
@@ -50,7 +57,7 @@ struct GigInfoView: View {
         
       //  let source = source.first
         moveSongInGig(from: source.first!, to: destination)
-        
+        updateView.toggle()
     }
     
     func getArraySongInGig(_ snSet : NSSet) -> [SongInGig] {
@@ -80,7 +87,7 @@ struct GigInfoView: View {
         songsInGig.insert(element, at: destinationNew )
         
         renewPosition(songsInGig: songsInGig)
-        
+        print("moveSongInGig")
     }
     
     func renewPosition(songsInGig: [SongInGig]) {
@@ -93,6 +100,7 @@ struct GigInfoView: View {
             i = i + 1
         }
         saveContext()
+       
         updateView.toggle()
     }
     
@@ -104,6 +112,7 @@ struct GigInfoView: View {
             }
             offsets.map {getArraySong(gig.songsInGig!)[$0]}.forEach(viewContext.delete)
             saveContext()
+            updateView.toggle()
         }
     }
     

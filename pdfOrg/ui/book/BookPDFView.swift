@@ -23,7 +23,8 @@ struct BookPDFView: View {
 
     @State var book: Book
     @Binding var song: Song?
-    
+    @Binding var updateView: Bool
+
     @Binding var page: Int
     
     var body: some View {
@@ -53,7 +54,15 @@ struct BookPDFView: View {
                             removeSongInFavoritGig()
                             
                             saveContext()
+                            updateView.toggle()
+                            ec.updateGigInfoView.toggle()
+
                         }) {
+                            
+                            if updateView {
+                                Text("")
+                            }
+                            
                             Image(systemName: "star.fill").foregroundColor(Color(UIColor.systemGray)).padding().padding()
                         }
                     } else {
@@ -61,6 +70,9 @@ struct BookPDFView: View {
                             song!.isFavorit = true
                             addSongToFavoritGig()
                             saveContext()
+                            updateView.toggle()
+                            ec.updateGigInfoView.toggle()
+
                         }) {
                             Image(systemName: "star").foregroundColor(Color(UIColor.systemGray)).padding().padding()
                         }
@@ -144,9 +156,11 @@ struct BookPDFView: View {
             if songInGig.song == song && songInGig.gig == gig {
                 
                 gig.removeFromSongsInGig(songInGig)
-                saveContext()
+                
             }
         }
+        renewPosition(songsInGig: gig.songsInGig!)
+        saveContext()
     }
     
     func addSongToFavoritGig() {
@@ -161,6 +175,7 @@ struct BookPDFView: View {
         newSongInGig.position = Int64(position)
         
         gig.addToSongsInGig(newSongInGig)
+        renewPosition(songsInGig: gig.songsInGig!)
         saveContext()
     }
     
@@ -213,6 +228,15 @@ struct BookPDFView: View {
         return songsArray
     }
     
-    
+    func renewPosition(songsInGig: NSSet) {
+        
+        var i = 0
+        
+        songsInGig.forEach{ songInGig in
+            
+            (songInGig as! SongInGig).position = Int64(i)
+            i = i + 1
+        }
+    }
     
 }
