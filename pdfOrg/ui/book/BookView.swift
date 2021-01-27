@@ -104,8 +104,8 @@ struct BookView: View {
             guard url.startAccessingSecurityScopedResource() else {
                 return
             }
-            txt = try NSString(contentsOf: url, encoding: String.Encoding.ascii.rawValue) as String
-            
+          //  txt = try NSString(contentsOf: url, encoding: String.Encoding.ascii.rawValue) as String
+            txt = try NSString(contentsOf: url, encoding: String.Encoding.utf8.rawValue) as String
         }  catch {
             print(error)
         }

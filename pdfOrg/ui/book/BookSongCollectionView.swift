@@ -16,6 +16,7 @@ struct BookSongCollectionView: View {
     @Binding var page: Int
     @Binding var selectedSong: Song?
     @Binding var updateView: Bool
+    @State var deleteSongsAlert: Bool = false
 
 
     
@@ -29,11 +30,23 @@ struct BookSongCollectionView: View {
 
                 Text("author").frame(maxWidth: .infinity, alignment: .leading)
                 Button(action: {
-                    getArraySong(book.songs!).forEach { song in
-                        viewContext.delete(song)
-                    }
+                    deleteSongsAlert.toggle()
                 }) {
-                    Image(systemName: "trash").padding()
+                    Image(systemName: "trash")
+                        .padding()
+                        .alert(isPresented: $deleteSongsAlert) {
+                        Alert(title: Text("delet all Songs"),
+                              message: Text("bist du dir sicher das du alle \(book.songs?.count ?? 0) Lieder löschen möchtest?"),
+                              primaryButton: .destructive(Text("delet"),
+                                                          action: {
+                                                            getArraySong(book.songs!).forEach { song in
+                                                                viewContext.delete(song)
+                                                            }
+                                                            saveContext()
+                                                          }),
+                              secondaryButton: .cancel(Text("back"))
+                        )
+                    }
                 }
             }.padding().background(Color(UIColor.systemGray6))
             

@@ -125,7 +125,7 @@ struct BookPDFView: View {
                 let startPage = Int((song as! Song).startPage!)
                 let endPage = Int((song as! Song).endPage ?? (song as! Song).startPage!)
                 let pageCount = endPage! - startPage!
-
+                
                 (0..<(pageCount + 1)).forEach { i in
                     if (startPage! + i) == page && songFound == false{
                         self.song = (song as! Song)

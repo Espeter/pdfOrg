@@ -32,7 +32,6 @@ struct GigInfoView: View {
                     pageIndex = (songinGig.song?.startPage)!
                     self.songInGig = songinGig
                     song = (songInGig?.song)!
-                    
                 }) {
                     HStack{
                     Text("\(songinGig.position + 1)")
@@ -45,8 +44,6 @@ struct GigInfoView: View {
                         }
                     }
                 }
-                
-               
             }.onDelete(perform: deleteSong)
             .onMove(perform: move)
             
@@ -124,7 +121,6 @@ struct GigInfoView: View {
         let sortedSongsInGig = songsInGig.sorted {
             $0.position < $1.position
         }
-        
         return sortedSongsInGig
     }
     
@@ -137,5 +133,4 @@ struct GigInfoView: View {
             fatalError("error addBook: \(error)")
         }
     }
-    
 }

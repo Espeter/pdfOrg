@@ -18,7 +18,8 @@ struct CoverSheetView: View {
     @Binding var popupIsActive: Bool
     @Binding var currentBook: Book?
     @State var selectedSong: Song?
-
+    @State private var deleteBookAlert = false
+    
     
     var body: some View {
         
@@ -34,6 +35,7 @@ struct CoverSheetView: View {
                     .shadow( radius: 15, x: 3, y: 5)
                     .padding()
                     .onTapGesture { //TODO: das ist noch nicht perfekt muss doch auch irgt wie ander gesehen
+                        
                         if popupIsActive {
                             popupIsActive = false
                         } else {
@@ -49,10 +51,21 @@ struct CoverSheetView: View {
                             Text("tonArt: \(book.tonArt ?? "n.a.")")
                             Text("\(String(book.songs!.count)) Songs")
                             Button(action: {
-                                viewContext.delete(book)
-                                saveContext()
+                                deleteBookAlert.toggle()
                             }) {
-                                Image(systemName: "trash").padding()
+                                Image(systemName: "trash")
+                                    .padding()
+                                    .alert(isPresented: $deleteBookAlert) {
+                                        Alert(title: Text("delet \"\(book.title!)\""),
+                                              message: Text("Biest du dir sicher das diese Buch Löschen möchtest?\n es hat zur folge das alle \(book.songs?.count ?? 0) Lieder auch gelöscht sind"),
+                                              primaryButton: .destructive(Text("delet"),
+                                                                          action: {
+                                                                            viewContext.delete(book)
+                                                                            saveContext()
+                                                                          }),
+                                              secondaryButton: .cancel(Text("back"))
+                                        )
+                                    }
                             }
                             Button(action: {
                                 currentBook = book
@@ -66,30 +79,6 @@ struct CoverSheetView: View {
                         }
                     }
             }
-//        } else {
-//
-//            Rectangle()
-//                .fill(Color.yellow)
-//                .frame(width: 151.2, height: 213.84)
-//                .cornerRadius(15.0)
-//                .shadow( radius: 15, x: 3, y: 5)
-//                .padding()
-//                .onTapGesture {
-//                    showingPopup.toggle()
-//                }
-//                .popover(isPresented: self.$showingPopup) { //trailing
-//                    VStack{
-//                        Text("title: \(book.title ?? "n.a.")")
-//                        Text("version: \(book.version ?? "n.a.")")
-//                        Text("tonArt: \(book.tonArt ?? "n.a.")")
-//                        Button(action: {
-//                            viewContext.delete(book)
-//                            saveContext()
-//                        }) {
-//                            Image(systemName: "trash")
-//                        }
-//                    }.padding().frame(width: 200, height: 300)
-//                }
         }
     }
     

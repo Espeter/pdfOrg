@@ -8,12 +8,12 @@
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="tonArt" optional="YES" attributeType="String"/>
         <attribute name="version" optional="YES" attributeType="String"/>
-        <relationship name="songs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Song" inverseName="book" inverseEntity="Song"/>
+        <relationship name="songs" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Song" inverseName="book" inverseEntity="Song"/>
     </entity>
     <entity name="Gig" representedClassName="Gig" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="title" optional="YES" attributeType="String"/>
-        <relationship name="songsInGig" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SongInGig" inverseName="gig" inverseEntity="SongInGig"/>
+        <relationship name="songsInGig" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SongInGig" inverseName="gig" inverseEntity="SongInGig"/>
     </entity>
     <entity name="Song" representedClassName="Song" syncable="YES" codeGenerationType="class">
         <attribute name="author" optional="YES" attributeType="String"/>
@@ -23,7 +23,7 @@
         <attribute name="startPage" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="book" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="songs" inverseEntity="Book"/>
-        <relationship name="songInGigs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SongInGig" inverseName="song" inverseEntity="SongInGig"/>
+        <relationship name="songInGigs" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SongInGig" inverseName="song" inverseEntity="SongInGig"/>
     </entity>
     <entity name="SongInGig" representedClassName="SongInGig" syncable="YES" codeGenerationType="class">
         <attribute name="position" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -31,9 +31,9 @@
         <relationship name="song" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Song" inverseName="songInGigs" inverseEntity="Song"/>
     </entity>
     <elements>
-        <element name="Book" positionX="490.91796875" positionY="-39.94140625" width="128" height="163"/>
-        <element name="Gig" positionX="-99.69921875" positionY="-42.33984375" width="128" height="88"/>
+        <element name="Book" positionX="490.91796875" positionY="-39.94140625" width="128" height="149"/>
+        <element name="Gig" positionX="-99.69921875" positionY="-42.33984375" width="128" height="74"/>
         <element name="Song" positionX="288.40234375" positionY="-10.171875" width="128" height="149"/>
-        <element name="SongInGig" positionX="119.18359375" positionY="-156.51171875" width="128" height="88"/>
+        <element name="SongInGig" positionX="119.18359375" positionY="-156.51171875" width="128" height="74"/>
     </elements>
 </model>
