@@ -9,13 +9,28 @@ import SwiftUI
 
 struct BookInfoView: View {
     
+    @Environment(\.managedObjectContext) var viewContext
+
+    
     @ObservedObject var book: Book
     @Binding var editMode: Bool
     @State var showingPopup = false
+    @Binding var updateView: Bool
     
     var body: some View {
         
         VStack {
+            HStack{
+                Text("Titel: ").foregroundColor(Color(UIColor.black))
+                TextField(book.title!, text: umwantler(binding: $book.title, fallback: "nil"), onEditingChanged: {(changed) in
+                    if changed == false {
+                        saveContext()
+                        updateView.toggle()
+                    }
+                })
+            }
+            
+            
             
             HStack{
                 Text("tonArt: ")
@@ -73,5 +88,14 @@ struct BookInfoView: View {
         }, set: {
             binding.wrappedValue = $0
         })
+    }
+    private func saveContext(){
+        do{
+            try viewContext.save()
+        }
+        catch {
+            let error = error as NSError
+            fatalError("error addBook: \(error)")
+        }
     }
 }

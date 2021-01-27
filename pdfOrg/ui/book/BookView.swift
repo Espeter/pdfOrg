@@ -53,7 +53,11 @@ struct BookView: View {
                                             saveContext()
                                         }
                                     })
+                                    if updateView {
+                                        Text("").frame(width: 0, height: 0)
+                                    }
                                 }.frame(width: 240)
+        
                              ,
                              trailing:
                                 HStack{
@@ -61,7 +65,7 @@ struct BookView: View {
                                         infoPopup.toggle()
                                     }) {
                                         Image(systemName: "info.circle").popover(isPresented: self.$infoPopup ) {
-                                            BookInfoView(book: book, editMode: $editMode)
+                                            BookInfoView(book: book, editMode: $editMode, updateView: $updateView)
                                         }
                                     }
                                     Button(action: {

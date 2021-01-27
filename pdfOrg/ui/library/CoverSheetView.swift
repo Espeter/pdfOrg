@@ -28,22 +28,27 @@ struct CoverSheetView: View {
                 if currentBook != nil {
                     NavigationLink(destination: BookView(book: currentBook!, selectedSong: $selectedSong), isActive: $navigationLinkActive) { EmptyView() }.animation(nil)
                 }
+                ZStack(alignment: .topTrailing) {
                 Image(uiImage: UIImage(data: book.coverSheet!)!)
                     .resizable()
                     .frame(width: 151.2, height: 213.84)
                     .cornerRadius(15.0)
                     .shadow( radius: 15, x: 3, y: 5)
                     .padding()
-                    .onTapGesture { //TODO: das ist noch nicht perfekt muss doch auch irgt wie ander gesehen
-                        
+                    .onTapGesture {
+                        print("fooooo143")
+                        currentBook = book
+                        navigationLinkActive.toggle()
+                    }
+                    .onLongPressGesture { //TODO: das ist noch nicht perfekt muss doch auch irgt wie ander gesehen
                         if popupIsActive {
                             popupIsActive = false
                         } else {
                             showingPopup.toggle()
                             popupIsActive = true
                         }
-                        
                     }
+                    
                     .popover(isPresented: self.$showingPopup) {
                         VStack{
                             Text("title: \(book.title ?? "n.a.")")
@@ -77,6 +82,12 @@ struct CoverSheetView: View {
                         }.padding().frame(width: 200, height: 300).onDisappear{
                             popupIsActive = false
                         }
+                    }
+                    Button(action: {
+                        showingPopup.toggle()
+                    }) {
+                        Image(systemName:"info.circle").padding().padding()//.foregroundColor(Color(UIColor.systemGray))
+                    }
                     }
             }
         }
