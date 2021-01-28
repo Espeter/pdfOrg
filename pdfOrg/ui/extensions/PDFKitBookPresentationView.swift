@@ -70,6 +70,9 @@ struct PDFPreviewControllerBook: UIViewControllerRepresentable {
     
     func updateUIViewController(_ uiViewController: PDFPreviewViewControllerBook, context: UIViewControllerRepresentableContext<PDFPreviewControllerBook>) {
         
+        
+      //  var document = PDFDocument(data: book.pdf!)
+        
         uiViewController.pdfView.document = PDFDocument(data: book.pdf!)
         
         if presentationModde {
@@ -80,6 +83,16 @@ struct PDFPreviewControllerBook: UIViewControllerRepresentable {
         var calculatedPage: Int = pageIndexInt + Int(book.pageOfset ?? "0")!
         calculatedPage = calculatedPage - 1
         uiViewController.pdfView.backgroundColor = UIColor.white
+        
+        print("calculatedPage: \(calculatedPage)")
+        if calculatedPage % 2 != 0 {
+            print("calculatedPage % 2 == 0: \(calculatedPage % 2 == 0)")
+                 uiViewController.pdfView.document?.insert(PDFPage(), at: 0)
+            calculatedPage = calculatedPage + 1
+        }
+        
+        
+        
 
         if let myPage = uiViewController.pdfView.document?.page(at: (calculatedPage )) {
             uiViewController.pdfView.go(to: myPage)
