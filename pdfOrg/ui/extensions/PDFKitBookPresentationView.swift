@@ -23,8 +23,10 @@ struct PDFKitBookPresentationView: View {
     var body: some View {
         VStack{
             if orientation.isLandscape {
+              //  Text("orientation.isLandscape: true")
                 PDFPreviewControllerBook(book: $book , pageIndex: $pageIndex, presentationModde: $presentationModde, isLandscape: true )
             } else {
+              //  Text("orientation.isLandscape: fauls")
                 PDFPreviewControllerBook(book: $book , pageIndex: $pageIndex, presentationModde: $presentationModde, isLandscape: false  )
             }
         }.onReceive(orientationChanged) { _ in
@@ -33,21 +35,21 @@ struct PDFKitBookPresentationView: View {
     }
 }
 
-class PDFPreviewViewControllerBook: UIViewController {
-    
-    public var pdfView: PDFView!
-    
-    override func loadView() {
-        
-        pdfView = PDFView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        
-        self.view = pdfView
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-}
+//class PDFPreviewViewControllerBook: UIViewController {
+//
+//    public var pdfView: PDFView!
+//
+//    override func loadView() {
+//
+//        pdfView = PDFView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+//        pdfView.backgroundColor = UIColor.white
+//        self.view = pdfView
+//    }
+//
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//    }
+//}
 
 struct PDFPreviewControllerBook: UIViewControllerRepresentable {
     
@@ -63,15 +65,15 @@ struct PDFPreviewControllerBook: UIViewControllerRepresentable {
         self.isLandscape = isLandscape
     }
     
-    func makeUIViewController(context: UIViewControllerRepresentableContext<PDFPreviewControllerBook>) -> PDFPreviewViewControllerBook {
+    func makeUIViewController(context: UIViewControllerRepresentableContext<PDFPreviewControllerBook>) -> PDFViewController {
         
-        return PDFPreviewViewControllerBook()
+        return PDFViewController()
     }
     
-    func updateUIViewController(_ uiViewController: PDFPreviewViewControllerBook, context: UIViewControllerRepresentableContext<PDFPreviewControllerBook>) {
+    func updateUIViewController(_ uiViewController: PDFViewController, context: UIViewControllerRepresentableContext<PDFPreviewControllerBook>) {
         
         
-      //  var document = PDFDocument(data: book.pdf!)
+  //      var document = PDFDocument(data: book.pdf!)
         
         uiViewController.pdfView.document = PDFDocument(data: book.pdf!)
         
@@ -82,12 +84,13 @@ struct PDFPreviewControllerBook: UIViewControllerRepresentable {
         let pageIndexInt = pageIndex
         var calculatedPage: Int = pageIndexInt + Int(book.pageOfset ?? "0")!
         calculatedPage = calculatedPage - 1
-        uiViewController.pdfView.backgroundColor = UIColor.white
+       // uiViewController.pdfView.backgroundColor = UIColor.white
         
         print("calculatedPage: \(calculatedPage)")
         if calculatedPage % 2 != 0 {
             print("calculatedPage % 2 == 0: \(calculatedPage % 2 == 0)")
-                 uiViewController.pdfView.document?.insert(PDFPage(), at: 0)
+           // uiViewController.pdfView.document?.removePage(at: 0)
+            uiViewController.pdfView.document?.insert(PDFPage(), at: 0)
             calculatedPage = calculatedPage + 1
         }
         

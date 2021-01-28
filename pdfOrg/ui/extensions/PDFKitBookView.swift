@@ -21,21 +21,21 @@ struct PDFKitBookView: View {
     }
 }
 
-class PDFPreviewViewConroller: UIViewController {
-    
-    public var pdfView: PDFView!
-    
-    override func loadView() {
-        
-        pdfView = PDFView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        self.view = pdfView
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-}
+//class PDFPreviewViewConroller: UIViewController {
+//
+//    public var pdfView: PDFView!
+//
+//    override func loadView() {
+//
+//        pdfView = PDFView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+//        self.view = pdfView
+//    }
+//
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//
+//    }
+//}
 
 struct PDFPreviewController: UIViewControllerRepresentable {
     
@@ -52,16 +52,16 @@ struct PDFPreviewController: UIViewControllerRepresentable {
       
     }
     
-    func makeUIViewController(context: UIViewControllerRepresentableContext<PDFPreviewController>) -> PDFPreviewViewConroller {
+    func makeUIViewController(context: UIViewControllerRepresentableContext<PDFPreviewController>) -> PDFViewController {
         
-        let view = PDFPreviewViewConroller()
+        let view = PDFViewController()
         //view.pdfView.delegate = context.coordinator
         //    pdfView = view.pdfView
         
         return view
     }
     
-    func updateUIViewController(_ uiViewController: PDFPreviewViewConroller, context: UIViewControllerRepresentableContext<PDFPreviewController>) {
+    func updateUIViewController(_ uiViewController: PDFViewController, context: UIViewControllerRepresentableContext<PDFPreviewController>) {
         
         
         uiViewController.pdfView.delegate = context.coordinator

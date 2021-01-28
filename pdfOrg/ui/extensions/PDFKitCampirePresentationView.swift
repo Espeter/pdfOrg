@@ -31,21 +31,21 @@ struct PDFKitCampirePresentationView: View {
     }
 }
 
-class PDFPreviewViewControllerCampirePresentation: UIViewController {
-    
-    public var pdfView: PDFView!
-    
-    override func loadView() {
-        
-        pdfView = PDFView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        
-        self.view = pdfView
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-}
+//class PDFPreviewViewControllerCampirePresentation: UIViewController {
+//    
+//    public var pdfView: PDFView!
+//    
+//    override func loadView() {
+//        
+//        pdfView = PDFView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+//        
+//        self.view = pdfView
+//    }
+//    
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//    }
+//}
 
 struct PDFPreviewControllerPresentationCampire: UIViewControllerRepresentable {
     
@@ -62,12 +62,12 @@ struct PDFPreviewControllerPresentationCampire: UIViewControllerRepresentable {
         self.isLandscape = isLandscape
     }
     
-    func makeUIViewController(context: UIViewControllerRepresentableContext<PDFPreviewControllerPresentationCampire>) -> PDFPreviewViewControllerCampirePresentation {
+    func makeUIViewController(context: UIViewControllerRepresentableContext<PDFPreviewControllerPresentationCampire>) -> PDFViewController {
         
-        return PDFPreviewViewControllerCampirePresentation()
+        return PDFViewController()
     }
     
-    func updateUIViewController(_ uiViewController: PDFPreviewViewControllerCampirePresentation, context: UIViewControllerRepresentableContext<PDFPreviewControllerPresentationCampire>) {
+    func updateUIViewController(_ uiViewController: PDFViewController, context: UIViewControllerRepresentableContext<PDFPreviewControllerPresentationCampire>) {
         
         uiViewController.pdfView.document = PDFDocument(data: book.pdf!)
         

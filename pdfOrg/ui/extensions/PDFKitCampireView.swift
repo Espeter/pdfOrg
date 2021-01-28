@@ -21,21 +21,21 @@ struct PDFKitCampireView: View {
     }
 }
 
-class PDFPreviewViewControllerCampire: UIViewController {
-    
-    public var pdfView: PDFView!
-    
-    override func loadView() {
-        
-        pdfView = PDFView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        
-        self.view = pdfView
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-}
+//class PDFPreviewViewControllerCampire: UIViewController {
+//
+//    public var pdfView: PDFView!
+//
+//    override func loadView() {
+//
+//        pdfView = PDFView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+//
+//        self.view = pdfView
+//    }
+//
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//    }
+//}
 
 struct PDFPreviewControllerCampire: UIViewControllerRepresentable {
     
@@ -49,12 +49,12 @@ struct PDFPreviewControllerCampire: UIViewControllerRepresentable {
         _presentationModde = presentationModde
     }
     
-    func makeUIViewController(context: UIViewControllerRepresentableContext<PDFPreviewControllerCampire>) -> PDFPreviewViewControllerCampire {
+    func makeUIViewController(context: UIViewControllerRepresentableContext<PDFPreviewControllerCampire>) -> PDFViewController {
         
-        return PDFPreviewViewControllerCampire()
+        return PDFViewController()
     }
     
-    func updateUIViewController(_ uiViewController: PDFPreviewViewControllerCampire, context: UIViewControllerRepresentableContext<PDFPreviewControllerCampire>) {
+    func updateUIViewController(_ uiViewController: PDFViewController, context: UIViewControllerRepresentableContext<PDFPreviewControllerCampire>) {
         
         uiViewController.pdfView.document = PDFDocument(data: book.pdf!)
         
