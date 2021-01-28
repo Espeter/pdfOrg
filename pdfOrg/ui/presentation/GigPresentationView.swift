@@ -16,12 +16,14 @@ struct GigPresentationView: View {
     @State var navigationBarHidden = true
     @State var songInGig: SongInGig?
     @State var gig: Gig
+    @State var isLandscape: Bool = true
 
     
     var body: some View {
         NavigationView(){
             ZStack(alignment: .topTrailing){
-                PDFKitCampirePresentationView(book: umwantler(binding: $song.book, fallback: Book()), pageIndex: $pageIndex, presentationModde: true)
+                PDFPresentationView(book: umwantler(binding: $song.book, fallback: Book()), pageIndex: $pageIndex, isLandscape: $isLandscape)
+               // PDFKitCampirePresentationView(book: umwantler(binding: $song.book, fallback: Book()), pageIndex: $pageIndex, presentationModde: true)
                     .navigationBarTitle("\(song.title!)", displayMode: .inline)
                     .navigationBarItems(leading:
                                             HStack{
@@ -56,6 +58,18 @@ struct GigPresentationView: View {
         }.navigationViewStyle(StackNavigationViewStyle())
     }
     
+    func visiblePages() -> Int {
+        
+        var visiblePages: Int
+        
+        if isLandscape {
+            visiblePages = 2
+        } else {
+            visiblePages = 1
+        }
+        return visiblePages
+    }
+    
     func backPage() {
         
         if Int((song.startPage)!) ==  Int(pageIndex) {
@@ -77,7 +91,7 @@ struct GigPresentationView: View {
             }
         } else {
             let pageIndexInt = Int(pageIndex)!
-            let neuPageIndex = pageIndexInt - 1
+            let neuPageIndex = pageIndexInt - visiblePages()
             pageIndex = String(neuPageIndex)
         }
     }
@@ -86,7 +100,7 @@ struct GigPresentationView: View {
         
         if song.endPage != nil {
             
-            if Int((song.endPage)!) == Int(pageIndex) { // TODO: Hir höte ein buck sein
+            if Int((song.endPage)!) == (Int(pageIndex)! - 1 + visiblePages()) { // TODO: Hir höte ein buck sein 🙈 das muss getestet werden!!!!!
                 
                 let currentSongPosition = songInGig?.position
                 let songsInGig = getArraySongInGig(gig.songsInGig!)
@@ -104,7 +118,7 @@ struct GigPresentationView: View {
                 }
             }else {
                 let pageIndexInt = Int(pageIndex)!
-                let neuPageIndex = pageIndexInt + 1
+                let neuPageIndex = pageIndexInt + visiblePages()
                 pageIndex = String(neuPageIndex)
             }
         } else {

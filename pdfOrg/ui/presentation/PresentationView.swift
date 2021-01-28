@@ -14,11 +14,13 @@ struct PresentationView: View {
     @Binding var song: Song
     @State var page: String
     @State var navigationBarHidden = true
+    @State var isLandscape: Bool = true
     
     var body: some View {
         NavigationView(){
             ZStack(alignment: .topTrailing){
-                PDFKitCampirePresentationView(book: umwantler(binding: $song.book, fallback: Book()), pageIndex: $page, presentationModde: true)
+                PDFPresentationView(book: umwantler(binding: $song.book, fallback: Book()), pageIndex: $page, isLandscape: $isLandscape)
+              //  PDFKitCampirePresentationView(book: umwantler(binding: $song.book, fallback: Book()), pageIndex: $page, presentationModde: true)
                     .navigationBarTitle("\(song.title!)", displayMode: .inline)
                     .navigationBarItems(leading:
                                             HStack{
@@ -53,12 +55,24 @@ struct PresentationView: View {
         }.navigationViewStyle(StackNavigationViewStyle())
     }
     
+    func visiblePages() -> Int {
+        
+        var visiblePages: Int
+        
+        if isLandscape {
+            visiblePages = 2
+        } else {
+            visiblePages = 1
+        }
+        return visiblePages
+    }
+    
     func nextPage() {
         var IntPageIndex = Int(page)!
         let IntEndPage = Int(song.endPage ?? "1")!
         
-        if IntPageIndex < IntEndPage {
-            IntPageIndex = IntPageIndex + 1
+        if IntPageIndex < (IntEndPage + 1 - visiblePages()) {
+            IntPageIndex = IntPageIndex + visiblePages()
             page = String(IntPageIndex)
         }
     }
@@ -67,8 +81,8 @@ struct PresentationView: View {
         var IntPageIndex = Int(page)!
         let IntStartPage = Int(song.startPage ?? "1")!
         
-        if IntPageIndex > IntStartPage {
-            IntPageIndex = IntPageIndex - 1
+        if IntPageIndex > IntStartPage {        // TODO: past das?????? oder muss es wie in nextPage()
+            IntPageIndex = IntPageIndex - visiblePages()
             page = String(IntPageIndex)
         }
     }

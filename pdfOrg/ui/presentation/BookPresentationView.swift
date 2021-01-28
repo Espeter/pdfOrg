@@ -12,11 +12,13 @@ struct BookPresentationView: View {
         @EnvironmentObject var ec : EnvironmentController
         
         @State var navigationBarHidden = true
+    @State var isLandscape = true
         
         var body: some View {
             NavigationView(){
                 ZStack(alignment: .topTrailing){
-                    PDFKitBookPresentationView(book: $ec.book, pageIndex: $ec.pageIndex, presentationModde: true)
+                    PDFPresentationView(book: $ec.book, pageIndex: $ec.pageIndexString, isLandscape: $isLandscape)
+              //      PDFKitBookPresentationView(book: $ec.book, pageIndex: $ec.pageIndex, isLandscape: $isLandscape)
                         .navigationBarTitle("\(ec.book.title!)", displayMode: .inline)
                         .navigationBarItems(leading:
                                                 HStack{
@@ -43,14 +45,29 @@ struct BookPresentationView: View {
                 .gesture(DragGesture(minimumDistance: 100, coordinateSpace: .local)
                             .onEnded({ value in
                                 if value.translation.width <= 0 {
-                                    ec.pageIndex = ec.pageIndex + 2
+                                    ec.pageIndex = ec.pageIndex + visiblePages()
+                                    ec.pageIndexString = String(ec.pageIndex)
                                 }
                                 if value.translation.width >= 0 {
-                                    ec.pageIndex = ec.pageIndex - 2
+                                    ec.pageIndex = ec.pageIndex - visiblePages()
+                                    ec.pageIndexString = String(ec.pageIndex)
                                 }
                             }))
             }.navigationViewStyle(StackNavigationViewStyle())
         }
+    
+    func visiblePages() -> Int {
+        
+        var visiblePages: Int
+        
+        if isLandscape {
+            visiblePages = 2
+        } else {
+            visiblePages = 1
+        }
+        return visiblePages
+    }
+    
         func umwantler<T>(binding: Binding<T?>, fallback: T) -> Binding<T> {
             return Binding(get: {
                 binding.wrappedValue ?? fallback

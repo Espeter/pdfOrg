@@ -41,6 +41,7 @@ struct BookPDFView: View {
             PDFKitBookView(book: book, pageIndex: $page)//.frame(width: 300, height: 380.5)
                 .onTapGesture {
                     ec.presentationModeBook = true
+                    ec.pageIndexString = String(page)
                     ec.pageIndex = page
                     ec.book = book
                     print("cloud.bolt.rain: \(page)")
