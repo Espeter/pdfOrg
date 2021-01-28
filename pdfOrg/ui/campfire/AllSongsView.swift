@@ -29,7 +29,7 @@ struct AllSongsView: View {
             if searchText != "" {
                 List {
                     ForEach(songs, id: \.self) { (song: Song) in
-                        if(compared(song.title!.lowercased(), searchText: self.searchText.lowercased())){
+                        if(compared(title: song.title!.lowercased(), author: song.author?.lowercased() ?? "", searchText: self.searchText.lowercased())){
                             
                             
                             Button(action: {
@@ -119,20 +119,31 @@ struct AllSongsView: View {
     //    }
     
     
-    func compared(_ string: String, searchText: String) -> Bool {
-        print("2")
+    func compared(title: String, author: String , searchText: String) -> Bool {
         var bool = false
         
         var splitSearchText = searchText.components(separatedBy: " ")
-        let splitString = string.components(separatedBy: " ")
+        let splitTitle = title.components(separatedBy: " ")
+        let splitAuthor = author.components(separatedBy: " ")
         let splitSearchTextCount = splitSearchText.count
         var comparedWords = 0
         
-        splitString.forEach{ word in
+        splitTitle.forEach{ titleWord in
             
             splitSearchText.forEach{ search in
                 
-                if word.contains(search) {
+                if titleWord.contains(search) {
+                    comparedWords = comparedWords + 1
+                    splitSearchText.remove(at: splitSearchText.firstIndex(of: search)!)
+                }
+            }
+        }
+        
+        splitAuthor.forEach{ authorWord in
+            
+            splitSearchText.forEach{ search in
+                
+                if authorWord.contains(search) {
                     comparedWords = comparedWords + 1
                     splitSearchText.remove(at: splitSearchText.firstIndex(of: search)!)
                 }
@@ -152,7 +163,6 @@ struct AllSongsView: View {
     }
     
     func getSpecialCharacterSongs() -> [Song] {
-        print("3")
         //  let songs = songsArray ?? setSongsArray()
         var songs123: [Song] = []
         
@@ -190,7 +200,6 @@ struct AllSongsView: View {
     //    }
     
     func foo(char: String) -> Bool {
-        print("5")
         var isIncluded = false
         
         //     let songs = songsArray ?? setSongsArray()

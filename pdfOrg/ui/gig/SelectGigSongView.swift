@@ -28,7 +28,7 @@ struct SelectGigSongView: View {
             if searchText != "" {
                 List {
                     ForEach(songs, id: \.self) { (song: Song) in
-                        if(compared(song.title!.lowercased(), searchText: self.searchText.lowercased())){
+                        if(compared(title: song.title!.lowercased(), author: song.author?.lowercased() ?? "", searchText: self.searchText.lowercased())){
                             SongRowInGigView(song: song, gig: $gig, updateView: $updateView, songIsSelectet: $songIsSelectet, gigSongIsSelectet: $gigSongIsSelectet, songSelectet: $songSelectet, pageIndex: $pageIndex)
                        //     SongRowInGigView(song: song, gig: $gig, updateView: $updateView, )
                         }
@@ -66,20 +66,31 @@ struct SelectGigSongView: View {
         }.padding().background(Color(UIColor.white)).cornerRadius(15.0).shadow( radius: 15, x: 3, y: 5)
         
     }
-    func compared(_ string: String, searchText: String) -> Bool {
-        print("2")
+    func compared(title: String, author: String , searchText: String) -> Bool {
         var bool = false
         
         var splitSearchText = searchText.components(separatedBy: " ")
-        let splitString = string.components(separatedBy: " ")
+        let splitTitle = title.components(separatedBy: " ")
+        let splitAuthor = author.components(separatedBy: " ")
         let splitSearchTextCount = splitSearchText.count
         var comparedWords = 0
         
-        splitString.forEach{ word in
+        splitTitle.forEach{ titleWord in
             
             splitSearchText.forEach{ search in
                 
-                if word.contains(search) {
+                if titleWord.contains(search) {
+                    comparedWords = comparedWords + 1
+                    splitSearchText.remove(at: splitSearchText.firstIndex(of: search)!)
+                }
+            }
+        }
+        
+        splitAuthor.forEach{ authorWord in
+            
+            splitSearchText.forEach{ search in
+                
+                if authorWord.contains(search) {
                     comparedWords = comparedWords + 1
                     splitSearchText.remove(at: splitSearchText.firstIndex(of: search)!)
                 }
