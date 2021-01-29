@@ -24,6 +24,7 @@ struct PDFPresentationView: View {
     var body: some View {
         PDFPresentationViewCR(book: $book, pageIndex: $pageIndex, isLandscape: $isLandscape)
             .onReceive(orientationChanged) { _ in
+                self.orientation = UIDevice.current.orientation
                 if  self.orientation.isLandscape {
                     isLandscape = true
                 } else {

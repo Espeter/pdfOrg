@@ -83,7 +83,7 @@ struct CampfireView: View {
         getArraySong().forEach{ song in
             let firstLetter = song.title?.first?.lowercased()
         
-            if (dictionary[firstLetter!] != nil) {
+            if (dictionary[firstLetter ?? ""] != nil) {
                 dictionary[firstLetter!]?.append(song)
             } else {
                 dictionary["#"]?.append(song)
