@@ -64,10 +64,10 @@ struct BookView: View {
                                     Button(action: {
                                         infoPopup.toggle()
                                     }) {
-                                        Image(systemName: "info.circle").popover(isPresented: self.$infoPopup ) {
+                                        Image(systemName: "info.circle").padding().popover(isPresented: self.$infoPopup ) {
                                             BookInfoView(book: book, editMode: $editMode, updateView: $updateView)
                                         }
-                                    }
+                                    }/*
                                     Button(action: {
                                         if editMode {
                                             saveContext()
@@ -80,33 +80,33 @@ struct BookView: View {
                                         } else {
                                             Text("edit").padding()
                                         }
-                                    }
-                                    Button(action: {
-                                        openFile.toggle()
-                                    }) {
-                                        Image(systemName: "square.and.arrow.down")
-                                    }
-                                    Button(action: {
-                                        showingPopup.toggle()
-                                    }) {
-                                        Image(systemName: "plus").padding()
-                                            .popover(isPresented: self.$showingPopup) {
-                                                AddSongPopoverView(book: book, showingPopup: $showingPopup)
-                                            }
-                                    }
+                                    }*/
+//                                    Button(action: {
+//                                        openFile.toggle()
+//                                    }) {
+//                                        Image(systemName: "square.and.arrow.down")
+//                                    }
+//                                    Button(action: {
+//                                        showingPopup.toggle()
+//                                    }) {
+//                                        Image(systemName: "plus").padding()
+//                                            .popover(isPresented: self.$showingPopup) {
+//                                                AddSongPopoverView(book: book, showingPopup: $showingPopup)
+//                                            }
+//                                    }
                                 }
         )
-        .fileImporter(isPresented: $openFile, allowedContentTypes: [.text])
-        { (res) in
-            do {
-                let fileUrl = try res.get()
-                importSongs(url: fileUrl)
-            }
-            catch {
-                print("error")
-            }
-            
-        }
+//        .fileImporter(isPresented: $openFile, allowedContentTypes: [.text])
+//        { (res) in
+//            do {
+//                let fileUrl = try res.get()
+//                importSongs(url: fileUrl)
+//            }
+//            catch {
+//                print("error")
+//            }
+//            
+//        }
     }
     
     private func saveContext(){

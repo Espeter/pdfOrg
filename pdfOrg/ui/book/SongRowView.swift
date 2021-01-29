@@ -75,8 +75,8 @@ struct SongRowView: View {
                                         }
                                       }
                             ).frame(maxWidth: .infinity, alignment: .leading)
-                            .background(Color(UIColor.systemGray6))
-                            .cornerRadius(15.0)
+//                            .background(Color(UIColor.systemGray6))
+//                            .cornerRadius(15.0)
                         } else {
                             Text("\(song.title ?? "nil")").frame(maxWidth: .infinity, alignment: .leading)
                         }
@@ -99,15 +99,16 @@ struct SongRowView: View {
                     
                     HStack{
                         if pageEditable {
+                            HStack{
                             TextField(song.startPage ?? "nil",
                                       text: umwantler(binding: $song.startPage, fallback: "error"), onEditingChanged: {(changed) in
                                         if changed == false {
                                             saveContext()
                                             pageEditable = false
                                         }
-                                      })
-                                .background(Color(UIColor.systemGray6))
-                                .cornerRadius(15.0)
+                                      }).frame(width: 30, alignment: .leading)
+//                                .background(Color(UIColor.systemGray6))
+//                                .cornerRadius(15.0)
                             Text("-")
                             TextField(song.endPage ?? "",
                                       text: umwantler(binding: $song.endPage, fallback: ""), onEditingChanged: {(changed) in
@@ -115,15 +116,16 @@ struct SongRowView: View {
                                             saveContext()
                                             pageEditable = false
                                         }
-                                      })
-                                .background(Color(UIColor.systemGray6))
-                                .cornerRadius(15.0)
+                                      }).frame(width: 30, alignment: .leading)
+//                                .background(Color(UIColor.systemGray6))
+//                                .cornerRadius(15.0)
+                            }.frame(maxWidth: .infinity, alignment: .leading)
                         } else {
                             HStack{
-                                Text("\(song.startPage ?? "nil")")
+                                Text("\(song.startPage ?? "nil")").frame(width: 30, alignment: .leading)
                                 if song.endPage != nil && song.endPage != song.startPage{
                                     Text("-")
-                                    Text("\(song.endPage ?? "nil")")
+                                    Text("\(song.endPage ?? "nil")").frame(width: 30, alignment: .leading)
                                 }
                             }.frame(maxWidth: .infinity, alignment: .leading)
                         }
@@ -159,8 +161,8 @@ struct SongRowView: View {
                                         }
                                       }
                             ).frame(maxWidth: .infinity, alignment: .leading)
-                            .background(Color(UIColor.systemGray6))
-                            .cornerRadius(15.0)
+//                            .background(Color(UIColor.systemGray6))
+//                            .cornerRadius(15.0)
                                 if updateView {
                                     Text("").frame(width: 0, height: 0)
                                 }
