@@ -49,11 +49,11 @@ struct LibraryView: View {
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarItems(leading:
                                     HStack{
-                                        SearchBar(text: $searchText).frame(width: 300)
-                                        Image(systemName: "house").padding()
-                                        Text("Genre")
-                                        Text("|")
-                                        Text("Autor")
+//                                        SearchBar(text: $searchText).frame(width: 300)
+//                                        Image(systemName: "house").padding()
+//                                        Text("Genre")
+//                                        Text("|")
+//                                        Text("Autor")
                                     }
                                 ,trailing:
                                     HStack{

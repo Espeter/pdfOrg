@@ -43,7 +43,7 @@ struct CampfirePDFView: View {
                             }
                             PDFKitCampireView(book: umwantler(binding: $song.book, fallback: Book()), pageIndex: $pageIndex, presentationModde: true)
                             Button(action: {
-                                print("nex")
+                                print("next")
                                 nextPage()
                                 print(pageIndex)
                             }) {
@@ -54,7 +54,7 @@ struct CampfirePDFView: View {
                         PDFKitCampireView(book: umwantler(binding: $song.book, fallback: Book()), pageIndex: $pageIndex, presentationModde: true)
                     }
                 } else {
-                    Text("selekt Song")
+                    Text("Please select s Song")
                 }
             }
             if song.isFavorit {
@@ -175,7 +175,7 @@ struct CampfirePDFView: View {
         var favoritGig: Gig? = nil
         
         gigs.forEach{ gig in
-            if gig.title == "Favorits" {
+            if gig.title == "Favorites" {
                 favoritGig = gig
             }
         }
@@ -184,7 +184,7 @@ struct CampfirePDFView: View {
             
             
             let newFavoritGig = Gig(context: viewContext)
-            newFavoritGig.title = "Favorits"
+            newFavoritGig.title = "Favorites"
             var i = 0
             
             getArraySong().forEach { song in

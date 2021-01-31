@@ -29,7 +29,7 @@ struct PresentationView: View {
                                                 }) {
                                                     HStack{
                                                         Image(systemName: "lessthan")
-                                                        Text("Back")
+                                                        Text("back")
                                                     }
                                                 }
                                             }

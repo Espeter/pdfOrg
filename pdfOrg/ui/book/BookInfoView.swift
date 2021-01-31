@@ -21,7 +21,7 @@ struct BookInfoView: View {
         
         VStack {
             HStack{
-                Text("Titel: ").foregroundColor(Color(UIColor.black))
+                Text("Title: ").foregroundColor(Color(UIColor.black))
                 TextField(book.title!, text: umwantler(binding: $book.title, fallback: "nil"), onEditingChanged: {(changed) in
                     if changed == false {
                         saveContext()
@@ -33,7 +33,7 @@ struct BookInfoView: View {
             
             
             HStack{
-                Text("tonArt: ")
+                Text("Tonality: ")
                 if editMode {
                     TextField("\(book.tonArt ?? "nil")", text: umwantler(binding: $book.tonArt, fallback: "error")).padding(0).background(Color(UIColor.systemGray6)).cornerRadius(15.0)
                 } else {
@@ -43,7 +43,7 @@ struct BookInfoView: View {
             }.padding(.bottom, 4)
 
             HStack{
-                Text("version: ")
+                Text("Version: ")
                 if editMode {
                     TextField("\(book.version ?? "nil")", text: umwantler(binding: $book.version, fallback: "error")).padding(0).background(Color(UIColor.systemGray6)).cornerRadius(15.0)
                 } else {
@@ -58,7 +58,7 @@ struct BookInfoView: View {
             }.padding(.bottom, 4)
             
             HStack{
-                Text("pageOfset: ")
+                Text("Page Offset: ")
                 if editMode {
                     TextField("\(book.pageOfset ?? "nil")", text: umwantler(binding: $book.pageOfset, fallback: "error")).padding(0).background(Color(UIColor.systemGray6)).cornerRadius(15.0)
                 } else {
@@ -71,7 +71,7 @@ struct BookInfoView: View {
                 }) {
                     Image(systemName: "info.circle")
                         .popover(isPresented: self.$showingPopup) {
-                            Text("das sind die Infos zu dem pageOfset").padding()
+                            Text("Das sind die Infos zum dem Page Offset").padding()
                     }
                 }
             }.padding(.bottom, 4).padding(.top, 4)

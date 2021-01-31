@@ -46,7 +46,7 @@ struct GigView: View {
                         //      GigInfoView(gig: umwantler(binding: $gig, fallback: Gig()), updateView: $updateView)
                         GigInfoView(gig: $gig, updateView: $updateView, songIsSelectet: $songIsSelectet, gigSongIsSelectet: $gigSongIsSelectet, songInGig: $songInGig, pageIndex: $pageIndex, song: $song)
                             .padding()
-                        GigPDFView(songIsSelectet: $songIsSelectet, gigSongIsSelectet: $gigSongIsSelectet, song: $song, pageIndex: $pageIndex, songInGig: $songInGig, gig: $gig)
+                        GigPDFView(songIsSelectet: $songIsSelectet, gigSongIsSelectet: $gigSongIsSelectet, song: $song, pageIndex: $pageIndex, songInGig: $songInGig, gig: $gig, showingSelectGigView: $showingSelectGigView)
                             .padding()
                             .padding(.top, -20)
                     }
@@ -55,7 +55,7 @@ struct GigView: View {
                         .padding(.leading, -20)
                     
                 } else {
-                    GigPDFView(songIsSelectet: $songIsSelectet, gigSongIsSelectet: $gigSongIsSelectet, song: $song, pageIndex: $pageIndex, songInGig: $songInGig, gig:  $gig).padding()
+                    GigPDFView(songIsSelectet: $songIsSelectet, gigSongIsSelectet: $gigSongIsSelectet, song: $song, pageIndex: $pageIndex, songInGig: $songInGig, gig:  $gig, showingSelectGigView: $showingSelectGigView).padding()
                     //     GigInfoView(gig: umwantler(binding: $gig, fallback: Gig()), updateView: $updateView)
                     GigInfoView(gig: $gig, updateView: $updateView, songIsSelectet: $songIsSelectet, gigSongIsSelectet: $gigSongIsSelectet, songInGig: $songInGig, pageIndex: $pageIndex, song: $song)
                         .padding()
@@ -66,7 +66,7 @@ struct GigView: View {
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarItems(leading:
                                     HStack{
-                                        Text("Gig: ")
+                                        Text("Collection: ")
                                         Button(action: {
                                             showingSelectGigView.toggle()
                                         }) {
@@ -85,8 +85,10 @@ struct GigView: View {
                                                 VStack{
                                                    
                                                     
-                                                    
-                                                    Text("Copy Gig").foregroundColor(Color(UIColor.black)).padding()
+                                                    HStack{
+                                                        Text("Copy Collection").foregroundColor(Color(UIColor.black))//.padding()
+                                                        Spacer()
+                                                    }.frame( alignment: .leading)
                                                     Text("")
                                                     HStack{
                                                     Text("from: \(gig.title!)").foregroundColor(Color(UIColor.black))
@@ -95,8 +97,8 @@ struct GigView: View {
                                                     Text("")
                                                     HStack{
                                                         
-                                                        Text("target: ").foregroundColor(Color(UIColor.black))
-                                                        TextField("copy Gig", text: $copyGigTitel)
+                                                        Text("to: ").foregroundColor(Color(UIColor.black))
+                                                        TextField("Copy Collection", text: $copyGigTitel)
                                                     }.frame( alignment: .leading)
                                                     
                                                     
@@ -110,7 +112,7 @@ struct GigView: View {
                                                 }.padding().frame(width: 200, height: 300)
                                             }
                                         }
-                                        if gig.title != "Favorits" {
+                                        if gig.title != "Favorites" {
                                             Button(action: {
                                                 showingAddGigSongView.toggle()
                                             }) {

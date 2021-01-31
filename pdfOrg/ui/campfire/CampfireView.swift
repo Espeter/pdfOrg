@@ -35,7 +35,7 @@ struct CampfireView: View {
                //     Text("\(song?.title ?? "papa")")
                     
                 } else {
-                    Text("selekt Song")
+                    Text("Please select s Song")
                        // .frame(width: 300, height: 380.5)
                         .frame(minWidth: 300, idealWidth: .infinity, maxWidth: .infinity, minHeight: 380.5, idealHeight: .infinity, maxHeight: .infinity)
                       //  .padding()

@@ -1,109 +1,109 @@
 {
   "images" : [
     {
-      "filename" : "pdforga40px-2.jpg",
+      "filename" : "pdforga40px_v2.jpg",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "20x20"
     },
     {
-      "filename" : "pdforga60px.jpg",
+      "filename" : "pdforga60px_v2.jpg",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "20x20"
     },
     {
-      "filename" : "pdforga58px-1.jpg",
+      "filename" : "pdforga58px_v2-1.jpg",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "29x29"
     },
     {
-      "filename" : "pdforga87px.jpg",
+      "filename" : "pdforga87px_v2.jpg",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "29x29"
     },
     {
-      "filename" : "pdforga80px-1.jpg",
+      "filename" : "pdforga80px_v2-1.jpg",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
-      "filename" : "pdforga120px.jpg",
+      "filename" : "pdforga120px_v2-1.jpg",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "40x40"
     },
     {
-      "filename" : "pdforga120px-1.jpg",
+      "filename" : "pdforga120px_v2.jpg",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "60x60"
     },
     {
-      "filename" : "pdforga180px.jpg",
+      "filename" : "pdforga180px_v2.jpg",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "60x60"
     },
     {
-      "filename" : "pdforga20px.jpg",
+      "filename" : "pdforga20px_v2.jpg",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "20x20"
     },
     {
-      "filename" : "pdforga40px-1.jpg",
+      "filename" : "pdforga40px_v2-1.jpg",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "20x20"
     },
     {
-      "filename" : "pdforga29px.jpg",
+      "filename" : "pdforga29px_v2.jpg",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "29x29"
     },
     {
-      "filename" : "pdforga58px.jpg",
+      "filename" : "pdforga58px_v2.jpg",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "29x29"
     },
     {
-      "filename" : "pdforga40px.jpg",
+      "filename" : "pdforga40px_v2-2.jpg",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "40x40"
     },
     {
-      "filename" : "pdforga80px.jpg",
+      "filename" : "pdforga80px_v2.jpg",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
-      "filename" : "pdforga76px.jpg",
+      "filename" : "pdforga76px_v2.jpg",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "76x76"
     },
     {
-      "filename" : "pdforga152px.jpg",
+      "filename" : "pdforga152px_v2.jpg",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "76x76"
     },
     {
-      "filename" : "pdforga167px.jpg",
+      "filename" : "pdforga167px_v2.jpg",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "83.5x83.5"
     },
     {
-      "filename" : "pdforga.jpg",
+      "filename" : "pdforga_v2.jpg",
       "idiom" : "ios-marketing",
       "scale" : "1x",
       "size" : "1024x1024"

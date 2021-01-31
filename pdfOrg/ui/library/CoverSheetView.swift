@@ -41,9 +41,9 @@ struct CoverSheetView: View {
                     }
                     .popover(isPresented: self.$showingPopup) {
                         VStack{
-                            Text("title: \(book.title ?? "n.a.")")
-                            Text("version: \(book.version ?? "n.a.")")
-                            Text("tonArt: \(book.tonArt ?? "n.a.")")
+                            Text("Title: \(book.title ?? "n.a.")")
+                            Text("Version: \(book.version ?? "n.a.")")
+                            Text("Tonality: \(book.tonArt ?? "n.a.")")
                             Text("\(String(book.songs!.count)) Songs")
                             Button(action: {
                                 deleteBookAlert.toggle()
@@ -51,9 +51,9 @@ struct CoverSheetView: View {
                                 Image(systemName: "trash")
                                     .padding()
                                     .alert(isPresented: $deleteBookAlert) {
-                                        Alert(title: Text("delet \"\(book.title!)\""),
-                                              message: Text("Biest du dir sicher das diese Buch Löschen möchtest?\n es hat zur folge das alle \(book.songs?.count ?? 0) Lieder auch gelöscht sind"),
-                                              primaryButton: .destructive(Text("delet"),
+                                        Alert(title: Text("delete \"\(book.title!)\""),
+                                              message: Text("Bist du dir sicher, dass du diese Buch Löschen möchtest?\n es hat zur Folge das alle \(book.songs?.count ?? 0) Lieder gelöscht sind"),
+                                              primaryButton: .destructive(Text("delete"),
                                                                           action: {
                                                                             viewContext.delete(book)
                                                                             saveContext()

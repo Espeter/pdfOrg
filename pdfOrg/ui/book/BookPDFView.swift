@@ -24,6 +24,7 @@ struct BookPDFView: View {
     @State var book: Book
     @Binding var song: Song?
     @Binding var updateView: Bool
+    @Binding var infoPopup: Bool
 
     @Binding var page: Int
     
@@ -40,6 +41,7 @@ struct BookPDFView: View {
             ZStack(alignment: .topTrailing) {
             PDFKitBookView(book: book, pageIndex: $page)//.frame(width: 300, height: 380.5)
                 .onTapGesture {
+                    infoPopup = false
                     ec.presentationModeBook = true
                     ec.pageIndexString = String(page)
                     ec.pageIndex = page
@@ -186,7 +188,7 @@ struct BookPDFView: View {
         var favoritGig: Gig? = nil
         
         gigs.forEach{ gig in
-            if gig.title == "Favorits" {
+            if gig.title == "Favorites" {
                 favoritGig = gig
             }
         }
@@ -195,7 +197,7 @@ struct BookPDFView: View {
             
             
             let newFavoritGig = Gig(context: viewContext)
-            newFavoritGig.title = "Favorits"
+            newFavoritGig.title = "Favorites"
             var i = 0
             
             getArraySong().forEach { song in

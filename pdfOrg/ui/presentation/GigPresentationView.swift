@@ -32,7 +32,7 @@ struct GigPresentationView: View {
                                                 }) {
                                                     HStack{
                                                         Image(systemName: "lessthan")
-                                                        Text("Back")
+                                                        Text("back")
                                                     }
                                                 }
                                             }

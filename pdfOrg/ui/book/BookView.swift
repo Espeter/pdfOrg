@@ -31,13 +31,13 @@ struct BookView: View {
 //                BookInfoView(book: book, editMode: $editMode)
 //                    .padding()
 //                    .shadow( radius: 15, x: 3, y: 5)
-                BookPDFView(book: book, song: $selectedSong, updateView: $updateView, page: $page)
+                BookPDFView(book: book, song: $selectedSong, updateView: $updateView, infoPopup: $infoPopup, page: $page)
                     .frame(idealHeight: .infinity)
                     .padding()
                     .shadow( radius: 15, x: 3, y: 5)
                 
             }
-            BookSongCollectionView(book: book, editMode: $editMode, page: $page, selectedSong: $selectedSong, updateView: $updateView)
+            BookSongCollectionView(book: book/*, editMode: $editMode*/, page: $page, selectedSong: $selectedSong, updateView: $updateView)
                 .padding()
                 // .frame(width: 650)
                 .shadow( radius: 15, x: 3, y: 5)
@@ -47,7 +47,7 @@ struct BookView: View {
         .navigationBarTitle("\(book.title ?? "nil")")
         .navigationBarItems( leading:
                                 HStack{
-                                    Text("pageOfSet: ")
+                                    Text("Page Offset: ")
                                     TextField(book.pageOfset!, text: umwantler(binding: $book.pageOfset, fallback: "0"), onEditingChanged: {(changed) in
                                         if changed == false {
                                             saveContext()

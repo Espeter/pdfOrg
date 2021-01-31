@@ -51,7 +51,7 @@ struct ContentView: View {
         var favoritGig: Gig? = nil
         
         gigs.forEach{ gig in
-            if gig.title == "Favorits" {
+            if gig.title == "Favorites" {
                 favoritGig = gig
             }
         }
@@ -60,7 +60,7 @@ struct ContentView: View {
             
             
             let newFavoritGig = Gig(context: viewContext)
-            newFavoritGig.title = "Favorits"
+            newFavoritGig.title = "Favorites"
             var i = 0
             
             getArraySong().forEach { song in

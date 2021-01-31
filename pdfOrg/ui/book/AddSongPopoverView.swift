@@ -23,8 +23,8 @@ struct AddSongPopoverView: View {
     
         VStack{
             HStack{
-            Text("title: ")
-            TextField("title of Song", text: $title)
+            Text("Title: ")
+            TextField("Title of Song", text: $title)
             }
             HStack{
             Text("Page: ")
@@ -34,7 +34,7 @@ struct AddSongPopoverView: View {
             }
             HStack{
             Text("Author: ")
-            TextField("name of Author", text: $author)
+            TextField("Name of Author", text: $author)
             }
             Button(action: {
                 addSong()

@@ -12,7 +12,7 @@ struct BookSongCollectionView: View {
     @Environment(\.managedObjectContext) var viewContext
     
     @ObservedObject var book: Book
-    @Binding var editMode: Bool
+    @State var editMode: Bool = false
     @Binding var page: Int
     @Binding var selectedSong: Song?
     @Binding var updateView: Bool
@@ -25,21 +25,44 @@ struct BookSongCollectionView: View {
     var body: some View {
         VStack{
             HStack{
-                
-                Text("title").frame(maxWidth: .infinity, alignment: .leading)
-
-                Text("page").frame(maxWidth: .infinity, alignment: .leading)
-
-                Text("author").frame(maxWidth: .infinity/*, alignment: .leading*/)
+                if editMode {
+                    Button(action: {
+                            saveContext()
+                        editMode = false
+                    }) {
+                            Text("done").padding()
+                    }
+                    
+                }
+                Spacer()
+//                Text("title").frame(maxWidth: .infinity, alignment: .leading)
+//
+//                Text("page").frame(maxWidth: .infinity, alignment: .leading)
+//
+//                Text("author")//.frame(maxWidth: .infinity/*, alignment: .leading*/)
+                Button(action: {
+                    showingPopup.toggle()
+                }) {
+                    Image(systemName: "plus").padding()
+                        .popover(isPresented: self.$showingPopup) {
+                            AddSongPopoverView(book: book, showingPopup: $showingPopup)
+                        }
+              //  }
+            }
+                Button(action: {
+                    openFile.toggle()
+                }) {
+                    Image(systemName: "square.and.arrow.down")
+                }
                 Button(action: {
                     deleteSongsAlert.toggle()
                 }) {
-                    Image(systemName: "trash")
+                    Image(systemName: "trash").padding()
                         //.padding()
                         .alert(isPresented: $deleteSongsAlert) {
-                        Alert(title: Text("delet all Songs"),
-                              message: Text("bist du dir sicher das du alle \(book.songs?.count ?? 0) Lieder löschen möchtest?"),
-                              primaryButton: .destructive(Text("delet"),
+                        Alert(title: Text("delete all Songs"),
+                              message: Text("Bist du dir sicher, dass du alle \(book.songs?.count ?? 0) Lieder löschen möchtest?"),
+                              primaryButton: .destructive(Text("delete"),
                                                           action: {
                                                             getArraySong(book.songs!).forEach { song in
                                                                 viewContext.delete(song)
@@ -50,27 +73,16 @@ struct BookSongCollectionView: View {
                         )
                     }
                 }
-                Button(action: {
-                    openFile.toggle()
-                }) {
-                    Image(systemName: "square.and.arrow.down").padding()
-                }
-                Button(action: {
-                    showingPopup.toggle()
-                }) {
-                    Image(systemName: "plus")
-                        .popover(isPresented: self.$showingPopup) {
-                            AddSongPopoverView(book: book, showingPopup: $showingPopup)
-                        }
-              //  }
-            }
-            }.padding().background(Color(UIColor.systemGray6))
             
+           
+            }/*.padding()*/.frame(maxWidth: .infinity, alignment: .trailing).background(Color(UIColor.systemGray6))//, alignment: .leading)
+            ScrollViewReader { scroll in
             List() {
                 
                 ForEach(getArraySong(book.songs!)) { song in
                     SongRowView(song: song, editMode: $editMode, page: $page, selectedSong: $selectedSong, updateView: $updateView)
                 }.onDelete(perform: deleteSong)
+            }
             }
         }
          .background(Color(UIColor.white))

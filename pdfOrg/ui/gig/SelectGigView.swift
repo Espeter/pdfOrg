@@ -26,7 +26,7 @@ struct SelectGigView: View {
             
             HStack{
                 Text("Title: ").foregroundColor(Color(.black))
-                TextField("newGig", text: $newGigTitle)
+                TextField("New Collection", text: $newGigTitle)
                 Button(action: {
                     addGig()
                 }) {
@@ -66,7 +66,7 @@ struct SelectGigView: View {
         newGig.id = UUID()
         
         if newGigTitle == "" {
-            newGigTitle = "new Gig"
+            newGigTitle = "new Collection"
         }
         newGig.title = newGigTitle
         saveContext()

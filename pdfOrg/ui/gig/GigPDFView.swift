@@ -17,6 +17,7 @@ struct GigPDFView: View {
     @Binding var songInGig: SongInGig?
     @Binding var gig: Gig
     @State var updateView: Bool = false
+    @Binding var showingSelectGigView: Bool
     
     var body: some View {
         VStack{
@@ -39,7 +40,7 @@ struct GigPDFView: View {
                     }
                 }
             } else {
-                Text("selekt Song")
+                Text("Please select s Song")
             }
         }
         .frame(minWidth: 300,
@@ -57,12 +58,14 @@ struct GigPDFView: View {
                             backPage()                        }
                     }))
         .onTapGesture {
-            
+            if song != nil {
             ec.song = song!
             ec.pageIndexString = pageIndex
             ec.songInGig = songInGig!
             ec.gig = gig
             ec.presentationModeGig = true
+                showingSelectGigView = false
+            }
         }
         .background(Color(UIColor.white))
         .cornerRadius(15.0)

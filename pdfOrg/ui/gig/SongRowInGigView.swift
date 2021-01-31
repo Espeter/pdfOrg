@@ -47,7 +47,7 @@ struct SongRowInGigView: View {
             }) {
                 HStack{
                 Text("\(song.title!)")
-                Text("by").foregroundColor(Color(UIColor.systemGray3))
+                Text("  ").foregroundColor(Color(UIColor.systemGray3))
                    Text("\(song.author ?? "-")")
                 }
             }
@@ -93,7 +93,7 @@ struct SongRowInGigView: View {
             if (songInGig as AnyObject).song == song {
                 
                 let songInGigAs: SongInGig = songInGig as! SongInGig
-                print("delit")
+                print("delete")
                 gig.removeFromSongsInGig(songInGigAs)
                 renewPosition(songsInGig: gig.songsInGig!)
                 saveContext()
