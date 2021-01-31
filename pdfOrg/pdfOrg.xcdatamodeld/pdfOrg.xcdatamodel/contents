@@ -32,7 +32,7 @@
         <relationship name="song" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Song" inverseName="songInGigs" inverseEntity="Song"/>
     </entity>
     <elements>
-        <element name="Book" positionX="490.91796875" positionY="-39.94140625" width="128" height="164"/>
+        <element name="Book" positionX="490.91796875" positionY="-39.94140625" width="128" height="14"/>
         <element name="Gig" positionX="-99.69921875" positionY="-42.33984375" width="128" height="74"/>
         <element name="Song" positionX="288.40234375" positionY="-10.171875" width="128" height="149"/>
         <element name="SongInGig" positionX="119.18359375" positionY="-156.51171875" width="128" height="74"/>

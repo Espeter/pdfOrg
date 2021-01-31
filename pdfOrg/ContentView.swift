@@ -27,15 +27,15 @@ struct ContentView: View {
                 .tabItem {
                     Image(systemName: "books.vertical")
                 }.tag(1)
-                
-            GigView(gig: getFavoritGig())
-                .tabItem {
-                    Image(systemName: "music.note.list")
-                }.tag(2)
             CampfireView()
                 .tabItem{
-                    Image(systemName: "flame")
+                    Image(systemName: "list.bullet")
+                }.tag(2)
+            GigView(gig: getFavoritGig())
+                .tabItem {
+                    Image(systemName: "doc.text")
                 }.tag(3)
+           
         }
         } else if ec.presentationMode == true {
             PresentationView(song: $ec.song, page: ec.song.startPage!)

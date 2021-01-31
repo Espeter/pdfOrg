@@ -17,9 +17,8 @@ struct LibraryView: View {
     @State private var openFile = false
     
     @State private var popupIsActive = false
-    @State private var currentBook: Book?
+ //   @State private var currentBook: Book?
 
-    
     @State private var navigationLinkActive = false
     
     var body: some View {
@@ -37,9 +36,9 @@ struct LibraryView: View {
                 }
                 ScrollView(.horizontal) {
                     HStack(){
-                        ForEach(books) { book in
+                        ForEach(getArrayBook(books)) { book in
                             
-                            CoverSheetView(navigationLinkActive: $navigationLinkActive, book: book, popupIsActive: $popupIsActive, currentBook: $currentBook)
+                            CoverSheetView(/*navigationLinkActive: $navigationLinkActive, */book: book, popupIsActive: $popupIsActive/*, currentBook: $currentBook*/)
                         }
                     }.frame(height: 300).padding(.bottom, -20)
                 }

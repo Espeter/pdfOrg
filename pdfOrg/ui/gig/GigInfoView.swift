@@ -36,6 +36,8 @@ struct GigInfoView: View {
                     HStack{
                     Text("\(songinGig.position + 1)")
                     Text("\(songinGig.song!.title!)")
+                        Text("by").foregroundColor(Color(UIColor.systemGray3))
+                        Text("\(songinGig.song!.author ?? "-")")
                         if updateView {
                             Text("").frame(width: 0, height: 0)
                         }

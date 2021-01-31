@@ -78,9 +78,6 @@ struct GigView: View {
                                     }
                                 ,trailing:
                                     HStack{
-                                        
-                                        
-                                        
                                         Button(action: {
                                             showingPopup.toggle()
                                         }) {
@@ -89,21 +86,28 @@ struct GigView: View {
                                                    
                                                     
                                                     
-                                                    Text("copy Gig").foregroundColor(Color(UIColor.black))
+                                                    Text("Copy Gig").foregroundColor(Color(UIColor.black)).padding()
+                                                    Text("")
                                                     HStack{
-                                                        Text("titel: ").foregroundColor(Color(UIColor.black))
+                                                    Text("from: \(gig.title!)").foregroundColor(Color(UIColor.black))
+                                                        Spacer()
+                                                    }.frame( alignment: .leading)
+                                                    Text("")
+                                                    HStack{
+                                                        
+                                                        Text("target: ").foregroundColor(Color(UIColor.black))
                                                         TextField("copy Gig", text: $copyGigTitel)
-                                                    }
+                                                    }.frame( alignment: .leading)
                                                     
                                                     
-                                                    
+                                                    Text("")
                                                     Button(action: {
                                                         showingPopup.toggle()
                                                         copyGig(titel: copyGigTitel)
                                                     }) {
-                                                        Text("copyGig")
+                                                        Text("Copy ").foregroundColor(Color(UIColor.white)).padding().background(Color(UIColor.systemBlue)).cornerRadius(15.0).padding()
                                                     }
-                                                }.padding()
+                                                }.padding().frame(width: 200, height: 300)
                                             }
                                         }
                                         if gig.title != "Favorits" {

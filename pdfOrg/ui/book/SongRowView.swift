@@ -83,6 +83,9 @@ struct SongRowView: View {
                     }
                     .onTapGesture {
                         titleEditable = true
+                        page = 0
+                        page = Int(song.startPage ?? "0") ?? 0
+                        selectedSong = song
                     }
                     
                     
@@ -106,7 +109,7 @@ struct SongRowView: View {
                                             saveContext()
                                             pageEditable = false
                                         }
-                                      }).frame(width: 30, alignment: .leading)
+                                      }).frame(width: 40, alignment: .leading)
 //                                .background(Color(UIColor.systemGray6))
 //                                .cornerRadius(15.0)
                             Text("-")
@@ -116,21 +119,24 @@ struct SongRowView: View {
                                             saveContext()
                                             pageEditable = false
                                         }
-                                      }).frame(width: 30, alignment: .leading)
+                                      }).frame(width: 40, alignment: .leading)
 //                                .background(Color(UIColor.systemGray6))
 //                                .cornerRadius(15.0)
                             }.frame(maxWidth: .infinity, alignment: .leading)
                         } else {
                             HStack{
-                                Text("\(song.startPage ?? "nil")").frame(width: 30, alignment: .leading)
+                                Text("\(song.startPage ?? "nil")").frame(width: 40, alignment: .leading)
                                 if song.endPage != nil && song.endPage != song.startPage{
                                     Text("-")
-                                    Text("\(song.endPage ?? "nil")").frame(width: 30, alignment: .leading)
+                                    Text("\(song.endPage ?? "nil")").frame(width: 40, alignment: .leading)
                                 }
                             }.frame(maxWidth: .infinity, alignment: .leading)
                         }
                     }.onTapGesture {
                         pageEditable = true
+                        page = 0
+                        page = Int(song.startPage ?? "0") ?? 0
+                        selectedSong = song
                     }
                     
                     
@@ -183,6 +189,9 @@ struct SongRowView: View {
                         }
                     }.onTapGesture {
                         authorEditable = true
+                        page = 0
+                        page = Int(song.startPage ?? "0") ?? 0
+                        selectedSong = song
                     }
                 }
             }

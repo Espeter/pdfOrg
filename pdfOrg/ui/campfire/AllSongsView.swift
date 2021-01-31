@@ -38,6 +38,9 @@ struct AllSongsView: View {
                             }) {
                                 HStack{
                                 Text("\(song.title!)")
+                                 Text("by").foregroundColor(Color(UIColor.systemGray3))
+                                    Text("\(song.author ?? "-")")
+                                    
                                     if updateView {
                                         Text("").frame(width: 0, height: 0)
                                     }
@@ -79,6 +82,8 @@ struct AllSongsView: View {
                                             }) {
                                                 HStack{
                                                 Text("\(song.title!)")
+                                                    Text("by").foregroundColor(Color(UIColor.systemGray3))
+                                                       Text("\(song.author ?? "-")")
                                                     if updateView {
                                                         Text("").frame(width: 0, height: 0)
                                                     }

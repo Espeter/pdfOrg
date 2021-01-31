@@ -45,7 +45,11 @@ struct SongRowInGigView: View {
                 songSelectet = song
                 pageIndex = song.startPage!
             }) {
+                HStack{
                 Text("\(song.title!)")
+                Text("by").foregroundColor(Color(UIColor.systemGray3))
+                   Text("\(song.author ?? "-")")
+                }
             }
             
             if updateView {

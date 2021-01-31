@@ -10,13 +10,14 @@ import SwiftUI
 struct CoverSheetView: View {
     
     @Environment(\.managedObjectContext) var viewContext
+    @EnvironmentObject var ec : EnvironmentController
     
-    @Binding var navigationLinkActive: Bool
+ //   @Binding var navigationLinkActive: Bool
     
     @State var book: Book
     @State private var showingPopup = false
     @Binding var popupIsActive: Bool
-    @Binding var currentBook: Book?
+  //  @Binding var currentBook: Book?
     @State var selectedSong: Song?
     @State private var deleteBookAlert = false
     
@@ -25,30 +26,19 @@ struct CoverSheetView: View {
         
         if book.coverSheet != nil {
             VStack{
-                if currentBook != nil {
-                    NavigationLink(destination: BookView(book: currentBook!, selectedSong: $selectedSong), isActive: $navigationLinkActive) { EmptyView() }.animation(nil)
+                if ec.currentBook != nil {
+                    NavigationLink(destination: BookView(book: ec.currentBook!, selectedSong: $selectedSong), isActive: $ec.navigationLinkActive) { EmptyView() }.animation(nil)
                 }
                 ZStack(alignment: .topTrailing) {
                 Image(uiImage: UIImage(data: book.coverSheet!)!)
                     .resizable()
                     .frame(width: 151.2, height: 213.84)
-                    .cornerRadius(15.0)
-                    .shadow( radius: 15, x: 3, y: 5)
-                    .padding()
                     .onTapGesture {
-                        print("fooooo143")
-                        currentBook = book
-                        navigationLinkActive.toggle()
+//                        print(ec.currentBook?.title ?? "nil")
+//                        print("fooooo143")
+                        ec.currentBook = book
+                        ec.navigationLinkActive.toggle()
                     }
-                    .onLongPressGesture { //TODO: das ist noch nicht perfekt muss doch auch irgt wie ander gesehen
-                        if popupIsActive {
-                            popupIsActive = false
-                        } else {
-                            showingPopup.toggle()
-                            popupIsActive = true
-                        }
-                    }
-                    
                     .popover(isPresented: self.$showingPopup) {
                         VStack{
                             Text("title: \(book.title ?? "n.a.")")
@@ -73,8 +63,8 @@ struct CoverSheetView: View {
                                     }
                             }
                             Button(action: {
-                                currentBook = book
-                                navigationLinkActive.toggle()
+                                ec.currentBook = book
+                                ec.navigationLinkActive.toggle()
                                 showingPopup = false
                             }) {
                                 Image(systemName: "book").padding()
@@ -83,11 +73,24 @@ struct CoverSheetView: View {
                             popupIsActive = false
                         }
                     }
-                    Button(action: {
-                        showingPopup.toggle()
-                    }) {
-                        Image(systemName:"info.circle").padding().padding()//.foregroundColor(Color(UIColor.systemGray))
+                    .cornerRadius(15.0)
+                    .shadow( radius: 15, x: 3, y: 5)
+                    .padding()
+                    .onLongPressGesture { //TODO: das ist noch nicht perfekt muss doch auch irgt wie ander gesehen
+                        if popupIsActive {
+                            popupIsActive = false
+                        } else {
+                            showingPopup.toggle()
+                            popupIsActive = true
+                        }
                     }
+                    
+                   
+//                    Button(action: {
+//                        showingPopup.toggle()
+//                    }) {
+//                        Image(systemName:"info.circle").padding().padding()//.foregroundColor(Color(UIColor.systemGray))
+//                    }
                     }
             }
         }

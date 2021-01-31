@@ -100,7 +100,7 @@ struct GigPresentationView: View {
         
         if song.endPage != nil {
             
-            if Int((song.endPage)!) == (Int(pageIndex)! - 1 + visiblePages()) { // TODO: Hir höte ein buck sein 🙈 das muss getestet werden!!!!!
+            if Int((song.endPage)!) == (Int(pageIndex)! - 1 + visiblePages()) || Int(song.endPage!) == Int(pageIndex) { // TODO: Hir höte ein buck sein 🙈 das muss getestet werden!!!!!
                 
                 let currentSongPosition = songInGig?.position
                 let songsInGig = getArraySongInGig(gig.songsInGig!)

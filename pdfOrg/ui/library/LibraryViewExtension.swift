@@ -10,6 +10,19 @@ import PDFKit
 
 extension LibraryView {
     
+    func getArrayBook(_ books: FetchedResults<Book>) -> [Book] {
+        var booksArray: [Book] = []
+        
+        books.forEach{ book in
+            booksArray.append(book)
+        }
+        
+        booksArray.sort {
+            $0.title!.lowercased() < $1.title!.lowercased()
+        }
+        return booksArray
+    }
+    
     func addBool(url: URL) {
         
         let newBook = Book(context: viewContext)
