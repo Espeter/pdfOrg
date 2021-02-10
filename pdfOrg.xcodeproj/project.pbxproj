@@ -25,6 +25,8 @@
 		C36A6E8925AF691A005EB5F1 /* AddSongPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36A6E8825AF691A005EB5F1 /* AddSongPopoverView.swift */; };
 		C379904125B34DD400D58D28 /* CampfireView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C379904025B34DD400D58D28 /* CampfireView.swift */; };
 		C379904A25B34E3700D58D28 /* AllSongsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C379904925B34E3700D58D28 /* AllSongsView.swift */; };
+		C37998E825D16BF300B36BA1 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C37998E725D16BF300B36BA1 /* StoreKit.framework */; };
+		C37998F225D16F7500B36BA1 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37998F125D16F7500B36BA1 /* Store.swift */; };
 		C385D49F25B4A88D000D1452 /* EnvironmentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C385D49E25B4A88D000D1452 /* EnvironmentController.swift */; };
 		C385D4A825B4BC2A000D1452 /* PresentationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C385D4A725B4BC2A000D1452 /* PresentationView.swift */; };
 		C397F1C325B1DE3B006735EF /* GigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C397F1C225B1DE3B006735EF /* GigView.swift */; };
@@ -83,6 +85,9 @@
 		C36A6E8825AF691A005EB5F1 /* AddSongPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSongPopoverView.swift; sourceTree = "<group>"; };
 		C379904025B34DD400D58D28 /* CampfireView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampfireView.swift; sourceTree = "<group>"; };
 		C379904925B34E3700D58D28 /* AllSongsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSongsView.swift; sourceTree = "<group>"; };
+		C37998E125D15A3F00B36BA1 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
+		C37998E725D16BF300B36BA1 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		C37998F125D16F7500B36BA1 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		C385D49E25B4A88D000D1452 /* EnvironmentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentController.swift; sourceTree = "<group>"; };
 		C385D4A725B4BC2A000D1452 /* PresentationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationView.swift; sourceTree = "<group>"; };
 		C397F1C225B1DE3B006735EF /* GigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigView.swift; sourceTree = "<group>"; };
@@ -116,6 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C37998E825D16BF300B36BA1 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,6 +165,23 @@
 			path = campfire;
 			sourceTree = "<group>";
 		};
+		C37998E525D16B4500B36BA1 /* appStore */ = {
+			isa = PBXGroup;
+			children = (
+				C37998E125D15A3F00B36BA1 /* Configuration.storekit */,
+				C37998F125D16F7500B36BA1 /* Store.swift */,
+			);
+			path = appStore;
+			sourceTree = "<group>";
+		};
+		C37998E625D16BF300B36BA1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C37998E725D16BF300B36BA1 /* StoreKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C385D4A625B4BC17000D1452 /* presentation */ = {
 			isa = PBXGroup;
 			children = (
@@ -190,6 +213,7 @@
 				C3F0F99D25AC98970004B66B /* pdfOrgTests */,
 				C3F0F9A825AC98970004B66B /* pdfOrgUITests */,
 				C3F0F98525AC98960004B66B /* Products */,
+				C37998E625D16BF300B36BA1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -207,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				C3F0F9BA25AC9DED0004B66B /* ui */,
+				C37998E525D16B4500B36BA1 /* appStore */,
 				C3F0F98725AC98960004B66B /* pdfOrgApp.swift */,
 				C3F0F98925AC98960004B66B /* ContentView.swift */,
 				C3F0F98B25AC98970004B66B /* Assets.xcassets */,
@@ -411,6 +436,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C37998F225D16F7500B36BA1 /* Store.swift in Sources */,
 				C31D404925B7659F009A3EF7 /* PDFKitCampirePresentationView.swift in Sources */,
 				C342EF2625B463DC0004FD38 /* PDFKitCampireView.swift in Sources */,
 				C314603625BC9A7D00D4246F /* GigPresentationView.swift in Sources */,

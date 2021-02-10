@@ -10,7 +10,8 @@ import SwiftUI
 struct BookSongCollectionView: View {
     
     @Environment(\.managedObjectContext) var viewContext
-    
+    @EnvironmentObject var ec : EnvironmentController
+
     @ObservedObject var book: Book
     @State var editMode: Bool = false
     @Binding var page: Int
@@ -18,7 +19,7 @@ struct BookSongCollectionView: View {
     @Binding var updateView: Bool
     @State var deleteSongsAlert: Bool = false
 
-    @State var showingPopup = false
+    @Binding var showingPopup: Bool
     @State var openFile = false
 
     
@@ -34,6 +35,9 @@ struct BookSongCollectionView: View {
                     }
                     
                 }
+                if showingPopup {
+                    Text("")
+                }
                 Spacer()
 //                Text("title").frame(maxWidth: .infinity, alignment: .leading)
 //
@@ -41,11 +45,17 @@ struct BookSongCollectionView: View {
 //
 //                Text("author")//.frame(maxWidth: .infinity/*, alignment: .leading*/)
                 Button(action: {
-                    showingPopup.toggle()
+                //    showingPopup.toggle()
+                    showingPopup = true
+                    ec.showingPopupAppSong = true
                 }) {
                     Image(systemName: "plus").padding()
-                        .popover(isPresented: self.$showingPopup) {
-                            AddSongPopoverView(book: book, showingPopup: $showingPopup)
+                        .popover(isPresented:  $showingPopup) {
+                         
+                            AddSongPopoverView(book: book, showingPopup: $showingPopup, currentBook: $page)
+//                            Text("showingPopup: \(String(showingPopup))").onTapGesture {
+//                                print("showingPopup: \(String(showingPopup))")
+//                            }
                         }
               //  }
             }

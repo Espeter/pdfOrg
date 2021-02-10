@@ -18,23 +18,24 @@ struct AddSongPopoverView: View {
     @State private var startSide: String = ""
     @State private var author: String = ""
     @State private var endPage: String = ""
+    @Binding var currentBook: Int
     
     var body: some View {
-    
+        
         VStack{
             HStack{
-            Text("Title: ")
-            TextField("Title of Song", text: $title)
+                Text("Title: ")
+                TextField("Title of Song", text: $title)
             }
             HStack{
-            Text("Page: ")
-            TextField("1", text: $startSide)
-            Text("-")
-            TextField("1", text: $endPage)
+                Text("Page: ")
+                TextField(String(currentBook - (Int(book.pageOfset!) ?? 0)), text: $startSide)
+                Text("-")
+                TextField(String(currentBook - (Int(book.pageOfset!) ?? 0)), text: $endPage)
             }
             HStack{
-            Text("Author: ")
-            TextField("Name of Author", text: $author)
+                Text("Author: ")
+                TextField("Name of Author", text: $author)
             }
             Button(action: {
                 addSong()
@@ -42,7 +43,7 @@ struct AddSongPopoverView: View {
             }) {
                 Text("Add").padding()
             }
-        
+            
         }.padding()
     }
     
@@ -51,10 +52,27 @@ struct AddSongPopoverView: View {
         let song: Song = Song(context: viewContext)
         
         song.id = UUID()
-        song.title = title
-        song.startPage = startSide 
+       
+        
+        if title != "" {
+            song.title = title
+        } else {
+            song.title = "new Song"
+        }
+        
+        if startSide != "" {
+            song.startPage = startSide
+        } else {
+            song.startPage = String(currentBook - (Int(book.pageOfset!) ?? 0))
+        }
+        if endPage != "" {
+            song.endPage = endPage
+        } else {
+            song.endPage = String(currentBook - (Int(book.pageOfset!) ?? 0))
+        }
+        
         song.author = author
-        song.endPage = endPage
+       
         
         book.addToSongs(song)
         

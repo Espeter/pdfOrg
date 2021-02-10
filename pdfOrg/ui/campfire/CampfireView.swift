@@ -47,6 +47,7 @@ struct CampfireView: View {
                 }
             }
             AllSongsView(songs: getArraySong(), song: $song, pageIndex: $pageIndex, alphabet: alphabet, segmentSongs: getSegmentSongs(), updateView: $updateView)
+           // AllSongsView(songs: getArraySong(), song: $song, pageIndex: $pageIndex, alphabet: alphabet, segmentSongs: getSegmentSongs(), updateView: $updateView)
             .padding().padding(.leading, -20)
         }
         .background(Color(UIColor.systemBlue).opacity(0.05))

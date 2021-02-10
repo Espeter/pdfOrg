@@ -25,7 +25,8 @@ struct BookPDFView: View {
     @Binding var song: Song?
     @Binding var updateView: Bool
     @Binding var infoPopup: Bool
-
+    @Binding var showingPopup: Bool
+    
     @Binding var page: Int
     
     var body: some View {
@@ -42,11 +43,16 @@ struct BookPDFView: View {
             PDFKitBookView(book: book, pageIndex: $page)//.frame(width: 300, height: 380.5)
                 .onTapGesture {
                     infoPopup = false
+                    ec.showingPopupAppSong = false
+                    showingPopup = false
                     ec.presentationModeBook = true
                     ec.pageIndexString = String(page)
                     ec.pageIndex = page
                     ec.book = book
-                    print("cloud.bolt.rain: \(page)")
+                    
+                    
+                    print(" ec.showingPopupAppSong: \( ec.showingPopupAppSong)")
+                    print("showingPopup: \(showingPopup)")
                 }
                 if song != nil {
                     if song!.isFavorit {

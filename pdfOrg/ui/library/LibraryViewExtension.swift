@@ -10,6 +10,8 @@ import PDFKit
 
 extension LibraryView {
     
+
+    
     func getArrayBook(_ books: FetchedResults<Book>) -> [Book] {
         var booksArray: [Book] = []
         
@@ -23,7 +25,7 @@ extension LibraryView {
         return booksArray
     }
     
-    func addBool(url: URL) {
+    func addBook(url: URL) {
         
         let newBook = Book(context: viewContext)
         newBook.id = UUID()

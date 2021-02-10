@@ -75,6 +75,9 @@ struct CoverSheetView: View {
                     }
                     .cornerRadius(15.0)
                     .shadow( radius: 15, x: 3, y: 5)
+//                    .shadow(color: Color.white, radius: 10, x: -10, y: -10)
+//                    .shadow(color: Color.black, radius: 10, x: 10, y: 10)
+
                     .padding()
                     .onLongPressGesture { //TODO: das ist noch nicht perfekt muss doch auch irgt wie ander gesehen
                         if popupIsActive {

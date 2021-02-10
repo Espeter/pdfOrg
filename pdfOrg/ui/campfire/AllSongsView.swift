@@ -9,18 +9,30 @@ import SwiftUI
 
 struct AllSongsView: View {
     
+  
     
     @State var songs: [Song]
     @Binding var song: Song?
     @Binding var pageIndex: String?
     
     
-    @State private var searchText = ""
+    @State private var searchText: String = ""
     let alphabet : [String]
     
     @State var segmentSongs: [String: [Song]]
     @Binding var updateView: Bool
     
+    
+//    init(songs: State<[Song]>, song: Binding<Song?>, pageIndex: Binding<String?>, alphabet : [String], segmentSongs: State<[String: [Song]]>, updateView: Binding<Bool>){
+//        _songs = songs
+//        _song = song
+//        _pageIndex = pageIndex
+//        self.alphabet = alphabet
+//        _segmentSongs = segmentSongs
+//        _updateView = updateView
+//
+//        UITableView.appearance().backgroundColor = .clear
+//       }
     
     var body: some View {
         VStack{
@@ -65,7 +77,7 @@ struct AllSongsView: View {
                     
                     HStack{
                         List(){
-                            
+                   //     Form {
                             ForEach(alphabet, id: \.self){ char in
                                 
                                 if segmentSongs[char]!.count > 0 {
@@ -98,6 +110,7 @@ struct AllSongsView: View {
                                     }
                                 }
                             }
+                         //   .edgesIgnoringSafeArea(.top)
                         }
                         VStack{
                             

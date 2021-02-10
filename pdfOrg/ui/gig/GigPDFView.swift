@@ -40,7 +40,7 @@ struct GigPDFView: View {
                     }
                 }
             } else {
-                Text("Please select s Song")
+                Text("Please select a Song")
             }
         }
         .frame(minWidth: 300,

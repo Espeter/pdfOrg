@@ -16,6 +16,9 @@
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="songsInGig" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SongInGig" inverseName="gig" inverseEntity="SongInGig"/>
     </entity>
+    <entity name="Product" representedClassName="Product" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="Song" representedClassName="Song" syncable="YES" codeGenerationType="class">
         <attribute name="author" optional="YES" attributeType="String"/>
         <attribute name="endPage" optional="YES" attributeType="String"/>
@@ -32,8 +35,9 @@
         <relationship name="song" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Song" inverseName="songInGigs" inverseEntity="Song"/>
     </entity>
     <elements>
-        <element name="Book" positionX="490.91796875" positionY="-39.94140625" width="128" height="14"/>
+        <element name="Book" positionX="490.91796875" positionY="-39.94140625" width="128" height="164"/>
         <element name="Gig" positionX="-99.69921875" positionY="-42.33984375" width="128" height="74"/>
+        <element name="Product" positionX="-357.72265625" positionY="-252.640625" width="128" height="14"/>
         <element name="Song" positionX="288.40234375" positionY="-10.171875" width="128" height="149"/>
         <element name="SongInGig" positionX="119.18359375" positionY="-156.51171875" width="128" height="74"/>
     </elements>

@@ -54,7 +54,7 @@ struct CampfirePDFView: View {
                         PDFKitCampireView(book: umwantler(binding: $song.book, fallback: Book()), pageIndex: $pageIndex, presentationModde: true)
                     }
                 } else {
-                    Text("Please select s Song")
+                    Text("Please select a Song")
                 }
             }
             if song.isFavorit {

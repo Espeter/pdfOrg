@@ -19,7 +19,7 @@ struct BookView: View {
     @State var updateView: Bool = true
     @State var pageOfset: String = ""
     @State var infoPopup: Bool = false
-    
+    @State var showingPopupAppSong: Bool = false
     
     @Binding var selectedSong: Song?
     
@@ -31,13 +31,13 @@ struct BookView: View {
 //                BookInfoView(book: book, editMode: $editMode)
 //                    .padding()
 //                    .shadow( radius: 15, x: 3, y: 5)
-                BookPDFView(book: book, song: $selectedSong, updateView: $updateView, infoPopup: $infoPopup, page: $page)
+                BookPDFView(book: book, song: $selectedSong, updateView: $updateView, infoPopup: $infoPopup, showingPopup: $showingPopupAppSong, page: $page)
                     .frame(idealHeight: .infinity)
                     .padding()
                     .shadow( radius: 15, x: 3, y: 5)
                 
             }
-            BookSongCollectionView(book: book/*, editMode: $editMode*/, page: $page, selectedSong: $selectedSong, updateView: $updateView)
+            BookSongCollectionView(book: book/*, editMode: $editMode*/, page: $page, selectedSong: $selectedSong, updateView: $updateView, showingPopup: $showingPopupAppSong)
                 .padding()
                 // .frame(width: 650)
                 .shadow( radius: 15, x: 3, y: 5)
@@ -64,7 +64,9 @@ struct BookView: View {
                                     Button(action: {
                                         infoPopup.toggle()
                                     }) {
-                                        Image(systemName: "info.circle").padding().popover(isPresented: self.$infoPopup ) {
+                                        Image(systemName: "info.circle")
+                                            .padding()
+                                            .popover(isPresented: self.$infoPopup ) {
                                             BookInfoView(book: book, editMode: $editMode, updateView: $updateView)
                                         }
                                     }/*

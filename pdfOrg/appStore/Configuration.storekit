@@ -1,0 +1,29 @@
+{
+  "products" : [
+    {
+      "displayPrice" : "0.42",
+      "familyShareable" : true,
+      "internalID" : "C2DC31A6",
+      "localizations" : [
+        {
+          "description" : "you can organize unlimited books",
+          "displayName" : "Unlimited Books",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.espeter.pdfOrg.unlimitedBooks.test3",
+      "referenceName" : "unlimitedBooks",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 1,
+    "minor" : 0
+  }
+}

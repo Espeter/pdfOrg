@@ -23,4 +23,5 @@ class EnvironmentController: ObservableObject {
     @Published var updateGigInfoView: Bool = false
     @Published var currentBook: Book? = Book()
     @Published var navigationLinkActive: Bool = false
+    @Published var showingPopupAppSong: Bool = false
 }
