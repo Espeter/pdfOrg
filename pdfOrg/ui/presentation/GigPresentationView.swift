@@ -23,7 +23,6 @@ struct GigPresentationView: View {
         NavigationView(){
             ZStack(alignment: .topTrailing){
                 PDFPresentationView(book: umwantler(binding: $song.book, fallback: Book()), pageIndex: $pageIndex, isLandscape: $isLandscape)
-               // PDFKitCampirePresentationView(book: umwantler(binding: $song.book, fallback: Book()), pageIndex: $pageIndex, presentationModde: true)
                     .navigationBarTitle("\(song.title!)", displayMode: .inline)
                     .navigationBarItems(leading:
                                             HStack{
@@ -31,7 +30,8 @@ struct GigPresentationView: View {
                                                     ec.presentationModeGig = false
                                                 }) {
                                                     HStack{
-                                                        Image(systemName: "lessthan")
+                                                   //     Image(systemName: "lessthan")
+                                                        Image(systemName: "chevron.left")
                                                         Text("back")
                                                     }
                                                 }
@@ -61,11 +61,14 @@ struct GigPresentationView: View {
     func visiblePages() -> Int {
         
         var visiblePages: Int
-        
+        if song.book?.isLandscape == 1 {
+            visiblePages = 1
+        } else {
         if isLandscape {
             visiblePages = 2
         } else {
             visiblePages = 1
+        }
         }
         return visiblePages
     }

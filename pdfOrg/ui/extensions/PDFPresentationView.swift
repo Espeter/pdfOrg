@@ -60,28 +60,44 @@ struct PDFPresentationViewCR: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: PDFViewController, context: UIViewControllerRepresentableContext<PDFPresentationViewCR>) {
         
         uiViewController.pdfView.document = PDFDocument(data: book.pdf!)
-        
         let pageIndexInt = Int(pageIndex)!
         var calculatedPage: Int = pageIndexInt + Int(book.pageOfset ?? "0")!
         calculatedPage = calculatedPage - 1
 
-        if calculatedPage % 2 != 0 {
+        if calculatedPage % 2 != 0 && book.isLandscape == 0 {
+            print("1")
             uiViewController.pdfView.document?.insert(PDFPage(), at: 0)
             calculatedPage = calculatedPage + 1
         }
         
         if let myPage = uiViewController.pdfView.document?.page(at: (calculatedPage )) {
+            print("2")
             uiViewController.pdfView.go(to: myPage)
+            if (book.isLandscape != 0) {
+                print("3")
+            uiViewController.pdfView.autoScales = true
+            }
         }
-        
-        if isLandscape {
-            uiViewController.pdfView.displayMode = PDFDisplayMode.twoUp
-        } else {
+       
+        if (book.isLandscape != 0) {
+            print("4")
             uiViewController.pdfView.displayMode = PDFDisplayMode.singlePage
+        } else {
+            if isLandscape {
+                print("5")
+                uiViewController.pdfView.displayMode = PDFDisplayMode.twoUp
+
+            } else {
+                print("6")
+                uiViewController.pdfView.displayMode = PDFDisplayMode.singlePage
+            }
         }
         
         uiViewController.pdfView.autoScales = true
-
+        
+        print("****************************************")
+        
+        
     }
     
     func makeCoordinator() -> Coordinator {

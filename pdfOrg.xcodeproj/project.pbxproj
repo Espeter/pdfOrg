@@ -11,8 +11,6 @@
 		C314603125BC5D1700D4246F /* GigSongPDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C314603025BC5D1700D4246F /* GigSongPDFView.swift */; };
 		C314603625BC9A7D00D4246F /* GigPresentationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C314603525BC9A7D00D4246F /* GigPresentationView.swift */; };
 		C31D403F25B63492009A3EF7 /* BookPresentationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31D403E25B63492009A3EF7 /* BookPresentationView.swift */; };
-		C31D404425B700DF009A3EF7 /* PDFKitBookPresentationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31D404325B700DF009A3EF7 /* PDFKitBookPresentationView.swift */; };
-		C31D404925B7659F009A3EF7 /* PDFKitCampirePresentationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31D404825B7659F009A3EF7 /* PDFKitCampirePresentationView.swift */; };
 		C32F80CF25C2FC7800F8264C /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32F80CE25C2FC7800F8264C /* PDFViewController.swift */; };
 		C32F80D425C3037000F8264C /* PDFPresentationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32F80D325C3037000F8264C /* PDFPresentationView.swift */; };
 		C342EF2125B463060004FD38 /* CampfirePDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C342EF2025B463060004FD38 /* CampfirePDFView.swift */; };
@@ -71,8 +69,6 @@
 		C314603025BC5D1700D4246F /* GigSongPDFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigSongPDFView.swift; sourceTree = "<group>"; };
 		C314603525BC9A7D00D4246F /* GigPresentationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigPresentationView.swift; sourceTree = "<group>"; };
 		C31D403E25B63492009A3EF7 /* BookPresentationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookPresentationView.swift; sourceTree = "<group>"; };
-		C31D404325B700DF009A3EF7 /* PDFKitBookPresentationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFKitBookPresentationView.swift; sourceTree = "<group>"; };
-		C31D404825B7659F009A3EF7 /* PDFKitCampirePresentationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFKitCampirePresentationView.swift; sourceTree = "<group>"; };
 		C32F80CE25C2FC7800F8264C /* PDFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewController.swift; sourceTree = "<group>"; };
 		C32F80D325C3037000F8264C /* PDFPresentationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFPresentationView.swift; sourceTree = "<group>"; };
 		C342EF2025B463060004FD38 /* CampfirePDFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampfirePDFView.swift; sourceTree = "<group>"; };
@@ -299,8 +295,6 @@
 				C3F0F9C225ACA43F0004B66B /* SearchBar.swift */,
 				C36A6E7225AEFE0D005EB5F1 /* PDFKitBookView.swift */,
 				C342EF2525B463DC0004FD38 /* PDFKitCampireView.swift */,
-				C31D404325B700DF009A3EF7 /* PDFKitBookPresentationView.swift */,
-				C31D404825B7659F009A3EF7 /* PDFKitCampirePresentationView.swift */,
 				C32F80D325C3037000F8264C /* PDFPresentationView.swift */,
 				C32F80CE25C2FC7800F8264C /* PDFViewController.swift */,
 			);
@@ -437,7 +431,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C37998F225D16F7500B36BA1 /* Store.swift in Sources */,
-				C31D404925B7659F009A3EF7 /* PDFKitCampirePresentationView.swift in Sources */,
 				C342EF2625B463DC0004FD38 /* PDFKitCampireView.swift in Sources */,
 				C314603625BC9A7D00D4246F /* GigPresentationView.swift in Sources */,
 				C36A6E6425AEEFA4005EB5F1 /* BookView.swift in Sources */,
@@ -458,7 +451,6 @@
 				C3FA6B9925B0795B00747734 /* SongRowView.swift in Sources */,
 				C397F1C325B1DE3B006735EF /* GigView.swift in Sources */,
 				C36A6E6E25AEFD59005EB5F1 /* BookPDFView.swift in Sources */,
-				C31D404425B700DF009A3EF7 /* PDFKitBookPresentationView.swift in Sources */,
 				C3F0F9BD25AC9E910004B66B /* LibraryView.swift in Sources */,
 				C385D49F25B4A88D000D1452 /* EnvironmentController.swift in Sources */,
 				C31D403F25B63492009A3EF7 /* BookPresentationView.swift in Sources */,

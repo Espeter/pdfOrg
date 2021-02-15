@@ -30,13 +30,15 @@ struct GigPDFView: View {
                         backPage()
                         print(pageIndex)
                     }) {
-                        Image(systemName: "lessthan")
+                 //       Image(systemName: "lessthan")
+                        Image(systemName: "chevron.left").padding()
                     }
                     GigSongPDFView(pageIndex: $pageIndex, song: umwantler(binding: $song, fallback: Song()))
                     Button(action: {
                         nextPage()
                     }) {
-                        Image(systemName: "greaterthan")
+                     //   Image(systemName: "greaterthan")
+                        Image(systemName: "chevron.right").padding()
                     }
                 }
             } else {

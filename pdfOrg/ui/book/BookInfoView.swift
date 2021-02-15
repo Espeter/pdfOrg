@@ -10,12 +10,15 @@ import SwiftUI
 struct BookInfoView: View {
     
     @Environment(\.managedObjectContext) var viewContext
-
+    
     
     @ObservedObject var book: Book
     @Binding var editMode: Bool
     @State var showingPopup = false
     @Binding var updateView: Bool
+    
+    @State var orientation: Int
+    let orientations = ["rectangle.portrait", "rectangle"]
     
     var body: some View {
         
@@ -29,7 +32,24 @@ struct BookInfoView: View {
                     }
                 })
             }
-            
+            HStack{
+                Text("Orientation : ").foregroundColor(Color(UIColor.black))
+        
+                Picker("", selection: $orientation){
+                 
+                    ForEach(0 ..< orientations.count, id: \.self) {
+                        Image(systemName: orientations[$0])
+                    }
+                }.pickerStyle(SegmentedPickerStyle())
+                .onChange(of: orientation) {
+                    book.isLandscape = Int64($0)
+                    saveContext()
+                }
+                
+                
+                
+                
+            }
             
             
             HStack{
@@ -41,7 +61,7 @@ struct BookInfoView: View {
                 }
                 Spacer()
             }.padding(.bottom, 4)
-
+            
             HStack{
                 Text("Version: ")
                 if editMode {
@@ -72,7 +92,7 @@ struct BookInfoView: View {
                     Image(systemName: "info.circle")
                         .popover(isPresented: self.$showingPopup) {
                             Text("Das sind die Infos zum dem Page Offset").padding()
-                    }
+                        }
                 }
             }.padding(.bottom, 4).padding(.top, 4)
         }.frame(minWidth: 100, maxHeight: .infinity)

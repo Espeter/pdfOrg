@@ -64,10 +64,11 @@ struct BookView: View {
                                     Button(action: {
                                         infoPopup.toggle()
                                     }) {
-                                        Image(systemName: "info.circle")
+                                      //  Image(systemName: "info.circle")
+                                        Image(systemName: "gearshape.2")
                                             .padding()
                                             .popover(isPresented: self.$infoPopup ) {
-                                            BookInfoView(book: book, editMode: $editMode, updateView: $updateView)
+                                                BookInfoView(book: book, editMode: $editMode, updateView: $updateView, orientation: Int(book.isLandscape))
                                         }
                                     }/*
                                     Button(action: {

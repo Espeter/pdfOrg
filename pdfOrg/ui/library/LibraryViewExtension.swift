@@ -35,6 +35,7 @@ extension LibraryView {
         newBook.pageOfset = "0"
         newBook.tonArt = "n.a."
         newBook.version = "n.a."
+        newBook.isLandscape = 0
         
         do{
             guard url.startAccessingSecurityScopedResource() else {

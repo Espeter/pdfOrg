@@ -32,7 +32,7 @@ struct CoverSheetView: View {
                 ZStack(alignment: .topTrailing) {
                 Image(uiImage: UIImage(data: book.coverSheet!)!)
                     .resizable()
-                    .frame(width: 151.2, height: 213.84)
+                    .frame(width: getWidth(), height: getHeight())
                     .onTapGesture {
 //                        print(ec.currentBook?.title ?? "nil")
 //                        print("fooooo143")
@@ -98,6 +98,26 @@ struct CoverSheetView: View {
             }
         }
     }
+    private func getWidth() -> CGFloat? {
+        var width: CGFloat?
+        if book.isLandscape == 1 {
+            width = 213.84
+        } else {
+            width = 151.2
+        }
+        return width
+    }
+
+    private func getHeight() -> CGFloat? {
+        var height: CGFloat?
+        if book.isLandscape == 1 {
+            height = 151.2
+        } else {
+            height = 213.84
+        }
+        return height
+    }
+    
     
     private func saveContext(){
         do{

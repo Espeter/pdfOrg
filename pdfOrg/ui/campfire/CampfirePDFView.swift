@@ -39,7 +39,8 @@ struct CampfirePDFView: View {
                                 backPage()
                                 print(pageIndex)
                             }) {
-                                Image(systemName: "lessthan")
+                           //     Image(systemName: "lessthan")
+                                Image(systemName: "chevron.left").padding()
                             }
                             PDFKitCampireView(book: umwantler(binding: $song.book, fallback: Book()), pageIndex: $pageIndex, presentationModde: true)
                             Button(action: {
@@ -47,7 +48,8 @@ struct CampfirePDFView: View {
                                 nextPage()
                                 print(pageIndex)
                             }) {
-                                Image(systemName: "greaterthan")
+                           //     Image(systemName: "greaterthan")
+                                Image(systemName: "chevron.right").padding()
                             }
                         }
                     } else {

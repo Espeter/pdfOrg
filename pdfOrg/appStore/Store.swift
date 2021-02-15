@@ -13,7 +13,7 @@ typealias FechCompletionHandler = (([SKProduct]) -> Void)
 typealias PurchesCompletionHandler =  ((SKPaymentTransaction?) -> Void)
 
 class Store: NSObject, ObservableObject {   //TODO: umbennenen IAPManger
-        
+    
     enum Prodakt: String, CaseIterable {
         case unlimitedBooks = "com.espeter.pdfOrg.unlimitedBooks.test3"
     }
@@ -56,7 +56,6 @@ class Store: NSObject, ObservableObject {   //TODO: umbennenen IAPManger
         productsRequest = SKProductsRequest(productIdentifiers: allProductIdentifiers)
         productsRequest?.delegate = self
         productsRequest?.start()
-        
     }
     
     private func buy(_ product: SKProduct, completion: @escaping PurchesCompletionHandler) {
@@ -74,12 +73,12 @@ class Store: NSObject, ObservableObject {   //TODO: umbennenen IAPManger
     
     
     private func addProduct(id: String) {
-                
+        
         let persistenceController = PersistenceController.shared
         let viewContext = persistenceController.container.viewContext
         
         
-       let newProduct = Product(context: viewContext)
+        let newProduct = Product(context: viewContext)
         newProduct.id = id
         
         do{
@@ -96,7 +95,7 @@ class Store: NSObject, ObservableObject {   //TODO: umbennenen IAPManger
 extension Store {
     
     func isPurchased(id: String) -> Bool {
-      
+        
         var isPurchased = false
         
         isPurchased = completedPurcheses.contains(id)
@@ -129,16 +128,16 @@ extension Store: SKPaymentTransactionObserver {
             
             switch transaction.transactionState {
             
-//            case .purchasing:
-//                <#code#>
+            //            case .purchasing:
+            //                <#code#>
             case .purchased, .restored:
                 completedPurcheses.append(transaction.payment.productIdentifier)
                 shouldFinishTrensaction = true
                 addProduct(id: String(transaction.payment.productIdentifier))
             case .failed:
                 shouldFinishTrensaction = true
-//            case .restored:
-//                <#code#>
+            //            case .restored:
+            //                <#code#>
             case .deferred, .purchasing:
                 break
             @unknown default:
@@ -181,8 +180,6 @@ extension Store: SKProductsRequestDelegate {
             self.fetchCompletionHandler = nil
             self.productsRequest = nil
         }
-        
-        
     }
 }
 

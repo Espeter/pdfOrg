@@ -37,7 +37,8 @@ struct BookPDFView: View {
                     getSong()
                 }
             }) {
-                Image(systemName: "lessthan")
+          //      Image(systemName: "lessthan")
+                Image(systemName: "chevron.left").padding()
             }
             ZStack(alignment: .topTrailing) {
             PDFKitBookView(book: book, pageIndex: $page)//.frame(width: 300, height: 380.5)
@@ -92,7 +93,8 @@ struct BookPDFView: View {
                 page = page + 1
                 getSong()
             }) {
-                Image(systemName: "greaterthan")
+         //       Image(systemName: "greaterthan")
+                Image(systemName: "chevron.right").padding()
             }
         }
         .padding()

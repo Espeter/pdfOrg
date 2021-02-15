@@ -18,7 +18,6 @@ struct BookPresentationView: View {
             NavigationView(){
                 ZStack(alignment: .topTrailing){
                     PDFPresentationView(book: $ec.book, pageIndex: $ec.pageIndexString, isLandscape: $isLandscape)
-              //      PDFKitBookPresentationView(book: $ec.book, pageIndex: $ec.pageIndex, isLandscape: $isLandscape)
                         .navigationBarTitle("\(ec.book.title!)", displayMode: .inline)
                         .navigationBarItems(leading:
                                                 HStack{
@@ -26,7 +25,8 @@ struct BookPresentationView: View {
                                                         ec.presentationModeBook = false
                                                     }) {
                                                         HStack{
-                                                            Image(systemName: "lessthan")
+                                                       //     Image(systemName: "lessthan")
+                                                            Image(systemName: "chevron.left")
                                                             Text("back")
                                                         }
                                                     }
@@ -59,11 +59,14 @@ struct BookPresentationView: View {
     func visiblePages() -> Int {
         
         var visiblePages: Int
-        
+        if ec.book.isLandscape == 1 {
+            visiblePages = 1
+        } else {
         if isLandscape {
             visiblePages = 2
         } else {
             visiblePages = 1
+        }
         }
         return visiblePages
     }

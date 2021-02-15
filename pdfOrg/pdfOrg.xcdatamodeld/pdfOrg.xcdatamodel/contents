@@ -3,6 +3,7 @@
     <entity name="Book" representedClassName="Book" syncable="YES" codeGenerationType="class">
         <attribute name="coverSheet" optional="YES" attributeType="Binary"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isLandscape" optional="YES" attributeType="Integer 64" usesScalarValueType="YES"/>
         <attribute name="pageOfset" optional="YES" attributeType="String"/>
         <attribute name="pdf" optional="YES" attributeType="Binary"/>
         <attribute name="pdfTitle" optional="YES" attributeType="String"/>
@@ -35,7 +36,7 @@
         <relationship name="song" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Song" inverseName="songInGigs" inverseEntity="Song"/>
     </entity>
     <elements>
-        <element name="Book" positionX="490.91796875" positionY="-39.94140625" width="128" height="164"/>
+        <element name="Book" positionX="490.91796875" positionY="-39.94140625" width="128" height="179"/>
         <element name="Gig" positionX="-99.69921875" positionY="-42.33984375" width="128" height="74"/>
         <element name="Product" positionX="-357.72265625" positionY="-252.640625" width="128" height="14"/>
         <element name="Song" positionX="288.40234375" positionY="-10.171875" width="128" height="149"/>
