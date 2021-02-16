@@ -101,7 +101,8 @@ struct BookSongCollectionView: View {
         { (res) in
             do {
                 let fileUrl = try res.get()
-                importSongs(url: fileUrl)
+                importSongs2(url: fileUrl)
+                
             }
             catch {
                 print("error")
@@ -136,6 +137,41 @@ struct BookSongCollectionView: View {
         url.stopAccessingSecurityScopedResource()
     }
     
+    private func importSongs2(url: URL) {
+        
+      //  var txt = StreamReader(path: url)
+        
+        if let aStreamReader = StreamReader(path: url) {
+            defer {
+                for line in aStreamReader {
+                    let lineSplit = line.components(separatedBy:";")
+                    
+                    if lineSplit.count == 3 {
+                        addSong(name: lineSplit[0], startSide: lineSplit[1], endPage: lineSplit[2], author: nil)
+                    } else {
+                        addSong(name: lineSplit[0], startSide: lineSplit[1],endPage: lineSplit[2], author: lineSplit[3])
+                    }
+                }
+            }
+            while aStreamReader.nextLine() != nil {
+                for line in aStreamReader {
+                    let lineSplit = line.components(separatedBy:";")
+                    
+                    if lineSplit.count == 3 {
+                        addSong(name: lineSplit[0], startSide: lineSplit[1], endPage: lineSplit[2], author: nil)
+                    } else {
+                        addSong(name: lineSplit[0], startSide: lineSplit[1],endPage: lineSplit[2], author: lineSplit[3])
+                    }
+                }
+            }
+        }
+
+        saveContext()
+    }
+    
+    
+    
+    
     func addSong(name: String, startSide: String, endPage: String, author: String?) {
         
         let song: Song = Song(context: viewContext)
@@ -153,7 +189,7 @@ struct BookSongCollectionView: View {
         
         book.addToSongs(song)
         
-        saveContext()
+   //     saveContext()
     }
     
     func getArraySong(_ snSet : NSSet) -> [Song] {
@@ -179,6 +215,96 @@ struct BookSongCollectionView: View {
         catch {
             let error = error as NSError
             fatalError("error addBook: \(error)")
+        }
+    }
+}
+
+
+
+
+
+class StreamReader  {
+
+    let encoding : String.Encoding
+    let chunkSize : Int
+    var fileHandle : FileHandle!
+    let delimData : Data
+    var buffer : Data
+    var atEof : Bool
+
+    init?(path: URL, delimiter: String = "\n", encoding: String.Encoding = .utf8,
+          chunkSize: Int = 4096) {
+
+     //   guard let fileHandle = FileHandle(forReadingAtPath: path),
+        
+        do{
+            guard let fileHandle = try? FileHandle(forReadingFrom: path),
+
+            let delimData = delimiter.data(using: encoding) else {
+                return nil
+        }
+        
+        self.encoding = encoding
+        self.chunkSize = chunkSize
+        self.fileHandle = fileHandle
+        self.delimData = delimData
+        self.buffer = Data(capacity: chunkSize)
+        self.atEof = false
+        }
+    }
+
+    deinit {
+        self.close()
+    }
+
+    /// Return next line, or nil on EOF.
+    func nextLine() -> String? {
+        precondition(fileHandle != nil, "Attempt to read from closed file")
+
+        // Read data chunks from file until a line delimiter is found:
+        while !atEof {
+            if let range = buffer.range(of: delimData) {
+                // Convert complete line (excluding the delimiter) to a string:
+                let line = String(data: buffer.subdata(in: 0..<range.lowerBound), encoding: encoding)
+                // Remove line (and the delimiter) from the buffer:
+                buffer.removeSubrange(0..<range.upperBound)
+                return line
+            }
+            let tmpData = fileHandle.readData(ofLength: chunkSize)
+            if tmpData.count > 0 {
+                buffer.append(tmpData)
+            } else {
+                // EOF or read error.
+                atEof = true
+                if buffer.count > 0 {
+                    // Buffer contains last line in file (not terminated by delimiter).
+                    let line = String(data: buffer as Data, encoding: encoding)
+                    buffer.count = 0
+                    return line
+                }
+            }
+        }
+        return nil
+    }
+
+    /// Start reading from the beginning of file.
+    func rewind() -> Void {
+        fileHandle.seek(toFileOffset: 0)
+        buffer.count = 0
+        atEof = false
+    }
+
+    /// Close the underlying file. No reading must be done after calling this method.
+    func close() -> Void {
+        fileHandle?.closeFile()
+        fileHandle = nil
+    }
+}
+
+extension StreamReader : Sequence {
+    func makeIterator() -> AnyIterator<String> {
+        return AnyIterator {
+            return self.nextLine()
         }
     }
 }

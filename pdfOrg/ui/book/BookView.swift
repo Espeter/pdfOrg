@@ -122,31 +122,31 @@ struct BookView: View {
         }
     }
     
-    private func importSongs(url: URL) {
-        
-        var txt = String()
-        
-        do{
-            guard url.startAccessingSecurityScopedResource() else {
-                return
-            }
-            //  txt = try NSString(contentsOf: url, encoding: String.Encoding.ascii.rawValue) as String
-            txt = try NSString(contentsOf: url, encoding: String.Encoding.utf8.rawValue) as String
-        }  catch {
-            print(error)
-        }
-        
-        txt.enumerateLines(invoking: { (line, stop) -> () in
-            let lineSplit = line.components(separatedBy:";")
-            
-            if lineSplit.count == 3 {
-                addSong(name: lineSplit[0], startSide: lineSplit[1], endPage: lineSplit[2], author: nil)
-            } else {
-                addSong(name: lineSplit[0], startSide: lineSplit[1],endPage: lineSplit[2], author: lineSplit[3])
-            }
-        })
-        url.stopAccessingSecurityScopedResource()
-    }
+//    private func importSongs(url: URL) {
+//        
+//        var txt = String()
+//        
+//        do{
+//            guard url.startAccessingSecurityScopedResource() else {
+//                return
+//            }
+//            //  txt = try NSString(contentsOf: url, encoding: String.Encoding.ascii.rawValue) as String
+//            txt = try NSString(contentsOf: url, encoding: String.Encoding.utf8.rawValue) as String
+//        }  catch {
+//            print(error)
+//        }
+//        
+//        txt.enumerateLines(invoking: { (line, stop) -> () in
+//            let lineSplit = line.components(separatedBy:";")
+//            
+//            if lineSplit.count == 3 {
+//                addSong(name: lineSplit[0], startSide: lineSplit[1], endPage: lineSplit[2], author: nil)
+//            } else {
+//                addSong(name: lineSplit[0], startSide: lineSplit[1],endPage: lineSplit[2], author: lineSplit[3])
+//            }
+//        })
+//        url.stopAccessingSecurityScopedResource()
+//    }
     
     func addSong(name: String, startSide: String, endPage: String, author: String?) {
         
