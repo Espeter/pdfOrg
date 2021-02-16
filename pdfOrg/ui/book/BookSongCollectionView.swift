@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct BookSongCollectionView: View {
     
@@ -49,7 +50,7 @@ struct BookSongCollectionView: View {
                     showingPopup = true
                     ec.showingPopupAppSong = true
                 }) {
-                    Image(systemName: "plus").padding()
+                    Image(systemName: "plus")
                         .popover(isPresented:  $showingPopup) {
                          
                             AddSongPopoverView(book: book, showingPopup: $showingPopup, currentBook: $page)
@@ -62,7 +63,13 @@ struct BookSongCollectionView: View {
                 Button(action: {
                     openFile.toggle()
                 }) {
-                    Image(systemName: "square.and.arrow.down")
+                    Image(systemName: "square.and.arrow.down").padding()
+                }
+                Button(action: {
+                    // upLod Inhalsverzeichnis
+                    exportDirectory()
+                }) {
+                    Image(systemName: "square.and.arrow.up")
                 }
                 Button(action: {
                     deleteSongsAlert.toggle()
@@ -111,6 +118,57 @@ struct BookSongCollectionView: View {
         }
     }
     
+    
+    private func exportDirectory() {
+        
+        let text = getDirectory()
+        let textData = text.data(using: .utf8)
+        let textURL = textData?.dataToFile(fileName: "\(book.title!)_Directory.txt")
+        var filesToShare = [Any]()
+        filesToShare.append(textURL!)
+ 
+        let av = UIActivityViewController(activityItems: filesToShare, applicationActivities: nil)
+        UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
+
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            av.popoverPresentationController?.sourceView = UIApplication.shared.windows.first
+            av.popoverPresentationController?.sourceRect = CGRect(
+                x: UIScreen.main.bounds.width / 2.1,
+                y: UIScreen.main.bounds.height / 1.5,
+                width: 200, height: 200
+            )
+        }
+    }
+    
+    private func getDirectory() -> String {
+        
+        var directory = ""
+        
+        let songsAsArray = getArraySong(book.songs!)
+        
+        songsAsArray.forEach { song in
+            
+            directory.append(song.title!)
+            directory.append(";")
+            directory.append(String(song.startPage ?? "1"))
+            directory.append(";")
+            directory.append(String(song.endPage ?? "1"))
+            
+            if song.author != nil {
+                directory.append(";")
+                directory.append(song.author!)
+            }
+           
+            directory.append("\n")
+        }
+        
+        print(directory)
+        return directory
+    }
+    
+    
+    
+    
     private func importSongs(url: URL) {
         
         var txt = String()
@@ -135,15 +193,17 @@ struct BookSongCollectionView: View {
             }
         })
         url.stopAccessingSecurityScopedResource()
+        saveContext()
     }
-    
     private func importSongs2(url: URL) {
         
       //  var txt = StreamReader(path: url)
-        
+        print("importSongs2 <------")
         if let aStreamReader = StreamReader(path: url) {
+            print("aStreamReader")
             defer {
                 for line in aStreamReader {
+                    print(line)
                     let lineSplit = line.components(separatedBy:";")
                     
                     if lineSplit.count == 3 {
@@ -154,9 +214,11 @@ struct BookSongCollectionView: View {
                 }
             }
             while aStreamReader.nextLine() != nil {
+                print("aStreamReader")
                 for line in aStreamReader {
+                    print(line)
                     let lineSplit = line.components(separatedBy:";")
-                    
+                   
                     if lineSplit.count == 3 {
                         addSong(name: lineSplit[0], startSide: lineSplit[1], endPage: lineSplit[2], author: nil)
                     } else {
@@ -165,7 +227,8 @@ struct BookSongCollectionView: View {
                 }
             }
         }
-
+     
+        print("saveContext()")
         saveContext()
     }
     
@@ -222,7 +285,7 @@ struct BookSongCollectionView: View {
 
 
 
-
+//TODO: Quelle: https://stackoverflow.com/questions/24581517/read-a-file-url-line-by-line-in-swift
 class StreamReader  {
 
     let encoding : String.Encoding
@@ -234,13 +297,15 @@ class StreamReader  {
 
     init?(path: URL, delimiter: String = "\n", encoding: String.Encoding = .utf8,
           chunkSize: Int = 4096) {
-
+print("init?")
      //   guard let fileHandle = FileHandle(forReadingAtPath: path),
         
         do{
+            print("do")
             guard let fileHandle = try? FileHandle(forReadingFrom: path),
-
+                
             let delimData = delimiter.data(using: encoding) else {
+                print("nil")
                 return nil
         }
         
@@ -307,4 +372,48 @@ extension StreamReader : Sequence {
             return self.nextLine()
         }
     }
+}
+
+//TODO: Quelle: https://stackoverflow.com/questions/35851118/how-do-i-share-files-using-share-sheet-in-ios
+extension Data {
+
+    /// Data into file
+    ///
+    /// - Parameters:
+    ///   - fileName: the Name of the file you want to write
+    /// - Returns: Returns the URL where the new file is located in NSURL
+    func dataToFile(fileName: String) -> NSURL? {
+
+        // Make a constant from the data
+        let data = self
+
+        // Make the file path (with the filename) where the file will be loacated after it is created
+        let filePath = getDocumentsDirectory().appendingPathComponent(fileName)
+
+        do {
+            // Write the file from data into the filepath (if there will be an error, the code jumps to the catch block below)
+            try data.write(to: URL(fileURLWithPath: filePath))
+
+            // Returns the URL where the new file is located in NSURL
+            return NSURL(fileURLWithPath: filePath)
+
+        } catch {
+            // Prints the localized description of the error from the do block
+            print("Error writing the file: \(error.localizedDescription)")
+        }
+
+        // Returns nil if there was an error in the do-catch -block
+        return nil
+
+    }
+    
+    /// Get the current directory
+    ///
+    /// - Returns: the Current directory in NSURL
+    func getDocumentsDirectory() -> NSString {
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let documentsDirectory = paths[0]
+        return documentsDirectory as NSString
+    }
+
 }
