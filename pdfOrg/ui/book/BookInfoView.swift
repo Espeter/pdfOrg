@@ -10,7 +10,8 @@ import SwiftUI
 struct BookInfoView: View {
     
     @Environment(\.managedObjectContext) var viewContext
-    
+    @FetchRequest(sortDescriptors: [])
+     var books: FetchedResults<Book>
     
     @ObservedObject var book: Book
     @Binding var editMode: Bool
@@ -19,6 +20,9 @@ struct BookInfoView: View {
     
     @State var orientation: Int
     let orientations = ["rectangle.portrait", "rectangle"]
+    
+    @State private var oldId: String?
+    @State var idAlert: Bool = false
     
     var body: some View {
         
@@ -45,11 +49,34 @@ struct BookInfoView: View {
                     book.isLandscape = Int64($0)
                     saveContext()
                 }
-                
-                
-                
-                
             }
+            HStack{
+                Text("id: ").foregroundColor(Color(UIColor.black))
+                TextField(book.id!, text: umwantler(binding: $book.id, fallback: "nil"), onEditingChanged: {(changed) in
+                    
+                    if oldId == nil {
+                        oldId = book.id
+                    }
+                    
+                    if changed == false {
+
+                        if oldId != book.id {
+                            if idDoesNotExist(id: book.id!) {
+                                saveContext()
+                                updateView.toggle()
+                                oldId = nil
+                            } else {
+                                idAlert.toggle()
+                                book.id = oldId
+                                oldId = nil
+                            }
+                        } else {
+                            oldId = nil
+                        }
+                    }
+                })
+            }
+
             
             
             HStack{
@@ -99,8 +126,34 @@ struct BookInfoView: View {
         .padding()
         .background(Color(UIColor.white))
         .cornerRadius(15.0)
+        .alert(isPresented: $idAlert) {
+            Alert(title: Text("id already exists"),
+                  message: Text("this ID already exists"),
+                  dismissButton: .cancel(Text("Oky"))
+            )
+            
+           
+            
+        }
         
     }
+    
+    private func idDoesNotExist(id: String) -> Bool {
+        
+        var idDoesNotExist = true
+        
+        books.forEach{ book in
+            
+            if book.id == id {
+                idDoesNotExist = false
+            }
+        }
+        
+        return idDoesNotExist
+    }
+    
+    
+    
     // Qelle: https://forums.swift.org/t/promoting-binding-value-to-binding-value/31055
     func umwantler<T>(binding: Binding<T?>, fallback: T) -> Binding<T> {
         return Binding(get: {

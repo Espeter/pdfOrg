@@ -10,8 +10,6 @@ import PDFKit
 
 extension LibraryView {
     
-
-    
     func getArrayBook(_ books: FetchedResults<Book>) -> [Book] {
         var booksArray: [Book] = []
         
@@ -28,10 +26,10 @@ extension LibraryView {
     func addBook(url: URL) {
         
         let newBook = Book(context: viewContext)
-        newBook.id = UUID()
         newBook.pdfTitle = url.lastPathComponent
         let title: String = url.lastPathComponent
         newBook.title = String(title.dropLast(4))
+        newBook.id = generateID(titel: newBook.title!)
         newBook.pageOfset = "0"
         newBook.tonArt = "n.a."
         newBook.version = "n.a."
@@ -49,6 +47,31 @@ extension LibraryView {
         saveContext()
         url.stopAccessingSecurityScopedResource()
     }
+    
+    func generateID(titel: String) -> String {
+        
+        var id: String
+        var idExistsAlready = false
+        
+        books.forEach{ book in
+            if book.id == titel {
+                idExistsAlready = true
+            }
+        }
+        
+        if idExistsAlready {
+            
+            let newTitel = titel + "(new)"
+            
+            return generateID(titel: newTitel)
+            
+        } else {
+            id = titel
+        }
+        
+        return id
+    }
+    
     
     private func getCoverSheet(data: Data) -> UIImage? {
         

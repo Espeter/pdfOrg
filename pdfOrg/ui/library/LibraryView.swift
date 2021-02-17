@@ -13,7 +13,7 @@ struct LibraryView: View {
     
     @Environment(\.managedObjectContext) var viewContext
     @FetchRequest(sortDescriptors: [])
-    private var books: FetchedResults<Book>
+     var books: FetchedResults<Book>
     @FetchRequest(sortDescriptors: [])
     private var products: FetchedResults<Product>
     
@@ -110,8 +110,8 @@ struct LibraryView: View {
                                             }
                                         }
                                         Button(action: {
-                                            //   if books.count >= 3 && !store.isPurchased(id: "com.espeter.pdfOrg.unlimitedBooks.test1") {
-                                            if books.count >= 3 && !isBought(for: Store.Prodakt.unlimitedBooks.rawValue) {
+                                            if books.count >= 3 && !isBought(for: Store.Prodakt.unlimitedBooks.rawValue) {    //TODO: muss wie der was kosten
+                 //                           if false {
                                                 tooManyBooksAlert.toggle()
                                             } else {
                                                 openFile.toggle()
