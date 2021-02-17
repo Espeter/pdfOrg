@@ -77,11 +77,20 @@ struct GigView: View {
                                         }
                                     }
                                 ,trailing:
+                                    
+                                  
+                                    
                                     HStack{
+                                        Button(action: {
+                                            print("export")
+                                        }) {
+                                            Image(systemName: "square.and.arrow.up")
+                                        }
+                                        
                                         Button(action: {
                                             showingPopup.toggle()
                                         }) {
-                                            Image(systemName: "doc.on.doc").popover(isPresented: self.$showingPopup) {
+                                            Image(systemName: "doc.on.doc").padding().popover(isPresented: self.$showingPopup) {
                                                 VStack{
                                                    
                                                     
@@ -123,6 +132,44 @@ struct GigView: View {
             )
             .background(Color(UIColor.systemBlue).opacity(0.05))
         }.navigationViewStyle(StackNavigationViewStyle())
+    }
+    
+    
+    func exportCollection() {
+        
+        let text = getCollectionTxt()
+        let textData = text.data(using: .utf8)
+        let textURL = textData?.dataToFile(fileName: "\(gig.title!)_Collection.txt")
+        var filesToShare = [Any]()
+        filesToShare.append(textURL!)
+ 
+        let av = UIActivityViewController(activityItems: filesToShare, applicationActivities: nil)
+        UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
+
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            av.popoverPresentationController?.sourceView = UIApplication.shared.windows.first
+            av.popoverPresentationController?.sourceRect = CGRect(
+                x: UIScreen.main.bounds.width / 2.1,
+                y: UIScreen.main.bounds.height / 1.5,
+                width: 200, height: 200
+            )
+        }
+    }
+    
+    func getCollectionTxt() -> String {
+        
+        var txt: String
+        
+        txt = "\(String(describing: gig.title))\n"
+        
+        getArraySong(gig.songsInGig!).forEach { songInGig in
+            
+            let title = String((songInGig.song?.title)!)
+            let id = String((songInGig.song?.book?.id)!)
+            
+            txt = txt + "\(title);\(id)\n"
+        }
+        return txt
     }
     
     func copyGig(titel: String) {
@@ -206,4 +253,15 @@ struct GigView: View {
             fatalError("error addBook: \(error)")
         }
     }
+    
+    func getArraySong(_ snSet : NSSet) -> [SongInGig] {
+        
+        let songsInGig = snSet.allObjects as! [SongInGig]
+        
+        let sortedSongsInGig = songsInGig.sorted {
+            $0.position < $1.position
+        }
+        return sortedSongsInGig
+    }
+    
 }
