@@ -31,7 +31,9 @@
         <relationship name="songInGigs" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SongInGig" inverseName="song" inverseEntity="SongInGig"/>
     </entity>
     <entity name="SongInGig" representedClassName="SongInGig" syncable="YES" codeGenerationType="class">
+        <attribute name="bookId" optional="YES" attributeType="String"/>
         <attribute name="position" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="teitel" optional="YES" attributeType="String"/>
         <relationship name="gig" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Gig" inverseName="songsInGig" inverseEntity="Gig"/>
         <relationship name="song" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Song" inverseName="songInGigs" inverseEntity="Song"/>
     </entity>
@@ -40,6 +42,6 @@
         <element name="Gig" positionX="-99.69921875" positionY="-42.33984375" width="128" height="74"/>
         <element name="Product" positionX="-357.72265625" positionY="-252.640625" width="128" height="14"/>
         <element name="Song" positionX="288.40234375" positionY="-10.171875" width="128" height="149"/>
-        <element name="SongInGig" positionX="119.18359375" positionY="-156.51171875" width="128" height="74"/>
+        <element name="SongInGig" positionX="119.18359375" positionY="-156.51171875" width="128" height="104"/>
     </elements>
 </model>

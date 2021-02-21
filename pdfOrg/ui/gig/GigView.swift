@@ -10,12 +10,16 @@ import SwiftUI
 struct GigView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
+    @EnvironmentObject var ec : EnvironmentController
     
     @FetchRequest(sortDescriptors: [])
     private var songsFR: FetchedResults<Song>
     
     @FetchRequest(sortDescriptors: [])
     private var gigs: FetchedResults<Gig>
+    
+    @FetchRequest(sortDescriptors: [])
+    var books: FetchedResults<Book>
     
     @State var showingSelectGigView: Bool = false
     @State var showingAddGigSongView: Bool = false
@@ -32,8 +36,12 @@ struct GigView: View {
     @State var pageIndex: String = "1"
     @State var showingPopup: Bool = false
     @State var copyGigTitel: String = ""
+    @State var openFile: Bool = false
     
     let alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","#"]
+    
+    @State var notExistingBooks: [String] = []
+    @State var bookAlert: Bool = false
     
     var body: some View {
         
@@ -77,22 +85,31 @@ struct GigView: View {
                                         }
                                     }
                                 ,trailing:
-                                    
-                                  
-                                    
                                     HStack{
                                         Button(action: {
-                                            print("export")
+                                            openFile.toggle()
+                                            
+                                            gigs.forEach{ gig in
+                                                print("print(gig.title)")
+                                                print(gig.title)
+                                            }
+                                            
+                                            
+                                            
                                         }) {
-                                            Image(systemName: "square.and.arrow.up")
+                                            Image(systemName: "square.and.arrow.down")
                                         }
-                                        
+                                        Button(action: {
+                                            exportCollection()
+                                        }) {
+                                            Image(systemName: "square.and.arrow.up").padding()
+                                        }
                                         Button(action: {
                                             showingPopup.toggle()
                                         }) {
-                                            Image(systemName: "doc.on.doc").padding().popover(isPresented: self.$showingPopup) {
+                                            Image(systemName: "doc.on.doc").popover(isPresented: self.$showingPopup) {
                                                 VStack{
-                                                   
+                                                    
                                                     
                                                     HStack{
                                                         Text("Copy Collection").foregroundColor(Color(UIColor.black))//.padding()
@@ -100,7 +117,7 @@ struct GigView: View {
                                                     }.frame( alignment: .leading)
                                                     Text("")
                                                     HStack{
-                                                    Text("from: \(gig.title!)").foregroundColor(Color(UIColor.black))
+                                                        Text("from: \(gig.title!)").foregroundColor(Color(UIColor.black))
                                                         Spacer()
                                                     }.frame( alignment: .leading)
                                                     Text("")
@@ -125,14 +142,212 @@ struct GigView: View {
                                             Button(action: {
                                                 showingAddGigSongView.toggle()
                                             }) {
-                                                Image(systemName: "plus")
+                                                Image(systemName: "plus").padding()
                                             }
                                         }
                                     }
             )
             .background(Color(UIColor.systemBlue).opacity(0.05))
         }.navigationViewStyle(StackNavigationViewStyle())
+        .fileImporter(isPresented: $openFile, allowedContentTypes: [.text])
+        { (res) in
+            do {
+                let fileUrl = try res.get()
+                importCollection(url: fileUrl)
+                
+            }
+            catch {
+                print("error")
+            }
+        }
+        .alert(isPresented: $bookAlert) {
+            Alert(title: Text("Book id esestiert nicht"),
+                  message: Text("die folgenden Book IDs exestieren nicht: \(getnotExistingBooks())"),
+                  dismissButton: .cancel(Text("Oky"))
+            )
+        }
+        
     }
+    
+    func getnotExistingBooks() -> String {
+        
+        var existingBooksString: String = "\n"
+        
+        notExistingBooks.forEach{ bookID in
+            existingBooksString = existingBooksString + bookID + "\n"
+        }
+        return existingBooksString
+    }
+    
+    
+    
+    func importCollection(url: URL) {
+        
+        
+        var txt = String()
+        
+        do{
+            guard url.startAccessingSecurityScopedResource() else {
+                return
+            }
+            //  txt = try NSString(contentsOf: url, encoding: String.Encoding.ascii.rawValue) as String
+            txt = try NSString(contentsOf: url, encoding: String.Encoding.utf8.rawValue) as String
+        }  catch {
+            print(error)
+        }
+        
+        var position: Int64 = 0
+        var importetSongs: [(teitel: String,bookId: String)] = []
+        var titel: String = ""
+        
+        txt.enumerateLines(invoking: { (line, stop) -> () in
+            let lineSplit = line.components(separatedBy:";")
+            
+            if lineSplit.count == 1 {
+                titel = lineSplit[0]
+                
+                
+            } else {
+                
+                importetSongs.append((teitel: lineSplit[0], bookId: lineSplit[1]))
+                
+                //   newGig.addToSongsInGig(importSongsInGig(position: position, songTeitel: lineSplit[0], bookId:  lineSplit[1]))
+                //addSong(name: lineSplit[0], startSide: lineSplit[1],endPage: lineSplit[2], author: lineSplit[3])
+                //   position = position + 1
+            }
+        })
+        
+        let allNonExistentBooks  = allBooksExist(importetSongs)
+        
+        if allNonExistentBooks == nil {
+            let newGig = Gig(context: viewContext)
+            newGig.title = titel
+            importetSongs.forEach { importetSong in
+                newGig.addToSongsInGig(importSongsInGig(position: position, songTeitel: importetSong.teitel, bookId:  importetSong.bookId))
+                position = position + 1
+            }
+            newGig.id = UUID()
+            saveContext()
+            gig = newGig
+        } else {
+            notExistingBooks = allNonExistentBooks!
+            bookAlert.toggle()
+            print("error")
+        }
+        print("titeltiteltiteltiteltiteltiteltiteltiteltiteltiteltiteltitel:")
+        print(titel)
+        url.stopAccessingSecurityScopedResource()
+        
+    }
+    
+    func allBooksExist(_ importetSongs: [(teitel: String, bookId: String)]) -> [String]? {
+        
+        var allBooksExist: [String]?
+        
+        importetSongs.forEach { importetSong in
+            
+            var thsBookExist = false
+            
+            books.forEach { book in
+                
+                if importetSong.bookId == book.id {
+                    thsBookExist = true
+                }
+            }
+            if !thsBookExist {
+                
+                if allBooksExist == nil {
+                    allBooksExist = []
+                }
+                
+                allBooksExist!.append(importetSong.bookId)
+            }
+        }
+        return allBooksExist
+    }
+    
+    func importSongsInGig(position: Int64, songTeitel: String, bookId: String) -> SongInGig {
+        
+        let newSongInGig = SongInGig(context: viewContext)
+        
+        newSongInGig.position = Int64(position)
+        
+        books.forEach{ book in
+            
+            if book.id == bookId {
+                
+                getArraySONG(book.songs!).forEach{ song in
+                    
+                    if song.title == songTeitel {
+                        newSongInGig.song = song
+                    }
+                }
+            }
+        }
+        
+        if newSongInGig.song == nil {
+            newSongInGig.bookId = bookId
+            newSongInGig.teitel = songTeitel
+            
+            newSongInGig.song = get404Song(teitel: songTeitel)
+            // import 404 Book
+            
+        }
+        
+        
+        return newSongInGig
+    }
+    
+    func get404Song(teitel: String) -> Song {
+        
+        
+        let gBookID = ec.gBookID
+        
+        var gBookExist: Bool = false
+        var gBook: Book = Book()
+        var gSong: Song = Song()
+        
+        books.forEach { book in
+            
+            if gBookID == book.id {
+                gBookExist = true
+                gBook = book
+            }
+        }
+        
+        if gBookExist{
+            
+            let songs = gBook.songs!.allObjects as! [Song]
+            gSong = songs.first!
+            
+        } else {
+            
+            guard let asset = NSDataAsset(name: "404Book") else {
+                fatalError("Missing data asset: 404Book")
+            }
+            
+            let newBook = Book(context: viewContext)
+            newBook.title = "404 Book"
+            newBook.id = gBookID
+            newBook.pdf = asset.data
+            newBook.isLandscape = 0
+            newBook.pageOfset = "0"
+            
+            
+            let newSong = Song(context: viewContext)
+            newSong.startPage = "1"
+            newSong.endPage = "1"
+            newSong.isFavorit = false
+            newSong.id = UUID()
+            newSong.title = "404"
+            
+            newBook.addToSongs(newSong)
+            gSong = newSong
+            saveContext()
+        }
+        return gSong
+    }
+    
     
     
     func exportCollection() {
@@ -142,10 +357,10 @@ struct GigView: View {
         let textURL = textData?.dataToFile(fileName: "\(gig.title!)_Collection.txt")
         var filesToShare = [Any]()
         filesToShare.append(textURL!)
- 
+        
         let av = UIActivityViewController(activityItems: filesToShare, applicationActivities: nil)
         UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
-
+        
         if UIDevice.current.userInterfaceIdiom == .pad {
             av.popoverPresentationController?.sourceView = UIApplication.shared.windows.first
             av.popoverPresentationController?.sourceRect = CGRect(
@@ -160,7 +375,7 @@ struct GigView: View {
         
         var txt: String
         
-        txt = "\(String(describing: gig.title))\n"
+        txt = "\(String(describing: gig.title!))\n"
         
         getArraySong(gig.songsInGig!).forEach { songInGig in
             
@@ -253,6 +468,17 @@ struct GigView: View {
             fatalError("error addBook: \(error)")
         }
     }
+    
+    func getArraySONG(_ snSet : NSSet) -> [Song] {
+        
+        let songsInGig = snSet.allObjects as! [Song]
+        
+        let sortedSongsInGig = songsInGig.sorted {
+            $0.title! < $1.title!
+        }
+        return sortedSongsInGig
+    }
+    
     
     func getArraySong(_ snSet : NSSet) -> [SongInGig] {
         

@@ -24,4 +24,5 @@ class EnvironmentController: ObservableObject {
     @Published var currentBook: Book? = Book()
     @Published var navigationLinkActive: Bool = false
     @Published var showingPopupAppSong: Bool = false
+    @Published var gBookID: String = "supergeheimmesBuchDasNurIchKennenDarf42MahahahahahahaGeheim"
 }

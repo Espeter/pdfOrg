@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct CampfireView: View {
-    
+    @EnvironmentObject var ec : EnvironmentController
+
     @Environment(\.managedObjectContext) private var viewContext
     
     @FetchRequest(sortDescriptors: [])
@@ -64,7 +65,9 @@ struct CampfireView: View {
     func getArraySong() -> [Song] {
         var songsArray: [Song] = []
         songsFR.forEach{ song in
+            if song.book?.id != ec.gBookID {
             songsArray.append(song)
+            }
         }
         
         songsArray.sort {

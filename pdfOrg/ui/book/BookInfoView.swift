@@ -131,9 +131,6 @@ struct BookInfoView: View {
                   message: Text("this ID already exists"),
                   dismissButton: .cancel(Text("Oky"))
             )
-            
-           
-            
         }
         
     }

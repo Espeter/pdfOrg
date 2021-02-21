@@ -10,7 +10,10 @@ import SwiftUI
 struct GigInfoView: View {
     @Environment(\.managedObjectContext) var viewContext
     @EnvironmentObject var ec : EnvironmentController
-
+    
+    @FetchRequest(sortDescriptors: [])
+    var books: FetchedResults<Book>
+    
     @Binding var gig: Gig
     @Binding var updateView: Bool
     
@@ -19,7 +22,7 @@ struct GigInfoView: View {
     @Binding var songInGig: SongInGig?
     @Binding var pageIndex: String
     @Binding var song: Song?
-
+    
     
     var body: some View {
         
@@ -27,21 +30,36 @@ struct GigInfoView: View {
             ForEach(getArraySong(gig.songsInGig!)) { songinGig in
                 
                 Button(action: {
-                    songIsSelectet = false
-                    gigSongIsSelectet = true
-                    pageIndex = (songinGig.song?.startPage)!
-                    self.songInGig = songinGig
-                    song = (songInGig?.song)!
+    
+                        songIsSelectet = false
+                        gigSongIsSelectet = true
+                        pageIndex = (songinGig.song?.startPage)!
+                        self.songInGig = songinGig
+                        song = (songInGig?.song)!
+                 
                 }) {
                     HStack{
-                    Text("\(songinGig.position + 1)")
-                    Text("\(songinGig.song!.title!)")
-                        Text("  ").foregroundColor(Color(UIColor.systemGray3))
-                        Text("\(songinGig.song!.author ?? "-")")
+                        Text("\(songinGig.position + 1)")
+                        if songinGig.teitel == nil {
+                            Text("\(songinGig.song!.title!)")
+                            Text("  ").foregroundColor(Color(UIColor.systemGray3))
+                            Text("\(songinGig.song!.author ?? "-")")
+                        } else {
+                            Text("\(songinGig.teitel!)")
+                            Image(systemName: "exclamationmark.triangle.fill").foregroundColor(Color(UIColor.yellow)).padding()
+                            Text("song does not exist in the book with the id: \(songinGig.bookId!)")
+                            Button(action: {findSongs()}, label: {
+                                VStack{
+                                    Image(systemName: "doc.text.magnifyingglass")
+                                Text("search song")
+                                }
+                            })
+                        }
+                        
                         if updateView {
                             Text("").frame(width: 0, height: 0)
                         }
-                        if                     ec.updateGigInfoView {
+                        if ec.updateGigInfoView {
                             Text("").frame(width: 0, height: 0)
                         }
                     }
@@ -52,9 +70,46 @@ struct GigInfoView: View {
         }.padding().background(Color(UIColor.white)).cornerRadius(15.0).shadow( radius: 15, x: 3, y: 5)
     }
     
+    
+    func findSongs() {
+        
+        var unassignedSongs: [SongInGig] = []
+        
+        getArraySong(gig.songsInGig!).forEach{ songInGig in
+            
+            if songInGig.teitel != nil {
+                unassignedSongs.append(songInGig)
+            }
+        }
+        
+        unassignedSongs.forEach{ unassignedSong in
+            
+            books.forEach { book in
+                
+                if book.id == unassignedSong.bookId {
+                 
+                    let songs = book.songs!.allObjects as! [Song]
+                    
+                    songs.forEach{ song in
+                        
+                        if song.title == unassignedSong.teitel {
+                            unassignedSong.song = song
+                            unassignedSong.teitel = nil
+                            unassignedSong.bookId = nil
+                        }
+                    }
+                    
+                }
+            }
+        }
+        updateView.toggle()
+        saveContext()
+    }
+    
+    
     func move(from source: IndexSet, to destination: Int) {
         
-      //  let source = source.first
+        //  let source = source.first
         moveSongInGig(from: source.first!, to: destination)
         updateView.toggle()
     }
@@ -73,7 +128,7 @@ struct GigInfoView: View {
     func moveSongInGig(from source: Int, to destination: Int) {
         
         var songsInGig = getArraySongInGig(gig.songsInGig!)
-       
+        
         
         print("source: \(source) destination: \(destination)")
         
@@ -99,7 +154,7 @@ struct GigInfoView: View {
             i = i + 1
         }
         saveContext()
-       
+        
         updateView.toggle()
     }
     
@@ -107,7 +162,7 @@ struct GigInfoView: View {
         withAnimation {
             
             if gig.title == "Favorites" {
-            offsets.map {getArraySong(gig.songsInGig!)[$0]}.first?.song?.isFavorit = false
+                offsets.map {getArraySong(gig.songsInGig!)[$0]}.first?.song?.isFavorit = false
             }
             offsets.map {getArraySong(gig.songsInGig!)[$0]}.forEach(viewContext.delete)
             renewPosition(songsInGig: getArraySongInGig(gig.songsInGig!))

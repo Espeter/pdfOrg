@@ -69,7 +69,7 @@ struct LibraryView: View {
                 Divider()
                 Spacer()
                 Text("")
-            }.background(Color(UIColor.systemBlue).opacity(0.12))
+            }.background(Color(UIColor.systemBlue).opacity(0.05))
             //.background(Color(UIColor.systemGray5))//.opacity(0.151))
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarItems(leading:

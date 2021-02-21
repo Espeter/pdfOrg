@@ -17,12 +17,12 @@ struct SelectGigView: View {
     @Binding var gig: Gig
     @Binding var showingPopup: Bool
 
-    
     @State private var newGigTitle: String = ""
     
     var body: some View {
         
         VStack{
+
             
             HStack{
                 Text("Title: ").foregroundColor(Color(.black))
@@ -33,21 +33,22 @@ struct SelectGigView: View {
                     Image(systemName: "plus")
                 }
 
-               
+
             }.padding().background(Color(UIColor.systemGray6))
             ScrollView{
                 VStack{
-                    
-                    ForEach(gigs) { gig in
-                        
+
+                    ForEach(getArrayGigs()) { gigO in
+
                         HStack{
                             Button(action: {
-                                self.gig = gig
+                                self.gig = gigO
                                 showingPopup.toggle()
+                                textPrintOllgigTitel()
                             }) {
-                                Text("\(gig.title ?? "nil")").foregroundColor(Color(.black))
+                                Text("\(gigO.title ?? "nil")").foregroundColor(Color(.black))
                             }
-                            if gig == self.gig {
+                            if gigO == self.gig {
                                 Image(systemName: "checkmark")
                             }
                             Spacer()
@@ -58,6 +59,29 @@ struct SelectGigView: View {
             }.padding(.top, -15).frame(minWidth: 200, maxHeight: 300)
             
         }
+    }
+    
+    
+    func textPrintOllgigTitel() {
+        gigs.forEach{ gig in
+            
+        //    print(gig.title)
+            
+        }
+    }
+    
+    func getArrayGigs() -> [Gig] {
+        var songsArray: [Gig] = []
+        
+        gigs.forEach{ gig in
+            songsArray.append(gig)
+        }
+        
+        songsArray.sort {
+            $0.title! < $1.title!
+        }
+        print(songsArray)
+        return songsArray
     }
     
     func addGig() {

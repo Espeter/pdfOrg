@@ -108,13 +108,12 @@ struct BookSongCollectionView: View {
         { (res) in
             do {
                 let fileUrl = try res.get()
-                importSongs2(url: fileUrl)
+                importSongs(url: fileUrl)
                 
             }
             catch {
                 print("error")
             }
-            
         }
     }
     
