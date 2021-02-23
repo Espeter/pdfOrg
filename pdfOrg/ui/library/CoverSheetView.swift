@@ -20,6 +20,8 @@ struct CoverSheetView: View {
   //  @Binding var currentBook: Book?
     @State var selectedSong: Song?
     @State private var deleteBookAlert = false
+    @State var updateView: Bool = false
+    
     
     
     var body: some View {
@@ -27,7 +29,7 @@ struct CoverSheetView: View {
         if book.coverSheet != nil {
             VStack{
                 if ec.currentBook != nil {
-                    NavigationLink(destination: BookView(book: ec.currentBook!, selectedSong: $selectedSong), isActive: $ec.navigationLinkActive) { EmptyView() }.animation(nil)
+                    NavigationLink(destination: BookView(book: ec.currentBook!, updateView: updateView, selectedSong: $selectedSong), isActive: $ec.navigationLinkActive) { EmptyView() }.animation(nil)
                 }
                 ZStack(alignment: .topTrailing) {
                 Image(uiImage: UIImage(data: book.coverSheet!)!)
@@ -43,7 +45,7 @@ struct CoverSheetView: View {
                         VStack{
                             Text("Title: \(book.title ?? "n.a.")")
                             Text("Version: \(book.version ?? "n.a.")")
-                            Text("Tonality: \(book.tonArt ?? "n.a.")")
+                            Text("Label: \(book.label ?? "")")
                             Text("\(String(book.songs!.count)) Songs")
                             Button(action: {
                                 deleteBookAlert.toggle()
@@ -74,7 +76,7 @@ struct CoverSheetView: View {
                         }
                     }
                     .cornerRadius(15.0)
-                    .shadow( radius: 15, x: 3, y: 5)
+                    .shadow( radius: 8, x: 3, y: 5)
 //                    .shadow(color: Color.white, radius: 10, x: -10, y: -10)
 //                    .shadow(color: Color.black, radius: 10, x: 10, y: 10)
 

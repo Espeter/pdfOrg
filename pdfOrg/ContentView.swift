@@ -12,31 +12,43 @@ struct ContentView: View {
     
     @EnvironmentObject var ec : EnvironmentController
     @Environment(\.managedObjectContext) private var viewContext
-
+    
     @FetchRequest(sortDescriptors: [])
     private var songsFR: FetchedResults<Song>
     
     @FetchRequest(sortDescriptors: [])
     private var gigs: FetchedResults<Gig>
     
+    @FetchRequest(sortDescriptors: [])
+    var books: FetchedResults<Book>
+    
+    
     var body: some View {
         
         if ec.presentationMode == false && ec.presentationModeBook == false && ec.presentationModeGig == false{
-        TabView(selection: $ec.tabTag){
-            LibraryView()
-                .tabItem {
-                    Image(systemName: "books.vertical")
-                }.tag(1)
-            CampfireView()
-                .tabItem{
-                    Image(systemName: "list.bullet")
-                }.tag(2)
-            GigView(gig: getFavoritGig())
-                .tabItem {
-                    Image(systemName: "doc.text")
-                }.tag(3)
-           
-        }
+            TabView(selection: $ec.tabTag){
+                if ec.updatLibrary {
+                    LibraryView(allLabels: getAllLabels(), segmentBooksByLabel: getSegmentBooksByLabel())
+                        .tabItem {
+                            Image(systemName: "books.vertical")
+                        }.tag(1)
+                } else {
+                    LibraryView(allLabels: getAllLabels(), segmentBooksByLabel: getSegmentBooksByLabel())
+                        .tabItem {
+                            Image(systemName: "books.vertical")
+                        }.tag(1)
+                }
+                CampfireView()
+                    .tabItem{
+                        Image(systemName: "list.bullet")
+                    }.tag(2)
+                
+                GigView(gig: getFavoritGig())
+                    .tabItem {
+                        Image(systemName: "doc.text")
+                    }.tag(3)
+                
+            }
         } else if ec.presentationMode == true {
             PresentationView(song: $ec.song, page: ec.song.startPage!)
         } else if ec.presentationModeBook == true {
@@ -94,11 +106,53 @@ struct ContentView: View {
         return songsArray
     }
     
+    func getAllLabels() -> [String] {
+        
+        var allLabels: [String] = []
+        
+        getBooksAlphabetical().forEach{ book in
+            
+            if !allLabels.contains(book.label ?? "") {
+                
+                allLabels.append(book.label ?? "")
+            }
+        }
+        return allLabels
+    }
     
-}
+    func getSegmentBooksByLabel() -> [String: [Book]] {
+        
+        var dictionary: [String: [Book]] = [:]
+        
+        getAllLabels().forEach{ label in
+            dictionary[label] = []
+        }
+        
+        getBooksAlphabetical().forEach{ book in
+            
+            let bookLabel = book.label
+            if book.id != ec.gBookID {
+                dictionary[bookLabel ?? ""]?.append(book)
+            }
+        }
+        return dictionary
+    }
+    
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+    
+    
+    
+    func getBooksAlphabetical() -> [Book] {
+        
+        var booksAlphabetical: [Book] = []
+        
+        books.forEach{ book in
+            booksAlphabetical.append(book)
+        }
+        
+        booksAlphabetical.sort{
+            $0.title! < $1.title!
+        }
+        return booksAlphabetical
     }
 }

@@ -29,6 +29,7 @@
 		C385D4A825B4BC2A000D1452 /* PresentationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C385D4A725B4BC2A000D1452 /* PresentationView.swift */; };
 		C397F1C325B1DE3B006735EF /* GigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C397F1C225B1DE3B006735EF /* GigView.swift */; };
 		C397F1C825B1E47A006735EF /* SelectGigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C397F1C725B1E47A006735EF /* SelectGigView.swift */; };
+		C3C1A46125E413000037B179 /* LibarayPickerRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C1A46025E413000037B179 /* LibarayPickerRowView.swift */; };
 		C3D57F2A25B9DA4F00339082 /* SelectGigSongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D57F2925B9DA4F00339082 /* SelectGigSongView.swift */; };
 		C3D57F2F25B9E16700339082 /* GigInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D57F2E25B9E16700339082 /* GigInfoView.swift */; };
 		C3D57F3725BB193700339082 /* SongRowInGigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D57F3625BB193700339082 /* SongRowInGigView.swift */; };
@@ -88,6 +89,7 @@
 		C385D4A725B4BC2A000D1452 /* PresentationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationView.swift; sourceTree = "<group>"; };
 		C397F1C225B1DE3B006735EF /* GigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigView.swift; sourceTree = "<group>"; };
 		C397F1C725B1E47A006735EF /* SelectGigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectGigView.swift; sourceTree = "<group>"; };
+		C3C1A46025E413000037B179 /* LibarayPickerRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibarayPickerRowView.swift; sourceTree = "<group>"; };
 		C3D57F2925B9DA4F00339082 /* SelectGigSongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectGigSongView.swift; sourceTree = "<group>"; };
 		C3D57F2E25B9E16700339082 /* GigInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigInfoView.swift; sourceTree = "<group>"; };
 		C3D57F3625BB193700339082 /* SongRowInGigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongRowInGigView.swift; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 				C3F0F9BC25AC9E910004B66B /* LibraryView.swift */,
 				C3F0F9CA25ACB3DA0004B66B /* LibraryViewExtension.swift */,
 				C3F9466E25ACEC78000C5CF1 /* CoverSheetView.swift */,
+				C3C1A46025E413000037B179 /* LibarayPickerRowView.swift */,
 			);
 			path = library;
 			sourceTree = "<group>";
@@ -454,6 +457,7 @@
 				C3F0F9BD25AC9E910004B66B /* LibraryView.swift in Sources */,
 				C385D49F25B4A88D000D1452 /* EnvironmentController.swift in Sources */,
 				C31D403F25B63492009A3EF7 /* BookPresentationView.swift in Sources */,
+				C3C1A46125E413000037B179 /* LibarayPickerRowView.swift in Sources */,
 				C3F0F98825AC98960004B66B /* pdfOrgApp.swift in Sources */,
 				C3F0F9C325ACA43F0004B66B /* SearchBar.swift in Sources */,
 				C3D57F2F25B9E16700339082 /* GigInfoView.swift in Sources */,

@@ -87,15 +87,7 @@ struct GigView: View {
                                 ,trailing:
                                     HStack{
                                         Button(action: {
-                                            openFile.toggle()
-                                            
-                                            gigs.forEach{ gig in
-                                                print("print(gig.title)")
-                                                print(gig.title)
-                                            }
-                                            
-                                            
-                                            
+                                            openFile.toggle()                                            
                                         }) {
                                             Image(systemName: "square.and.arrow.down")
                                         }
@@ -439,7 +431,7 @@ struct GigView: View {
     }
     
     func getSegmentSongs() -> [String: [Song]] {
-        print("getSegmentSongs()")
+
         var dictionary: [String: [Song]] = [:]
         
         alphabet.forEach{ char in

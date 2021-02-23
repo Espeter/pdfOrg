@@ -31,7 +31,7 @@ extension LibraryView {
         newBook.title = String(title.dropLast(4))
         newBook.id = generateID(titel: newBook.title!)
         newBook.pageOfset = "0"
-        newBook.tonArt = "n.a."
+        newBook.label = ""
         newBook.version = "n.a."
         newBook.isLandscape = 0
         
@@ -45,6 +45,7 @@ extension LibraryView {
             print("error: \(error)")
         }
         saveContext()
+        ec.updateGigInfoView.toggle()
         url.stopAccessingSecurityScopedResource()
     }
     

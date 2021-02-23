@@ -4,11 +4,11 @@
         <attribute name="coverSheet" optional="YES" attributeType="Binary"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="isLandscape" optional="YES" attributeType="Integer 64" usesScalarValueType="YES"/>
+        <attribute name="label" optional="YES" attributeType="String"/>
         <attribute name="pageOfset" optional="YES" attributeType="String"/>
         <attribute name="pdf" optional="YES" attributeType="Binary"/>
         <attribute name="pdfTitle" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
-        <attribute name="tonArt" optional="YES" attributeType="String"/>
         <attribute name="version" optional="YES" attributeType="String"/>
         <relationship name="songs" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Song" inverseName="book" inverseEntity="Song"/>
     </entity>

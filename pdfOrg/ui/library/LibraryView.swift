@@ -10,10 +10,11 @@ import SwiftUI
 struct LibraryView: View {
     
     @EnvironmentObject private var store: Store
+    @EnvironmentObject var ec : EnvironmentController
     
     @Environment(\.managedObjectContext) var viewContext
     @FetchRequest(sortDescriptors: [])
-     var books: FetchedResults<Book>
+    var books: FetchedResults<Book>
     @FetchRequest(sortDescriptors: [])
     private var products: FetchedResults<Product>
     
@@ -28,64 +29,132 @@ struct LibraryView: View {
     
     @State private var storeOpen: Bool = false
     
+  //  @State var presentationMode: Int = 0
+    let presentationModes = ["All", "Label"]
+    let presentationModesImage = ["tag", "tag"]
+    
+    @State var allLabels: [String]
+    @State var segmentBooksByLabel: [String: [Book]]
+    
     var body: some View {
         NavigationView(){
-            
+            //        ScrollView {
             VStack{
                 
-                HStack{
-                    Text("All")
-                        .font(.title)
-                        .padding()
-                        .padding(.bottom, -40)
-                        .multilineTextAlignment(.center)
-                    Spacer()
-                }
-                ScrollView(.horizontal) {
-                    HStack(){
-                        ForEach(getArrayBook(books)) { book in
-                            
-                            CoverSheetView(/*navigationLinkActive: $navigationLinkActive, */book: book, popupIsActive: $popupIsActive/*, currentBook: $currentBook*/)
-                        }
-                        
-                        //                       Rectangle()
-                        RadialGradient(gradient: Gradient(colors: [Color.white, Color.white.opacity(0.2)]), center: .topLeading, startRadius: 2, endRadius: 180)
-                            .frame(width: 151.2, height: 213.84)
-                            
-                            
-                            //   .mask(Rectangle().fill(LinearGradient(Color.white, Color.blue)))
-                            
-                            .border(Color.white)
-                            //  .border(Color.black)
-                            .cornerRadius(15.0)
-                        
-                        //                            .shadow( radius: 15, x: 3, y: 5)
-                        //                                            .shadow(color: Color.white, radius: 10, x: -10, y: -10)
-                        //                                            .shadow(color: Color.black, radius: 10, x: 10, y: 10)
-                        
-                    }.frame(height: 300).padding(.bottom, -20)
+                if ec.presentationModeLibrary == 1 {
                     
+                    ScrollView {
+                        
+                        ForEach(allLabels, id: \.self){ label in
+                            
+                            HStack{
+                                if label == "" {
+                                    Text("no Label")
+                                        .font(.title)
+                                        .padding()
+                                        .padding(.bottom, -40)
+                                        .multilineTextAlignment(.center)
+                                } else {
+                                    Text(label)
+                                        .font(.title)
+                                        .padding()
+                                        .padding(.bottom, -40)
+                                        .multilineTextAlignment(.center)
+                                }
+                                Spacer()
+                            }
+                            ScrollView(.horizontal) {
+                                HStack(){
+                                    
+                                    ForEach(segmentBooksByLabel[label]!, id: \.self) { (book: Book) in
+                                        
+                                        CoverSheetView(book: book, popupIsActive: $popupIsActive)
+                                    }
+                                }.frame(height: 300).padding(.bottom, -20)
+                            }
+                            Divider()
+                            Spacer()
+                            if ec.updateGigInfoView {
+                                Text("")
+                            }
+                            
+                        }
+                    }
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    //                HStack{
+                    //                    Text("All")
+                    //                        .font(.title)
+                    //                        .padding()
+                    //                        .padding(.bottom, -40)
+                    //                        .multilineTextAlignment(.center)
+                    //                    Spacer()
+                    //                }
+                    //                ScrollView(.horizontal) {
+                    //                    HStack(){
+                    //                        ForEach(getArrayBook(books)) { book in
+                    //                            if book.id != ec.gBookID {
+                    //                                CoverSheetView(book: book, popupIsActive: $popupIsActive)
+                    //                            }
+                    //                        }
+                    //                    }.frame(height: 300).padding(.bottom, -20)
+                    //                }
+                    //                Divider()
+                    //                Spacer()
+                    //                Text("")
+                    
+                } else {
+                    GeometryReader { geometry in
+                        ScrollView {
+                            
+                           
+                            
+                            ForEach(1 ..< (getBookRows(geometry: geometry) + 1 )) { i in
+                                HStack{
+                                    ForEach(getSegmentBooks(geometry: geometry)[i] ?? [], id: \.self) { (book: Book) in
+                                        
+                                        CoverSheetView(book: book, popupIsActive: $popupIsActive)
+                                    }
+                                    if (geometry.size.width >= 100.0){
+                                        Text("")
+                                    } else {
+                                        Text("")
+                                    }
+
+
+                                }.frame(height: 300)
+                            }.frame(width: geometry.size.width)
+                        }.frame(width: geometry.size.width)
+                    }
                 }
-                Divider()
-                Spacer()
-                Text("")
+                
+                
+                
             }.background(Color(UIColor.systemBlue).opacity(0.05))
-            //.background(Color(UIColor.systemGray5))//.opacity(0.151))
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarItems(leading:
-                                    HStack{
-                                        //                                        SearchBar(text: $searchText).frame(width: 300)
-                                        //                                        Image(systemName: "house").padding()
-                                        //                                        Text("Genre")
-                                        //                                        Text("|")
-                                        //                                        Text("Autor")
-                                    }
+                                    
+                                    Picker("", selection: $ec.presentationModeLibrary ){
+                                        
+                                        
+                                        
+                                        ForEach(0 ..< presentationModes.count) { i in
+                                            HStack{
+                                                //     Image(systemName: self.presentationModesImage[i])
+                                                Text(self.presentationModes[i])
+                                            }.tag(i)
+                                        }
+                                    }.pickerStyle(SegmentedPickerStyle())
                                 ,trailing:
                                     HStack{
                                         if !isBought(for: Store.Prodakt.unlimitedBooks.rawValue) {
                                             Button(action: {
                                                 storeOpen.toggle()
-                                                
                                             }) {
                                                 Image(systemName: "cart")
                                                     .padding()
@@ -104,14 +173,13 @@ struct LibraryView: View {
                                                             }, label: {
                                                                 Text("Restore Purchases").padding()
                                                             })
-                                                            
                                                         }.padding()
                                                     }
                                             }
                                         }
                                         Button(action: {
                                             if books.count >= 3 && !isBought(for: Store.Prodakt.unlimitedBooks.rawValue) {    //TODO: muss wie der was kosten
-                 //                           if false {
+                                                //                           if false {
                                                 tooManyBooksAlert.toggle()
                                             } else {
                                                 openFile.toggle()
@@ -130,15 +198,8 @@ struct LibraryView: View {
                         action: {
                             print("fallo Lokio")
                             store.purcheseProduct(store.product(for: Store.Prodakt.unlimitedBooks.rawValue)!)
-                            
-                            
-                            
-                            
                         })
                 )
-                
-                
-                
             }
             .fileImporter(isPresented: $openFile, allowedContentTypes: [.pdf])
             { (res) in
@@ -151,8 +212,110 @@ struct LibraryView: View {
                     print("error")
                 }
             }
+            //  }
         }.navigationViewStyle(StackNavigationViewStyle())
     }
+    
+    func getSegmentBooks(geometry: GeometryProxy) -> [Int:[Book]] {
+        
+        var dictionary: [Int:[Book]] = [:]
+        let maxBookWidth = getMaxBookWidth(geometry: geometry)
+        let numberOfRows: Int = getBookRows(geometry: geometry)
+
+        (1...numberOfRows).forEach{ i in
+            dictionary[i] = []
+        }
+        
+        var numberOfBooksInRow = 0
+        var currentRow = 1
+        
+        getBooksAlphabetical().forEach{ book in
+        
+            if book.coverSheet != nil {
+            if numberOfBooksInRow < maxBookWidth {
+                print("a \(numberOfBooksInRow)")
+                print("b \(currentRow)")
+                print("##########################")
+                dictionary[currentRow]?.append(book)
+                numberOfBooksInRow = numberOfBooksInRow + 1
+            } else {
+                print("a \(numberOfBooksInRow)")
+                print("b \(currentRow)")
+                print("##########################++")
+                currentRow = currentRow + 1
+                numberOfBooksInRow = 0
+                dictionary[currentRow]?.append(book)
+                numberOfBooksInRow = numberOfBooksInRow + 1
+            }
+            }
+            
+        }
+        print("******************************************")
+        print( dictionary)
+        return dictionary
+        
+        
+//        var dictionary: [String: [Book]] = [:]
+//
+//        getAllLabels().forEach{ label in
+//            dictionary[label] = []
+//        }
+//
+//        getBooksAlphabetical().forEach{ book in
+//
+//            let bookLabel = book.label
+//            if book.id != ec.gBookID {
+//                dictionary[bookLabel ?? ""]?.append(book)
+//            }
+//        }
+//        return dictionary
+        
+        
+    }
+    
+    func getBooksAlphabetical() -> [Book] {
+        
+        var booksAlphabetical: [Book] = []
+        
+        books.forEach{ book in
+            booksAlphabetical.append(book)
+        }
+        
+        booksAlphabetical.sort{
+            $0.title! < $1.title!
+        }
+        return booksAlphabetical
+    }
+
+    
+    func getMaxBookWidth(geometry: GeometryProxy) -> Int {
+        
+        var maxBookWidth: Int
+    //    print("geometry.size.width: \(geometry.size.width)")
+        
+        if geometry.size.width != 0.0 {
+        
+        maxBookWidth = Int(geometry.size.width / 180)    // KP wie so nicht 200 ....
+        } else {
+            maxBookWidth = 7
+        }
+        
+        return maxBookWidth
+    }
+    
+    func getBookRows(geometry: GeometryProxy) -> Int {
+        
+        var rows: Float
+        var rowsInt: Int
+    //    print("Float(getMaxBookWidth(geometry: geometry)): \(Float(getMaxBookWidth(geometry: geometry)))")
+        rows = Float(books.count) / Float(getMaxBookWidth(geometry: geometry))
+   //     print("rows: \(rows)")
+        rowsInt = Int(rows.rounded(.up))
+        
+        return rowsInt
+    }
+    
+    
     
     func isBought(for id: String) -> Bool {
         
