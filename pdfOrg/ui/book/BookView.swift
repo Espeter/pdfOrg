@@ -68,7 +68,7 @@ struct BookView: View {
                                         Image(systemName: "gearshape.2")
                                             .padding()
                                             .popover(isPresented: self.$infoPopup ) {
-                                                BookInfoView(book: book, editMode: $editMode, updateView: $updateView, orientation: Int(book.isLandscape))
+                                                BookInfoView(book: book, editMode: $editMode, infoPopup: self.$infoPopup, updateView: $updateView, orientation: Int(book.isLandscape))
                                         }
                                     }/*
                                     Button(action: {

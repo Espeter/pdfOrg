@@ -43,7 +43,7 @@ struct CoverSheetView: View {
                     }
                     .popover(isPresented: self.$showingPopup) {
                         VStack{
-                            Text("Title: \(book.title ?? "n.a.")")
+                            Text("LS_title".lowercased() + " : \(book.title ?? "n.a.")")
                             Text("Version: \(book.version ?? "n.a.")")
                             Text("Label: \(book.label ?? "")")
                             Text("\(String(book.songs!.count)) Songs")

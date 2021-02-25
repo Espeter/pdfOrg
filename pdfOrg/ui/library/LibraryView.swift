@@ -30,11 +30,14 @@ struct LibraryView: View {
     @State private var storeOpen: Bool = false
     
   //  @State var presentationMode: Int = 0
-    let presentationModes = ["All", "Label"]
+    let presentationModes: [LocalizedStringKey] = ["LS_all" , "LS_label" ]
     let presentationModesImage = ["tag", "tag"]
     
     @State var allLabels: [String]
     @State var segmentBooksByLabel: [String: [Book]]
+    @State var segmentBooks: [Int: [Book]]?
+    
+    @State var oldGeometryProxy: GeometryProxy?
     
     var body: some View {
         NavigationView(){
@@ -49,7 +52,7 @@ struct LibraryView: View {
                             
                             HStack{
                                 if label == "" {
-                                    Text("no Label")
+                                    Text("LS_no Label" as LocalizedStringKey)
                                         .font(.title)
                                         .padding()
                                         .padding(.bottom, -40)
@@ -112,8 +115,6 @@ struct LibraryView: View {
                     GeometryReader { geometry in
                         ScrollView {
                             
-                           
-                            
                             ForEach(1 ..< (getBookRows(geometry: geometry) + 1 )) { i in
                                 HStack{
                                     ForEach(getSegmentBooks(geometry: geometry)[i] ?? [], id: \.self) { (book: Book) in
@@ -161,17 +162,17 @@ struct LibraryView: View {
                                                     .popover(isPresented: $storeOpen) {
                                                         VStack{
                                                             HStack{
-                                                                Text("Unlimited number of books").foregroundColor(.black)
+                                                                Text("LS_Unlimited number of books" as LocalizedStringKey).foregroundColor(.black)
                                                                 Button(action: {
                                                                     store.purcheseProduct(store.product(for: Store.Prodakt.unlimitedBooks.rawValue)!)
                                                                 }, label: {
-                                                                    Text("Buy").padding()
+                                                                    Text("LS_Buy" as LocalizedStringKey).padding()
                                                                 })
                                                             }
                                                             Button(action: {
                                                                 store.restorePurchases()
                                                             }, label: {
-                                                                Text("Restore Purchases").padding()
+                                                                Text("LS_Restore Purchases" as LocalizedStringKey).padding()
                                                             })
                                                         }.padding()
                                                     }
@@ -190,13 +191,13 @@ struct LibraryView: View {
                                     }
             )
             .alert(isPresented: $tooManyBooksAlert) {
-                Alert(title: Text("too many books"),
+                Alert(title: Text("LS_too many books" as LocalizedStringKey),
                       message: Text("MUAHAHAHA"),
-                      primaryButton: .cancel(Text("back")),
+                      primaryButton: .cancel(Text("LS_back" as LocalizedStringKey)),
                       secondaryButton: .default(
-                        Text("kaufen"),
+                        Text("LS_Buy" as LocalizedStringKey),
                         action: {
-                            print("fallo Lokio")
+                            
                             store.purcheseProduct(store.product(for: Store.Prodakt.unlimitedBooks.rawValue)!)
                         })
                 )
@@ -217,7 +218,7 @@ struct LibraryView: View {
     }
     
     func getSegmentBooks(geometry: GeometryProxy) -> [Int:[Book]] {
-        
+   //     if oldGeometryProxy?.size.width != geometry.size.width {
         var dictionary: [Int:[Book]] = [:]
         let maxBookWidth = getMaxBookWidth(geometry: geometry)
         let numberOfRows: Int = getBookRows(geometry: geometry)
@@ -233,15 +234,15 @@ struct LibraryView: View {
         
             if book.coverSheet != nil {
             if numberOfBooksInRow < maxBookWidth {
-                print("a \(numberOfBooksInRow)")
-                print("b \(currentRow)")
-                print("##########################")
+//                print("a \(numberOfBooksInRow)")
+//                print("b \(currentRow)")
+//                print("##########################")
                 dictionary[currentRow]?.append(book)
                 numberOfBooksInRow = numberOfBooksInRow + 1
             } else {
-                print("a \(numberOfBooksInRow)")
-                print("b \(currentRow)")
-                print("##########################++")
+//                print("a \(numberOfBooksInRow)")
+//                print("b \(currentRow)")
+//                print("##########################++")
                 currentRow = currentRow + 1
                 numberOfBooksInRow = 0
                 dictionary[currentRow]?.append(book)
@@ -250,11 +251,15 @@ struct LibraryView: View {
             }
             
         }
-        print("******************************************")
-        print( dictionary)
+      //  print("getSegmentBooks(geometry: GeometryProxy)")
+   //     print( dictionary)
+            segmentBooks = dictionary
+            oldGeometryProxy = geometry
         return dictionary
         
-        
+//        } else {
+//            return segmentBooks!
+//        }
 //        var dictionary: [String: [Book]] = [:]
 //
 //        getAllLabels().forEach{ label in
@@ -274,7 +279,7 @@ struct LibraryView: View {
     }
     
     func getBooksAlphabetical() -> [Book] {
-        
+        print("getBooksAlphabetical()")
         var booksAlphabetical: [Book] = []
         
         books.forEach{ book in
@@ -289,7 +294,7 @@ struct LibraryView: View {
 
     
     func getMaxBookWidth(geometry: GeometryProxy) -> Int {
-        
+        print("getMaxBookWidth(geometry: GeometryProxy)")
         var maxBookWidth: Int
     //    print("geometry.size.width: \(geometry.size.width)")
         
@@ -304,7 +309,7 @@ struct LibraryView: View {
     }
     
     func getBookRows(geometry: GeometryProxy) -> Int {
-        
+        print("getBookRows(geometry: GeometryProxy)")
         var rows: Float
         var rowsInt: Int
     //    print("Float(getMaxBookWidth(geometry: geometry)): \(Float(getMaxBookWidth(geometry: geometry)))")
@@ -318,7 +323,7 @@ struct LibraryView: View {
     
     
     func isBought(for id: String) -> Bool {
-        
+        print("isBought(for id: String)")
         var isBought = false
         
         products.forEach { product in

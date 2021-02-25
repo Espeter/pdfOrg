@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  pdfOrg
+
+  Created by Carl Espeter on 23.02.21.
+  
+*/
+
+"LS_all" = "All";
+"LS_label" = "Label";
+"LS_title" = "Title";
+"LS_no Label" = "no Label";
+"LS_Unlimited number of books" = "Unlimited number of books";
+"LS_Buy" = "Buy";
+"LS_Restore Purchases" = "Restore Purchases";
+"LS_back" = "back";
+"LS_too many books" = "too many books";

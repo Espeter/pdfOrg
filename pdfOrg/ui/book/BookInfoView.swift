@@ -17,6 +17,7 @@ struct BookInfoView: View {
     @ObservedObject var book: Book
     @Binding var editMode: Bool
     @State var showingPopup = false
+    @Binding var infoPopup: Bool
     @Binding var updateView: Bool
     
     @State var orientation: Int
@@ -24,6 +25,8 @@ struct BookInfoView: View {
     
     @State private var oldId: String?
     @State var idAlert: Bool = false
+    
+    @State var label: String = ""
     
     var body: some View {
         
@@ -85,12 +88,16 @@ struct BookInfoView: View {
                 
                 HStack{
                     Text("Label: ").foregroundColor(Color(UIColor.black))
-                    TextField(book.label ?? "", text: umwantler(binding: $book.label, fallback: ""), onEditingChanged: {(changed) in
+                    TextField(book.label ?? "", text: /*$label*/umwantler(binding: $book.label, fallback: ""), onEditingChanged: {(changed) in
                         if changed == false {
+                         //   infoPopup = false
                             saveContext()
                             updateView.toggle()
                             ec.updatLibrary.toggle()
                         }
+       //                     else {
+//                            label = book.label ?? ""
+//                        }
                     })
                 }
                 

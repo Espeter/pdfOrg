@@ -59,7 +59,7 @@ struct ContentView: View {
     }
     
     func getFavoritGig() -> Gig {
-        
+        print("1getFavoritGig()")
         var favoritGig: Gig? = nil
         
         gigs.forEach{ gig in
@@ -95,7 +95,7 @@ struct ContentView: View {
     
     func getArraySong() -> [Song] {
         var songsArray: [Song] = []
-        
+        print("1getArraySong()")
         songsFR.forEach{ song in
             songsArray.append(song)
         }
@@ -107,7 +107,7 @@ struct ContentView: View {
     }
     
     func getAllLabels() -> [String] {
-        
+        print("1getAllLabels()")
         var allLabels: [String] = []
         
         getBooksAlphabetical().forEach{ book in
@@ -121,7 +121,7 @@ struct ContentView: View {
     }
     
     func getSegmentBooksByLabel() -> [String: [Book]] {
-        
+        print("1getSegmentBooksByLabel()")
         var dictionary: [String: [Book]] = [:]
         
         getAllLabels().forEach{ label in
@@ -143,7 +143,7 @@ struct ContentView: View {
     
     
     func getBooksAlphabetical() -> [Book] {
-        
+        print("1getBooksAlphabetical()")
         var booksAlphabetical: [Book] = []
         
         books.forEach{ book in

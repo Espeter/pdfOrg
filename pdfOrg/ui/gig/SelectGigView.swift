@@ -35,8 +35,8 @@ struct SelectGigView: View {
 
 
             }.padding().background(Color(UIColor.systemGray6))
-            ScrollView{
-                VStack{
+            List{
+              //  VStack{
 
                     ForEach(getArrayGigs()) { gigO in
 
@@ -53,13 +53,21 @@ struct SelectGigView: View {
                             }
                             Spacer()
                         }
-                        Divider()
-                    }
-                }.padding()
-            }.padding(.top, -15).frame(minWidth: 200, maxHeight: 300)
+                   //     Divider()
+                    }.onDelete(perform: deleteGig)
+                //}.padding()
+            }.padding(.top, -15)
             
+        }.frame(minWidth: 200, minHeight: 300)
+    }
+    
+    private func deleteGig(offsets: IndexSet) {
+        withAnimation {
+            offsets.map {getArrayGigs()[$0]}.forEach(viewContext.delete)
+            saveContext()
         }
     }
+
     
     
     func textPrintOllgigTitel() {

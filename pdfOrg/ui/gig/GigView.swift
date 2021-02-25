@@ -80,7 +80,7 @@ struct GigView: View {
                                         }) {
                                             Text("\(gig.title ?? "selector Gig")")
                                                 .popover(isPresented: self.$showingSelectGigView) {
-                                                    SelectGigView(gig: $gig, showingPopup: $showingSelectGigView)
+                                                    SelectGigView(gig: $gig, showingPopup: $showingSelectGigView)//.frame(minWidth: 200, maxHeight: 500)
                                                 }
                                         }
                                     }
