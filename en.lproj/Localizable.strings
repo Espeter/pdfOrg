@@ -15,3 +15,17 @@
 "LS_Restore Purchases" = "Restore Purchases";
 "LS_back" = "back";
 "LS_too many books" = "too many books";
+
+
+//Collection
+"LS_collection" = "Collection";
+"LS_Collections" = "Collections";
+"LS_new Collection" = "new Collection";
+"LS_no Title found" = "no Title found";
+"LS_done" = "Done";
+"LS_quit" = "Quit";
+"LS_Name of the Collection" = "Name of the Collection";
+"LS_add Titel" = "add Titel";
+"LS_add Titel to new Collection" = "add Titel to new Collection";
+"LS_Titels" = "Titels";
+"LS_new Collection" = "new Collection";

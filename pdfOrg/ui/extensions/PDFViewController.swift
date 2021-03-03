@@ -14,7 +14,7 @@ class PDFViewController: UIViewController {
     override func loadView() {
         
         pdfView = PDFView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        pdfView.backgroundColor = UIColor.white
+   //     pdfView.backgroundColor = UIColor.white
         pdfView.displayMode = PDFDisplayMode.singlePage
         pdfView.autoScales = true
         

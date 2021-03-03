@@ -22,6 +22,7 @@ struct ContentView: View {
     @FetchRequest(sortDescriptors: [])
     var books: FetchedResults<Book>
     
+  //  @State var upDaedCollection: Bool = false
     
     var body: some View {
         
@@ -47,6 +48,13 @@ struct ContentView: View {
                     .tabItem {
                         Image(systemName: "doc.text")
                     }.tag(3)
+                CollectionNavigationView(collections: Collections(gigs: gigs))
+                    .tabItem {
+                        
+                        Image(systemName: "doc.text")
+                        Text("LS_collection" as LocalizedStringKey)
+                      
+                    }.tag(4)
                 
             }
         } else if ec.presentationMode == true {

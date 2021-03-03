@@ -27,4 +27,7 @@ class EnvironmentController: ObservableObject {
     @Published var gBookID: String = "supergeheimmesBuchDasNurIchKennenDarf42MahahahahahahaGeheim"
     @Published var presentationModeLibrary: Int = 0
     @Published var updatLibrary: Bool = false
+    
+    @Published var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","#"]
+
 }
