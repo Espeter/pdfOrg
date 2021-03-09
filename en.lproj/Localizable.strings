@@ -20,7 +20,7 @@
 //Collection
 "LS_collection" = "Collection";
 "LS_Collections" = "Collections";
-"LS_new Collection" = "new Collection";
+"LS_New Collection" = "New Collection";
 "LS_no Title found" = "no Title found";
 "LS_done" = "Done";
 "LS_quit" = "Quit";
@@ -29,3 +29,11 @@
 "LS_add Titel to new Collection" = "add Titel to new Collection";
 "LS_Titels" = "Titels";
 "LS_new Collection" = "new Collection";
+"LS_edit" = "edit";
+"LS_delit Collection" = "delit Collection";
+"LS_export as .txt" = "export as .txt";
+"LS_delit" = "delit";
+"LS_delit %@" = "delit %@";
+"LS_back" = "back";
+"LS_delitCollectionText %@" = "Are you sure that you want to delit %@?";
+"LS_All Titels" = "All Titels";

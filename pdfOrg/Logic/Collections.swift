@@ -30,6 +30,23 @@ class Collections {
         }
     }
     
+    func delete(gig: Gig) {
+       
+        var i = 0
+        var j = 0
+        
+        array.forEach{ collection in
+            if collection == gig {
+                j = i
+            }
+            i = i + 1
+        }
+        
+        array.remove(at: j)
+        viewContext.delete(gig)
+        saveContext()
+    }
+    
     func addCollection(title: String, titelsInCollection: [SongInGig]){
         
         let newCollection: Gig = Gig(context: viewContext)

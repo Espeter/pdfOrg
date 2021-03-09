@@ -48,11 +48,7 @@ struct AddCollectionView: View {
                     })
                     ForEach(titelsInCollection){ titel in
                         if titel.song != nil {
-                      //      NavigationLink(destination: AddTitelPresentationView(titel: titel.song!, isInAddMod: false, titelsToBeAdded: $titelsToBeAdded, book: titel.song!.book ?? Book(), pageIndex: titel.song!.startPage ?? "1", isLandscape: false)) {
-            
                                     TitelRowInEditMod(titelInColetion: titel, titelsInColetion: $titelsInCollection)
-                          
-                    //        }
                         }
                     }
                     .onMove(perform: move)
@@ -95,7 +91,6 @@ struct AddCollectionView: View {
 
         isActive.toggle()
     }
-    
     
     private func delete(offsets: IndexSet) {
         withAnimation {

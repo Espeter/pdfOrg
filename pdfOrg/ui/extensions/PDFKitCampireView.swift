@@ -65,7 +65,7 @@ struct PDFPreviewControllerCampire: UIViewControllerRepresentable {
         let pageIndexInt = Int(pageIndex)!
         var calculatedPage: Int = pageIndexInt + Int(book.pageOfset ?? "0")!
         calculatedPage = calculatedPage - 1
-        uiViewController.pdfView.backgroundColor = UIColor.white
+    //    uiViewController.pdfView.backgroundColor = UIColor.white
 
         if let myPage = uiViewController.pdfView.document?.page(at: (calculatedPage )) {
             uiViewController.pdfView.go(to: myPage)

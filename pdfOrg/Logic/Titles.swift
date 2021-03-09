@@ -22,7 +22,9 @@ class Titles {
         self.array = []
         
         songs.forEach{ song in
+            if song.book?.id != "supergeheimmesBuchDasNurIchKennenDarf42MahahahahahahaGeheim" {
             array.append(song)
+            }
         }
         array.sort {
             $0.title ?? "" < $1.title ?? ""
