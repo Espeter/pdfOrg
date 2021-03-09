@@ -69,7 +69,19 @@ struct AllTitelsLiestView: View {
                     ForEach(titels.getSearchResult(searchTerms: searchText), id: \.self) { (song: Song) in
                         
                         Button(action: {setTitel(song: song)}, label: {
-                            Text("\(song.title!)")
+                            VStack(alignment: .leading){
+                                HStack{
+                                    Text(song.title ?? "error_no Titel")
+                                    if song.isFavorit {
+                                        Image(systemName: "star.fill").padding(.leading, 10)
+                                    }
+                                }
+                                HStack{
+                                    Text(song.author ?? "error_no author").foregroundColor(Color(UIColor.systemGray))
+                                    Spacer()
+                                    Text(song.book!.title ?? "error_no book title").foregroundColor(Color(UIColor.systemGray))
+                                }.font(.footnote)
+                            }
                         })
                         
                     }

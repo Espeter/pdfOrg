@@ -37,3 +37,5 @@
 "LS_back" = "back";
 "LS_delitCollectionText %@" = "Are you sure that you want to delit %@?";
 "LS_All Titels" = "All Titels";
+"LS_edit Name" = "edit Name";
+"LS_rename: %@" = "rename: %@";

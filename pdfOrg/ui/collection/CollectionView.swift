@@ -9,127 +9,118 @@ import SwiftUI
 
 struct CollectionView: View {
     
+    @FetchRequest(sortDescriptors: [])
+    private var songs: FetchedResults<Song>
+    
     // @State var gig: Gig
     @State var collection :Collection
     @Binding var collections: Collections
     
     @Binding var faworitenssssisActive: Bool
     
-    @State var titel: Song?
-    @State var titelInCollection: SongInGig?
+    @State var titel: Song
+    @State var titelInCollection: SongInGig
     @State var pageIndex: String = "1"
     @State private var editMode: Bool = false
     @State private var deleteCollectionAlert: Bool = false
+  
+    
+    @State var name: String = ""
     
     var body: some View {
+        VStack(alignment: .leading){
+            TitelCollectionVeiw(editMode: $editMode, titel: collection.name, name: $name)
+            
         GeometryReader { geometry in
             if geometry.size.width > geometry.size.height {
                 HStack {
-                    if titel != nil {
-                        CollectionPDFView(song: umwantler(binding: $titel, fallback: Song()), songInGig: umwantler(binding: $titelInCollection, fallback: SongInGig()), pageIndex: $pageIndex, collection: collection)
-                    } else {
-                        Text("pdf")
-                    }
-                    List() {
-                        
-                        ForEach(collection.titelsInCollection) { songInGig in
-                            
-                            if songInGig.song != nil {
-                                
-                                Button(action: {titelSelected(song: songInGig.song!,songInGigi: songInGig)}, label: {
-                                    HStack{
-                                        Text("\(songInGig.position).").font(.title3).padding(.trailing, 10)
-                                        
-                                        VStack(alignment: .leading){
-                                            HStack{
-                                                Text(songInGig.song!.title ?? "error_no Titel")
-                                                if songInGig.song!.isFavorit {
-                                                    Image(systemName: "star.fill").padding(.leading, 10)
-                                                }
-                                            }
-                                            HStack{
-                                                Text(songInGig.song!.author ?? "error_no author").foregroundColor(Color(UIColor.systemGray))
-                                                Spacer()
-                                                Text(songInGig.song!.book!.title ?? "error_no book title").foregroundColor(Color(UIColor.systemGray))
-                                            }.font(.footnote)
-                                        }
-                                    }
-                                })
-                            }
+           //         if titel != nil {
+          //              AllTitelsPDFView(song: $titel, pageIndex: $pageIndex)
+                        CollectionPDFView(song: $titel, songInGig: $titelInCollection, pageIndex: $pageIndex, collection: collection)
+  //                  CollectionPDFView(song: $titel, songInGig: umwantler(binding: $titelInCollection, fallback: SongInGig()), pageIndex: $pageIndex, collection: collection)
+//                    } else {
+//                        Text("pdf")
+             //       }
+                    VStack{
+                        Text("").padding(.top, -20).padding(.bottom, -20)
+                        if editMode {
+                            CollectionEditListView( titelsInCollection: collection.titelsInCollection, tilels: Titles(songs: songs))
+                        } else {
+                            CollectionListView(titel: $titel, titelInCollection: $titelInCollection, pageIndex: $pageIndex, collection: collection)
                         }
                     }
                 }
             }
             else {
                 VStack{
-                    
-                    if titel != nil {
-                        CollectionPDFView(song: umwantler(binding: $titel, fallback: Song()), songInGig: umwantler(binding: $titelInCollection, fallback: SongInGig()), pageIndex: $pageIndex, collection: collection)
+              //      if titel != nil {
+                        CollectionPDFView(song: $titel, songInGig: $titelInCollection, pageIndex: $pageIndex, collection: collection)
+         //               AllTitelsPDFView(song: umwantler(binding: $titel, fallback: Song()), pageIndex: $pageIndex)
+      //                  CollectionPDFView(song: $titel, songInGig: umwantler(binding: $titelInCollection, fallback: SongInGig()), pageIndex: $pageIndex, collection: collection)
+         //               CollectionPDFView(song: umwantler(binding: $titel, fallback: Song()), songInGig: umwantler(binding: $titelInCollection, fallback: SongInGig()), pageIndex: $pageIndex, collection: collection)
+//                    } else {
+//                        Text("pdf")
+//                    }
+                    if editMode {
+                        CollectionEditListView( titelsInCollection: collection.titelsInCollection, tilels: Titles(songs: songs))
                     } else {
-                        Text("pdf")
+                        CollectionListView(titel: $titel, titelInCollection: $titelInCollection, pageIndex: $pageIndex, collection: collection)
                     }
-                    List() {
-                        
-                        ForEach(collection.titelsInCollection) { songInGig in
-                            
-                            if songInGig.song != nil {
-                                
-                                Button(action: {titelSelected(song: songInGig.song!,songInGigi: songInGig)}, label: {
-                                    HStack{
-                                        Text("\(songInGig.position).").font(.title3).padding(.trailing, 10)
-                                        
-                                        VStack(alignment: .leading){
-                                            HStack{
-                                                Text(songInGig.song!.title ?? "error_no Titel")
-                                                if songInGig.song!.isFavorit {
-                                                    Image(systemName: "star.fill").padding(.leading, 10)
-                                                }
-                                            }
-                                            HStack{
-                                                Text(songInGig.song!.author ?? "error_no author").foregroundColor(Color(UIColor.systemGray))
-                                                Spacer()
-                                                Text(songInGig.song!.book!.title ?? "error_no book title").foregroundColor(Color(UIColor.systemGray))
-                                            }.font(.footnote)
-                                        }
-                                    }
-                                })
-                            }
-                        }
-                    }
+                    
                 }
             }
         }.onAppear{
-            if titel == nil && collection.titels.count > 0 {
-                titel = collection.titels[0]
-                titelInCollection = collection.titelsInCollection[0]
+//            if titel == nil && collection.titels.count > 0 {
+//                titel = collection.titels[0]
+//                titelInCollection = collection.titelsInCollection[0]
                 pageIndex = collection.titels[0].startPage ?? "1"
+              
+       //     }
+            if name == "" {
+            name = collection.name
             }
         }
-        .navigationBarTitle("\(collection.name)")//), displayMode: .inline)
+        .navigationBarTitle(/*"\(collection.name)"*/"", displayMode: .inline)
         .navigationViewStyle(StackNavigationViewStyle())
         .toolbar {
-            ToolbarItem(placement: .primaryAction) {
-                
-                Menu{
-                    Button(action: {editMode.toggle()}, label: {
-                        Text("LS_edit" as LocalizedStringKey)
-                        Spacer()
-                        Image(systemName:"pencil")
-                    })
-                    Button(action: {exportCollection()}, label: {
-                        Text("LS_export as .txt" as LocalizedStringKey)
-                        Spacer()
-                        Image(systemName:"square.and.arrow.up")
-                    })
-                    Divider()
-                    Button(action: {deleteCollectionAlert.toggle()}, label: {
-                        Text("LS_delit Collection" as LocalizedStringKey)
-                        Spacer()
-                        Image(systemName:"trash")
+//            ToolbarItem(placement: .status) {
+//                Text("fff")
+//            }
+            ToolbarItem(placement: .cancellationAction) {
+                if editMode {
+                    Button(action: {quit()}, label: {
+                        Text("LS_quit" as LocalizedStringKey)
                     })
                 }
-                label: {
-                    Image(systemName: "ellipsis.circle").padding()
+            }
+            ToolbarItem(placement: .primaryAction) {
+                
+                if editMode {
+                    Button(action: {done()}, label: {
+                        Text("LS_done" as LocalizedStringKey)
+                    })
+                } else {
+                    Menu{
+                        Button(action: {editMode.toggle()}, label: {
+                            Text("LS_edit" as LocalizedStringKey)
+                            Spacer()
+                            Image(systemName:"pencil")
+                        })
+                        Button(action: {exportCollection()}, label: {
+                            Text("LS_export as .txt" as LocalizedStringKey)
+                            Spacer()
+                            Image(systemName:"square.and.arrow.up")
+                        })
+                        Divider()
+                        Button(action: {deleteCollectionAlert.toggle()}, label: {
+                            Text("LS_delit Collection" as LocalizedStringKey)
+                            Spacer()
+                            Image(systemName:"trash")
+                        })
+                    }
+                    label: {
+                        Image(systemName: "ellipsis.circle").padding()
+                    }
                 }
             }
         }
@@ -138,17 +129,17 @@ struct CollectionView: View {
                   message: Text("LS_delitCollectionText \(collection.name)"),
                   primaryButton: .destructive(Text("LS_delit" as LocalizedStringKey),
                                               action: {
-                                                 collections.delete(gig: collection.gig)
+                                                collections.delete(gig: collection.gig)
                                                 faworitenssssisActive = true
                                               }),
                   secondaryButton: .cancel(Text("LS_back" as LocalizedStringKey))
             )
         }
     }
-    
-//    private func deleteCollection() {
-//        collections.delete(gig: collection.gig)
-//    }
+    }
+    //    private func deleteCollection() {
+    //        collections.delete(gig: collection.gig)
+    //    }
     
     private func exportCollection() {
         
@@ -171,10 +162,18 @@ struct CollectionView: View {
         }
     }
     
-    private func titelSelected(song: Song, songInGigi: SongInGig) {
-        titel = song
-        titelInCollection = songInGigi
-        pageIndex = song.startPage ?? "1"
+    //    private func titelSelected(song: Song, songInGigi: SongInGig) {
+    //        titel = song
+    //        titelInCollection = songInGigi
+    //        pageIndex = song.startPage ?? "1"
+    //    }
+    
+    private func done() {
+        print("done")
+    }
+    
+    private func quit() {
+        print("quit")
     }
     
     private func umwantler<T>(binding: Binding<T?>, fallback: T) -> Binding<T> {

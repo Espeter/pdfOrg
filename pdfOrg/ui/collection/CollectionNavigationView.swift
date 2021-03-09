@@ -59,13 +59,24 @@ struct CollectionNavigationView: View {
                     Divider()
                     ForEach(collections.array) { gig in
                         
-                        NavigationLink(destination: CollectionView(/*gig: gig,*/ collection: Collection(gig: gig), collections: $collections, faworitenssssisActive: $faworitenssssisActive)) {
+                        
+                        
+                   //     let collection = Collection(gig: gig)
+                        
+                     //   if collection.titels.count > 0 {
+                        
+                        NavigationLink(destination: /*CollectionView(collection: collection, collections: $collections, faworitenssssisActive: $faworitenssssisActive, titel: collection.titels[0], titelInCollection: collection.titelsInCollection[0], pageIndex: collection.titels[0].startPage ?? "1")*/CollectionView(/*gig: gig,*/ collection: Collection(gig: gig), collections: $collections, faworitenssssisActive: $faworitenssssisActive, titel: Collection(gig: gig).titels[0], titelInCollection: Collection(gig: gig).titelsInCollection[0]/*, titel: collection.titels[0]*/)) {
                      //   Button(action: {print("fas")}) {
                         Text("\(gig.title ?? "error_no Title found")")
                         }
                        // }
+//                        } else {
+//                            NavigationLink(destination: Text("muss noch mal gekut werden")) {
+//                            Text("\(gig.title ?? "error_no Title found")")
+//                            }
+//                        }
                     }
-                    
+                   
                     
                     
                 }

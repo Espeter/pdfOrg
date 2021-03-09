@@ -18,7 +18,7 @@ struct TitelRowInEditMod: View {
         HStack{
             
             if titelInColetion.song != nil {
-            Text("\(titelInColetion.position).").font(.title2).padding()
+            Text("\(titelInColetion.position).").font(.title3)//.padding()
             
             VStack(alignment: .leading){
                 HStack{
@@ -26,14 +26,14 @@ struct TitelRowInEditMod: View {
                     if titelInColetion.song!.isFavorit {
                         Image(systemName: "star.fill").padding(.leading, 10)
                     }
-                }.font(.title3)
+                }//.font(.title3)
                 HStack{
                     Text(titelInColetion.song!.author ?? "error_no author").foregroundColor(Color(UIColor.systemGray))
                     Spacer()
                     Text(titelInColetion.song!.book!.title ?? "error_no book title").foregroundColor(Color(UIColor.systemGray))
-                }
+                }.font(.footnote)
             }
-            Image(systemName: "line.horizontal.3").font(.title2).foregroundColor(Color(UIColor.systemGray)).padding()
+            Image(systemName: "line.horizontal.3").font(.title3).foregroundColor(Color(UIColor.systemGray)).padding()
         }
         }
     }
