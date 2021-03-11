@@ -8,3 +8,34 @@
 
 "LS_all" = "Alle";
 "LS_label" = "Label";
+"LS_title" = "Titte";
+"LS_no Label" = "kein Beschriftung";
+"LS_Unlimited number of books" = "unbegrenzte anzahl von Büchern";
+"LS_Buy" = "Kaufen";
+"LS_Restore Purchases" = "Keufe wieder herstellen";
+"LS_back" = "zurück";
+"LS_too many books" = "zu fiele bücher";
+
+
+//Collection
+"LS_collection" = "Kollektion";
+"LS_Collections" = "Kollektionen";
+"LS_New Collection" = "neue Kollektion";
+"LS_no Title found" = "kein Titel gefudnen";
+"LS_done" = "Fertig";
+"LS_quit" = "Abrechen";
+"LS_Name of the Collection" = "Name der Kollektion";
+"LS_add Titel" = "Tittel hinzufügen";
+"LS_add Titel to new Collection" = "Tittel zur neuen Kollektion hinzufügen";
+"LS_Titels" = "Tittels";
+"LS_new Collection" = "neue Kollektion";
+"LS_edit" = "bearbeiten";
+"LS_delit Collection" = "Kollektion bearbeiten";
+"LS_export as .txt" = "exportieren als .txt";
+"LS_delit" = "Löschen";
+"LS_delit %@" = "Lösche %@";
+"LS_back" = "zurück";
+"LS_delitCollectionText %@" = "bist du dir sicher das du %@ Löschen möchtest?";
+"LS_All Titels" = "Alle Tittel";
+"LS_edit Name" = "Namen Bearbeiten";
+"LS_rename: %@" = "neuer Name: %@";
