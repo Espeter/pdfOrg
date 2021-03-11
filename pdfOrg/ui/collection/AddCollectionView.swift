@@ -18,9 +18,10 @@ struct AddCollectionView: View {
     @State private var addingTitel:Bool = false
     @State private var name: String = ""
     @State private var titelsToBeAdded: [Song] = []
-    @State private var titelsInCollection: [SongInGig] = []
+    @State var titelsInCollection: [SongInGig] = []
     @Binding var collections: Collections
-
+    var titelsToBeCopyt: [Song]?
+    
 
     @State var apdaytLokalView: Bool = true
     var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","#"]
@@ -61,6 +62,11 @@ struct AddCollectionView: View {
                 SelectTitelForNewCollectionView(titelsToBeAdded: $titelsToBeAdded, titelsInCollection: $titelsInCollection, isActive: $addingTitel, segmentTitels: tilels.getSegmentTitles(by: alphabet), titels: tilels)
                     .environment(\.managedObjectContext, viewContext)
             }
+            .onAppear{
+                if titelsToBeCopyt != nil && titelsInCollection.count == 0 {
+                    inportCopy()
+                }
+            }
             .navigationBarTitle("LS_new Collection" as LocalizedStringKey, displayMode: .inline)
             .navigationBarItems(leading:
                                     Button(action: {
@@ -85,8 +91,25 @@ struct AddCollectionView: View {
             )
         }
     }
-    private func done() {
+    private func inportCopy(){
         
+        var i: Int64 = 1
+        
+        titelsToBeCopyt?.forEach{ titel in
+            
+            let newTitelInColekchen = SongInGig(context: viewContext)
+            newTitelInColekchen.position = i
+            newTitelInColekchen.song = titel
+            titelsInCollection.append(newTitelInColekchen)
+            i = i + 1
+        }
+    
+    
+    }
+    
+    private func done() {
+        print("nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn")
+        print(isActive)
         collections.addCollection(title: name, titelsInCollection: titelsInCollection)
 
         isActive.toggle()

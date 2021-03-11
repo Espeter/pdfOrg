@@ -30,6 +30,9 @@ class Collections {
         }
     }
     
+    
+
+    
     func delete(gig: Gig) {
        
         var i = 0

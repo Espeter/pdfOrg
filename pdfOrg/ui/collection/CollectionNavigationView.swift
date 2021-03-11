@@ -35,24 +35,30 @@ struct CollectionNavigationView: View {
                             Text("LS_New Collection" as LocalizedStringKey)
                         }
                     }
-                    NavigationLink(destination: Text("Faworitenssss") ,isActive: $faworitenssssisActive) {
-                 //   Button(action: {print("fas")}) {
-                        Image(systemName: "square.and.arrow.down")
-                            .foregroundColor(Color(UIColor.systemBlue))
-                    Text("Import Collection from .txt")
+                    
+                    Button(action: {addingCollection.toggle()}) {
+                        HStack{
+                            Image(systemName: "square.and.arrow.down")
+                                .foregroundColor(Color(UIColor.systemBlue))
+                        Text("Import Collection from .txt")
+                        }
                     }
+                    
+                
                     Divider()
                    
                     
                     NavigationLink(destination: AllTitelsView(tilels: Titles(songs: songs), selectedTitel: Titles(songs: songs).array[0]) ,isActive: $allTitelsView) {
+                      
                         Image(systemName: "list.bullet")
-                            .foregroundColor(Color(UIColor.systemBlue))
+                            .foregroundColor(allTitelsView ? Color(UIColor.white) : Color(UIColor.systemBlue))
+                      
                     Text("LS_All Titels" as LocalizedStringKey)
                     }
                     NavigationLink(destination: Text("Faworitenssss") ,isActive: $faworitenssssisActive) {
                  //   Button(action: {print("fas")}) {
                         Image(systemName: "star.fill")
-                            .foregroundColor(Color(UIColor.systemBlue))
+                            .foregroundColor( Color(UIColor.systemBlue))//faworitenssssisActive ? Color(UIColor.yellow) : Color(UIColor.systemBlue))
                     Text("Faworiten")
                     }
                     
@@ -64,7 +70,7 @@ struct CollectionNavigationView: View {
                    //     let collection = Collection(gig: gig)
                         
                      //   if collection.titels.count > 0 {
-                        
+                        if Collection(gig: gig).titels.count > 0 {
                         NavigationLink(destination: /*CollectionView(collection: collection, collections: $collections, faworitenssssisActive: $faworitenssssisActive, titel: collection.titels[0], titelInCollection: collection.titelsInCollection[0], pageIndex: collection.titels[0].startPage ?? "1")*/CollectionView(/*gig: gig,*/ collection: Collection(gig: gig), collections: $collections, faworitenssssisActive: $faworitenssssisActive, titel: Collection(gig: gig).titels[0], titelInCollection: Collection(gig: gig).titelsInCollection[0]/*, titel: collection.titels[0]*/)) {
                      //   Button(action: {print("fas")}) {
                         Text("\(gig.title ?? "error_no Title found")")
@@ -77,7 +83,7 @@ struct CollectionNavigationView: View {
 //                        }
                     }
                    
-                    
+                    }
                     
                 }
             }.navigationBarTitle("LS_Collections" as LocalizedStringKey, displayMode: .inline)

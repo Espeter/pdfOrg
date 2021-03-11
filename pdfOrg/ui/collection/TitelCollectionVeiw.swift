@@ -10,7 +10,7 @@ import SwiftUI
 struct TitelCollectionVeiw: View {
     
     @Binding var editMode: Bool
-    @State var titel: String
+    @Binding var titel: String
     
     @Binding var name: String
     
