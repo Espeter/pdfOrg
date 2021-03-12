@@ -30,8 +30,62 @@ class Collections {
         }
     }
     
+    func addToFavorites(song: Song) {
+        
+        let favorit = get(collection: "Favorites")
+        
+        if favorit.title ==  "Favorites" {
+            
+            let newSongInGig = SongInGig(context: viewContext)
+            
+            newSongInGig.song = song
+            newSongInGig.position = Int64(favorit.songsInGig?.count ?? 1) + 1
+            
+            favorit.addToSongsInGig(newSongInGig)
+            
+            song.isFavorit = true
+            
+        } else {
+            let newGig = Gig(context: viewContext)
+            newGig.title = "Favorites"
+            array.append(newGig)
+            addToFavorites(song: song)
+        }
+        saveContext()
+    }
+    
+    func removeFavorites(song: Song) {
+        
+        let favoritGig = get(collection: "Favorites")
+        
+        let favoritCollection = Collection(gig: favoritGig)
+        
+        
+        favoritCollection.titelsInCollection.forEach{ songInGig in
+            
+            if songInGig.song == song {
+                favoritGig.removeFromSongsInGig(songInGig)
+                song.isFavorit = false
+                
+            }
+        }
+        favoritCollection.renewPosition()
+        saveContext()
+    }
     
 
+    
+    func get(collection: String) -> Gig {
+        
+        var soughtGig = Gig()
+        
+        array.forEach{ gig in
+            if gig.title == collection {
+                soughtGig = gig
+            }
+        }
+        return soughtGig
+    }
     
     func delete(gig: Gig) {
        
@@ -56,7 +110,7 @@ class Collections {
         newCollection.id = UUID()
         
         if title == "" {
-            newCollection.title = "LS_new Collection"
+            newCollection.title = "LS_new Collection" 
         } else {
             newCollection.title = title
         }
@@ -69,7 +123,9 @@ class Collections {
         array.append(newCollection)
     }
     
-    func getFavoritCollection(titles: [Song]) -> Gig {
+    
+    
+   private func getFavoritCollection(titles: [Song]) -> Gig {
         
         var favoritGig: Gig? = nil
         

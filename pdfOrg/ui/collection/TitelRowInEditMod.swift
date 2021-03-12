@@ -13,6 +13,8 @@ struct TitelRowInEditMod: View {
     @State var titelInColetion: SongInGig
     @Binding var titelsInColetion: [SongInGig]
     
+    @Binding var reload: Bool
+    
     var body: some View {
         
         HStack{
@@ -25,6 +27,11 @@ struct TitelRowInEditMod: View {
                     Text(titelInColetion.song!.title ?? "error_no Titel")
                     if titelInColetion.song!.isFavorit {
                         Image(systemName: "star.fill").padding(.leading, 10)
+                    }
+                    if reload {
+                        Text("")
+                    } else {
+                        Text("")
                     }
                 }//.font(.title3)
                 HStack{

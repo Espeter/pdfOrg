@@ -28,6 +28,8 @@ struct CollectionView: View {
 
     @State var name: String = ""
     
+    @State var reload: Bool = false
+    
     var body: some View {
         VStack(alignment: .leading){
             TitelCollectionVeiw(editMode: $editMode, titel: $collection.name, name: $name)
@@ -36,26 +38,26 @@ struct CollectionView: View {
             if geometry.size.width > geometry.size.height {
                 HStack {
 
-                        CollectionPDFView(song: $titel, songInGig: $titelInCollection, pageIndex: $pageIndex, collection: collection)
+                    CollectionPDFView(song: $titel, songInGig: $titelInCollection, pageIndex: $pageIndex, collection: $collection, Collections: collections, reload: $reload)
 
                     VStack{
                         Text("").padding(.top, -20).padding(.bottom, -20)
                         if editMode {
-                            CollectionEditListView( titelsInCollection: $collection.titelsInCollection, tilels: Titles(songs: songs))
+                            CollectionEditListView( titelsInCollection: $collection.titelsInCollection, tilels: Titles(songs: songs), reload:  $reload)
                         } else {
-                            CollectionListView(titel: $titel, titelInCollection: $titelInCollection, pageIndex: $pageIndex, collection: collection)
+                            CollectionListView(titel: $titel, titelInCollection: $titelInCollection, pageIndex: $pageIndex, collection: $collection, reload: $reload)
                         }
                     }
                 }
             }
             else {
                 VStack{
-                        CollectionPDFView(song: $titel, songInGig: $titelInCollection, pageIndex: $pageIndex, collection: collection)
+                    CollectionPDFView(song: $titel, songInGig: $titelInCollection, pageIndex: $pageIndex, collection: $collection, Collections: collections, reload: $reload)
 
                     if editMode {
-                        CollectionEditListView( titelsInCollection: $collection.titelsInCollection, tilels: Titles(songs: songs))
+                        CollectionEditListView( titelsInCollection: $collection.titelsInCollection, tilels: Titles(songs: songs), reload:  $reload)
                     } else {
-                        CollectionListView(titel: $titel, titelInCollection: $titelInCollection, pageIndex: $pageIndex, collection: collection)
+                        CollectionListView(titel: $titel, titelInCollection: $titelInCollection, pageIndex: $pageIndex, collection: $collection, reload: $reload)
                     }
                     
                 }
@@ -103,13 +105,14 @@ struct CollectionView: View {
                             Spacer()
                             Image(systemName:"square.and.arrow.up")
                         })
-                        
+                        if collection.name != "Favorites" {
                         Divider()
                         Button(action: {deleteCollectionAlert.toggle()}, label: {
                             Text("LS_delit Collection" as LocalizedStringKey)
                             Spacer()
                             Image(systemName:"trash")
                         })
+                        }
                     }
                     label: {
                         Image(systemName: "ellipsis.circle").padding()
@@ -119,9 +122,9 @@ struct CollectionView: View {
         }.sheet(isPresented: $copyCollection) {
             
         
+            CopyCollectionUIView(isActive: $copyCollection, collections:  $collections, name: collection.name, titelsToBeCopyt: collection.titels).environment(\.managedObjectContext, viewContext)
             
-            
-            AddCollectionView(isActive: $copyCollection,collections: $collections, titelsToBeCopyt: collection.titels).environment(\.managedObjectContext, viewContext)
+          //  AddCollectionView(isActive: $copyCollection,collections: $collections, titelsToBeCopyt: collection.titels).environment(\.managedObjectContext, viewContext)
         }
         .alert(isPresented: $deleteCollectionAlert) {
             Alert(title: Text("LS_delit \(collection.name)" as LocalizedStringKey),

@@ -40,3 +40,5 @@
 "LS_edit Name" = "edit Name";
 "LS_rename: %@" = "rename: %@";
 "LS_copy Collection" = "copy Collection";
+"LS_copy %@" = "copy %@";
+"LS_%@(copy)" = "%@(copy)";

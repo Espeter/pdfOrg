@@ -37,6 +37,7 @@
 		C379904A25B34E3700D58D28 /* AllSongsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C379904925B34E3700D58D28 /* AllSongsView.swift */; };
 		C37998E825D16BF300B36BA1 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C37998E725D16BF300B36BA1 /* StoreKit.framework */; };
 		C37998F225D16F7500B36BA1 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37998F125D16F7500B36BA1 /* Store.swift */; };
+		C37B15EB25FB7C23006107BB /* CopyCollectionUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37B15EA25FB7C23006107BB /* CopyCollectionUIView.swift */; };
 		C385D49F25B4A88D000D1452 /* EnvironmentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C385D49E25B4A88D000D1452 /* EnvironmentController.swift */; };
 		C385D4A825B4BC2A000D1452 /* PresentationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C385D4A725B4BC2A000D1452 /* PresentationView.swift */; };
 		C393F0E525EFCF7B000738FC /* TitelRowInEditMod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C393F0E425EFCF7B000738FC /* TitelRowInEditMod.swift */; };
@@ -115,6 +116,7 @@
 		C37998E125D15A3F00B36BA1 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
 		C37998E725D16BF300B36BA1 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		C37998F125D16F7500B36BA1 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		C37B15EA25FB7C23006107BB /* CopyCollectionUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyCollectionUIView.swift; sourceTree = "<group>"; };
 		C385D49E25B4A88D000D1452 /* EnvironmentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentController.swift; sourceTree = "<group>"; };
 		C385D4A725B4BC2A000D1452 /* PresentationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationView.swift; sourceTree = "<group>"; };
 		C393F0E425EFCF7B000738FC /* TitelRowInEditMod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitelRowInEditMod.swift; sourceTree = "<group>"; };
@@ -377,6 +379,7 @@
 				C358570725F7967100EC7957 /* CollectionListView.swift */,
 				C358570C25F7990000EC7957 /* CollectionEditListView.swift */,
 				C3ACB53A25F7C12700754F71 /* TitelCollectionVeiw.swift */,
+				C37B15EA25FB7C23006107BB /* CopyCollectionUIView.swift */,
 			);
 			path = collection;
 			sourceTree = "<group>";
@@ -526,6 +529,7 @@
 				C3F0F9CB25ACB3DA0004B66B /* LibraryViewExtension.swift in Sources */,
 				C3F9466F25ACEC78000C5CF1 /* CoverSheetView.swift in Sources */,
 				C3F0F99425AC98970004B66B /* pdfOrg.xcdatamodeld in Sources */,
+				C37B15EB25FB7C23006107BB /* CopyCollectionUIView.swift in Sources */,
 				C385D4A825B4BC2A000D1452 /* PresentationView.swift in Sources */,
 				C33E56E325EC088E0098A5C9 /* Titles.swift in Sources */,
 				C32F80CF25C2FC7800F8264C /* PDFViewController.swift in Sources */,

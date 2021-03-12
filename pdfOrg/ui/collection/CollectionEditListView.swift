@@ -18,7 +18,7 @@ struct CollectionEditListView: View {
     @State private var titelsToBeAdded: [Song] = []
     var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","#"]
 
-
+    @Binding var reload: Bool
     
     var body: some View {
         VStack{
@@ -35,7 +35,7 @@ struct CollectionEditListView: View {
                 })
                 ForEach(titelsInCollection){ titel in
                     if titel.song != nil {
-                                TitelRowInEditMod(titelInColetion: titel, titelsInColetion: $titelsInCollection)
+                        TitelRowInEditMod(titelInColetion: titel, titelsInColetion: $titelsInCollection, reload: $reload)
                     }
                 }
                 .onMove(perform: move)

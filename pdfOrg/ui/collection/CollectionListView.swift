@@ -13,7 +13,9 @@ struct CollectionListView: View {
     @Binding var titelInCollection: SongInGig
     @Binding var pageIndex: String
     
-    @State var collection: Collection
+    @Binding var collection: Collection
+    
+    @Binding var reload: Bool
     
     var body: some View {
         List() {
@@ -32,6 +34,11 @@ struct CollectionListView: View {
                                     if songInGig.song!.isFavorit {
                                         Image(systemName: "star.fill").padding(.leading, 10)
                                     }
+                                    if reload {
+                                        Text("")
+                                    } else {
+                                        Text("")
+                                    }
                                 }
                                 HStack{
                                     Text(songInGig.song!.author ?? "error_no author").foregroundColor(Color(UIColor.systemGray))
@@ -43,6 +50,7 @@ struct CollectionListView: View {
                     })
                 }
             }
+            
         }
     }
     private func titelSelected(song: Song, songInGigi: SongInGig) {

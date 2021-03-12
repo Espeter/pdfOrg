@@ -8,31 +8,60 @@
 import SwiftUI
 
 struct CollectionPDFView: View {
-        
+    
     @EnvironmentObject var ec : EnvironmentController
-     
+    @Environment(\.managedObjectContext) private var viewContext
+
+    
+    
     @Binding var song: Song
     @Binding var songInGig: SongInGig
     @Binding var pageIndex: String
     
-    @State var collection: Collection
-
+    @Binding var collection: Collection
+    @State var Collections: Collections
+    
+    @Binding var reload: Bool //= false
+    
     var body: some View {
-        ZStack{
+        ZStack(alignment: .topTrailing){
             PDFKitCampireView(book: umwantler(binding: $song.book, fallback: Book()), pageIndex: $pageIndex, presentationModde: true)
-            HStack{
-                if chevronLeftIsVisible() {
-                    Button(action: {backPage()}, label: {
-                        Image(systemName: "chevron.left").font(.title2).padding()
-                    })
+            VStack{
+                if song.isFavorit {
+                    Button(action: {
+                        removeFavorit()
+                    }) {
+                        Image(systemName: "star.fill").foregroundColor(Color(UIColor.systemBlue)).padding().padding()
+                    }
+                } else {
+                    Button(action: {
+                        addToFavorit()
+                    }) {
+                        Image(systemName: "star").foregroundColor(Color(UIColor.systemBlue)).padding().padding()
+                    }
+                }
+            }
+            VStack{
+                Spacer()
+                HStack{
+                    if chevronLeftIsVisible() {
+                        Button(action: {backPage()}, label: {
+                            Image(systemName: "chevron.left").font(.title2).padding()
+                        })
+                    }
+                    Spacer()
+                    if reload {
+                        Text("")
+                    }
+                    if chevronRightIsVisible(){
+                        Button(action: {nextPage()}, label: {
+                            Image(systemName: "chevron.right").font(.title2).padding()
+                            
+                        })
+                        
+                    }
                 }
                 Spacer()
-                if chevronRightIsVisible(){
-                    Button(action: {nextPage()}, label: {
-                        Image(systemName: "chevron.right").font(.title2).padding()
-                    })
-                    
-                }
             }
         }.gesture(DragGesture(minimumDistance: 100, coordinateSpace: .local)
                     .onEnded({ value in
@@ -50,7 +79,34 @@ struct CollectionPDFView: View {
             ec.presentationModeGig = true
         }
     }
+    
+    private func removeFavorit(){
+        
+       
+        
   
+        Collections.removeFavorites(song: song)
+        
+        if collection.name == "Favorites" {
+            print("****************************************************")
+            print(songInGig.position)
+            print("****************************************************")
+            let newPosichen = songInGig.position - 2 
+            viewContext.delete(songInGig)
+            
+            print(collection.titels.count)
+            
+            song = collection.titels[Int(newPosichen)]
+            pageIndex = collection.titels[Int(newPosichen)].startPage!
+        }
+        reload.toggle()
+    }
+    
+    private func addToFavorit(){
+        Collections.addToFavorites(song: song)
+        reload.toggle()
+    }
+    
     func backPage() {
         
         if Int((song.startPage)!) ==  Int(pageIndex) {
