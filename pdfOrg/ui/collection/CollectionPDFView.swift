@@ -88,13 +88,10 @@ struct CollectionPDFView: View {
         Collections.removeFavorites(song: song)
         
         if collection.name == "Favorites" {
-            print("****************************************************")
-            print(songInGig.position)
-            print("****************************************************")
-            let newPosichen = songInGig.position - 2 
+  
+            let newPosichen = songInGig.position - 2
             viewContext.delete(songInGig)
             
-            print(collection.titels.count)
             
             song = collection.titels[Int(newPosichen)]
             pageIndex = collection.titels[Int(newPosichen)].startPage!

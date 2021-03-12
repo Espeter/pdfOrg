@@ -45,7 +45,7 @@ struct CollectionNavigationView: View {
          
                     Divider()
                            
-                    NavigationLink(destination: AllTitelsView(tilels: Titles(songs: songs), selectedTitel: Titles(songs: songs).array[0]) ,isActive: $allTitelsView) {
+                    NavigationLink(destination: AllTitelsView(tilels: Titles(songs: songs), selectedTitel: Titles(songs: songs).array[0], collections: $collections) ,isActive: $allTitelsView) {
                         
                         Image(systemName: "list.bullet")
                             .foregroundColor(allTitelsView ? Color(UIColor.white) : Color(UIColor.systemBlue))

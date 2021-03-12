@@ -15,7 +15,8 @@ struct AllTitelsLiestView: View {
      var segmentTitels : [String: [Song]]
      var titels: Titles
      var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","#"]
-    
+    @Binding var reload: Bool
+
     var body: some View {
         VStack {
             SearchBar(text: $searchText)
@@ -39,6 +40,11 @@ struct AllTitelsLiestView: View {
                                                         Text(song.title ?? "error_no Titel")
                                                         if song.isFavorit {
                                                             Image(systemName: "star.fill").padding(.leading, 10)
+                                                        }
+                                                        if reload {
+                                                            Text("")
+                                                        } else {
+                                                            Text("")
                                                         }
                                                     }
                                                     HStack{

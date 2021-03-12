@@ -43,7 +43,7 @@ struct CollectionView: View {
                     VStack{
                         Text("").padding(.top, -20).padding(.bottom, -20)
                         if editMode {
-                            CollectionEditListView( titelsInCollection: $collection.titelsInCollection, tilels: Titles(songs: songs), reload:  $reload)
+                            CollectionEditListView( titelsInCollection: $collection.titelsInCollection, tilels: Titles(songs: songs), titel: $titel, collections: $collections, collection: $collection, reload:  $reload)
                         } else {
                             CollectionListView(titel: $titel, titelInCollection: $titelInCollection, pageIndex: $pageIndex, collection: $collection, reload: $reload)
                         }
@@ -55,7 +55,7 @@ struct CollectionView: View {
                     CollectionPDFView(song: $titel, songInGig: $titelInCollection, pageIndex: $pageIndex, collection: $collection, Collections: collections, reload: $reload)
 
                     if editMode {
-                        CollectionEditListView( titelsInCollection: $collection.titelsInCollection, tilels: Titles(songs: songs), reload:  $reload)
+                        CollectionEditListView( titelsInCollection: $collection.titelsInCollection, tilels: Titles(songs: songs), titel: $titel, collections: $collections, collection:  $collection, reload:  $reload)
                     } else {
                         CollectionListView(titel: $titel, titelInCollection: $titelInCollection, pageIndex: $pageIndex, collection: $collection, reload: $reload)
                     }

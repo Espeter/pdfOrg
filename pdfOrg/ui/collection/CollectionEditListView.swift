@@ -9,22 +9,25 @@ import SwiftUI
 
 struct CollectionEditListView: View {
     @Environment(\.managedObjectContext) private var viewContext
-
+    
     @State var addingTitel: Bool = false
     @Binding var titelsInCollection: [SongInGig]
     @State var  tilels: Titles
+    @Binding var titel: Song
+    @Binding var collections: Collections
+    @Binding var collection: Collection
     
-
+    
     @State private var titelsToBeAdded: [Song] = []
     var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","#"]
-
+    
     @Binding var reload: Bool
     
     var body: some View {
         VStack{
- 
-            List(){
             
+            List(){
+                
                 Button(action: {
                     addingTitel.toggle()
                 }, label: {
@@ -35,7 +38,12 @@ struct CollectionEditListView: View {
                 })
                 ForEach(titelsInCollection){ titel in
                     if titel.song != nil {
-                        TitelRowInEditMod(titelInColetion: titel, titelsInColetion: $titelsInCollection, reload: $reload)
+                        
+                        Button(action: {selecttitel(song: titel.song!)}, label: {
+                            
+                            TitelRowInEditMod(titelInColetion: titel, titelsInColetion: $titelsInCollection, reload: $reload)
+                            
+                        })
                     }
                 }
                 .onMove(perform: move)
@@ -43,17 +51,38 @@ struct CollectionEditListView: View {
             }
         }.sheet(isPresented: $addingTitel) {
             
-    //        let tilels = Titles(songs: songs)
+            //        let tilels = Titles(songs: songs)
             
             SelectTitelForNewCollectionView(titelsToBeAdded: $titelsToBeAdded, titelsInCollection: $titelsInCollection, isActive: $addingTitel, segmentTitels: tilels.getSegmentTitles(by: alphabet), titels: tilels)
                 .environment(\.managedObjectContext, viewContext)
         }
     }
+    
+    private func selecttitel(song: Song) {
+        titel = song
+    }
+    
     private func delete(offsets: IndexSet) {
         withAnimation {
+            
+            var newPosichen = titelsInCollection[offsets.first!].position - 2
+            
+            if newPosichen < 0 {
+                newPosichen = 0
+            }
+            
+            if collection.name == "Favorites" {
+                collections.removeFavorites(song: titelsInCollection[offsets.first!].song!)
+            }
             offsets.map {titelsInCollection[$0]}.forEach(viewContext.delete)
             titelsInCollection.remove(at: offsets.first!)
             renewPosition(songsInGig: titelsInCollection)
+            
+            if titelsInCollection.count <= newPosichen {
+                newPosichen = newPosichen - 1
+            }
+            
+            titel = titelsInCollection[Int(newPosichen)].song!
         }
     }
     
@@ -79,6 +108,6 @@ struct CollectionEditListView: View {
             songInGig.position = Int64(i)
             i = i + 1
         }
-     //   apdaytLokalView.toggle()
+        //   apdaytLokalView.toggle()
     }
 }
