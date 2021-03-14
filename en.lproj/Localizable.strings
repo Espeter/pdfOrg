@@ -42,3 +42,6 @@
 "LS_copy Collection" = "copy Collection";
 "LS_copy %@" = "copy %@";
 "LS_%@(copy)" = "%@(copy)";
+"LS_not oll Books exist" = "not oll Books exist";
+"LS_Thes Books dasent exist: %@" = "Thes Books dasent exist: %@";
+"LS_Oky" = "Oky";

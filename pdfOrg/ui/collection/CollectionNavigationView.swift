@@ -12,6 +12,9 @@ struct CollectionNavigationView: View {
     @FetchRequest(sortDescriptors: [])
     private var songs: FetchedResults<Song>
     
+    @FetchRequest(sortDescriptors: [])
+    var books: FetchedResults<Book>
+    
     @State var collections: Collections
     @Environment(\.managedObjectContext) private var viewContext
     @State var apdaytLokalView: Bool = true
@@ -20,6 +23,10 @@ struct CollectionNavigationView: View {
     
     @State var faworitenssssisActive: Bool = true
     @State var allTitelsView: Bool = true
+    @State var impotCollection: Bool = false
+    
+    @State var allNonExistentBooks: [String]?
+    @State var bookAlert: Bool = false
     
     var body: some View {
         
@@ -35,7 +42,7 @@ struct CollectionNavigationView: View {
                         }
                     }
                     
-                    Button(action: {addingCollection.toggle()}) {
+                    Button(action: {impotCollection.toggle()}) {
                         HStack{
                             Image(systemName: "square.and.arrow.down")
                                 .foregroundColor(Color(UIColor.systemBlue))
@@ -80,6 +87,39 @@ struct CollectionNavigationView: View {
         }.sheet(isPresented: $addingCollection) {
             AddCollectionView(isActive: $addingCollection, collections: $collections).environment(\.managedObjectContext, viewContext)
         }
+        .fileImporter(isPresented: $impotCollection, allowedContentTypes: [.text])
+        { (res) in
+            do {
+                let fileUrl = try res.get()
+               
+                allNonExistentBooks = collections.importCollection(url: fileUrl, books: books)
+                
+                if allNonExistentBooks != nil {
+                    bookAlert.toggle()
+                } else {
+                    print("Import erfolkreich =)")
+                }
+                
+            }
+            catch {
+                print("error_impot Collection")
+            }
+        }
+        .alert(isPresented: $bookAlert) {
+            Alert(title: Text("LS_not oll Books exist" as LocalizedStringKey),
+                  message: Text("LS_Thes Books dasent exist: \(getnotExistingBooks())" as LocalizedStringKey),
+                  dismissButton: .cancel(Text("LS_Oky" as LocalizedStringKey))
+            )
+        }
+    }
+    func getnotExistingBooks() -> String {
+        
+        var existingBooksString: String = "\n"
+        
+        allNonExistentBooks!.forEach{ bookID in
+            existingBooksString = existingBooksString + bookID + "\n"
+        }
+        return existingBooksString
     }
     
 }
