@@ -110,6 +110,8 @@ class Collections {
         if newSongInGig.song == nil {
             
             newSongInGig.song = get404Song(teitel: songTeitel, books: books)
+            newSongInGig.bookId = bookId
+            newSongInGig.teitel = songTeitel
         }
         return newSongInGig
     }
@@ -233,8 +235,6 @@ class Collections {
         favoritCollection.renewPosition()
         saveContext()
     }
-    
-
     
     func get(collection: String) -> Gig {
         

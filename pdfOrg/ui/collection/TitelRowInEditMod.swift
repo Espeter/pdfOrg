@@ -15,6 +15,12 @@ struct TitelRowInEditMod: View {
     
     @Binding var reload: Bool
     
+//    private var titel: String?
+//    private var author: String?
+//    private var boolTitel: String?
+    
+    @State private var is404: Bool = false
+    
     var body: some View {
         
         HStack{
@@ -28,6 +34,9 @@ struct TitelRowInEditMod: View {
                     if titelInColetion.song!.isFavorit {
                         Image(systemName: "star.fill").padding(.leading, 10)
                     }
+                    if is404 {
+                        Image(systemName: "exclamationmark.triangle.fill").foregroundColor(Color(UIColor.systemYellow)).padding(.leading, 10)
+                    }
                     if reload {
                         Text("")
                     } else {
@@ -35,7 +44,11 @@ struct TitelRowInEditMod: View {
                     }
                 }//.font(.title3)
                 HStack{
-                    Text(titelInColetion.song!.author ?? "error_no author").foregroundColor(Color(UIColor.systemGray))
+                    if is404 {
+                        Text("LS_This Teitel is not faund in Book" as LocalizedStringKey).foregroundColor(Color(UIColor.systemGray))
+                    } else {
+                        Text(titelInColetion.song!.author ?? "error_no author").foregroundColor(Color(UIColor.systemGray))
+                    }
                     Spacer()
                     Text(titelInColetion.song!.book!.title ?? "error_no book title").foregroundColor(Color(UIColor.systemGray))
                 }.font(.footnote)
@@ -43,5 +56,21 @@ struct TitelRowInEditMod: View {
             Image(systemName: "line.horizontal.3").font(.title3).foregroundColor(Color(UIColor.systemGray)).padding()
         }
         }
+        .onAppear(){
+            
+            if songNotFaund() {
+                is404 = true
+            }
+        }
+    }
+    
+    private func songNotFaund() -> Bool {
+        
+        var is404: Bool = false
+        
+        if titelInColetion.song?.book?.id == "supergeheimmesBuchDasNurIchKennenDarf42MahahahahahahaGeheim" {
+            is404 = true
+        }
+        return is404
     }
 }

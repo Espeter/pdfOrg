@@ -68,6 +68,33 @@ class Collection {
     //        return copy
     //    }
     
+    func songIsCollection(songInGig: SongInGig, books: FetchedResults<Book>) -> Bool {
+        
+        var songIsCollection = false
+        
+        var book: Book = Book()
+        
+        books.forEach { aBook in
+            if aBook.id != nil {
+                if aBook.id == songInGig.bookId {
+                    book = aBook
+                }
+            }
+        }
+        book.songs?.forEach{ song in
+            
+            if (song as! Song).title == songInGig.teitel {
+                songIsCollection = true
+                songInGig.song = song as? Song
+                songInGig.bookId = nil
+                songInGig.teitel = nil
+                saveContext()
+            }
+        }
+        
+        return songIsCollection
+    }
+    
     func remove(song: Song) {
         
         var i = 0
