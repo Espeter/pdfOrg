@@ -27,6 +27,8 @@ struct AddCollectionView: View {
     @State var apdaytLokalView: Bool = true
     var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","#"]
 
+    @State var alert: Bool = false
+    
     var body: some View {
         NavigationView{
             VStack{
@@ -91,6 +93,12 @@ struct AddCollectionView: View {
                                     })
             )
         }
+        .alert(isPresented: $alert) {
+            Alert(title: Text("LS_no title in Collection" as LocalizedStringKey),
+                  message: Text("LS_It is not Posibel to haf a Collection whis aut a associated Titel" as LocalizedStringKey),
+                  dismissButton: .cancel(Text("LS_understood" as LocalizedStringKey))
+            )
+        }
     }
 //    private func inportCopy(){
 //
@@ -109,9 +117,12 @@ struct AddCollectionView: View {
 //    }
     
     private func done() {
+        if titelsInCollection.count > 0 {
         collections.addCollection(title: name, titelsInCollection: titelsInCollection)
-
         isActive.toggle()
+        } else {
+            alert = true
+        }
     }
     
     private func delete(offsets: IndexSet) {

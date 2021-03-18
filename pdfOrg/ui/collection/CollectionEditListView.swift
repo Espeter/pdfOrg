@@ -22,6 +22,7 @@ struct CollectionEditListView: View {
     var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","#"]
     
     @Binding var reload: Bool
+    @Binding var lastSongDeleted: Bool
     
     var body: some View {
         VStack{
@@ -64,25 +65,28 @@ struct CollectionEditListView: View {
     
     private func delete(offsets: IndexSet) {
         withAnimation {
-            
-            var newPosichen = titelsInCollection[offsets.first!].position - 2
-            
-            if newPosichen < 0 {
-                newPosichen = 0
+            if titelsInCollection.count > 1 {
+                var newPosichen = titelsInCollection[offsets.first!].position - 2
+                
+                if newPosichen < 0 {
+                    newPosichen = 0
+                }
+                
+                if collection.name == "Favorites" {
+                    collections.removeFavorites(song: titelsInCollection[offsets.first!].song!)
+                }
+                offsets.map {titelsInCollection[$0]}.forEach(viewContext.delete)
+                titelsInCollection.remove(at: offsets.first!)
+                renewPosition(songsInGig: titelsInCollection)
+                
+                if titelsInCollection.count <= newPosichen {
+                    newPosichen = newPosichen - 1
+                }
+                
+                titel = titelsInCollection[Int(newPosichen)].song!
+            } else {
+                lastSongDeleted.toggle()
             }
-            
-            if collection.name == "Favorites" {
-                collections.removeFavorites(song: titelsInCollection[offsets.first!].song!)
-            }
-            offsets.map {titelsInCollection[$0]}.forEach(viewContext.delete)
-            titelsInCollection.remove(at: offsets.first!)
-            renewPosition(songsInGig: titelsInCollection)
-            
-            if titelsInCollection.count <= newPosichen {
-                newPosichen = newPosichen - 1
-            }
-            
-            titel = titelsInCollection[Int(newPosichen)].song!
         }
     }
     

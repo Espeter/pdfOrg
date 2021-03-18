@@ -39,15 +39,15 @@ struct ContentView: View {
                             Image(systemName: "books.vertical")
                         }.tag(1)
                 }
-                CampfireView()
-                    .tabItem{
-                        Image(systemName: "list.bullet")
-                    }.tag(2)
-                
-                GigView(gig: getFavoritGig())
-                    .tabItem {
-                        Image(systemName: "doc.text")
-                    }.tag(3)
+//                CampfireView()
+//                    .tabItem{
+//                        Image(systemName: "list.bullet")
+//                    }.tag(2)
+//
+//                GigView(gig: getFavoritGig())
+//                    .tabItem {
+//                        Image(systemName: "doc.text")
+//                    }.tag(3)
                 CollectionNavigationView(collections: Collections(gigs: gigs))
                     .tabItem {
                         

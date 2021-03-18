@@ -75,12 +75,23 @@ struct CollectionNavigationView: View {
                     
                     ForEach(collections.array) { gig in
                         
-                        if Collection(gig: gig).titels.count > 0 && gig.title != "Favorites" {
+            //            if Collection(gig: gig).titels.count > 0 && gig.title != "Favorites" {
+                        if Collection(gig: gig).titels.count > 0 {
+                        if gig.title != "Favorites" {
                             NavigationLink(destination: CollectionView(collection: Collection(gig: gig), collections: $collections, faworitenssssisActive: $faworitenssssisActive, titel: Collection(gig: gig).titels[0], titelInCollection: Collection(gig: gig).titelsInCollection[0])) {
                                 
                                 Text("\(gig.title ?? "error_no Title found")")
                             }
                         }
+                        } else {
+                            NavigationLink(destination:  Text("no song")) {
+                                
+                                Text("\(gig.title ?? "error_no Title found")")
+                            }
+                           
+                        }
+                        
+                        
                     }
                 }
             }.navigationBarTitle("LS_Collections" as LocalizedStringKey, displayMode: .inline)

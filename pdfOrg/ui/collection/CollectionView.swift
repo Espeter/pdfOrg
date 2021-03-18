@@ -29,12 +29,15 @@ struct CollectionView: View {
     @State var name: String = ""
     
     @State var reload: Bool = false
+    @State var lastSongDeleted: Bool = false
     
     var body: some View {
         VStack(alignment: .leading){
             TitelCollectionVeiw(editMode: $editMode, titel: $collection.name, name: $name)
+        
             
         GeometryReader { geometry in
+        //    if collection.titels.count > 0 {
             if geometry.size.width > geometry.size.height {
                 HStack {
 
@@ -43,7 +46,7 @@ struct CollectionView: View {
                     VStack{
                         Text("").padding(.top, -20).padding(.bottom, -20)
                         if editMode {
-                            CollectionEditListView( titelsInCollection: $collection.titelsInCollection, tilels: Titles(songs: songs), titel: $titel, collections: $collections, collection: $collection, reload:  $reload)
+                            CollectionEditListView( titelsInCollection: $collection.titelsInCollection, tilels: Titles(songs: songs), titel: $titel, collections: $collections, collection: $collection, reload:  $reload, lastSongDeleted: $lastSongDeleted)
                         } else {
                             CollectionListView(titel: $titel, titelInCollection: $titelInCollection, pageIndex: $pageIndex, collection: $collection, reload: $reload)
                         }
@@ -55,13 +58,16 @@ struct CollectionView: View {
                     CollectionPDFView(song: $titel, songInGig: $titelInCollection, pageIndex: $pageIndex, collection: $collection, Collections: collections, reload: $reload)
 
                     if editMode {
-                        CollectionEditListView( titelsInCollection: $collection.titelsInCollection, tilels: Titles(songs: songs), titel: $titel, collections: $collections, collection:  $collection, reload:  $reload)
+                        CollectionEditListView( titelsInCollection: $collection.titelsInCollection, tilels: Titles(songs: songs), titel: $titel, collections: $collections, collection:  $collection, reload:  $reload, lastSongDeleted: $lastSongDeleted)
                     } else {
                         CollectionListView(titel: $titel, titelInCollection: $titelInCollection, pageIndex: $pageIndex, collection: $collection, reload: $reload)
                     }
                     
                 }
             }
+//            } else {
+//                Text("das")
+//            }
         }.onAppear{
             pageIndex = collection.titels[0].startPage ?? "1"
             if name == "" {
@@ -135,6 +141,18 @@ struct CollectionView: View {
                                                 faworitenssssisActive = true
                                               }),
                   secondaryButton: .cancel(Text("LS_back" as LocalizedStringKey))
+            )
+        }
+        .alert(isPresented: $lastSongDeleted) {
+            Alert(title: Text("LS_delit Collection" as LocalizedStringKey),
+                  message: Text("It is not Posibel to haf a Collection whis aut a associated Titel" as LocalizedStringKey),
+                  primaryButton: .cancel(Text("LS_back" as LocalizedStringKey)),
+                  secondaryButton: .default(
+                    Text("LS_delete complete collection" as LocalizedStringKey),
+                    action: {
+                        collections.delete(gig: collection.gig)
+                        faworitenssssisActive = true
+                    })
             )
         }
     }

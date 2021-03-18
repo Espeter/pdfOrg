@@ -46,3 +46,7 @@
 "LS_Thes Books dasent exist: %@" = "Thes Books dasent exist: %@";
 "LS_Oky" = "Oky";
 "LS_This Teitel is not faund in Book" = "This Teitel is not faund in Book";
+"LS_It is not Posibel to haf a Collection whis aut a associated Titel" = "It is not Posibel to haf a Collection whis aut a associated Titel";
+"LS_delete complete collection" = "delete complete collection";
+"LS_no title in Collection" = "no title in Collection";
+"LS_understood" = "understood";
