@@ -22,6 +22,7 @@ struct Book2View: View {
     @State var delitBook: Bool = false
     @State var deleteSongsAlert: Bool = false
     @State var updayitView: Bool = false
+    @State var openFile: Bool = false
 
     
     var body: some View {
@@ -94,8 +95,17 @@ struct Book2View: View {
                 }
             }
         }.padding(.top, -50)
-        
-        
+        .fileImporter(isPresented: $openFile, allowedContentTypes: [.text])
+        { (res) in
+            do {
+                let fileUrl = try res.get()
+                importSongs(url: fileUrl)
+                
+            }
+            catch {
+                print("error")
+            }
+        }
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 
@@ -110,12 +120,12 @@ struct Book2View: View {
                         Spacer()
                         Image(systemName:"gear")
                     })
-                    Button(action: {print("foo")}, label: {
-                        Text("LS_uplod contents" as LocalizedStringKey)
+                    Button(action: {openFile.toggle()}, label: {
+                        Text("LS_donlod contents" as LocalizedStringKey)
                         Spacer()
                         Image(systemName:"square.and.arrow.down")
                     })
-                    Button(action: {print("foo")}, label: {
+                    Button(action: {exportDirectory()}, label: {
                         Text("LS_uplod contents" as LocalizedStringKey)
                         Spacer()
                         Image(systemName:"square.and.arrow.up")
@@ -154,5 +164,105 @@ struct Book2View: View {
             let error = error as NSError
             fatalError("error addBook: \(error)")
         }
+    }
+    private func importSongs(url: URL) {
+        
+        var txt = String()
+        
+        do{
+            guard url.startAccessingSecurityScopedResource() else {
+                return
+            }
+            //  txt = try NSString(contentsOf: url, encoding: String.Encoding.ascii.rawValue) as String
+            txt = try NSString(contentsOf: url, encoding: String.Encoding.utf8.rawValue) as String
+        }  catch {
+            print(error)
+        }
+        
+        txt.enumerateLines(invoking: { (line, stop) -> () in
+            let lineSplit = line.components(separatedBy:";")
+            
+            if lineSplit.count == 3 {
+                addSong(name: lineSplit[0], startSide: lineSplit[1], endPage: lineSplit[2], author: nil)
+            } else {
+                addSong(name: lineSplit[0], startSide: lineSplit[1],endPage: lineSplit[2], author: lineSplit[3])
+            }
+        })
+        url.stopAccessingSecurityScopedResource()
+        saveContext()
+    }
+    func addSong(name: String, startSide: String, endPage: String, author: String?) {
+        
+        let song: Song = Song(context: viewContext)
+        
+        song.id = UUID()
+        song.isFavorit = false
+        song.title = name
+        song.startPage = startSide
+        if endPage != ""{
+            song.endPage = endPage
+        } else {
+            song.endPage = startSide
+        }
+        song.author = author ?? "n.a."
+        
+        book.addToSongs(song)
+        
+   //     saveContext()
+    }
+    
+    private func exportDirectory() {
+        
+        let text = getDirectory()
+        let textData = text.data(using: .utf8)
+        let textURL = textData?.dataToFile(fileName: "\(book.title!)_Directory.txt")
+        var filesToShare = [Any]()
+        filesToShare.append(textURL!)
+ 
+        let av = UIActivityViewController(activityItems: filesToShare, applicationActivities: nil)
+        UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
+
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            av.popoverPresentationController?.sourceView = UIApplication.shared.windows.first
+            av.popoverPresentationController?.sourceRect = CGRect(
+                x: UIScreen.main.bounds.width /*/ 2.1*/,
+                y: UIScreen.main.bounds.height / 3.2,
+                width: 200, height: 200
+            )
+        }
+    }
+    
+    private func getDirectory() -> String {
+        
+        var directory = ""
+        
+        let songsAsArray = getArraySong(book.songs!)
+        
+        songsAsArray.forEach { song in
+            
+            directory.append(song.title!)
+            directory.append(";")
+            directory.append(String(song.startPage ?? "1"))
+            directory.append(";")
+            directory.append(String(song.endPage ?? "1"))
+            
+            if song.author != nil {
+                directory.append(";")
+                directory.append(song.author!)
+            }
+           
+            directory.append("\n")
+        }
+        
+        print(directory)
+        return directory
+    }
+    func getArraySong(_ snSet : NSSet) -> [Song] {
+        
+        let songs = snSet.allObjects as! [Song]
+        
+        let sortedSongs = songs.sorted {$0.title ?? "0" < $1.title ?? "0"}
+        
+        return sortedSongs
     }
 }
