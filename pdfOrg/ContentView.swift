@@ -31,11 +31,13 @@ struct ContentView: View {
                 if ec.updatLibrary {
                     LibraryView(allLabels: getAllLabels(), segmentBooksByLabel: getSegmentBooksByLabel())
                         .tabItem {
+                            Text("LS_Library" as LocalizedStringKey)
                             Image(systemName: "books.vertical")
                         }.tag(1)
                 } else {
                     LibraryView(allLabels: getAllLabels(), segmentBooksByLabel: getSegmentBooksByLabel())
                         .tabItem {
+                            Text("LS_Library" as LocalizedStringKey)
                             Image(systemName: "books.vertical")
                         }.tag(1)
                 }

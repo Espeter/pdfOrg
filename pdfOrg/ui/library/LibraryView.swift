@@ -29,7 +29,7 @@ struct LibraryView: View {
     
     @State private var storeOpen: Bool = false
     
-  //  @State var presentationMode: Int = 0
+    //  @State var presentationMode: Int = 0
     let presentationModes: [LocalizedStringKey] = ["LS_all" , "LS_label" ]
     let presentationModesImage = ["tag", "tag"]
     
@@ -80,37 +80,8 @@ struct LibraryView: View {
                             if ec.updateGigInfoView {
                                 Text("")
                             }
-                            
                         }
                     }
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    //                HStack{
-                    //                    Text("All")
-                    //                        .font(.title)
-                    //                        .padding()
-                    //                        .padding(.bottom, -40)
-                    //                        .multilineTextAlignment(.center)
-                    //                    Spacer()
-                    //                }
-                    //                ScrollView(.horizontal) {
-                    //                    HStack(){
-                    //                        ForEach(getArrayBook(books)) { book in
-                    //                            if book.id != ec.gBookID {
-                    //                                CoverSheetView(book: book, popupIsActive: $popupIsActive)
-                    //                            }
-                    //                        }
-                    //                    }.frame(height: 300).padding(.bottom, -20)
-                    //                }
-                    //                Divider()
-                    //                Spacer()
-                    //                Text("")
-                    
                 } else {
                     GeometryReader { geometry in
                         ScrollView {
@@ -126,8 +97,8 @@ struct LibraryView: View {
                                     } else {
                                         Text("")
                                     }
-
-
+                                    
+                                    
                                 }.frame(height: 300)
                             }.frame(width: geometry.size.width)
                         }.frame(width: geometry.size.width)
@@ -137,7 +108,7 @@ struct LibraryView: View {
                 
                 
             }.background(Color(UIColor.systemBlue).opacity(0.05))
-            .navigationBarTitle("", displayMode: .inline)
+            .navigationBarTitle("LS_Library" as LocalizedStringKey)//, displayMode: .inline)
             .navigationBarItems(leading:
                                     
                                     Picker("", selection: $ec.presentationModeLibrary ){
@@ -218,11 +189,11 @@ struct LibraryView: View {
     }
     
     func getSegmentBooks(geometry: GeometryProxy) -> [Int:[Book]] {
-   //     if oldGeometryProxy?.size.width != geometry.size.width {
+        //     if oldGeometryProxy?.size.width != geometry.size.width {
         var dictionary: [Int:[Book]] = [:]
         let maxBookWidth = getMaxBookWidth(geometry: geometry)
         let numberOfRows: Int = getBookRows(geometry: geometry)
-
+        
         (1...numberOfRows).forEach{ i in
             dictionary[i] = []
         }
@@ -231,55 +202,30 @@ struct LibraryView: View {
         var currentRow = 1
         
         getBooksAlphabetical().forEach{ book in
-        
+            
             if book.coverSheet != nil {
-            if numberOfBooksInRow < maxBookWidth {
-//                print("a \(numberOfBooksInRow)")
-//                print("b \(currentRow)")
-//                print("##########################")
-                dictionary[currentRow]?.append(book)
-                numberOfBooksInRow = numberOfBooksInRow + 1
-            } else {
-//                print("a \(numberOfBooksInRow)")
-//                print("b \(currentRow)")
-//                print("##########################++")
-                currentRow = currentRow + 1
-                numberOfBooksInRow = 0
-                dictionary[currentRow]?.append(book)
-                numberOfBooksInRow = numberOfBooksInRow + 1
-            }
+                if numberOfBooksInRow < maxBookWidth {
+
+                    dictionary[currentRow]?.append(book)
+                    numberOfBooksInRow = numberOfBooksInRow + 1
+                } else {
+
+                    currentRow = currentRow + 1
+                    numberOfBooksInRow = 0
+                    dictionary[currentRow]?.append(book)
+                    numberOfBooksInRow = numberOfBooksInRow + 1
+                }
             }
             
         }
-      //  print("getSegmentBooks(geometry: GeometryProxy)")
-   //     print( dictionary)
-            segmentBooks = dictionary
-            oldGeometryProxy = geometry
+
+        oldGeometryProxy = geometry
         return dictionary
-        
-//        } else {
-//            return segmentBooks!
-//        }
-//        var dictionary: [String: [Book]] = [:]
-//
-//        getAllLabels().forEach{ label in
-//            dictionary[label] = []
-//        }
-//
-//        getBooksAlphabetical().forEach{ book in
-//
-//            let bookLabel = book.label
-//            if book.id != ec.gBookID {
-//                dictionary[bookLabel ?? ""]?.append(book)
-//            }
-//        }
-//        return dictionary
-        
+
         
     }
     
     func getBooksAlphabetical() -> [Book] {
-        print("getBooksAlphabetical()")
         var booksAlphabetical: [Book] = []
         
         books.forEach{ book in
@@ -291,16 +237,15 @@ struct LibraryView: View {
         }
         return booksAlphabetical
     }
-
+    
     
     func getMaxBookWidth(geometry: GeometryProxy) -> Int {
-        print("getMaxBookWidth(geometry: GeometryProxy)")
         var maxBookWidth: Int
-    //    print("geometry.size.width: \(geometry.size.width)")
+        //    print("geometry.size.width: \(geometry.size.width)")
         
         if geometry.size.width != 0.0 {
-        
-        maxBookWidth = Int(geometry.size.width / 180)    // KP wie so nicht 200 ....
+            
+            maxBookWidth = Int(geometry.size.width / 180)    // KP wie so nicht 200 ....
         } else {
             maxBookWidth = 7
         }
@@ -309,12 +254,10 @@ struct LibraryView: View {
     }
     
     func getBookRows(geometry: GeometryProxy) -> Int {
-        print("getBookRows(geometry: GeometryProxy)")
         var rows: Float
         var rowsInt: Int
-    //    print("Float(getMaxBookWidth(geometry: geometry)): \(Float(getMaxBookWidth(geometry: geometry)))")
+        
         rows = Float(books.count) / Float(getMaxBookWidth(geometry: geometry))
-   //     print("rows: \(rows)")
         rowsInt = Int(rows.rounded(.up))
         
         return rowsInt
@@ -323,7 +266,6 @@ struct LibraryView: View {
     
     
     func isBought(for id: String) -> Bool {
-        print("isBought(for id: String)")
         var isBought = false
         
         products.forEach { product in

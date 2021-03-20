@@ -30,7 +30,8 @@ struct CollectionEditListView: View {
             List(){
                 
                 Button(action: {
-                    addingTitel.toggle()
+                    print("test")
+                    addingTitel = true
                 }, label: {
                     HStack{
                         Image(systemName: "plus.circle.fill").foregroundColor(Color(UIColor.systemGreen))
@@ -49,13 +50,14 @@ struct CollectionEditListView: View {
                 }
                 .onMove(perform: move)
                 .onDelete(perform: delete)
+                .sheet(isPresented: $addingTitel) {
+                    
+                    //    let tilels = Titles(songs: titelsInCollection)
+                        
+                        SelectTitelForNewCollectionView(titelsToBeAdded: $titelsToBeAdded, titelsInCollection: $titelsInCollection, isActive: $addingTitel, segmentTitels: tilels.getSegmentTitles(by: alphabet), titels: tilels)
+                            .environment(\.managedObjectContext, viewContext)
+                    }
             }
-        }.sheet(isPresented: $addingTitel) {
-            
-            //        let tilels = Titles(songs: songs)
-            
-            SelectTitelForNewCollectionView(titelsToBeAdded: $titelsToBeAdded, titelsInCollection: $titelsInCollection, isActive: $addingTitel, segmentTitels: tilels.getSegmentTitles(by: alphabet), titels: tilels)
-                .environment(\.managedObjectContext, viewContext)
         }
     }
     

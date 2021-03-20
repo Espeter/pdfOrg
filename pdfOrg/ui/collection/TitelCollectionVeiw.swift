@@ -11,7 +11,7 @@ struct TitelCollectionVeiw: View {
     
     @Binding var editMode: Bool
     @Binding var titel: String
-    
+//    @State var titel: String
     @Binding var name: String
     
     @State var alertisPresented: Bool = false

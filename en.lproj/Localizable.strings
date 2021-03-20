@@ -50,3 +50,15 @@
 "LS_delete complete collection" = "delete complete collection";
 "LS_no title in Collection" = "no title in Collection";
 "LS_understood" = "understood";
+
+//Book2
+"LS_settings" = "settings";
+"LS_delit Book" = "delit Book";
+"LS_delit contents of Book" = "delit contents of Book";
+"LS_uplod contents" = "uplod contents";
+"LS_donlod contents" = "donlod contents";
+
+//Library
+"LS_Library" = "Library";
+"LS_delete \"%@\"" = "delete \"%@\"";
+"LS_delete Book text %@" = "are you sure you want to delete this book?\n it has the consequence that all %@ titels are also deleted.";

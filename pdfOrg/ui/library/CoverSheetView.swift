@@ -29,7 +29,10 @@ struct CoverSheetView: View {
         if book.coverSheet != nil {
             VStack{
                 if ec.currentBook != nil {
-                    NavigationLink(destination: BookView(book: ec.currentBook!, updateView: updateView, selectedSong: $selectedSong), isActive: $ec.navigationLinkActive) { EmptyView() }.animation(nil)
+                  //  NavigationLink(destination: BookView(book: ec.currentBook!, updateView: updateView, selectedSong: $selectedSong), isActive: $ec.navigationLinkActive) { EmptyView() }.animation(nil)
+                    NavigationLink(destination: Book2View(book: ec.currentBook!), isActive: $ec.navigationLinkActive) { EmptyView() }.animation(nil)
+                    
+                 
                 }
                 ZStack(alignment: .topTrailing) {
                 Image(uiImage: UIImage(data: book.coverSheet!)!)

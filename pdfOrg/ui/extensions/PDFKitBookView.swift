@@ -87,7 +87,7 @@ struct PDFPreviewController: UIViewControllerRepresentable {
             uiViewController.pdfView.go(to: myPage)
         }
         //        if presentationModde{
-          uiViewController.pdfView.backgroundColor = UIColor.white
+        //  uiViewController.pdfView.backgroundColor = UIColor.white
       //  uiViewController.pdfView.backgroundColor = UIColor.black
         uiViewController.pdfView.autoScales = true      //TODO: fukk
         //        }
