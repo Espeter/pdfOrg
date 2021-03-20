@@ -57,8 +57,11 @@
 "LS_delit contents of Book" = "delit contents of Book";
 "LS_uplod contents" = "uplod contents";
 "LS_donlod contents" = "donlod contents";
+"LS_delet oll Titels" = "delet oll Titels";
+"LS_delete titels text %@" = "are you sure that you want to delete all %@ titles";
 
 //Library
 "LS_Library" = "Library";
 "LS_delete \"%@\"" = "delete \"%@\"";
 "LS_delete Book text %@" = "are you sure you want to delete this book?\n it has the consequence that all %@ titels are also deleted.";
+

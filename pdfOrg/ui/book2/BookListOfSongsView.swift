@@ -9,11 +9,16 @@ import SwiftUI
 
 struct BookListOfSongsView: View {
     
-    @State var book: Book
+    @Binding var book: Book
+    @Binding var updayitView: Bool
     
     var body: some View {
         VStack{
-            Text("")
+            if updayitView{
+                Text("")
+            } else {
+                Text("")
+            }
             ScrollViewReader { scroll in
                 List() {
                     ForEach(getArraySong(book.songs!)) { song in
