@@ -70,7 +70,7 @@ struct AddCollectionView: View {
 //                    inportCopy()
 //                }
 //            }
-            .navigationBarTitle("LS_new Collection" as LocalizedStringKey, displayMode: .inline)
+            .navigationBarTitle("LS_New Collection" as LocalizedStringKey, displayMode: .inline)
             .navigationBarItems(leading:
                                     Button(action: {
                                         isActive.toggle()

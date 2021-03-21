@@ -271,7 +271,7 @@ class Collections {
         newCollection.id = UUID()
         
         if title == "" {
-            newCollection.title = "LS_new Collection" 
+            newCollection.title = "LS_New Collection" 
         } else {
             newCollection.title = title
         }

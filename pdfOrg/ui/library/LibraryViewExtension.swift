@@ -31,7 +31,7 @@ extension LibraryView {
         newBook.title = String(title.dropLast(4))
         newBook.id = generateID(titel: newBook.title!)
         newBook.pageOfset = "0"
-        newBook.label = ""
+        newBook.label = "-"
         newBook.version = "n.a."
         newBook.isLandscape = 0
         

@@ -23,6 +23,7 @@ struct Book2View: View {
     @State var deleteSongsAlert: Bool = false
     @State var updayitView: Bool = false
     @State var openFile: Bool = false
+    @State var bookSettings: Bool = false
 
     
     var body: some View {
@@ -106,6 +107,9 @@ struct Book2View: View {
                 print("error")
             }
         }
+        .sheet(isPresented: $bookSettings) {
+            BookSetings(book: $book, bookSettings: $bookSettings, label: book.label ?? "-", id: book.id ?? "error_no Book id", ofSet: book.pageOfset ?? "0", orientation: Int(book.isLandscape))
+        }
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 
@@ -115,7 +119,7 @@ struct Book2View: View {
                         Spacer()
                         Image(systemName:"pencil")
                     })
-                    Button(action: {print("foo")}, label: {
+                    Button(action: {bookSettings.toggle()}, label: {
                         Text("LS_settings" as LocalizedStringKey)
                         Spacer()
                         Image(systemName:"gear")

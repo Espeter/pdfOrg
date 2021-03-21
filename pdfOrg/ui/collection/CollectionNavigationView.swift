@@ -51,7 +51,7 @@ struct CollectionNavigationView: View {
                     }
          
                     Divider()
-                           
+                    if Titles(songs: songs).array.count > 0 {
                     NavigationLink(destination: AllTitelsView(tilels: Titles(songs: songs), selectedTitel: Titles(songs: songs).array[0], collections: $collections) ,isActive: $allTitelsView) {
                         
                         Image(systemName: "list.bullet")
@@ -59,7 +59,7 @@ struct CollectionNavigationView: View {
                         
                         Text("LS_All Titels" as LocalizedStringKey)
                     }
-                    
+                    }
                     let faworitenGig = collections.get(collection: "Favorites")
                     
                     if faworitenGig.songsInGig!.count > 0 {

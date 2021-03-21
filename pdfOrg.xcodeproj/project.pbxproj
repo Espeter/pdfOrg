@@ -36,6 +36,7 @@
 		C36FD12A2604C16000D761E1 /* Book2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36FD1292604C16000D761E1 /* Book2.swift */; };
 		C36FD12F2604DD6300D761E1 /* Book2ViewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36FD12E2604DD6300D761E1 /* Book2ViewView.swift */; };
 		C36FD1342604DF3100D761E1 /* BookListOfSongsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36FD1332604DF3100D761E1 /* BookListOfSongsView.swift */; };
+		C36FD139260677BD00D761E1 /* BookSetings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36FD138260677BD00D761E1 /* BookSetings.swift */; };
 		C374B05A25F249C700FEF78C /* CollectionPDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C374B05925F249C700FEF78C /* CollectionPDFView.swift */; };
 		C379904125B34DD400D58D28 /* CampfireView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C379904025B34DD400D58D28 /* CampfireView.swift */; };
 		C379904A25B34E3700D58D28 /* AllSongsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C379904925B34E3700D58D28 /* AllSongsView.swift */; };
@@ -118,6 +119,7 @@
 		C36FD1292604C16000D761E1 /* Book2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book2.swift; sourceTree = "<group>"; };
 		C36FD12E2604DD6300D761E1 /* Book2ViewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book2ViewView.swift; sourceTree = "<group>"; };
 		C36FD1332604DF3100D761E1 /* BookListOfSongsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListOfSongsView.swift; sourceTree = "<group>"; };
+		C36FD138260677BD00D761E1 /* BookSetings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSetings.swift; sourceTree = "<group>"; };
 		C374B05925F249C700FEF78C /* CollectionPDFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionPDFView.swift; sourceTree = "<group>"; };
 		C379904025B34DD400D58D28 /* CampfireView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampfireView.swift; sourceTree = "<group>"; };
 		C379904925B34E3700D58D28 /* AllSongsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSongsView.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 				C36FD1242604C0EB00D761E1 /* Book2View.swift */,
 				C36FD12E2604DD6300D761E1 /* Book2ViewView.swift */,
 				C36FD1332604DF3100D761E1 /* BookListOfSongsView.swift */,
+				C36FD138260677BD00D761E1 /* BookSetings.swift */,
 			);
 			path = book2;
 			sourceTree = "<group>";
@@ -579,6 +582,7 @@
 				C3F0F98825AC98960004B66B /* pdfOrgApp.swift in Sources */,
 				C33E56E825EC23B10098A5C9 /* AddCollectionView.swift in Sources */,
 				C3F0F9C325ACA43F0004B66B /* SearchBar.swift in Sources */,
+				C36FD139260677BD00D761E1 /* BookSetings.swift in Sources */,
 				C358570825F7967100EC7957 /* CollectionListView.swift in Sources */,
 				C374B05A25F249C700FEF78C /* CollectionPDFView.swift in Sources */,
 				C3D57F2F25B9E16700339082 /* GigInfoView.swift in Sources */,

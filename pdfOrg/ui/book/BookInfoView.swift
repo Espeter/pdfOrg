@@ -11,9 +11,9 @@ struct BookInfoView: View {
     
     @Environment(\.managedObjectContext) var viewContext
     @FetchRequest(sortDescriptors: [])
-     var books: FetchedResults<Book>
+    var books: FetchedResults<Book>
     @EnvironmentObject var ec : EnvironmentController
-
+    
     @ObservedObject var book: Book
     @Binding var editMode: Bool
     @State var showingPopup = false
@@ -43,9 +43,9 @@ struct BookInfoView: View {
             }
             HStack{
                 Text("Orientation : ").foregroundColor(Color(UIColor.black))
-        
+                
                 Picker("", selection: $orientation){
-                 
+                    
                     ForEach(0 ..< orientations.count, id: \.self) {
                         Image(systemName: orientations[$0])
                     }
@@ -64,7 +64,7 @@ struct BookInfoView: View {
                     }
                     
                     if changed == false {
-
+                        
                         if oldId != book.id {
                             if idDoesNotExist(/*id: book.id!*/) {
                                 saveContext()
@@ -81,7 +81,7 @@ struct BookInfoView: View {
                     }
                 })
             }
-
+            
             
             
             HStack{
@@ -90,23 +90,23 @@ struct BookInfoView: View {
                     Text("Label: ").foregroundColor(Color(UIColor.black))
                     TextField(book.label ?? "", text: /*$label*/umwantler(binding: $book.label, fallback: ""), onEditingChanged: {(changed) in
                         if changed == false {
-                         //   infoPopup = false
+                            //   infoPopup = false
                             saveContext()
                             updateView.toggle()
                             ec.updatLibrary.toggle()
                         }
-       //                     else {
-//                            label = book.label ?? ""
-//                        }
+                        //                     else {
+                        //                            label = book.label ?? ""
+                        //                        }
                     })
                 }
                 
-//                Text("Label: ")
-//                if editMode {
-//                    TextField("\(book.label ?? "nil")", text: umwantler(binding: $book.label, fallback: "error")).padding(0).background(Color(UIColor.systemGray6)).cornerRadius(15.0)
-//                } else {
-//                    Text("\(book.label ?? "nil")")
-//                }
+                //                Text("Label: ")
+                //                if editMode {
+                //                    TextField("\(book.label ?? "nil")", text: umwantler(binding: $book.label, fallback: "error")).padding(0).background(Color(UIColor.systemGray6)).cornerRadius(15.0)
+                //                } else {
+                //                    Text("\(book.label ?? "nil")")
+                //                }
                 Spacer()
             }.padding(.bottom, 4)
             
@@ -159,10 +159,10 @@ struct BookInfoView: View {
     private func idDoesNotExist(/*id: String*/) -> Bool {
         
         var idDoesNotExistInt: Int = 0
-      var idDoesNotExist = true
+        var idDoesNotExist = true
         
         books.forEach{ book in
-           
+            
             if book.id == self.book.id {
                 idDoesNotExistInt = idDoesNotExistInt + 1
             }

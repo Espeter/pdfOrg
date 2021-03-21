@@ -51,7 +51,7 @@ struct LibraryView: View {
                         ForEach(allLabels, id: \.self){ label in
                             
                             HStack{
-                                if label == "" {
+                                if label == "-" || label == ""{
                                     Text("LS_no Label" as LocalizedStringKey)
                                         .font(.title)
                                         .padding()
@@ -205,11 +205,11 @@ struct LibraryView: View {
             
             if book.coverSheet != nil {
                 if numberOfBooksInRow < maxBookWidth {
-
+                    
                     dictionary[currentRow]?.append(book)
                     numberOfBooksInRow = numberOfBooksInRow + 1
                 } else {
-
+                    
                     currentRow = currentRow + 1
                     numberOfBooksInRow = 0
                     dictionary[currentRow]?.append(book)
@@ -218,10 +218,10 @@ struct LibraryView: View {
             }
             
         }
-
+        
         oldGeometryProxy = geometry
         return dictionary
-
+        
         
     }
     

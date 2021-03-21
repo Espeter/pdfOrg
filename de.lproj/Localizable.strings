@@ -6,37 +6,72 @@
   
 */
 
-"LS_all" = "Alle";
+"LS_all" = "Alles";
 "LS_label" = "Label";
-"LS_title" = "Titte";
-"LS_no Label" = "kein Beschriftung";
-"LS_Unlimited number of books" = "unbegrenzte anzahl von Büchern";
+"LS_title" = "Titel";
+"LS_no Label" = "kein Label";
+"LS_Unlimited number of books" = "Unbegrenzte Anzahl von Büchern";
 "LS_Buy" = "Kaufen";
-"LS_Restore Purchases" = "Keufe wieder herstellen";
-"LS_back" = "zurück";
-"LS_too many books" = "zu fiele bücher";
+"LS_Restore Purchases" = "Einkauf wiederherstellen";
+"LS_back" = "Zurück";
+"LS_too many books" = "max. Anzhal Bücher überschritten";
 
 
 //Collection
-"LS_collection" = "Kollektion";
-"LS_Collections" = "Kollektionen";
-"LS_New Collection" = "neue Kollektion";
-"LS_no Title found" = "kein Titel gefudnen";
+"LS_collection" = "Sammlung";
+"LS_Collections" = "Sammlungen";
+"LS_New Collection" = "Neue Sammlung";
+"LS_no Title found" = "Kein Titel gefunden";
 "LS_done" = "Fertig";
-"LS_quit" = "Abrechen";
-"LS_Name of the Collection" = "Name der Kollektion";
-"LS_add Titel" = "Tittel hinzufügen";
-"LS_add Titel to new Collection" = "Tittel zur neuen Kollektion hinzufügen";
-"LS_Titels" = "Tittels";
-"LS_new Collection" = "neue Kollektion";
-"LS_edit" = "bearbeiten";
-"LS_delit Collection" = "Kollektion bearbeiten";
-"LS_export as .txt" = "exportieren als .txt";
+"LS_quit" = "Abbrechen";
+"LS_Name of the Collection" = "Name der Sammlung";
+"LS_add Titel" = "Titel hinzufügen";
+"LS_add Titel to new Collection" = "Titel zur Sammlung hinzufügen";
+"LS_Titels" = "Titel";
+"LS_edit" = "Bearbeiten";
+"LS_delit Collection" = "Sammlung löschen";
+"LS_export as .txt" = "Export als .txt";
 "LS_delit" = "Löschen";
-"LS_delit %@" = "Lösche %@";
-"LS_back" = "zurück";
-"LS_delitCollectionText %@" = "bist du dir sicher das du %@ Löschen möchtest?";
-"LS_All Titels" = "Alle Tittel";
-"LS_edit Name" = "Namen Bearbeiten";
-"LS_rename: %@" = "neuer Name: %@";
-"LS_copy Collection" = "LS_Kollektion kopieren";
+"LS_delit %@" = "Löschen %@";
+"LS_back" = "Zurück";
+"LS_delitCollectionText %@" = "Bis Du sicher,dass Du %@ löschge willst?";
+"LS_All Titels" = "Alle Titels";
+"LS_edit Name" = "Bearbeiten Name";
+"LS_rename: %@" = "Umbenennen: %@";
+"LS_copy Collection" = "Kopiere Sammlung";
+"LS_copy %@" = "Kopiere %@";
+"LS_%@(copy)" = "%@(kopieren)";
+"LS_not oll Books exist" = "Nicht alle Bücher existieren";
+"LS_Thes Books dasent exist: %@" = "Diese Bücher existieren nicht: %@";
+"LS_Oky" = "Okay";
+"LS_This Teitel is not faund in Book" = "Dieser Titel wurde nicht im Buch gefunden";
+"LS_It is not Posibel to haf a Collection whis aut a associated Titel" = "Es ist nicht möglich eine Sammlung ohne einen zugeordneten Titel zu haben";
+"LS_delete complete collection" = "Löschen der Sammlung";
+"LS_no title in Collection" = "Kein Titel in der Sammlung";
+"LS_understood" = "Verstanden";
+
+//Book2
+"LS_settings" = "Einstellungen";
+"LS_delit Book" = "Löschen des Buchs";
+"LS_delit contents of Book" = "Löschen Index des Buchs";
+"LS_uplod contents" = "Upload Index ";
+"LS_donlod contents" = "Download Index";
+"LS_delet oll Titels" = "Löschen aller Titel";
+"LS_delete titels text %@" = "Bist Du sicher, dass Du alle Titel %@ löschen möchtest";
+"LS_save" = "Sichern";
+"LS_Info Text of Book id" = "Info Text der  Buch ID";
+"LS_Numer of songs: " = "Anzahl der Titel: ";
+"LS_Book pdf Name: " = "PDF-Name des Buches: ";
+"LS_Book Id: " = "Buch ID: ";
+"LS_Book Label: " = "Buch Label: ";
+"LS_Info Text of Book Label" = "Info Text des Buch-Labels";
+"LS_Info Text of Page of Set" = "Info Text des Buch-Offsets";
+"LS_Orientation : " = "Ausrichtung: ";
+"LS_page of set: " = "Seiten Offset: ";
+"LS_id already exists" = "ID existiert bereits";
+"LS_this ID already exists" = "Diese ID existiert bereits";
+
+//Library
+"LS_Library" = "Bibliothek";
+"LS_delete \"%@\"" = "Lösche \"%@\"";
+"LS_delete Book text %@" = "Bist Du sicher, dass Du dieses Buch löschen möchtest?\n Die Auswirkung wäre,dass auch alle %@ Titel des Buches gelöscht werden.";
