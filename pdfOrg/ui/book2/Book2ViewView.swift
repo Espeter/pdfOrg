@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct Book2ViewView: View {
-    
+    @EnvironmentObject var ec : EnvironmentController
+
     @Environment(\.managedObjectContext) var viewContext
     @FetchRequest(sortDescriptors: [])
     private var songsInGig: FetchedResults<SongInGig>
@@ -142,16 +143,32 @@ struct Book2ViewView: View {
                     if (startPage! + i) == page && songFound == false{
                         self.song = (song as! Song)
                         songFound = true
+                        ec.titelName = (song as! Song).title ?? "error_no Titel"
+                        ec.startPage = (song as! Song).startPage ?? "1"
+                        ec.endPage = (song as! Song).endPage ?? (song as! Song).startPage ?? "1"
+                        ec.label = (song as! Song).author ?? "-"
                     } else if songFound == false {
                         self.song = nil
+                        ec.titelName = "Page \(page)"
+                        ec.startPage = "\(page)"
+                        ec.endPage = "\(page)"
+                        ec.label = "-"
                     }
                 }
             } else if songFound == false{
                 if (song as! Song).startPage == String(page) {
                     self.song = (song as! Song)
                     songFound = true
+                    ec.titelName = (song as! Song).title ?? "error_no Titel"
+                    ec.startPage = (song as! Song).startPage ?? "1"
+                    ec.endPage = (song as! Song).endPage ?? (song as! Song).startPage ?? "1"
+                    ec.label = (song as! Song).author ?? "-"
                 } else {
                     self.song = nil
+                    ec.titelName = "Page \(page)"
+                    ec.startPage = "\(page)"
+                    ec.endPage = "\(page)"
+                    ec.label = "-"
                 }
             }
         }

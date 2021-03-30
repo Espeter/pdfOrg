@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct BookListOfSongsView: View {
-    
+    @EnvironmentObject var ec : EnvironmentController
+    @Environment(\.managedObjectContext) var viewContext
+
     @Binding var book: Book
     @Binding var updayitView: Bool
     @Binding var song: Song?
@@ -19,48 +21,109 @@ struct BookListOfSongsView: View {
     
     var body: some View {
         VStack{
-            if updayitView{
-                Text("")
+            if updayitView {
+                if editMode {
+                    EditSongView(book: book, song: $song, page: $page, updayitView: $updayitView)
+                } else {
+                    Text("")
+                }
             } else {
-                Text("")
-            }
-            if editMode {
-                VStack{
-                    Text("bla bla")
+                if editMode {
+                    EditSongView(book: book, song: $song, page: $page, updayitView: $updayitView)
+                    
+                } else {
+                    Text("")
                 }
             }
-            ScrollViewReader { scroll in
-                List() {
-                   
-                    ForEach(getArraySong(book.songs!)) { song in
-                        
-                        
-                        Button(action: {
-                                self.song = song
-                            page = Int(song.startPage ?? "1") ?? 1
+            if editMode {
+                ScrollViewReader { scroll in
+                    List() {
+                       
+                        ForEach(getArraySong(book.songs!)) { song in
                             
-                        }, label: {
-                            VStack{
-                                HStack{
-                                    Text(song.title ?? "error_no titel")
-                                    if song.isFavorit{
-                                        Image(systemName: "star.fill").padding(.leading, 10)
+                            
+                            Button(action: {
+                                    self.song = song
+                                page = Int(song.startPage ?? "1") ?? 1
+                                ec.titelName = song.title ?? "error_no titel"
+                                ec.startPage = song.startPage ?? "1"
+                                ec.endPage = song.endPage ?? song.startPage ?? "1"
+                                ec.label = song.author ?? "-"
+                                
+                            }, label: {
+                                VStack{
+                                    HStack{
+                                        Text(song.title ?? "error_no titel")
+                                        if song.isFavorit{
+                                            Image(systemName: "star.fill").padding(.leading, 10)
+                                        }
+                                        Spacer()
+                                        Text(song.startPage ?? "error_no startPage").padding(.trailing, 20)
                                     }
-                                    Spacer()
-                                    Text(song.startPage ?? "error_no startPage").padding(.trailing, 20)
+                                    HStack{
+                                        Text(song.author ?? "").foregroundColor(Color(UIColor.systemGray))
+                                        Spacer()
+                                    }.font(.footnote)
                                 }
-                                HStack{
-                                    Text(song.author ?? "").foregroundColor(Color(UIColor.systemGray))
-                                    Spacer()
-                                }.font(.footnote)
-                            }
-                        })
+                            })
+                        }.onDelete(perform: delete)                    }
+                }
+            } else {
+                ScrollViewReader { scroll in
+                    List() {
+                       
+                        ForEach(getArraySong(book.songs!)) { song in
+                            
+                            
+                            Button(action: {
+                                    self.song = song
+                                page = Int(song.startPage ?? "1") ?? 1
+                                ec.titelName = song.title ?? "error_no titel"
+                                ec.startPage = song.startPage ?? "1"
+                                ec.endPage = song.endPage ?? song.startPage ?? "1"
+                                ec.label = song.author ?? "-"
+                                
+                            }, label: {
+                                VStack{
+                                    HStack{
+                                        Text(song.title ?? "error_no titel")
+                                        if song.isFavorit{
+                                            Image(systemName: "star.fill").padding(.leading, 10)
+                                        }
+                                        Spacer()
+                                        Text(song.startPage ?? "error_no startPage").padding(.trailing, 20)
+                                    }
+                                    HStack{
+                                        Text(song.author ?? "").foregroundColor(Color(UIColor.systemGray))
+                                        Spacer()
+                                    }.font(.footnote)
+                                }
+                            })
+                        }
                     }
                 }
             }
+
         }
     }
+    private func delete(offsets: IndexSet) {
+        withAnimation {
+            offsets.map {getArraySong(book.songs!)[$0]}.forEach(viewContext.delete)
+            updayitView.toggle()
+         //   saveContext()
+        }
+    }
+
     
+    private func saveContext(){
+        do{
+            try viewContext.save()
+        }
+        catch {
+            let error = error as NSError
+            fatalError("error addBook: \(error)")
+        }
+    }
     func getArraySong(_ snSet : NSSet) -> [Song] {
         
         let songs = snSet.allObjects as! [Song]
@@ -69,4 +132,5 @@ struct BookListOfSongsView: View {
         
         return sortedSongs
     }
+    
 }

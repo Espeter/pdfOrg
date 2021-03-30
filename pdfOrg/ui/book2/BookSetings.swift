@@ -36,7 +36,6 @@ struct BookSetings: View {
                         TextField(book.title ?? "error_no titel", text: $title)
                             .foregroundColor(Color(UIColor.systemGray))
                     }
-
                 }
                 Section{
                     VStack{

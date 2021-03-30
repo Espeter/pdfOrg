@@ -50,14 +50,16 @@ struct CollectionEditListView: View {
                 }
                 .onMove(perform: move)
                 .onDelete(perform: delete)
+                
+            }
                 .sheet(isPresented: $addingTitel) {
-                    
+
                     //    let tilels = Titles(songs: titelsInCollection)
-                        
+
                         SelectTitelForNewCollectionView(titelsToBeAdded: $titelsToBeAdded, titelsInCollection: $titelsInCollection, isActive: $addingTitel, segmentTitels: tilels.getSegmentTitles(by: alphabet), titels: tilels)
                             .environment(\.managedObjectContext, viewContext)
                     }
-            }
+            
         }
     }
     

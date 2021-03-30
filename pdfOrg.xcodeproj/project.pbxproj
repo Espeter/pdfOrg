@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C30AD36C261336570084FBBF /* EditSongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30AD36B261336570084FBBF /* EditSongView.swift */; };
+		C30AD37126137BD90084FBBF /* myTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30AD37026137BD90084FBBF /* myTextField.swift */; };
 		C314602C25BC395900D4246F /* GigPDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C314602B25BC395900D4246F /* GigPDFView.swift */; };
 		C314603125BC5D1700D4246F /* GigSongPDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C314603025BC5D1700D4246F /* GigSongPDFView.swift */; };
 		C314603625BC9A7D00D4246F /* GigPresentationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C314603525BC9A7D00D4246F /* GigPresentationView.swift */; };
@@ -89,6 +91,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C30AD36B261336570084FBBF /* EditSongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSongView.swift; sourceTree = "<group>"; };
+		C30AD37026137BD90084FBBF /* myTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myTextField.swift; sourceTree = "<group>"; };
 		C314602B25BC395900D4246F /* GigPDFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigPDFView.swift; sourceTree = "<group>"; };
 		C314603025BC5D1700D4246F /* GigSongPDFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigSongPDFView.swift; sourceTree = "<group>"; };
 		C314603525BC9A7D00D4246F /* GigPresentationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigPresentationView.swift; sourceTree = "<group>"; };
@@ -217,6 +221,7 @@
 				C36FD12E2604DD6300D761E1 /* Book2ViewView.swift */,
 				C36FD1332604DF3100D761E1 /* BookListOfSongsView.swift */,
 				C36FD138260677BD00D761E1 /* BookSetings.swift */,
+				C30AD36B261336570084FBBF /* EditSongView.swift */,
 			);
 			path = book2;
 			sourceTree = "<group>";
@@ -372,6 +377,7 @@
 				C342EF2525B463DC0004FD38 /* PDFKitCampireView.swift */,
 				C32F80D325C3037000F8264C /* PDFPresentationView.swift */,
 				C32F80CE25C2FC7800F8264C /* PDFViewController.swift */,
+				C30AD37026137BD90084FBBF /* myTextField.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -541,6 +547,7 @@
 				C32B21ED25F65DF500CA61AE /* AllTitelsView.swift in Sources */,
 				C37998F225D16F7500B36BA1 /* Store.swift in Sources */,
 				C342EF2625B463DC0004FD38 /* PDFKitCampireView.swift in Sources */,
+				C30AD37126137BD90084FBBF /* myTextField.swift in Sources */,
 				C314603625BC9A7D00D4246F /* GigPresentationView.swift in Sources */,
 				C36A6E6425AEEFA4005EB5F1 /* BookView.swift in Sources */,
 				C3F0F99125AC98970004B66B /* Persistence.swift in Sources */,
@@ -554,6 +561,7 @@
 				C3F0F99425AC98970004B66B /* pdfOrg.xcdatamodeld in Sources */,
 				C37B15EB25FB7C23006107BB /* CopyCollectionUIView.swift in Sources */,
 				C385D4A825B4BC2A000D1452 /* PresentationView.swift in Sources */,
+				C30AD36C261336570084FBBF /* EditSongView.swift in Sources */,
 				C33E56E325EC088E0098A5C9 /* Titles.swift in Sources */,
 				C32F80CF25C2FC7800F8264C /* PDFViewController.swift in Sources */,
 				C379904A25B34E3700D58D28 /* AllSongsView.swift in Sources */,

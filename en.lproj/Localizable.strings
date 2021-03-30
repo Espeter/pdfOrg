@@ -70,6 +70,11 @@
 "LS_id already exists" = "ID already exists";
 "LS_this ID already exists" = "This ID already exists";
 "LS_Book Name: " = "Book Name: ";
+"LS_add" = "Add";
+"LS_Titel Name: " = "Titel Name: " ;
+"LS_Titel Label: " = "Label: ";
+"LS_first Page: " = "first Page: ";
+"LS_last Page" = "last Page";
 
 //Library
 "LS_Library" = "Library";
