@@ -11,6 +11,11 @@ struct BookListOfSongsView: View {
     
     @Binding var book: Book
     @Binding var updayitView: Bool
+    @Binding var song: Song?
+    
+    @Binding var page: Int
+
+    @Binding var editMode: Bool
     
     var body: some View {
         VStack{
@@ -19,23 +24,37 @@ struct BookListOfSongsView: View {
             } else {
                 Text("")
             }
+            if editMode {
+                VStack{
+                    Text("bla bla")
+                }
+            }
             ScrollViewReader { scroll in
                 List() {
+                   
                     ForEach(getArraySong(book.songs!)) { song in
-                        VStack{
-                            HStack{
-                                Text(song.title ?? "error_no titel")
-                                if song.isFavorit{
-                                    Image(systemName: "star.fill").padding(.leading, 10)
+                        
+                        
+                        Button(action: {
+                                self.song = song
+                            page = Int(song.startPage ?? "1") ?? 1
+                            
+                        }, label: {
+                            VStack{
+                                HStack{
+                                    Text(song.title ?? "error_no titel")
+                                    if song.isFavorit{
+                                        Image(systemName: "star.fill").padding(.leading, 10)
+                                    }
+                                    Spacer()
+                                    Text(song.startPage ?? "error_no startPage").padding(.trailing, 20)
                                 }
-                                Spacer()
-                                Text(song.startPage ?? "error_no startPage").padding(.trailing, 20)
+                                HStack{
+                                    Text(song.author ?? "").foregroundColor(Color(UIColor.systemGray))
+                                    Spacer()
+                                }.font(.footnote)
                             }
-                            HStack{
-                                Text(song.author ?? "").foregroundColor(Color(UIColor.systemGray))
-                                Spacer()
-                            }.font(.footnote)
-                        }
+                        })
                     }
                 }
             }

@@ -15,11 +15,13 @@ struct BookSetings: View {
     
     @Binding var book: Book
     @Binding var bookSettings: Bool
+    @Binding var updayitView: Bool
     
     @State var label: String
     @State var id: String
     @State var ofSet: String
     @State var orientation: Int
+    @State var title: String
     
     let orientations = ["rectangle.portrait", "rectangle"]
     
@@ -28,6 +30,14 @@ struct BookSetings: View {
     var body: some View {
         NavigationView(){
             Form{
+                Section{
+                    HStack{
+                        Text("LS_Book Name: " as LocalizedStringKey)
+                        TextField(book.title ?? "error_no titel", text: $title)
+                            .foregroundColor(Color(UIColor.systemGray))
+                    }
+
+                }
                 Section{
                     VStack{
                         HStack{
@@ -128,9 +138,11 @@ struct BookSetings: View {
             self.book.label = label
             self.book.isLandscape = Int64(orientation)
             self.book.pageOfset = ofSet
-            
+            self.book.title = title
+
             saveContext()
             bookSettings = false
+            updayitView.toggle()
         }
     }
     private func saveContext(){

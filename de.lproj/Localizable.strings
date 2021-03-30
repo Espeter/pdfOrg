@@ -70,6 +70,8 @@
 "LS_page of set: " = "Seiten Offset: ";
 "LS_id already exists" = "ID existiert bereits";
 "LS_this ID already exists" = "Diese ID existiert bereits";
+"LS_Book Name: " = "Buch Name: ";
+
 
 //Library
 "LS_Library" = "Bibliothek";

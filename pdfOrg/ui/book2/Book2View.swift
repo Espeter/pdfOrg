@@ -15,8 +15,9 @@ struct Book2View: View {
     
     @State var book: Book
     @State var editMode: Bool = false
+    @State var editMode2: Bool = false
     @State var newName: String = ""
-    
+    @State var song: Song?
     @State var page: Int = 1
     
     @State var delitBook: Bool = false
@@ -24,75 +25,78 @@ struct Book2View: View {
     @State var updayitView: Bool = false
     @State var openFile: Bool = false
     @State var bookSettings: Bool = false
-
+    
     
     var body: some View {
         VStack(alignment: .leading){
-            TitelCollectionVeiw(editMode: $editMode, titel: umwantler(binding: $book.title, fallback: "error_book.titel not faund"), name: $newName)
-            
+            if updayitView{
+                TitelCollectionVeiw(editMode: $editMode2, titel: umwantler(binding: $book.title, fallback: "error_book.titel not faund"), name: $newName)
+            } else {
+                TitelCollectionVeiw(editMode: $editMode2, titel: umwantler(binding: $book.title, fallback: "error_book.titel not faund"), name: $newName)
+            }
             GeometryReader { geometry in
                 if geometry.size.width > geometry.size.height {
                     HStack {
-                        Book2ViewView(book: book, page: $page)
+                        Book2ViewView(book: book, page: $page, song: $song, updayitView: $updayitView)
                             .alert(isPresented: $deleteSongsAlert) {
-                            Alert(title: Text("LS_delet oll Titels" as LocalizedStringKey),
-                                  message: Text("LS_delete titels text \(String(book.songs?.count ?? 0))" as LocalizedStringKey),
-                                  primaryButton: .destructive(Text("LS_delit" as LocalizedStringKey),
-                                                              action: {
-                                                                book.songs?.forEach{ song in
-                                                                    viewContext.delete(song as! Song)
-                                                                }
-                                                                saveContext()
-                                                                updayitView.toggle()
-                                                              }),
-                                  secondaryButton: .cancel(Text("LS_back" as LocalizedStringKey))
-                            )
-                        }
-                        BookListOfSongsView(book: $book, updayitView: $updayitView)
+                                Alert(title: Text("LS_delet oll Titels" as LocalizedStringKey),
+                                      message: Text("LS_delete titels text \(String(book.songs?.count ?? 0))" as LocalizedStringKey),
+                                      primaryButton: .destructive(Text("LS_delit" as LocalizedStringKey),
+                                                                  action: {
+                                                                    book.songs?.forEach{ song in
+                                                                        viewContext.delete(song as! Song)
+                                                                    }
+                                                                    saveContext()
+                                                                    updayitView.toggle()
+                                                                  }),
+                                      secondaryButton: .cancel(Text("LS_back" as LocalizedStringKey))
+                                )
+                            }
+                        BookListOfSongsView(book: $book, updayitView: $updayitView, song: $song, page: $page, editMode: $editMode)
                             .alert(isPresented: $delitBook) {
-                            Alert(title: Text("LS_delete \"\(book.title!)\"" as LocalizedStringKey),
-                                  message: Text("LS_delete Book text \(String(book.songs?.count ?? 0))" as LocalizedStringKey),
-                                  primaryButton: .destructive(Text("LS_delit" as LocalizedStringKey),
-                                                              action: {
-                                                                ec.navigationLinkActive = false
-                                                                viewContext.delete(book)
-                                                                saveContext()
-                                                              }),
-                                  secondaryButton: .cancel(Text("LS_back" as LocalizedStringKey))
-                            )
-                        }
+                                Alert(title: Text("LS_delete \"\(book.title!)\"" as LocalizedStringKey),
+                                      message: Text("LS_delete Book text \(String(book.songs?.count ?? 0))" as LocalizedStringKey),
+                                      primaryButton: .destructive(Text("LS_delit" as LocalizedStringKey),
+                                                                  action: {
+                                                                    ec.navigationLinkActive = false
+                                                                    viewContext.delete(book)
+                                                                    saveContext()
+                                                                  }),
+                                      secondaryButton: .cancel(Text("LS_back" as LocalizedStringKey))
+                                )
+                            }
                     }
                 }
                 else {
                     VStack{
-                        Book2ViewView(book: book, page: $page)
+                        Book2ViewView(book: book, page: $page, song: $song, updayitView: $updayitView)
                             .alert(isPresented: $deleteSongsAlert) {
-                            Alert(title: Text("LS_delet oll Titels" as LocalizedStringKey),
-                                  message: Text("LS_delete titels text \(String(book.songs?.count ?? 0))" as LocalizedStringKey),
-                                  primaryButton: .destructive(Text("LS_delit" as LocalizedStringKey),
-                                                              action: {
-                                                                book.songs?.forEach{ song in
-                                                                    viewContext.delete(song as! Song)
-                                                                }
-                                                                saveContext()
-                                                                updayitView.toggle()
-                                                              }),
-                                  secondaryButton: .cancel(Text("LS_back" as LocalizedStringKey))
-                            )
-                        }
-                        BookListOfSongsView(book: $book, updayitView: $updayitView)
+                                Alert(title: Text("LS_delet oll Titels" as LocalizedStringKey),
+                                      message: Text("LS_delete titels text \(String(book.songs?.count ?? 0))" as LocalizedStringKey),
+                                      primaryButton: .destructive(Text("LS_delit" as LocalizedStringKey),
+                                                                  action: {
+                                                                    book.songs?.forEach{ song in
+                                                                        viewContext.delete(song as! Song)
+                                                                    }
+                                                                    saveContext()
+                                                                    updayitView.toggle()
+                                                                  }),
+                                      secondaryButton: .cancel(Text("LS_back" as LocalizedStringKey))
+                                )
+                            }
+                        BookListOfSongsView(book: $book, updayitView: $updayitView, song: $song, page: $page, editMode: $editMode)
                             .alert(isPresented: $delitBook) {
-                            Alert(title: Text("LS_delete \"\(book.title!)\"" as LocalizedStringKey),
-                                  message: Text("LS_delete Book text \(String(book.songs?.count ?? 0))" as LocalizedStringKey),
-                                  primaryButton: .destructive(Text("LS_delit" as LocalizedStringKey),
-                                                              action: {
-                                                                ec.navigationLinkActive = false
-                                                                viewContext.delete(book)
-                                                                saveContext()
-                                                              }),
-                                  secondaryButton: .cancel(Text("LS_back" as LocalizedStringKey))
-                            )
-                        }                    }
+                                Alert(title: Text("LS_delete \"\(book.title!)\"" as LocalizedStringKey),
+                                      message: Text("LS_delete Book text \(String(book.songs?.count ?? 0))" as LocalizedStringKey),
+                                      primaryButton: .destructive(Text("LS_delit" as LocalizedStringKey),
+                                                                  action: {
+                                                                    ec.navigationLinkActive = false
+                                                                    viewContext.delete(book)
+                                                                    saveContext()
+                                                                  }),
+                                      secondaryButton: .cancel(Text("LS_back" as LocalizedStringKey))
+                                )
+                            }                    }
                 }
             }
         }.padding(.top, -50)
@@ -108,46 +112,65 @@ struct Book2View: View {
             }
         }
         .sheet(isPresented: $bookSettings) {
-            BookSetings(book: $book, bookSettings: $bookSettings, label: book.label ?? "-", id: book.id ?? "error_no Book id", ofSet: book.pageOfset ?? "0", orientation: Int(book.isLandscape))
+            BookSetings(book: $book, bookSettings: $bookSettings, updayitView: $updayitView, label: book.label ?? "-", id: book.id ?? "error_no Book id", ofSet: book.pageOfset ?? "0", orientation: Int(book.isLandscape), title: book.title ?? "error_no Book name")
         }
         .toolbar {
-            ToolbarItem(placement: .primaryAction) {
-                
-                Menu{
-                    Button(action: {print("foo")}, label: {
-                        Text("LS_edit" as LocalizedStringKey)
-                        Spacer()
-                        Image(systemName:"pencil")
-                    })
-                    Button(action: {bookSettings.toggle()}, label: {
-                        Text("LS_settings" as LocalizedStringKey)
-                        Spacer()
-                        Image(systemName:"gear")
-                    })
-                    Button(action: {openFile.toggle()}, label: {
-                        Text("LS_donlod contents" as LocalizedStringKey)
-                        Spacer()
-                        Image(systemName:"square.and.arrow.down")
-                    })
-                    Button(action: {exportDirectory()}, label: {
-                        Text("LS_uplod contents" as LocalizedStringKey)
-                        Spacer()
-                        Image(systemName:"square.and.arrow.up")
-                    })
-                    Divider()
-                    Button(action: {deleteSongsAlert.toggle()}, label: {
-                        Text("LS_delit contents of Book" as LocalizedStringKey)
-                        Spacer()
-                        Image(systemName:"trash")
-                    })
-                    Button(action: {delitBook.toggle()}, label: {
-                        Text("LS_delit Book" as LocalizedStringKey)
-                        Spacer()
-                        Image(systemName:"trash")
+            ToolbarItem(placement: .navigationBarLeading) {
+                if editMode {
+                    Button(action: {
+                        viewContext.rollback()
+                        editMode = false
+                    }, label: {
+                        Text("LS_quit" as LocalizedStringKey)
                     })
                 }
-                label: {
-                    Image(systemName: "ellipsis.circle").padding()
+            }
+            
+            ToolbarItem(placement: .primaryAction) {
+                if editMode{
+                    Button(action: {
+                        editMode = false
+                        saveContext()
+                    }, label: {
+                        Text("LS_done" as LocalizedStringKey)
+                    })
+                } else {
+                    Menu{
+                        Button(action: {editMode = true}, label: {
+                            Text("LS_edit" as LocalizedStringKey)
+                            Spacer()
+                            Image(systemName:"pencil")
+                        })
+                        Button(action: {bookSettings.toggle()}, label: {
+                            Text("LS_settings" as LocalizedStringKey)
+                            Spacer()
+                            Image(systemName:"gear")
+                        })
+                        Button(action: {openFile.toggle()}, label: {
+                            Text("LS_donlod contents" as LocalizedStringKey)
+                            Spacer()
+                            Image(systemName:"square.and.arrow.down")
+                        })
+                        Button(action: {exportDirectory()}, label: {
+                            Text("LS_uplod contents" as LocalizedStringKey)
+                            Spacer()
+                            Image(systemName:"square.and.arrow.up")
+                        })
+                        Divider()
+                        Button(action: {deleteSongsAlert.toggle()}, label: {
+                            Text("LS_delit contents of Book" as LocalizedStringKey)
+                            Spacer()
+                            Image(systemName:"trash")
+                        })
+                        Button(action: {delitBook.toggle()}, label: {
+                            Text("LS_delit Book" as LocalizedStringKey)
+                            Spacer()
+                            Image(systemName:"trash")
+                        })
+                    }
+                    label: {
+                        Image(systemName: "ellipsis.circle").padding()
+                    }
                 }
             }
         }
@@ -212,7 +235,7 @@ struct Book2View: View {
         
         book.addToSongs(song)
         
-   //     saveContext()
+        //     saveContext()
     }
     
     private func exportDirectory() {
@@ -222,10 +245,10 @@ struct Book2View: View {
         let textURL = textData?.dataToFile(fileName: "\(book.title!)_Directory.txt")
         var filesToShare = [Any]()
         filesToShare.append(textURL!)
- 
+        
         let av = UIActivityViewController(activityItems: filesToShare, applicationActivities: nil)
         UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
-
+        
         if UIDevice.current.userInterfaceIdiom == .pad {
             av.popoverPresentationController?.sourceView = UIApplication.shared.windows.first
             av.popoverPresentationController?.sourceRect = CGRect(
@@ -254,7 +277,7 @@ struct Book2View: View {
                 directory.append(";")
                 directory.append(song.author!)
             }
-           
+            
             directory.append("\n")
         }
         
