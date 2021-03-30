@@ -94,6 +94,7 @@ struct Book2ViewView: View {
                         }
                     }))
         .onAppear{
+            song = nil
             getSong()
         }
     }
