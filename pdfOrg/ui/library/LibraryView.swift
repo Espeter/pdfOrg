@@ -88,6 +88,17 @@ struct LibraryView: View {
                             
                             ForEach(1 ..< (getBookRows(geometry: geometry) + 1 )) { i in
                                 HStack{
+                                    Image(systemName: "plus.circle").foregroundColor( Color(UIColor.systemBlue))
+                                        
+                                        .frame(width: 150, height: 215)
+                                        .background(Color(UIColor.systemGray).opacity(0.1))
+//                                        .border(Color.black)
+//                                        .cornerRadius(15.0)
+//                                        .border(Color.white)
+                                        .cornerRadius(15.0)
+                                        .shadow( radius: 8, x: 3, y: 5)
+                                    
+                                    
                                     ForEach(getSegmentBooks(geometry: geometry)[i] ?? [], id: \.self) { (book: Book) in
                                         
                                         CoverSheetView(book: book, popupIsActive: $popupIsActive)
@@ -107,7 +118,8 @@ struct LibraryView: View {
                 
                 
                 
-            }.background(Color(UIColor.systemBlue).opacity(0.05))
+            }.background(Color(UIColor.systemGray6))
+            //.background(Color(UIColor.systemBlue).opacity(0.05))
             .navigationBarTitle("LS_Library" as LocalizedStringKey)//, displayMode: .inline)
             .navigationBarItems(leading:
                                     

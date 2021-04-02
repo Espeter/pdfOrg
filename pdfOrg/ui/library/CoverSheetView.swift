@@ -78,6 +78,9 @@ struct CoverSheetView: View {
                             popupIsActive = false
                         }
                     }
+//                    .border(Color.black)
+//                    .cornerRadius(15.0)
+//                    .border(Color.white)
                     .cornerRadius(15.0)
                     .shadow( radius: 8, x: 3, y: 5)
 //                    .shadow(color: Color.white, radius: 10, x: -10, y: -10)
