@@ -82,3 +82,6 @@
 "LS_Library" = "Bibliothek";
 "LS_delete \"%@\"" = "Lösche \"%@\"";
 "LS_delete Book text %@" = "Bist Du sicher, dass Du dieses Buch löschen möchtest?\n Die Auswirkung wäre,dass auch alle %@ Titel des Buches gelöscht werden.";
+"LS_add Book" = "Buch hinzufügen";
+"LS_sort by" = "Sortieren";
+"LS_Alphabetical" = "Alphabetisch";
