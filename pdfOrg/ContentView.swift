@@ -50,6 +50,7 @@ struct ContentView: View {
 //                    .tabItem {
 //                        Image(systemName: "doc.text")
 //                    }.tag(3)
+                if songsFR.count > 0 {
                 CollectionNavigationView(collections: Collections(gigs: gigs))
                     .tabItem {
                         
@@ -57,7 +58,7 @@ struct ContentView: View {
                         Text("LS_collection" as LocalizedStringKey)
                       
                     }.tag(4)
-                
+                }
             }
         } else if ec.presentationMode == true {
             PresentationView(song: $ec.song, page: ec.song.startPage!)
