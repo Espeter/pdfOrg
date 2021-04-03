@@ -90,7 +90,7 @@ struct LibraryView: View {
                                 HStack{
                                     Image(systemName: "plus.circle").foregroundColor( Color(UIColor.systemBlue))
                                         
-                                        .frame(width: 150, height: 215)
+                                        .frame(width: 151.2, height: 213.84)
                                         .background(Color(UIColor.systemGray).opacity(0.1))
 //                                        .border(Color.black)
 //                                        .cornerRadius(15.0)
@@ -122,11 +122,8 @@ struct LibraryView: View {
             //.background(Color(UIColor.systemBlue).opacity(0.05))
             .navigationBarTitle("LS_Library" as LocalizedStringKey)//, displayMode: .inline)
             .navigationBarItems(leading:
-                                    
                                     Picker("", selection: $ec.presentationModeLibrary ){
-                                        
-                                        
-                                        
+        
                                         ForEach(0 ..< presentationModes.count) { i in
                                             HStack{
                                                 //     Image(systemName: self.presentationModesImage[i])

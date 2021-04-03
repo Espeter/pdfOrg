@@ -15,11 +15,11 @@ struct CoverSheetView: View {
  //   @Binding var navigationLinkActive: Bool
     
     @State var book: Book
-    @State private var showingPopup = false
+  //  @State private var showingPopup = false
     @Binding var popupIsActive: Bool
   //  @Binding var currentBook: Book?
     @State var selectedSong: Song?
-    @State private var deleteBookAlert = false
+ //   @State private var deleteBookAlert = false
     @State var updateView: Bool = false
     
     
@@ -44,40 +44,45 @@ struct CoverSheetView: View {
                         ec.currentBook = book
                         ec.navigationLinkActive.toggle()
                     }
-                    .popover(isPresented: self.$showingPopup) {
-                        VStack{
-                            Text("LS_title".lowercased() + " : \(book.title ?? "n.a.")")
-                            Text("Version: \(book.version ?? "n.a.")")
-                            Text("Label: \(book.label ?? "")")
-                            Text("\(String(book.songs!.count)) Songs")
-                            Button(action: {
-                                deleteBookAlert.toggle()
-                            }) {
-                                Image(systemName: "trash")
-                                    .padding()
-                                    .alert(isPresented: $deleteBookAlert) {
-                                        Alert(title: Text("delete \"\(book.title!)\""),
-                                              message: Text("Bist du dir sicher, dass du diese Buch Löschen möchtest?\n es hat zur Folge das alle \(book.songs?.count ?? 0) Lieder gelöscht sind"),
-                                              primaryButton: .destructive(Text("delete"),
-                                                                          action: {
-                                                                            viewContext.delete(book)
-                                                                            saveContext()
-                                                                          }),
-                                              secondaryButton: .cancel(Text("back"))
-                                        )
-                                    }
-                            }
-                            Button(action: {
-                                ec.currentBook = book
-                                ec.navigationLinkActive.toggle()
-                                showingPopup = false
-                            }) {
-                                Image(systemName: "book").padding()
-                            }
-                        }.padding().frame(width: 200, height: 300).onDisappear{
-                            popupIsActive = false
-                        }
-                    }
+                    
+                    
+//                    .popover(isPresented: self.$showingPopup) {
+//                        VStack{
+//                            Text("LS_title".lowercased() + " : \(book.title ?? "n.a.")")
+//                            Text("Version: \(book.version ?? "n.a.")")
+//                            Text("Label: \(book.label ?? "")")
+//                            Text("\(String(book.songs!.count)) Songs")
+//                            Button(action: {
+//                                deleteBookAlert.toggle()
+//                            }) {
+//                                Image(systemName: "trash")
+//                                    .padding()
+//                                    .alert(isPresented: $deleteBookAlert) {
+//                                        Alert(title: Text("delete \"\(book.title!)\""),
+//                                              message: Text("Bist du dir sicher, dass du diese Buch Löschen möchtest?\n es hat zur Folge das alle \(book.songs?.count ?? 0) Lieder gelöscht sind"),
+//                                              primaryButton: .destructive(Text("delete"),
+//                                                                          action: {
+//                                                                            viewContext.delete(book)
+//                                                                            saveContext()
+//                                                                          }),
+//                                              secondaryButton: .cancel(Text("back"))
+//                                        )
+//                                    }
+//                            }
+//                            Button(action: {
+//                                ec.currentBook = book
+//                                ec.navigationLinkActive.toggle()
+//                                showingPopup = false
+//                            }) {
+//                                Image(systemName: "book").padding()
+//                            }
+//                        }.padding().frame(width: 200, height: 300).onDisappear{
+//                            popupIsActive = false
+//                        }
+//                    }
+                    
+                    
+                    
 //                    .border(Color.black)
 //                    .cornerRadius(15.0)
 //                    .border(Color.white)
@@ -91,7 +96,7 @@ struct CoverSheetView: View {
                         if popupIsActive {
                             popupIsActive = false
                         } else {
-                            showingPopup.toggle()
+              //              showingPopup.toggle()
                             popupIsActive = true
                         }
                     }
