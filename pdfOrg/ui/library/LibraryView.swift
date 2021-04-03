@@ -123,7 +123,28 @@ struct LibraryView: View {
             //.background(Color(UIColor.systemBlue).opacity(0.05))
             .navigationBarTitle("LS_Library" as LocalizedStringKey)//, displayMode: .inline)
             .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    if !isBought(for: Store.Prodakt.unlimitedBooks.rawValue) {
+                        
+                        Menu{
+                            Button(action: {
+                                store.purcheseProduct(store.product(for: Store.Prodakt.unlimitedBooks.rawValue)!)
+                            }, label: {
+                                Text("LS_Unlimited number of books \(store.product(for: Store.Prodakt.unlimitedBooks.rawValue)!.price.description(withLocale: store.product(for: Store.Prodakt.unlimitedBooks.rawValue)!.priceLocale) + " " + String(store.product(for: Store.Prodakt.unlimitedBooks.rawValue)!.priceLocale.currencySymbol ?? ""))" as LocalizedStringKey)
+                            })
+                            Button(action: {
+                                store.restorePurchases()
+                            }, label: {
+                                Text("LS_Restore Purchases" as LocalizedStringKey)
+                            })
+                        }
+                        label: {
+                            Image(systemName: "cart")
+                        }
+                    }
+                }
                 ToolbarItem(placement: .primaryAction) {
+                    
                     Menu{
                         Button(action: {
                             ec.presentationModeLibrary = 0
@@ -141,61 +162,59 @@ struct LibraryView: View {
                         })
                     }
                     label: {
-                     Text("LS_sort by" as LocalizedStringKey).padding()
+                        Text("LS_sort by" as LocalizedStringKey).padding()
                     }
-
                 }
-                
             }
-//            .navigationBarItems(leading:
-//                                    Picker("", selection: $ec.presentationModeLibrary ){
-//                                        
-//                                        ForEach(0 ..< presentationModes.count) { i in
-//                                            HStack{
-//                                                //     Image(systemName: self.presentationModesImage[i])
-//                                                Text(self.presentationModes[i])
-//                                            }.tag(i)
-//                                        }
-//                                    }.pickerStyle(SegmentedPickerStyle())
-//                                ,trailing:
-//                                    HStack{
-//                                        if !isBought(for: Store.Prodakt.unlimitedBooks.rawValue) {
-//                                            Button(action: {
-//                                                storeOpen.toggle()
-//                                            }) {
-//                                                Image(systemName: "cart")
-//                                                    .padding()
-//                                                    .popover(isPresented: $storeOpen) {
-//                                                        VStack{
-//                                                            HStack{
-//                                                                Text("LS_Unlimited number of books" as LocalizedStringKey).foregroundColor(.black)
-//                                                                Button(action: {
-//                                                                    store.purcheseProduct(store.product(for: Store.Prodakt.unlimitedBooks.rawValue)!)
-//                                                                }, label: {
-//                                                                    Text("LS_Buy" as LocalizedStringKey).padding()
-//                                                                })
-//                                                            }
-//                                                            Button(action: {
-//                                                                store.restorePurchases()
-//                                                            }, label: {
-//                                                                Text("LS_Restore Purchases" as LocalizedStringKey).padding()
-//                                                            })
-//                                                        }.padding()
-//                                                    }
-//                                            }
-//                                        }
-//                                        Button(action: {
-//                                            if books.count >= 3 && !isBought(for: Store.Prodakt.unlimitedBooks.rawValue) {    //TODO: muss wie der was kosten
-//                                                //                           if false {
-//                                                tooManyBooksAlert.toggle()
-//                                            } else {
-//                                                openFile.toggle()
-//                                            }
-//                                        }) {
-//                                            Image(systemName: "square.and.arrow.down").padding()
-//                                        }
-//                                    }
-//            )
+            //            .navigationBarItems(leading:
+            //                                    Picker("", selection: $ec.presentationModeLibrary ){
+            //
+            //                                        ForEach(0 ..< presentationModes.count) { i in
+            //                                            HStack{
+            //                                                //     Image(systemName: self.presentationModesImage[i])
+            //                                                Text(self.presentationModes[i])
+            //                                            }.tag(i)
+            //                                        }
+            //                                    }.pickerStyle(SegmentedPickerStyle())
+            //                                ,trailing:
+            //                                    HStack{
+            //                                        if !isBought(for: Store.Prodakt.unlimitedBooks.rawValue) {
+            //                                            Button(action: {
+            //                                                storeOpen.toggle()
+            //                                            }) {
+            //                                                Image(systemName: "cart")
+            //                                                    .padding()
+            //                                                    .popover(isPresented: $storeOpen) {
+            //                                                        VStack{
+            //                                                            HStack{
+            //                                                                Text("LS_Unlimited number of books" as LocalizedStringKey).foregroundColor(.black)
+            //                                                                Button(action: {
+            //                                                                    store.purcheseProduct(store.product(for: Store.Prodakt.unlimitedBooks.rawValue)!)
+            //                                                                }, label: {
+            //                                                                    Text("LS_Buy" as LocalizedStringKey).padding()
+            //                                                                })
+            //                                                            }
+            //                                                            Button(action: {
+            //                                                                store.restorePurchases()
+            //                                                            }, label: {
+            //                                                                Text("LS_Restore Purchases" as LocalizedStringKey).padding()
+            //                                                            })
+            //                                                        }.padding()
+            //                                                    }
+            //                                            }
+            //                                        }
+            //                                        Button(action: {
+            //                                            if books.count >= 3 && !isBought(for: Store.Prodakt.unlimitedBooks.rawValue) {    //TODO: muss wie der was kosten
+            //                                                //                           if false {
+            //                                                tooManyBooksAlert.toggle()
+            //                                            } else {
+            //                                                openFile.toggle()
+            //                                            }
+            //                                        }) {
+            //                                            Image(systemName: "square.and.arrow.down").padding()
+            //                                        }
+            //                                    }
+            //            )
             .alert(isPresented: $tooManyBooksAlert) {
                 Alert(title: Text("LS_too many books" as LocalizedStringKey),
                       message: Text("MUAHAHAHA"),
@@ -207,6 +226,9 @@ struct LibraryView: View {
                             store.purcheseProduct(store.product(for: Store.Prodakt.unlimitedBooks.rawValue)!)
                         })
                 )
+            }
+            .sheet(isPresented: $storeOpen) {
+                StoreView()
             }
             .fileImporter(isPresented: $openFile, allowedContentTypes: [.pdf])
             { (res) in
@@ -309,6 +331,7 @@ struct LibraryView: View {
                 isBought = true
             }
         }
-        return isBought
+          return isBought
+     //   return false
     }
 }

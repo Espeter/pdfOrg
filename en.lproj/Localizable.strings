@@ -10,7 +10,7 @@
 "LS_label" = "Label";
 "LS_title" = "Title";
 "LS_no Label" = "no Label";
-"LS_Unlimited number of books" = "Unlimited number of books";
+"LS_Unlimited number of books %@" = "Unlimited number of books %@";
 "LS_Buy" = "Buy";
 "LS_Restore Purchases" = "Restore Purchases";
 "LS_back" = "Back";
@@ -53,8 +53,8 @@
 "LS_settings" = "Settings";
 "LS_delit Book" = "Delete Book";
 "LS_delit contents of Book" = "Delit Contents of Book";
-"LS_uplod contents" = "Upload Contents";
-"LS_donlod contents" = "Download Contents";
+"LS_uplod contents" = "export Contents";
+"LS_donlod contents" = "import Contents";
 "LS_delet oll Titels" = "Delete all Titles";
 "LS_delete titels text %@" = "Are you sure that you want to delete all %@ titles";
 "LS_save" = "Save";
@@ -83,3 +83,4 @@
 "LS_add Book" = "add Book";
 "LS_sort by" = "sort by";
 "LS_Alphabetical" = "Alphabetical";
+"LS_Store" = "Store";

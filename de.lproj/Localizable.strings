@@ -10,7 +10,7 @@
 "LS_label" = "Label";
 "LS_title" = "Titel";
 "LS_no Label" = "kein Label";
-"LS_Unlimited number of books" = "Unbegrenzte Anzahl von Büchern";
+"LS_Unlimited number of books %@" = "Unbegrenzte Anzahl von Büchern %@";
 "LS_Buy" = "Kaufen";
 "LS_Restore Purchases" = "Einkauf wiederherstellen";
 "LS_back" = "Zurück";
@@ -54,8 +54,8 @@
 "LS_settings" = "Einstellungen";
 "LS_delit Book" = "Löschen des Buchs";
 "LS_delit contents of Book" = "Löschen Index des Buchs";
-"LS_uplod contents" = "Upload Index ";
-"LS_donlod contents" = "Download Index";
+"LS_uplod contents" = "export Index ";
+"LS_donlod contents" = "import Index";
 "LS_delet oll Titels" = "Löschen aller Titel";
 "LS_delete titels text %@" = "Bist Du sicher, dass Du alle Titel %@ löschen möchtest";
 "LS_save" = "Sichern";
@@ -85,3 +85,4 @@
 "LS_add Book" = "Buch hinzufügen";
 "LS_sort by" = "Sortieren";
 "LS_Alphabetical" = "Alphabetisch";
+"LS_Store" = "Store";
