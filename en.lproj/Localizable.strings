@@ -80,3 +80,4 @@
 "LS_Library" = "Library";
 "LS_delete \"%@\"" = "delete \"%@\"";
 "LS_delete Book text %@" = "are you sure you want to delete this book?\n the consequence would be that all %@ titels are also deleted.";
+"LS_add Book" = "add Book";

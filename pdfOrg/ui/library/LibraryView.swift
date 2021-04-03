@@ -21,7 +21,7 @@ struct LibraryView: View {
     @State private var searchText = ""
     @State private var openFile = false
     
-    @State private var popupIsActive = false
+    //   @State private var popupIsActive = false
     //   @State private var currentBook: Book?
     
     @State private var navigationLinkActive = false
@@ -71,7 +71,7 @@ struct LibraryView: View {
                                     
                                     ForEach(segmentBooksByLabel[label]!, id: \.self) { (book: Book) in
                                         
-                                        CoverSheetView(book: book, popupIsActive: $popupIsActive)
+                                        CoverSheetView(book: book)
                                     }
                                 }.frame(height: 300).padding(.bottom, -20)
                             }
@@ -88,20 +88,23 @@ struct LibraryView: View {
                             
                             ForEach(1 ..< (getBookRows(geometry: geometry) + 1 )) { i in
                                 HStack{
-                                    Image(systemName: "plus.circle").foregroundColor( Color(UIColor.systemBlue))
+                                    VStack{
+                                        Image(systemName: "plus.circle")
+                                            .foregroundColor( Color(UIColor.systemBlue))
+                                            .font(.title)
+                                            .frame(width: 151.2, height: 213.84)
+                                            .background(Color(UIColor.systemGray).opacity(0.1))
+                                            .cornerRadius(15.0)
+                                            .shadow( radius: 8, x: 3, y: 5)
                                         
-                                        .frame(width: 151.2, height: 213.84)
-                                        .background(Color(UIColor.systemGray).opacity(0.1))
-//                                        .border(Color.black)
-//                                        .cornerRadius(15.0)
-//                                        .border(Color.white)
-                                        .cornerRadius(15.0)
-                                        .shadow( radius: 8, x: 3, y: 5)
-                                    
+                                        Text("LS_add Book" as LocalizedStringKey)
+                                            .foregroundColor( Color(UIColor.systemBlue))
+                                            .frame(width: 151.2, height: 35)
+                                    }
                                     
                                     ForEach(getSegmentBooks(geometry: geometry)[i] ?? [], id: \.self) { (book: Book) in
                                         
-                                        CoverSheetView(book: book, popupIsActive: $popupIsActive)
+                                        CoverSheetView(book: book)
                                     }
                                     if (geometry.size.width >= 100.0){
                                         Text("")
@@ -116,14 +119,12 @@ struct LibraryView: View {
                     }
                 }
                 
-                
-                
             }.background(Color(UIColor.systemGray6))
             //.background(Color(UIColor.systemBlue).opacity(0.05))
             .navigationBarTitle("LS_Library" as LocalizedStringKey)//, displayMode: .inline)
             .navigationBarItems(leading:
                                     Picker("", selection: $ec.presentationModeLibrary ){
-        
+                                        
                                         ForEach(0 ..< presentationModes.count) { i in
                                             HStack{
                                                 //     Image(systemName: self.presentationModesImage[i])
