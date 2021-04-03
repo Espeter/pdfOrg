@@ -120,6 +120,8 @@ struct ContentView: View {
         print("1getAllLabels()")
         var allLabels: [String] = []
         
+        allLabels.append("")
+        
         getBooksAlphabetical().forEach{ book in
             
             if !allLabels.contains(book.label ?? "") {
@@ -127,6 +129,8 @@ struct ContentView: View {
                 allLabels.append(book.label ?? "")
             }
         }
+        
+        print(allLabels)
         return allLabels
     }
     
@@ -145,6 +149,11 @@ struct ContentView: View {
                 dictionary[bookLabel ?? ""]?.append(book)
             }
         }
+        
+//        if dictionary["-"] == nil {
+//            dictionary["-"] = []
+//        }
+        
         return dictionary
     }
     

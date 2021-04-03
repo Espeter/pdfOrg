@@ -52,11 +52,11 @@ struct LibraryView: View {
                             
                             HStack{
                                 if label == "-" || label == ""{
-                                    Text("LS_no Label" as LocalizedStringKey)
-                                        .font(.title)
-                                        .padding()
-                                        .padding(.bottom, -40)
-                                        .multilineTextAlignment(.center)
+                                    //   Text("LS_no Label" as LocalizedStringKey)
+                                    //                                        .font(.title)
+                                    //                                        .padding()
+                                    //                                        .padding(.bottom, -40)
+                                    //                                        .multilineTextAlignment(.center)
                                 } else {
                                     Text(label)
                                         .font(.title)
@@ -67,8 +67,31 @@ struct LibraryView: View {
                                 Spacer()
                             }
                             ScrollView(.horizontal) {
+                                
                                 HStack(){
-                                    
+                                    if label == "-" || label == "" {
+                                        VStack{
+                                            Image(systemName: "plus.circle")
+                                                .foregroundColor( Color(UIColor.systemBlue))
+                                                .font(.title)
+                                                .frame(width: 151.2, height: 213.84)
+                                                .background(Color(UIColor.systemGray).opacity(0.1))
+                                                .cornerRadius(15.0)
+                                                .shadow( radius: 8, x: 3, y: 5)
+                                            
+                                            Text("LS_add Book" as LocalizedStringKey)
+                                                .foregroundColor( Color(UIColor.systemBlue))
+                                                .frame(width: 151.2, height: 35)
+                                        }.padding()
+                                        .onTapGesture {
+                                            if books.count >= 3 && !isBought(for: Store.Prodakt.unlimitedBooks.rawValue) {    //TODO: muss wie der was kosten
+                                                //                           if false {
+                                                tooManyBooksAlert.toggle()
+                                            } else {
+                                                openFile.toggle()
+                                            }
+                                        }
+                                    }
                                     ForEach(segmentBooksByLabel[label]!, id: \.self) { (book: Book) in
                                         
                                         CoverSheetView(book: book)
@@ -84,11 +107,12 @@ struct LibraryView: View {
                     }
                 } else {
                     GeometryReader { geometry in
-                        ScrollView {
-                            
-                            ForEach(1 ..< (getBookRows(geometry: geometry) + 1 )) { i in
-                                HStack{
-                                    VStack{
+                        VStack(alignment: .leading) {
+                            ScrollView {
+                                
+                                if getBookRows(geometry: geometry) == 0 {
+                                    HStack{
+                                    VStack(alignment: .leading){
                                         Image(systemName: "plus.circle")
                                             .foregroundColor( Color(UIColor.systemBlue))
                                             .font(.title)
@@ -100,21 +124,62 @@ struct LibraryView: View {
                                         Text("LS_add Book" as LocalizedStringKey)
                                             .foregroundColor( Color(UIColor.systemBlue))
                                             .frame(width: 151.2, height: 35)
+                                    }.padding()
+                                   
+
+                  
+                                    .onTapGesture {
+                                        if books.count >= 3 && !isBought(for: Store.Prodakt.unlimitedBooks.rawValue) {    //TODO: muss wie der was kosten
+                                            //                           if false {
+                                            tooManyBooksAlert.toggle()
+                                        } else {
+                                            openFile.toggle()
+                                        }
+                                       
                                     }
-                                    
-                                    ForEach(getSegmentBooks(geometry: geometry)[i] ?? [], id: \.self) { (book: Book) in
-                                        
-                                        CoverSheetView(book: book)
+                                        Spacer()
                                     }
-                                    if (geometry.size.width >= 100.0){
-                                        Text("")
-                                    } else {
-                                        Text("")
-                                    }
+                                }
+                                ForEach(1 ..< (getBookRows(geometry: geometry) + 1 )) { i in
                                     
-                                    
-                                }.frame(height: 300)
-                            }.frame(width: geometry.size.width)
+                                    HStack{
+                                        if i == 1 {
+                                            VStack{
+                                                Image(systemName: "plus.circle")
+                                                    .foregroundColor( Color(UIColor.systemBlue))
+                                                    .font(.title)
+                                                    .frame(width: 151.2, height: 213.84)
+                                                    .background(Color(UIColor.systemGray).opacity(0.1))
+                                                    .cornerRadius(15.0)
+                                                    .shadow( radius: 8, x: 3, y: 5)
+                                                   
+                                                
+                                                Text("LS_add Book" as LocalizedStringKey)
+                                                    .foregroundColor( Color(UIColor.systemBlue))
+                                                    .frame(width: 151.2, height: 35)
+                                            } .padding(.leading, 15)
+                                            .onTapGesture {
+                                                if books.count >= 3 && !isBought(for: Store.Prodakt.unlimitedBooks.rawValue) {    //TODO: muss wie der was kosten
+                                                    //                           if false {
+                                                    tooManyBooksAlert.toggle()
+                                                } else {
+                                                    openFile.toggle()
+                                                }
+                                            }
+                                        }
+                                        ForEach(getSegmentBooks(geometry: geometry)[i] ?? [], id: \.self) { (book: Book) in
+                                            
+                                            CoverSheetView(book: book)
+                                        }
+                                        Spacer()
+                                        if (geometry.size.width >= 100.0){
+                                            Text("")
+                                        } else {
+                                            Text("")
+                                        }
+                                    }.frame( height: 300)
+                                }.frame(width: geometry.size.width)
+                            }
                         }.frame(width: geometry.size.width)
                     }
                 }
@@ -260,6 +325,10 @@ struct LibraryView: View {
         
         getBooksAlphabetical().forEach{ book in
             
+            if currentRow == 1 && numberOfBooksInRow ==  0 {
+                numberOfBooksInRow = 1
+            }
+            
             if book.coverSheet != nil {
                 if numberOfBooksInRow < maxBookWidth {
                     
@@ -331,7 +400,7 @@ struct LibraryView: View {
                 isBought = true
             }
         }
-          return isBought
-     //   return false
+        return isBought
+        //   return false
     }
 }
