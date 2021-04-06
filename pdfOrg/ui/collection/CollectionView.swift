@@ -51,6 +51,12 @@ struct CollectionView: View {
                                                           }),
                               secondaryButton: .cancel(Text("LS_back" as LocalizedStringKey))
                         )
+                    }.sheet(isPresented: $copyCollection) {
+                        
+                        
+                        CopyCollectionUIView(isActive: $copyCollection, collections:  $collections, name: collection.name, titelsToBeCopyt: collection.titels).environment(\.managedObjectContext, viewContext)
+                        
+                      //  AddCollectionView(isActive: $copyCollection,collections: $collections, titelsToBeCopyt: collection.titels).environment(\.managedObjectContext, viewContext)
                     }
 
                     VStack{
@@ -97,6 +103,12 @@ struct CollectionView: View {
                                                           }),
                               secondaryButton: .cancel(Text("LS_back" as LocalizedStringKey))
                         )
+                    }.sheet(isPresented: $copyCollection) {
+                        
+                        
+                        CopyCollectionUIView(isActive: $copyCollection, collections:  $collections, name: collection.name, titelsToBeCopyt: collection.titels).environment(\.managedObjectContext, viewContext)
+                        
+                      //  AddCollectionView(isActive: $copyCollection,collections: $collections, titelsToBeCopyt: collection.titels).environment(\.managedObjectContext, viewContext)
                     }
 
                     if editMode {
@@ -189,12 +201,6 @@ struct CollectionView: View {
                     }
                 }
             }
-        }.sheet(isPresented: $copyCollection) {
-            
-        
-            CopyCollectionUIView(isActive: $copyCollection, collections:  $collections, name: collection.name, titelsToBeCopyt: collection.titels).environment(\.managedObjectContext, viewContext)
-            
-          //  AddCollectionView(isActive: $copyCollection,collections: $collections, titelsToBeCopyt: collection.titels).environment(\.managedObjectContext, viewContext)
         }
  
 
