@@ -21,6 +21,8 @@
 		C330491D25ED3BD60004B31C /* SelectTitelForNewCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C330491C25ED3BD60004B31C /* SelectTitelForNewCollectionView.swift */; };
 		C33E56E325EC088E0098A5C9 /* Titles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33E56E225EC088E0098A5C9 /* Titles.swift */; };
 		C33E56E825EC23B10098A5C9 /* AddCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33E56E725EC23B10098A5C9 /* AddCollectionView.swift */; };
+		C341ECC0261CF6EB00A2C447 /* InfoImportIndexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C341ECBF261CF6EB00A2C447 /* InfoImportIndexView.swift */; };
+		C341ECC6261CFB7000A2C447 /* InfoImportCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C341ECC5261CFB7000A2C447 /* InfoImportCollectionView.swift */; };
 		C342EF2125B463060004FD38 /* CampfirePDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C342EF2025B463060004FD38 /* CampfirePDFView.swift */; };
 		C342EF2625B463DC0004FD38 /* PDFKitCampireView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C342EF2525B463DC0004FD38 /* PDFKitCampireView.swift */; };
 		C347944F25EEAB0B00C44DE0 /* AddTitelRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C347944E25EEAB0B00C44DE0 /* AddTitelRowView.swift */; };
@@ -106,6 +108,8 @@
 		C330491C25ED3BD60004B31C /* SelectTitelForNewCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTitelForNewCollectionView.swift; sourceTree = "<group>"; };
 		C33E56E225EC088E0098A5C9 /* Titles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Titles.swift; sourceTree = "<group>"; };
 		C33E56E725EC23B10098A5C9 /* AddCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCollectionView.swift; sourceTree = "<group>"; };
+		C341ECBF261CF6EB00A2C447 /* InfoImportIndexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoImportIndexView.swift; sourceTree = "<group>"; };
+		C341ECC5261CFB7000A2C447 /* InfoImportCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoImportCollectionView.swift; sourceTree = "<group>"; };
 		C342EF2025B463060004FD38 /* CampfirePDFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampfirePDFView.swift; sourceTree = "<group>"; };
 		C342EF2525B463DC0004FD38 /* PDFKitCampireView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFKitCampireView.swift; sourceTree = "<group>"; };
 		C347944E25EEAB0B00C44DE0 /* AddTitelRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTitelRowView.swift; sourceTree = "<group>"; };
@@ -224,6 +228,7 @@
 				C36FD1332604DF3100D761E1 /* BookListOfSongsView.swift */,
 				C36FD138260677BD00D761E1 /* BookSetings.swift */,
 				C30AD36B261336570084FBBF /* EditSongView.swift */,
+				C341ECBF261CF6EB00A2C447 /* InfoImportIndexView.swift */,
 			);
 			path = book2;
 			sourceTree = "<group>";
@@ -412,6 +417,7 @@
 				C358570C25F7990000EC7957 /* CollectionEditListView.swift */,
 				C3ACB53A25F7C12700754F71 /* TitelCollectionVeiw.swift */,
 				C37B15EA25FB7C23006107BB /* CopyCollectionUIView.swift */,
+				C341ECC5261CFB7000A2C447 /* InfoImportCollectionView.swift */,
 			);
 			path = collection;
 			sourceTree = "<group>";
@@ -565,6 +571,7 @@
 				C37B15EB25FB7C23006107BB /* CopyCollectionUIView.swift in Sources */,
 				C385D4A825B4BC2A000D1452 /* PresentationView.swift in Sources */,
 				C30AD36C261336570084FBBF /* EditSongView.swift in Sources */,
+				C341ECC0261CF6EB00A2C447 /* InfoImportIndexView.swift in Sources */,
 				C33E56E325EC088E0098A5C9 /* Titles.swift in Sources */,
 				C32F80CF25C2FC7800F8264C /* PDFViewController.swift in Sources */,
 				C379904A25B34E3700D58D28 /* AllSongsView.swift in Sources */,
@@ -582,6 +589,7 @@
 				C36A6E6E25AEFD59005EB5F1 /* BookPDFView.swift in Sources */,
 				C36FD1252604C0EB00D761E1 /* Book2View.swift in Sources */,
 				C36FD12F2604DD6300D761E1 /* Book2ViewView.swift in Sources */,
+				C341ECC6261CFB7000A2C447 /* InfoImportCollectionView.swift in Sources */,
 				C3F0F9BD25AC9E910004B66B /* LibraryView.swift in Sources */,
 				C393F0E525EFCF7B000738FC /* TitelRowInEditMod.swift in Sources */,
 				C385D49F25B4A88D000D1452 /* EnvironmentController.swift in Sources */,

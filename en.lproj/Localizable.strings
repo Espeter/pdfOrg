@@ -40,7 +40,7 @@
 "LS_copy Collection" = "Copy Collection";
 "LS_copy %@" = "Copy %@";
 "LS_%@(copy)" = "%@(copy)";
-"LS_not oll Books exist" = "Not all Books exist";
+//"LS_not oll Books exist" = "Not all Books exist";
 "LS_Thes Books dasent exist: %@" = "These Books don't exist: %@";
 "LS_Oky" = "Okay";
 "LS_This Teitel is not faund in Book" = "This Title is not found in the Book";
@@ -48,6 +48,8 @@
 "LS_delete complete collection" = "Delete complete Collection";
 "LS_no title in Collection" = "No Title in Collection";
 "LS_understood" = "understood";
+"LS_how to import Collectin" = "how to import Collectin" ;
+"LS_error when loading the collection" = "error when loading the collection";
 
 //Book2
 "LS_settings" = "Settings";
@@ -75,6 +77,7 @@
 "LS_Titel Label: " = "Label: ";
 "LS_first Page: " = "first Page: ";
 "LS_last Page" = "last Page";
+"LS_how to import" = "how to import";
 
 //Library
 "LS_Library" = "Library";
@@ -84,3 +87,6 @@
 "LS_sort by" = "sort by";
 "LS_Alphabetical" = "Alphabetical";
 "LS_Store" = "Store";
+"LS_error" = "error";
+"LS_More information" = "More information";
+"LS_error Text import %@" = "Datei entspricht nicht dem geforderten formart. In Zeile %@";

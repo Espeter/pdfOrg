@@ -30,7 +30,7 @@ class Collections {
         }
     }
     
-    func importCollection(url: URL, books: FetchedResults<Book>) -> [String]? {
+    func importCollection(url: URL, books: FetchedResults<Book>) -> (Int,[String])? {
         
         var txt = String()
         
@@ -41,22 +41,31 @@ class Collections {
             txt = try NSString(contentsOf: url, encoding: String.Encoding.utf8.rawValue) as String
         }  catch {
             print(error)
+            return (1, [error.localizedDescription])
         }
         
         var position: Int64 = 0
         var importetSongs: [(teitel: String,bookId: String)] = []
         var titel: String = ""
         
+        var error: [String] = []
+        
         txt.enumerateLines(invoking: { (line, stop) -> () in
             let lineSplit = line.components(separatedBy:";")
             
-            if lineSplit.count == 1 {
+            if lineSplit.count == 1 && titel == "" {
                 titel = lineSplit[0]
-            } else {
+            } else if lineSplit.count == 2 {
                 importetSongs.append((teitel: lineSplit[0], bookId: lineSplit[1]))
-            }
+            } else {
+                error.append(lineSplit[0])            }
         })
-        
+        if error.count > 0 || importetSongs.count == 0{
+            if importetSongs.count == 0 {
+                error.append("2")
+            }
+            return (2, error)
+        }
         let allNonExistentBooks  = allBooksExist(importetSongs, books: books)
         
         if allNonExistentBooks == nil {
@@ -74,7 +83,7 @@ class Collections {
         //    gig = newGig //TODO: muss noch geamcg werden oder auch nicht
         } else {
          //   notExistingBooks =
-            return allNonExistentBooks!
+            return (3, allNonExistentBooks!)
   //          bookAlert.toggle()
         }
 

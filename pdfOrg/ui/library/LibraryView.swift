@@ -125,9 +125,6 @@ struct LibraryView: View {
                                             .foregroundColor( Color(UIColor.systemBlue))
                                             .frame(width: 151.2, height: 35)
                                     }.padding()
-                                   
-
-                  
                                     .onTapGesture {
                                         if books.count >= 3 && !isBought(for: Store.Prodakt.unlimitedBooks.rawValue) {    //TODO: muss wie der was kosten
                                             //                           if false {
@@ -135,7 +132,6 @@ struct LibraryView: View {
                                         } else {
                                             openFile.toggle()
                                         }
-                                       
                                     }
                                         Spacer()
                                     }

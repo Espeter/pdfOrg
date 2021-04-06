@@ -25,8 +25,13 @@ struct CollectionNavigationView: View {
     @State var allTitelsView: Bool = true
     @State var impotCollection: Bool = false
     
-    @State var allNonExistentBooks: [String]?
+//    @State var allNonExistentBooks: [String]?
+    @State var error: (Int,[String])?
+    @State var errorText1 = ""
+    @State var errorText: LocalizedStringKey = ""
     @State var bookAlert: Bool = false
+    
+    @State var infoIsVisible: Bool = false
     
     var body: some View {
         
@@ -40,6 +45,8 @@ struct CollectionNavigationView: View {
                                 .foregroundColor(Color(UIColor.systemBlue))
                             Text("LS_New Collection" as LocalizedStringKey)
                         }
+                    }.sheet(isPresented: $addingCollection) {
+                        AddCollectionView(isActive: $addingCollection, collections: $collections).environment(\.managedObjectContext, viewContext)
                     }
                     
                     Button(action: {impotCollection.toggle()}) {
@@ -47,7 +54,14 @@ struct CollectionNavigationView: View {
                             Image(systemName: "square.and.arrow.down")
                                 .foregroundColor(Color(UIColor.systemBlue))
                             Text("Import Collection from .txt")
+                            Spacer()
+                            Image(systemName: "info.circle").foregroundColor(Color(UIColor.systemBlue))
+                                .onTapGesture {
+                                    infoIsVisible.toggle()
+                                }
                         }
+                    }.sheet(isPresented: $infoIsVisible) {
+                        InfoImportCollectionView(isVisibel: $infoIsVisible)
                     }
          
                     Divider()
@@ -95,18 +109,30 @@ struct CollectionNavigationView: View {
                     }
                 }
             }.navigationBarTitle("LS_Collections" as LocalizedStringKey, displayMode: .inline)
-        }.sheet(isPresented: $addingCollection) {
-            AddCollectionView(isActive: $addingCollection, collections: $collections).environment(\.managedObjectContext, viewContext)
         }
         .fileImporter(isPresented: $impotCollection, allowedContentTypes: [.text])
         { (res) in
             do {
                 let fileUrl = try res.get()
                
-                allNonExistentBooks = collections.importCollection(url: fileUrl, books: books)
+              //  allNonExistentBooks = collections.importCollection(url: fileUrl, books: books)
                 
-                if allNonExistentBooks != nil {
-                    bookAlert.toggle()
+                error = collections.importCollection(url: fileUrl, books: books)
+                
+                if error != nil {
+                    errorText1 = ""
+                    errorText = ""
+                    
+                    if error?.0 == 1 {
+                        errorText1 = (error?.1[0])!
+                    } else if error?.0 == 2 {
+                        errorText = "LS_error Text import \(getnotExistingBooks(allNonExistentBooks: error?.1))" as LocalizedStringKey
+                    } else if error?.0 == 3 {
+                        errorText = "LS_Thes Books dasent exist: \(getnotExistingBooks(allNonExistentBooks: error?.1))" as LocalizedStringKey
+                    }
+                    
+                    
+                    bookAlert = true
                 } else {
                     print("Import erfolkreich =)")
                 }
@@ -117,13 +143,19 @@ struct CollectionNavigationView: View {
             }
         }
         .alert(isPresented: $bookAlert) {
-            Alert(title: Text("LS_not oll Books exist" as LocalizedStringKey),
-                  message: Text("LS_Thes Books dasent exist: \(getnotExistingBooks())" as LocalizedStringKey),
-                  dismissButton: .cancel(Text("LS_Oky" as LocalizedStringKey))
+            
+            Alert(title: Text("LS_error when loading the collection" as LocalizedStringKey),
+         //         message: Text("LS_Thes Books dasent exist: \(getnotExistingBooks())" as LocalizedStringKey),
+                  message: errorText1 == "" ? Text(errorText) : Text(errorText1),
+                  primaryButton: .default(Text("LS_More information" as LocalizedStringKey),
+                                          action: {
+                                            infoIsVisible.toggle()
+                                          }),
+                  secondaryButton: .cancel(Text("LS_Oky" as LocalizedStringKey))
             )
         }
     }
-    func getnotExistingBooks() -> String {
+    func getnotExistingBooks(allNonExistentBooks: [String]?) -> String {
         
         var existingBooksString: String = "\n"
         
