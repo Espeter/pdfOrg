@@ -41,26 +41,90 @@ struct CollectionView: View {
             if geometry.size.width > geometry.size.height {
                 HStack {
 
-                    CollectionPDFView(song: $titel, songInGig: $titelInCollection, pageIndex: $pageIndex, collection: $collection, Collections: collections, reload: $reload)
+                    CollectionPDFView(song: $titel, songInGig: $titelInCollection, pageIndex: $pageIndex, collection: $collection, Collections: collections, reload: $reload)       .alert(isPresented: $deleteCollectionAlert) {
+                        Alert(title: Text("LS_delit \(collection.name)" as LocalizedStringKey),
+                              message: Text("LS_delitCollectionText \(collection.name)"),
+                              primaryButton: .destructive(Text("LS_delit" as LocalizedStringKey),
+                                                          action: {
+                                                            collections.delete(gig: collection.gig)
+                                                            faworitenssssisActive = true
+                                                          }),
+                              secondaryButton: .cancel(Text("LS_back" as LocalizedStringKey))
+                        )
+                    }
 
                     VStack{
                         Text("").padding(.top, -20).padding(.bottom, -20)
                         if editMode {
-                            CollectionEditListView( titelsInCollection: $collection.titelsInCollection, tilels: Titles(songs: songs), titel: $titel, collections: $collections, collection: $collection, reload:  $reload, lastSongDeleted: $lastSongDeleted)
+                            CollectionEditListView( titelsInCollection: $collection.titelsInCollection, tilels: Titles(songs: songs), titel: $titel, collections: $collections, collection: $collection, reload:  $reload, lastSongDeleted: $lastSongDeleted)        .alert(isPresented: $lastSongDeleted) {
+                                Alert(title: Text("LS_delit Collection" as LocalizedStringKey),
+                                      message: Text("It is not Posibel to haf a Collection whis aut a associated Titel" as LocalizedStringKey),
+                                      primaryButton: .cancel(Text("LS_back" as LocalizedStringKey)),
+                                      secondaryButton: .default(
+                                        Text("LS_delete complete collection" as LocalizedStringKey),
+                                        action: {
+                                            collections.delete(gig: collection.gig)
+                                            faworitenssssisActive = true
+                                        })
+                                )
+                            }
                         } else {
-                            CollectionListView(titel: $titel, titelInCollection: $titelInCollection, pageIndex: $pageIndex, collection: $collection, reload: $reload)
+                            CollectionListView(titel: $titel, titelInCollection: $titelInCollection, pageIndex: $pageIndex, collection: $collection, reload: $reload)        .alert(isPresented: $lastSongDeleted) {
+                                Alert(title: Text("LS_delit Collection" as LocalizedStringKey),
+                                      message: Text("It is not Posibel to haf a Collection whis aut a associated Titel" as LocalizedStringKey),
+                                      primaryButton: .cancel(Text("LS_back" as LocalizedStringKey)),
+                                      secondaryButton: .default(
+                                        Text("LS_delete complete collection" as LocalizedStringKey),
+                                        action: {
+                                            collections.delete(gig: collection.gig)
+                                            faworitenssssisActive = true
+                                        })
+                                )
+                            }
                         }
                     }
                 }
             }
             else {
                 VStack{
-                    CollectionPDFView(song: $titel, songInGig: $titelInCollection, pageIndex: $pageIndex, collection: $collection, Collections: collections, reload: $reload)
+                    CollectionPDFView(song: $titel, songInGig: $titelInCollection, pageIndex: $pageIndex, collection: $collection, Collections: collections, reload: $reload)       .alert(isPresented: $deleteCollectionAlert) {
+                        Alert(title: Text("LS_delit \(collection.name)" as LocalizedStringKey),
+                              message: Text("LS_delitCollectionText \(collection.name)"),
+                              primaryButton: .destructive(Text("LS_delit" as LocalizedStringKey),
+                                                          action: {
+                                                            collections.delete(gig: collection.gig)
+                                                            faworitenssssisActive = true
+                                                          }),
+                              secondaryButton: .cancel(Text("LS_back" as LocalizedStringKey))
+                        )
+                    }
 
                     if editMode {
-                        CollectionEditListView( titelsInCollection: $collection.titelsInCollection, tilels: Titles(songs: songs), titel: $titel, collections: $collections, collection:  $collection, reload:  $reload, lastSongDeleted: $lastSongDeleted)
+                        CollectionEditListView( titelsInCollection: $collection.titelsInCollection, tilels: Titles(songs: songs), titel: $titel, collections: $collections, collection:  $collection, reload:  $reload, lastSongDeleted: $lastSongDeleted)        .alert(isPresented: $lastSongDeleted) {
+                            Alert(title: Text("LS_delit Collection" as LocalizedStringKey),
+                                  message: Text("It is not Posibel to haf a Collection whis aut a associated Titel" as LocalizedStringKey),
+                                  primaryButton: .cancel(Text("LS_back" as LocalizedStringKey)),
+                                  secondaryButton: .default(
+                                    Text("LS_delete complete collection" as LocalizedStringKey),
+                                    action: {
+                                        collections.delete(gig: collection.gig)
+                                        faworitenssssisActive = true
+                                    })
+                            )
+                        }
                     } else {
-                        CollectionListView(titel: $titel, titelInCollection: $titelInCollection, pageIndex: $pageIndex, collection: $collection, reload: $reload)
+                        CollectionListView(titel: $titel, titelInCollection: $titelInCollection, pageIndex: $pageIndex, collection: $collection, reload: $reload)        .alert(isPresented: $lastSongDeleted) {
+                            Alert(title: Text("LS_delit Collection" as LocalizedStringKey),
+                                  message: Text("It is not Posibel to haf a Collection whis aut a associated Titel" as LocalizedStringKey),
+                                  primaryButton: .cancel(Text("LS_back" as LocalizedStringKey)),
+                                  secondaryButton: .default(
+                                    Text("LS_delete complete collection" as LocalizedStringKey),
+                                    action: {
+                                        collections.delete(gig: collection.gig)
+                                        faworitenssssisActive = true
+                                    })
+                            )
+                        }
                     }
                     
                 }
@@ -132,29 +196,8 @@ struct CollectionView: View {
             
           //  AddCollectionView(isActive: $copyCollection,collections: $collections, titelsToBeCopyt: collection.titels).environment(\.managedObjectContext, viewContext)
         }
-        .alert(isPresented: $deleteCollectionAlert) {
-            Alert(title: Text("LS_delit \(collection.name)" as LocalizedStringKey),
-                  message: Text("LS_delitCollectionText \(collection.name)"),
-                  primaryButton: .destructive(Text("LS_delit" as LocalizedStringKey),
-                                              action: {
-                                                collections.delete(gig: collection.gig)
-                                                faworitenssssisActive = true
-                                              }),
-                  secondaryButton: .cancel(Text("LS_back" as LocalizedStringKey))
-            )
-        }
-        .alert(isPresented: $lastSongDeleted) {
-            Alert(title: Text("LS_delit Collection" as LocalizedStringKey),
-                  message: Text("It is not Posibel to haf a Collection whis aut a associated Titel" as LocalizedStringKey),
-                  primaryButton: .cancel(Text("LS_back" as LocalizedStringKey)),
-                  secondaryButton: .default(
-                    Text("LS_delete complete collection" as LocalizedStringKey),
-                    action: {
-                        collections.delete(gig: collection.gig)
-                        faworitenssssisActive = true
-                    })
-            )
-        }
+ 
+
     }
     }
 
