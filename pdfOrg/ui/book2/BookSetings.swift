@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BookSetings: View {
     @Environment(\.managedObjectContext) var viewContext
+    @EnvironmentObject var ec : EnvironmentController
 
     @FetchRequest(sortDescriptors: [])
     var books: FetchedResults<Book>
@@ -140,6 +141,7 @@ struct BookSetings: View {
             self.book.title = title
 
             saveContext()
+            ec.updatLibrary.toggle()
             bookSettings = false
             updayitView.toggle()
         }
