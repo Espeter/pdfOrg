@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Book2ViewView: View {
     @EnvironmentObject var ec : EnvironmentController
+    @EnvironmentObject var ecb : EnvironmentControllerBook
 
     @Environment(\.managedObjectContext) var viewContext
     @FetchRequest(sortDescriptors: [])
@@ -134,7 +135,7 @@ struct Book2ViewView: View {
         var songFound = false
         songs?.forEach { song in
             
-            if (song as! Song).startPage != (song as! Song).endPage && songFound == false{
+            if (song as! Song).startPage != (song as! Song).endPage && songFound == false {
                 
                 let startPage = Int((song as! Song).startPage!)
                 let endPage = Int((song as! Song).endPage ?? (song as! Song).startPage!)
@@ -144,32 +145,35 @@ struct Book2ViewView: View {
                     if (startPage! + i) == page && songFound == false{
                         self.song = (song as! Song)
                         songFound = true
-                        ec.titelName = (song as! Song).title ?? "error_no Titel"
-                        ec.startPage = (song as! Song).startPage ?? "1"
-                        ec.endPage = (song as! Song).endPage ?? (song as! Song).startPage ?? "1"
-                        ec.label = (song as! Song).author ?? "-"
+                        ecb.titelName = (song as! Song).title ?? "error_no Titel"
+                        ecb.startPage = (song as! Song).startPage ?? "1"
+                        ecb.endPage = (song as! Song).endPage ?? (song as! Song).startPage ?? "1"
+                        ecb.label = (song as! Song).author ?? "-"
                     } else if songFound == false {
                         self.song = nil
-                        ec.titelName = "Page \(page)"
-                        ec.startPage = "\(page)"
-                        ec.endPage = "\(page)"
-                        ec.label = "-"
+                        ecb.titelName = "Page \(page)"
+                        ecb.startPage = "\(page)"
+                        ecb.endPage = "\(page)"
+                        ecb.label = "-"
                     }
                 }
             } else if songFound == false{
-                if (song as! Song).startPage == String(page) {
+               if (song as! Song).startPage == String(page) {
                     self.song = (song as! Song)
                     songFound = true
-                    ec.titelName = (song as! Song).title ?? "error_no Titel"
-                    ec.startPage = (song as! Song).startPage ?? "1"
-                    ec.endPage = (song as! Song).endPage ?? (song as! Song).startPage ?? "1"
-                    ec.label = (song as! Song).author ?? "-"
+                print("hallo du dar 89")
+     //           ec.navigationLinkActive = true
+                    ecb.titelName = (song as! Song).title ?? "error_no Titel"
+                    ecb.startPage = (song as! Song).startPage ?? "1"
+                    ecb.endPage = (song as! Song).endPage ?? (song as! Song).startPage ?? "1"
+                    ecb.label = (song as! Song).author ?? "-"
                 } else {
+                    print("hallo du dar 32")
                     self.song = nil
-                    ec.titelName = "Page \(page)"
-                    ec.startPage = "\(page)"
-                    ec.endPage = "\(page)"
-                    ec.label = "-"
+                   ecb.titelName = "Page \(page)"
+                    ecb.startPage = "\(page)"
+                    ecb.endPage = "\(page)"
+                    ecb.label = "-"
                 }
             }
         }

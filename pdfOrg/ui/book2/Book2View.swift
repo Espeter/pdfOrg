@@ -141,6 +141,9 @@ struct Book2View: View {
                 }
             }
         }.padding(.top, -50)
+        .onAppear{
+            print("fooo")
+        }
         .fileImporter(isPresented: $openFile, allowedContentTypes: [.text])
         { (res) in
             do {

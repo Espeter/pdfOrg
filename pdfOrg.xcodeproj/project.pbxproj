@@ -23,6 +23,7 @@
 		C33E56E825EC23B10098A5C9 /* AddCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33E56E725EC23B10098A5C9 /* AddCollectionView.swift */; };
 		C341ECC0261CF6EB00A2C447 /* InfoImportIndexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C341ECBF261CF6EB00A2C447 /* InfoImportIndexView.swift */; };
 		C341ECC6261CFB7000A2C447 /* InfoImportCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C341ECC5261CFB7000A2C447 /* InfoImportCollectionView.swift */; };
+		C341ECCE261E53CF00A2C447 /* EnvironmentControllerBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = C341ECCD261E53CF00A2C447 /* EnvironmentControllerBook.swift */; };
 		C342EF2125B463060004FD38 /* CampfirePDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C342EF2025B463060004FD38 /* CampfirePDFView.swift */; };
 		C342EF2625B463DC0004FD38 /* PDFKitCampireView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C342EF2525B463DC0004FD38 /* PDFKitCampireView.swift */; };
 		C347944F25EEAB0B00C44DE0 /* AddTitelRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C347944E25EEAB0B00C44DE0 /* AddTitelRowView.swift */; };
@@ -110,6 +111,7 @@
 		C33E56E725EC23B10098A5C9 /* AddCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCollectionView.swift; sourceTree = "<group>"; };
 		C341ECBF261CF6EB00A2C447 /* InfoImportIndexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoImportIndexView.swift; sourceTree = "<group>"; };
 		C341ECC5261CFB7000A2C447 /* InfoImportCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoImportCollectionView.swift; sourceTree = "<group>"; };
+		C341ECCD261E53CF00A2C447 /* EnvironmentControllerBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentControllerBook.swift; sourceTree = "<group>"; };
 		C342EF2025B463060004FD38 /* CampfirePDFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampfirePDFView.swift; sourceTree = "<group>"; };
 		C342EF2525B463DC0004FD38 /* PDFKitCampireView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFKitCampireView.swift; sourceTree = "<group>"; };
 		C347944E25EEAB0B00C44DE0 /* AddTitelRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTitelRowView.swift; sourceTree = "<group>"; };
@@ -354,6 +356,7 @@
 			isa = PBXGroup;
 			children = (
 				C385D49E25B4A88D000D1452 /* EnvironmentController.swift */,
+				C341ECCD261E53CF00A2C447 /* EnvironmentControllerBook.swift */,
 				C385D4A625B4BC17000D1452 /* presentation */,
 				C3F0F9C125ACA3F90004B66B /* extensions */,
 				C3F0F9BB25AC9DF80004B66B /* library */,
@@ -591,6 +594,7 @@
 				C36FD12F2604DD6300D761E1 /* Book2ViewView.swift in Sources */,
 				C341ECC6261CFB7000A2C447 /* InfoImportCollectionView.swift in Sources */,
 				C3F0F9BD25AC9E910004B66B /* LibraryView.swift in Sources */,
+				C341ECCE261E53CF00A2C447 /* EnvironmentControllerBook.swift in Sources */,
 				C393F0E525EFCF7B000738FC /* TitelRowInEditMod.swift in Sources */,
 				C385D49F25B4A88D000D1452 /* EnvironmentController.swift in Sources */,
 				C31D403F25B63492009A3EF7 /* BookPresentationView.swift in Sources */,

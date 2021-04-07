@@ -10,6 +10,8 @@ import SwiftUI
 struct EditSongView: View {
     
     @EnvironmentObject var ec : EnvironmentController
+    @EnvironmentObject var ecb : EnvironmentControllerBook
+
     
     @Environment(\.managedObjectContext) var viewContext
     @State var book: Book
@@ -49,23 +51,23 @@ struct EditSongView: View {
             HStack{
                 HStack{
                     Text("LS_Titel Name: " as LocalizedStringKey).padding(.leading, 15)
-                    myTextField( text: $ec.titelName)
+                    myTextField( text: $ecb.titelName)
                     
                 }
                 HStack{
                     Text("LS_Titel Label: " as LocalizedStringKey)
-                    myTextField( text: $ec.label)
+                    myTextField( text: $ecb.label)
                     
                 }
             }
             HStack{
                 HStack{
                     Text("LS_first Page: " as LocalizedStringKey).padding(.leading, 15)
-                    myTextField( text: $ec.startPage)
+                    myTextField( text: $ecb.startPage)
                 }
                 HStack{
                     Text("LS_last Page" as LocalizedStringKey)
-                    myTextField(text: $ec.endPage)
+                    myTextField(text: $ecb.endPage)
                 }
             }
             //   }.frame( height: 25)
@@ -76,10 +78,10 @@ struct EditSongView: View {
     
     private   func add(){
         let newSong = Song(context: viewContext)
-        newSong.title = ec.titelName
-        newSong.startPage = ec.startPage
-        newSong.endPage = ec.endPage
-        newSong.author =  ec.label
+        newSong.title = ecb.titelName
+        newSong.startPage = ecb.startPage
+        newSong.endPage = ecb.endPage
+        newSong.author =  ecb.label
         newSong.book = book
         newSong.id = UUID()
         newSong.isFavorit = false
@@ -88,10 +90,10 @@ struct EditSongView: View {
     }
     private func additSong() {
     
-        song!.title = ec.titelName
-        song!.startPage = ec.startPage
-        song!.endPage = ec.endPage
-        song!.author =  ec.label
+        song!.title = ecb.titelName
+        song!.startPage = ecb.startPage
+        song!.endPage = ecb.endPage
+        song!.author =  ecb.label
     
         updayitView.toggle()
     }

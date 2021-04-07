@@ -9,6 +9,8 @@ import SwiftUI
 
 struct BookListOfSongsView: View {
     @EnvironmentObject var ec : EnvironmentController
+    @EnvironmentObject var ecb : EnvironmentControllerBook
+
     @Environment(\.managedObjectContext) var viewContext
 
     @Binding var book: Book
@@ -45,10 +47,10 @@ struct BookListOfSongsView: View {
                             Button(action: {
                                     self.song = song
                                 page = Int(song.startPage ?? "1") ?? 1
-                                ec.titelName = song.title ?? "error_no titel"
-                                ec.startPage = song.startPage ?? "1"
-                                ec.endPage = song.endPage ?? song.startPage ?? "1"
-                                ec.label = song.author ?? "-"
+                                ecb.titelName = song.title ?? "error_no titel"
+                                ecb.startPage = song.startPage ?? "1"
+                                ecb.endPage = song.endPage ?? song.startPage ?? "1"
+                                ecb.label = song.author ?? "-"
                                 
                             }, label: {
                                 VStack{
@@ -76,10 +78,10 @@ struct BookListOfSongsView: View {
                             Button(action: {
                                     self.song = song
                                 page = Int(song.startPage ?? "1") ?? 1
-                                ec.titelName = song.title ?? "error_no titel"
-                                ec.startPage = song.startPage ?? "1"
-                                ec.endPage = song.endPage ?? song.startPage ?? "1"
-                                ec.label = song.author ?? "-"
+                                ecb.titelName = song.title ?? "error_no titel"
+                                ecb.startPage = song.startPage ?? "1"
+                                ecb.endPage = song.endPage ?? song.startPage ?? "1"
+                                ecb.label = song.author ?? "-"
                                 
                             }, label: {
                                 VStack{

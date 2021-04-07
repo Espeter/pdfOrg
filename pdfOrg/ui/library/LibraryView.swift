@@ -24,7 +24,7 @@ struct LibraryView: View {
     //   @State private var popupIsActive = false
     //   @State private var currentBook: Book?
     
-    @State private var navigationLinkActive = false
+ //   @State private var navigationLinkActive = false
     @State var tooManyBooksAlert: Bool = false
     
     @State private var storeOpen: Bool = false

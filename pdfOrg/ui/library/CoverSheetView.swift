@@ -12,7 +12,7 @@ struct CoverSheetView: View {
     @EnvironmentObject var ec : EnvironmentController
     
     @State var book: Book
-    @State var selectedSong: Song?
+//    @State var selectedSong: Song?
     
     var body: some View {
         
@@ -20,7 +20,7 @@ struct CoverSheetView: View {
             VStack{
                 if ec.currentBook != nil {
                     
-                    NavigationLink(destination: Book2View(book: ec.currentBook!), isActive: $ec.navigationLinkActive) { EmptyView() }.animation(nil)
+                    NavigationLink(destination: Book2View(book: ec.currentBook!).environmentObject(EnvironmentControllerBook()), isActive: $ec.navigationLinkActive) { EmptyView() }.animation(nil)
                 }
                 ZStack(alignment: .topTrailing) {
                     Image(uiImage: UIImage(data: book.coverSheet!)!)
@@ -28,7 +28,7 @@ struct CoverSheetView: View {
                         .frame(width: getWidth(), height: getHeight())
                         .onTapGesture {
                             ec.currentBook = book
-                            ec.navigationLinkActive.toggle()
+                            ec.navigationLinkActive = true //.toggle()
                         }
                         .cornerRadius(15.0)
                         .shadow( radius: 8, x: 3, y: 5)
