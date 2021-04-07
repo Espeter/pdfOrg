@@ -69,6 +69,7 @@ struct Book2View: View {
                                       message: Text("LS_delete titels text \(String(book.songs?.count ?? 0))" as LocalizedStringKey),
                                       primaryButton: .destructive(Text("LS_delit" as LocalizedStringKey),
                                                                   action: {
+                                                                    ec.navigationLinkActive = false
                                                                     book.songs?.forEach{ song in
                                                                         viewContext.delete(song as! Song)
                                                                     }
@@ -107,6 +108,7 @@ struct Book2View: View {
                                       message: Text("LS_delete titels text \(String(book.songs?.count ?? 0))" as LocalizedStringKey),
                                       primaryButton: .destructive(Text("LS_delit" as LocalizedStringKey),
                                                                   action: {
+                                                                    ec.navigationLinkActive = false
                                                                     book.songs?.forEach{ song in
                                                                         viewContext.delete(song as! Song)
                                                                     }

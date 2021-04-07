@@ -71,10 +71,8 @@ struct BookListOfSongsView: View {
             } else {
                 ScrollViewReader { scroll in
                     List() {
-                       
+                        if book.songs != nil {
                         ForEach(getArraySong(book.songs!)) { song in
-                            
-                            
                             Button(action: {
                                     self.song = song
                                 page = Int(song.startPage ?? "1") ?? 1
@@ -101,6 +99,7 @@ struct BookListOfSongsView: View {
                             })
                         }
                     }
+                }
                 }
             }
 
