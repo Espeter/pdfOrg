@@ -30,7 +30,8 @@ struct CollectionView: View {
     
     @State var reload: Bool = false
     @State var lastSongDeleted: Bool = false
-    
+    @Binding var allTitelsView: Bool
+
     var body: some View {
         VStack(alignment: .leading){
             TitelCollectionVeiw(editMode: $editMode, titel: $collection.name, name: $name)
@@ -41,7 +42,7 @@ struct CollectionView: View {
             if geometry.size.width > geometry.size.height {
                 HStack {
 
-                    CollectionPDFView(song: $titel, songInGig: $titelInCollection, pageIndex: $pageIndex, collection: $collection, Collections: collections, reload: $reload)       .alert(isPresented: $deleteCollectionAlert) {
+                    CollectionPDFView(allTitelsView: $allTitelsView, song: $titel, songInGig: $titelInCollection, pageIndex: $pageIndex, collection: $collection, Collections: collections, reload: $reload)       .alert(isPresented: $deleteCollectionAlert) {
                         Alert(title: Text("LS_delit \(collection.name)" as LocalizedStringKey),
                               message: Text("LS_delitCollectionText \(collection.name)"),
                               primaryButton: .destructive(Text("LS_delit" as LocalizedStringKey),
@@ -93,7 +94,7 @@ struct CollectionView: View {
             }
             else {
                 VStack{
-                    CollectionPDFView(song: $titel, songInGig: $titelInCollection, pageIndex: $pageIndex, collection: $collection, Collections: collections, reload: $reload)       .alert(isPresented: $deleteCollectionAlert) {
+                    CollectionPDFView(allTitelsView: $allTitelsView, song: $titel, songInGig: $titelInCollection, pageIndex: $pageIndex, collection: $collection, Collections: collections, reload: $reload)       .alert(isPresented: $deleteCollectionAlert) {
                         Alert(title: Text("LS_delit \(collection.name)" as LocalizedStringKey),
                               message: Text("LS_delitCollectionText \(collection.name)"),
                               primaryButton: .destructive(Text("LS_delit" as LocalizedStringKey),

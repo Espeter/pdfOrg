@@ -12,7 +12,7 @@ struct CollectionPDFView: View {
     @EnvironmentObject var ec : EnvironmentController
     @Environment(\.managedObjectContext) private var viewContext
 
-    
+    @Binding var allTitelsView: Bool
     
     @Binding var song: Song
     @Binding var songInGig: SongInGig
@@ -82,19 +82,20 @@ struct CollectionPDFView: View {
     
     private func removeFavorit(){
         
-       
-        
-  
         Collections.removeFavorites(song: song)
         
         if collection.name == "Favorites" {
   
             let newPosichen = songInGig.position - 2
             viewContext.delete(songInGig)
-            
-            
+            print("newPosichen")
+            print(newPosichen)
+            if newPosichen >= 0 {
             song = collection.titels[Int(newPosichen)]
             pageIndex = collection.titels[Int(newPosichen)].startPage!
+            } else {
+                allTitelsView = true
+            }
         }
         reload.toggle()
     }

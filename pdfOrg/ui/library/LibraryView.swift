@@ -207,20 +207,37 @@ struct LibraryView: View {
                 ToolbarItem(placement: .primaryAction) {
                     
                     Menu{
-                        Button(action: {
-                            ec.presentationModeLibrary = 0
-                        }, label: {
-                            Text("LS_Alphabetical" as LocalizedStringKey)
-                            Spacer()
-                            Image(systemName:"textformat.abc")
-                        })
-                        Button(action: {
-                            ec.presentationModeLibrary = 1
-                        }, label: {
-                            Text("LS_label" as LocalizedStringKey)
-                            Spacer()
-                            Image(systemName:"tag")
-                        })
+                        
+                        Picker(selection: $ec.presentationModeLibrary, label: Text("Sorting options")) {
+                            HStack{
+                                Text("LS_Alphabetical" as LocalizedStringKey)
+                                Spacer()
+                                Image(systemName:"textformat.abc")
+                            }.tag(0)
+                            HStack{
+                                Text("LS_label" as LocalizedStringKey)
+                                Spacer()
+                                Image(systemName:"tag")
+                            }.tag(1)
+                        }
+                        
+                        
+                        
+//
+//                        Button(action: {
+//                            ec.presentationModeLibrary = 0
+//                        }, label: {
+//                            Text("LS_Alphabetical" as LocalizedStringKey)
+//                            Spacer()
+//                            Image(systemName:"textformat.abc")
+//                        })
+//                        Button(action: {
+//                            ec.presentationModeLibrary = 1
+//                        }, label: {
+//                            Text("LS_label" as LocalizedStringKey)
+//                            Spacer()
+//                            Image(systemName:"tag")
+//                        })
                     }
                     label: {
                         Text("LS_sort by" as LocalizedStringKey).padding()

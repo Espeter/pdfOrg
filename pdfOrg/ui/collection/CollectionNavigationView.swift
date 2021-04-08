@@ -75,15 +75,15 @@ struct CollectionNavigationView: View {
                     }
                     }
                     let faworitenGig = collections.get(collection: "Favorites")
-                    
+                    if faworitenGig.title != nil {
                     if faworitenGig.songsInGig!.count > 0 {
                     
-                    NavigationLink( destination: CollectionView(collection: Collection(gig: faworitenGig), collections: $collections, faworitenssssisActive: $faworitenssssisActive, titel: Collection(gig: faworitenGig).titels[0], titelInCollection: Collection(gig: faworitenGig).titelsInCollection[0]) , isActive: $faworitenssssisActive) {
+                        NavigationLink( destination: CollectionView(collection: Collection(gig: faworitenGig), collections: $collections, faworitenssssisActive: $faworitenssssisActive, titel: Collection(gig: faworitenGig).titels[0], titelInCollection: Collection(gig: faworitenGig).titelsInCollection[0], allTitelsView: $allTitelsView) , isActive: $faworitenssssisActive) {
                         
                         Image(systemName: "star.fill")
                             .foregroundColor( Color(UIColor.systemBlue))//faworitenssssisActive ? Color(UIColor.yellow) : Color(UIColor.systemBlue))
                         Text("Faworiten")
-                    }
+                    }}
                     }
                     Divider()
                     
@@ -92,18 +92,18 @@ struct CollectionNavigationView: View {
             //            if Collection(gig: gig).titels.count > 0 && gig.title != "Favorites" {
                         if Collection(gig: gig).titels.count > 0 {
                         if gig.title != "Favorites" {
-                            NavigationLink(destination: CollectionView(collection: Collection(gig: gig), collections: $collections, faworitenssssisActive: $faworitenssssisActive, titel: Collection(gig: gig).titels[0], titelInCollection: Collection(gig: gig).titelsInCollection[0])) {
+                            NavigationLink(destination: CollectionView(collection: Collection(gig: gig), collections: $collections, faworitenssssisActive: $faworitenssssisActive, titel: Collection(gig: gig).titels[0], titelInCollection: Collection(gig: gig).titelsInCollection[0], allTitelsView: $allTitelsView)) {
                                 
                                 Text("\(gig.title ?? "error_no Title found")")
                             }
                         }
-                        } else {
-                            NavigationLink(destination:  Text("no song")) {
+                        } //else {
+                       //     NavigationLink(destination:  Text("no song")) {
                                 
-                                Text("\(gig.title ?? "error_no Title found")")
-                            }
+                         //       Text("\(gig.title ?? "error_no Title found")")
+                        //    }
                            
-                        }
+                      //  }
                         
                         
                     }
