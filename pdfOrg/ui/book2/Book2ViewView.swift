@@ -56,7 +56,7 @@ struct Book2ViewView: View {
             VStack{
                 Spacer()
                 HStack{
-                    if page > 1 {
+                    if page  > 1 - (Int(book.pageOfset ?? "0") ?? 0) {
                         Button(action: {
                             page = page - 1
                             getSong()
@@ -87,7 +87,7 @@ struct Book2ViewView: View {
                             print("3")
                         }
                         if value.translation.width >= 0 {
-                            if page > 0 {
+                            if page > 0 - (Int(book.pageOfset ?? "0") ?? 0) {
                                 page = page - 1
                                 getSong()
                                 print("4")

@@ -142,6 +142,7 @@ struct Book2View: View {
             }
         }.padding(.top, -50)
         .onAppear{
+            self.page = 1 - (Int(book.pageOfset ?? "0") ?? 0)
             print("fooo")
         }
         .onDisappear{
