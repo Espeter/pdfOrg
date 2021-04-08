@@ -208,7 +208,7 @@ struct LibraryView: View {
                     
                     Menu{
                         
-                        Picker(selection: $ec.presentationModeLibrary, label: Text("Sorting options")) {
+                        Picker(selection: $ec.presentationModeLibrary, label: Text("")) {
                             HStack{
                                 Text("LS_Alphabetical" as LocalizedStringKey)
                                 Spacer()
