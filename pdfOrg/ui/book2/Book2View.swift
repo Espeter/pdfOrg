@@ -193,11 +193,6 @@ struct Book2View: View {
                             Image(systemName:"gear")
                         })
                         Divider()
-                        Button(action: {infoIsVisible.toggle()}, label: {
-                            Text("LS_how to import" as LocalizedStringKey)
-                            Spacer()
-                            Image(systemName:"info.circle")
-                        })
                         Button(action: {openFile.toggle()}, label: {
                             Text("LS_donlod contents" as LocalizedStringKey)
                             Spacer()
@@ -208,6 +203,11 @@ struct Book2View: View {
                             //
                             Spacer()
                             Image(systemName:"square.and.arrow.up")
+                        })
+                        Button(action: {infoIsVisible.toggle()}, label: {
+                            Text("LS_how to import" as LocalizedStringKey)
+                            Spacer()
+                            Image(systemName:"info.circle")
                         })
                         Divider()
                         Button(action: {deleteSongsAlert.toggle()}, label: {
