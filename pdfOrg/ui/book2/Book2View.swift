@@ -144,6 +144,9 @@ struct Book2View: View {
         .onAppear{
             print("fooo")
         }
+        .onDisappear{
+            ec.updatLibrary.toggle()
+        }
         .fileImporter(isPresented: $openFile, allowedContentTypes: [.text])
         { (res) in
             do {

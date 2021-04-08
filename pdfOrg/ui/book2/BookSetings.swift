@@ -141,9 +141,11 @@ struct BookSetings: View {
             self.book.title = title
 
             saveContext()
-            ec.updatLibrary.toggle()
+  
             bookSettings = false
             updayitView.toggle()
+           
+           // ec.updatLibrary.toggle()
         }
     }
     private func saveContext(){
