@@ -297,6 +297,7 @@ struct LibraryView: View {
                     let fileUrl = try res.get()
                     
                     addBook(url: fileUrl)
+                    ec.updatLibrary.toggle()
                 }
                 catch {
                     print("error")
