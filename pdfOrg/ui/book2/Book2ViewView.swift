@@ -79,6 +79,10 @@ struct Book2ViewView: View {
                 }
                 Spacer()
             }
+            VStack{
+                Spacer()
+                Text("\(String(page))").foregroundColor(Color(UIColor.systemGray)).padding().padding()
+            }
         }.gesture(DragGesture(minimumDistance: 100, coordinateSpace: .local)
                     .onEnded({ value in
                         if value.translation.width <= 0 {
