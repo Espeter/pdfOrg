@@ -144,8 +144,8 @@ struct BookSetings: View {
   
             bookSettings = false
             updayitView.toggle()
-           
-           // ec.updatLibrary.toggle()
+
+       //     ec.updatLibrary.toggle()
         }
     }
     private func saveContext(){

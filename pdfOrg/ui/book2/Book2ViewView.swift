@@ -98,6 +98,13 @@ struct Book2ViewView: View {
             song = nil
             getSong()
         }
+        .onTapGesture {
+            ec.showingPopupAppSong = false
+            ec.presentationModeBook = true
+            ec.pageIndexString = String(page)
+            ec.pageIndex = page
+            ec.book = book
+        }
     }
     
     private func addSong() {
