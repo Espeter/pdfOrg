@@ -32,7 +32,7 @@ struct EditSongView: View {
                         Text("LS_add" as LocalizedStringKey)
                             .foregroundColor(Color(UIColor.systemBlue))
                             .padding(.trailing, 15)
-                            .padding(.top, 15)
+                          //  .padding(.top, 15)
                     })
                 } else {
                     Spacer().frame(width: 0)
@@ -44,7 +44,7 @@ struct EditSongView: View {
                         Text("LS_save" as LocalizedStringKey)
                             .foregroundColor(Color(UIColor.systemBlue))
                             .padding(.trailing, 15)
-                            .padding(.top, 15)
+                           // .padding(.top, 15)
                     }
                 }
             }.padding(.bottom,-5)
