@@ -43,7 +43,7 @@ struct GigInfoView: View {
                         if songinGig.teitel == nil {
                             Text("\(songinGig.song!.title!)")
                             Text("  ").foregroundColor(Color(UIColor.systemGray3))
-                            Text("\(songinGig.song!.author ?? "-")")
+                            Text("\(songinGig.song!.author ?? "")")
                         } else {
                             Text("\(songinGig.teitel!)")
                             Image(systemName: "exclamationmark.triangle.fill").foregroundColor(Color(UIColor.yellow)).padding()

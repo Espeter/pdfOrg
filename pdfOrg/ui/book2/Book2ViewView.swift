@@ -148,13 +148,13 @@ struct Book2ViewView: View {
                         ecb.titelName = (song as! Song).title ?? "error_no Titel"
                         ecb.startPage = (song as! Song).startPage ?? "1"
                         ecb.endPage = (song as! Song).endPage ?? (song as! Song).startPage ?? "1"
-                        ecb.label = (song as! Song).author ?? "-"
+                        ecb.label = (song as! Song).author ?? ""
                     } else if songFound == false {
                         self.song = nil
                         ecb.titelName = "Page \(page)"
                         ecb.startPage = "\(page)"
                         ecb.endPage = "\(page)"
-                        ecb.label = "-"
+                        ecb.label = ""
                     }
                 }
             } else if songFound == false{
@@ -166,14 +166,14 @@ struct Book2ViewView: View {
                     ecb.titelName = (song as! Song).title ?? "error_no Titel"
                     ecb.startPage = (song as! Song).startPage ?? "1"
                     ecb.endPage = (song as! Song).endPage ?? (song as! Song).startPage ?? "1"
-                    ecb.label = (song as! Song).author ?? "-"
+                    ecb.label = (song as! Song).author ?? ""
                 } else {
                     print("hallo du dar 32")
                     self.song = nil
                    ecb.titelName = "Page \(page)"
                     ecb.startPage = "\(page)"
                     ecb.endPage = "\(page)"
-                    ecb.label = "-"
+                    ecb.label = ""
                 }
             }
         }

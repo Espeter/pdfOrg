@@ -50,7 +50,7 @@ struct BookListOfSongsView: View {
                                 ecb.titelName = song.title ?? "error_no titel"
                                 ecb.startPage = song.startPage ?? "1"
                                 ecb.endPage = song.endPage ?? song.startPage ?? "1"
-                                ecb.label = song.author ?? "-"
+                                ecb.label = song.author ?? ""
                                 
                             }, label: {
                                 VStack{
@@ -81,7 +81,7 @@ struct BookListOfSongsView: View {
                                 ecb.titelName = song.title ?? "error_no titel"
                                 ecb.startPage = song.startPage ?? "1"
                                 ecb.endPage = song.endPage ?? song.startPage ?? "1"
-                                ecb.label = song.author ?? "-"
+                                ecb.label = song.author ?? ""
                                 
                             }, label: {
                                 VStack{

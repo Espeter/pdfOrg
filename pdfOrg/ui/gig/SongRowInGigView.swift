@@ -48,7 +48,7 @@ struct SongRowInGigView: View {
                 HStack{
                 Text("\(song.title!)")
                 Text("  ").foregroundColor(Color(UIColor.systemGray3))
-                   Text("\(song.author ?? "-")")
+                   Text("\(song.author ?? "")")
                 }
             }
             

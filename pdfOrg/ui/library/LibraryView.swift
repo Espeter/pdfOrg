@@ -382,6 +382,10 @@ struct LibraryView: View {
         rows = Float(books.count) / Float(getMaxBookWidth(geometry: geometry))
         rowsInt = Int(rows.rounded(.up))
         
+        if rowsInt == 0 {
+            rowsInt = 1
+        }
+        
         return rowsInt
     }
     

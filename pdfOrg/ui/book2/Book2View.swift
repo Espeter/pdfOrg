@@ -80,7 +80,7 @@ struct Book2View: View {
                                 )
                             }
                             .sheet(isPresented: $bookSettings) {
-                                BookSetings(book: $book, bookSettings: $bookSettings, updayitView: $updayitView, label: book.label ?? "-", id: book.id ?? "error_no Book id", ofSet: book.pageOfset ?? "0", orientation: Int(book.isLandscape), title: book.title ?? "error_no Book name")
+                                BookSetings(book: $book, bookSettings: $bookSettings, updayitView: $updayitView, label: book.label ?? "", id: book.id ?? "error_no Book id", ofSet: book.pageOfset ?? "0", orientation: Int(book.isLandscape), title: book.title ?? "error_no Book name")
                             }
                         BookListOfSongsView(book: $book, updayitView: $updayitView, song: $song, page: $page, editMode: $editMode)
                             .alert(isPresented: $delitBook) {
@@ -119,7 +119,7 @@ struct Book2View: View {
                                 )
                             }
                             .sheet(isPresented: $bookSettings) {
-                                BookSetings(book: $book, bookSettings: $bookSettings, updayitView: $updayitView, label: book.label ?? "-", id: book.id ?? "error_no Book id", ofSet: book.pageOfset ?? "0", orientation: Int(book.isLandscape), title: book.title ?? "error_no Book name")
+                                BookSetings(book: $book, bookSettings: $bookSettings, updayitView: $updayitView, label: book.label ?? "", id: book.id ?? "error_no Book id", ofSet: book.pageOfset ?? "0", orientation: Int(book.isLandscape), title: book.title ?? "error_no Book name")
                             }
                         BookListOfSongsView(book: $book, updayitView: $updayitView, song: $song, page: $page, editMode: $editMode)
                             .alert(isPresented: $delitBook) {
