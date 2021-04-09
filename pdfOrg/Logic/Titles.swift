@@ -41,10 +41,12 @@ class Titles {
         self.array.forEach{ song in
             let firstLetter = song.title?.first?.lowercased()
             
+            if firstLetter != nil {
             if (dictionary[firstLetter!] != nil) {
                 dictionary[firstLetter!]?.append(song)
             } else {
                 dictionary["#"]?.append(song)
+            }
             }
         }
         return dictionary
