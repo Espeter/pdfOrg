@@ -39,6 +39,7 @@ struct LibraryView: View {
     
     @State var oldGeometryProxy: GeometryProxy?
     
+    
     var body: some View {
         NavigationView(){
             //        ScrollView {
@@ -136,9 +137,13 @@ struct LibraryView: View {
                                         Spacer()
                                     }
                                 }
-                                ForEach(1 ..< (getBookRows(geometry: geometry) + 1 )) { i in
-                                    
+                             
+                           //     Text("\(getBookRows(geometry: geometry))")
+                                ForEach(1 ..< (getBookRows(geometry: geometry) + 2 )) { i in    // TODO: wie so muss das eine 2 sein?
+                                 //   Text("i: \(i)")
+                                 //   Text("\(getBookRows(geometry: geometry))")
                                     HStack{
+                                       
                                         if i == 1 {
                                             VStack{
                                                 Image(systemName: "plus.circle")
@@ -164,7 +169,7 @@ struct LibraryView: View {
                                             }
                                         }
                                         ForEach(getSegmentBooks(geometry: geometry)[i] ?? [], id: \.self) { (book: Book) in
-                                            
+                                     
                                             CoverSheetView(book: book)
                                         }
                                         Spacer()
@@ -358,7 +363,7 @@ struct LibraryView: View {
             }
             
         }
-        
+        print("dictionary: \(dictionary)")
         oldGeometryProxy = geometry
         return dictionary
         
@@ -397,13 +402,13 @@ struct LibraryView: View {
         var rows: Float
         var rowsInt: Int
         
-        rows = Float(books.count) / Float(getMaxBookWidth(geometry: geometry))
+        rows = (Float(books.count) + 1) / Float(getMaxBookWidth(geometry: geometry))
         rowsInt = Int(rows.rounded(.up))
         
         if rowsInt == 0 {
             rowsInt = 1
         }
-        
+        print("rowsInt: \(rowsInt)")
         return rowsInt
     }
     

@@ -153,6 +153,7 @@ struct Book2View: View {
             do {
                 let fileUrl = try res.get()
                 importSongs(url: fileUrl)
+            
                 
             }
             catch {
@@ -286,6 +287,7 @@ struct Book2View: View {
         url.stopAccessingSecurityScopedResource()
         saveContext()
         updayitView.toggle()
+    //   ec.updatLibrary.toggle()
     }
     func addSong(name: String, startSide: String, endPage: String, author: String?) {
         
