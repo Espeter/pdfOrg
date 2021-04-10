@@ -172,6 +172,15 @@ struct Book2View: View {
                     })
                 }
             }
+            ToolbarItem(placement: .navigationBarTrailing) {
+                if !editMode {
+                    Button(action: {editMode = true}, label: {
+                        Text("LS_edit" as LocalizedStringKey)
+                  //      Spacer()
+                        Image(systemName:"pencil")
+                    })
+                }
+            }
             
             ToolbarItem(placement: .primaryAction) {
                 if editMode{
@@ -183,11 +192,6 @@ struct Book2View: View {
                     })
                 } else {
                     Menu{
-                        Button(action: {editMode = true}, label: {
-                            Text("LS_edit" as LocalizedStringKey)
-                            Spacer()
-                            Image(systemName:"pencil")
-                        })
                         Button(action: {bookSettings.toggle()}, label: {
                             Text("LS_settings" as LocalizedStringKey)
                             Spacer()
@@ -226,6 +230,7 @@ struct Book2View: View {
                         Image(systemName: "ellipsis.circle").padding()
                     }
                 }
+                
             }
         }
     }
