@@ -133,6 +133,10 @@ struct ContentView: View {
             }
         }
         
+        allLabels.sort {
+            $0 < $1
+        }
+        
         print(allLabels)
         return allLabels
     }
@@ -144,6 +148,8 @@ struct ContentView: View {
         getAllLabels().forEach{ label in
             dictionary[label] = []
         }
+        
+        
         
         getBooksAlphabetical().forEach{ book in
             

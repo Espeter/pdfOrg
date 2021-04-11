@@ -47,6 +47,8 @@ class Titles {
 //        print(array.count)
         
         
+        //TODO: geschwindichkeitz porblem!!!!!!
+        
         var dictionary: [String: [Song]] = [:]
         
         alphabet.forEach{ char in
