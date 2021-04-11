@@ -62,7 +62,7 @@ struct AddCollectionView: View {
                 
                 let tilels = Titles(songs: songs)
                 
-                SelectTitelForNewCollectionView(titelsToBeAdded: $titelsToBeAdded, titelsInCollection: $titelsInCollection, isActive: $addingTitel, segmentTitels: tilels.getSegmentTitles(by: alphabet), titels: tilels)
+                SelectTitelForNewCollectionView(titelsToBeAdded: $titelsToBeAdded, titelsInCollection: $titelsInCollection, isActive: $addingTitel, segmentTitels: tilels.getSegmentTitles(by: alphabet, songs: songs), titels: tilels)
                     .environment(\.managedObjectContext, viewContext)
             }
 //            .onAppear{

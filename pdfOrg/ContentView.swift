@@ -23,10 +23,11 @@ struct ContentView: View {
     var books: FetchedResults<Book>
     
   //  @State var upDaedCollection: Bool = false
+ 
     
     var body: some View {
         
-        if ec.presentationMode == false && ec.presentationModeBook == false && ec.presentationModeGig == false{
+        if ec.presentationMode == false && ec.presentationModeBook == false && ec.presentationModeGig == false {
             TabView(selection: $ec.tabTag){
                 if ec.updatLibrary {
                     LibraryView(allLabels: getAllLabels(), segmentBooksByLabel: getSegmentBooksByLabel())
@@ -51,7 +52,7 @@ struct ContentView: View {
 //                        Image(systemName: "doc.text")
 //                    }.tag(3)
                 if songsFR.count > 0 {
-                CollectionNavigationView(collections: Collections(gigs: gigs))
+                    CollectionNavigationView(collections: Collections(gigs: gigs), titles: Titles(songs: songsFR))
                     .tabItem {
                         
                         Image(systemName: "doc.text")
@@ -67,6 +68,7 @@ struct ContentView: View {
         } else{
             GigPresentationView(song: ec.song, pageIndex: ec.pageIndexString, songInGig: ec.songInGig, gig: ec.gig)
         }
+       
     }
     
     func getFavoritGig() -> Gig {

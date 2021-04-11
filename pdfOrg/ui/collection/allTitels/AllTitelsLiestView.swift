@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct AllTitelsLiestView: View {
-    
+    @FetchRequest(sortDescriptors: [])
+    private var songs: FetchedResults<Song>
     @State private var searchText: String = ""
     @Binding var selectedTitel: Song
     @Binding var pageIndex: String
-     var segmentTitels : [String: [Song]]
-     var titels: Titles
+ //   @Binding var segmentTitels : [String: [Song]]
+    @Binding  var titels: Titles
      var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","#"]
     @Binding var reload: Bool
 
@@ -27,6 +28,8 @@ struct AllTitelsLiestView: View {
                 ScrollViewReader { scroll in
                     HStack{
                         List(){
+                            
+                            let segmentTitels = titels.getSegmentTitles(by: alphabet, songs: songs)
                             
                             ForEach(alphabet, id: \.self){ char in
                                 
@@ -72,7 +75,7 @@ struct AllTitelsLiestView: View {
                 }.padding(.top, -17)
             } else {
                 List {
-                    ForEach(titels.getSearchResult(searchTerms: searchText), id: \.self) { (song: Song) in
+                    ForEach(titels.getSearchResult(searchTerms: searchText, songs: songs), id: \.self) { (song: Song) in
                         
                         Button(action: {setTitel(song: song)}, label: {
                             VStack(alignment: .leading){

@@ -9,7 +9,8 @@ import SwiftUI
 
 struct CollectionEditListView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    
+    @FetchRequest(sortDescriptors: [])
+    private var songs: FetchedResults<Song>
     @State var addingTitel: Bool = false
     @Binding var titelsInCollection: [SongInGig]
     @State var  tilels: Titles
@@ -56,7 +57,7 @@ struct CollectionEditListView: View {
 
                     //    let tilels = Titles(songs: titelsInCollection)
 
-                        SelectTitelForNewCollectionView(titelsToBeAdded: $titelsToBeAdded, titelsInCollection: $titelsInCollection, isActive: $addingTitel, segmentTitels: tilels.getSegmentTitles(by: alphabet), titels: tilels)
+                    SelectTitelForNewCollectionView(titelsToBeAdded: $titelsToBeAdded, titelsInCollection: $titelsInCollection, isActive: $addingTitel, segmentTitels: tilels.getSegmentTitles(by: alphabet, songs: songs), titels: tilels)
                             .environment(\.managedObjectContext, viewContext)
                     }
             

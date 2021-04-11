@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct CollectionNavigationView: View {
-    
+    @EnvironmentObject var ec : EnvironmentController
+
     @FetchRequest(sortDescriptors: [])
     private var songs: FetchedResults<Song>
     
@@ -21,7 +22,7 @@ struct CollectionNavigationView: View {
     
     @State var addingCollection: Bool = false
     
-    @State var faworitenssssisActive: Bool = true
+    @State var faworitenssssisActive: Bool = false//true
     @State var allTitelsView: Bool = true
     @State var impotCollection: Bool = false
     
@@ -32,6 +33,8 @@ struct CollectionNavigationView: View {
     @State var bookAlert: Bool = false
     
     @State var infoIsVisible: Bool = false
+    
+    @State var titles: Titles
     
     var body: some View {
         
@@ -65,21 +68,20 @@ struct CollectionNavigationView: View {
                     }
          
                     Divider()
-                    if Titles(songs: songs).array.count > 0 {
-                    NavigationLink(destination: AllTitelsView(tilels: Titles(songs: songs), selectedTitel: Titles(songs: songs).array[0], collections: $collections) ,isActive: $allTitelsView) {
+                    if titles.array.count > 0 {
+                        NavigationLink(destination: AllTitelsView(tilels: titles, selectedTitel: titles.array[0], collections: $collections, reload: $ec.updateGigInfoView) ,isActive: $allTitelsView) {
                         
                         Image(systemName: "list.bullet")
                             .foregroundColor(allTitelsView ? Color(UIColor.white) : Color(UIColor.systemBlue))
-                        
                         Text("LS_All Titels" as LocalizedStringKey)
                     }
                     }
                     let faworitenGig = collections.get(collection: "Favorites")
                     if faworitenGig.title != nil {
                     if faworitenGig.songsInGig!.count > 0 {
-                    
+
                         NavigationLink( destination: CollectionView(collection: Collection(gig: faworitenGig), collections: $collections, faworitenssssisActive: $faworitenssssisActive, titel: Collection(gig: faworitenGig).titels[0], titelInCollection: Collection(gig: faworitenGig).titelsInCollection[0], allTitelsView: $allTitelsView) , isActive: $faworitenssssisActive) {
-                        
+
                         Image(systemName: "star.fill")
                             .foregroundColor( Color(UIColor.systemBlue))//faworitenssssisActive ? Color(UIColor.yellow) : Color(UIColor.systemBlue))
                         Text("Faworiten")
@@ -97,14 +99,7 @@ struct CollectionNavigationView: View {
                                 Text("\(gig.title ?? "error_no Title found")")
                             }
                         }
-                        } //else {
-                       //     NavigationLink(destination:  Text("no song")) {
-                                
-                         //       Text("\(gig.title ?? "error_no Title found")")
-                        //    }
-                           
-                      //  }
-                        
+                        }
                         
                     }
                 }

@@ -143,11 +143,11 @@ struct Book2View: View {
         }.padding(.top, -50)
         .onAppear{
             self.page = 1 - (Int(book.pageOfset ?? "0") ?? 0)
-            print("fooo")
+            print("fooo5")
         }
-        .onDisappear{
-            ec.updatLibrary.toggle()
-        }
+//        .onDisappear{
+//        //    ec.updatLibrary.toggle()
+//        }
         .fileImporter(isPresented: $openFile, allowedContentTypes: [.text])
         { (res) in
             do {
@@ -176,16 +176,15 @@ struct Book2View: View {
                 if !editMode {
                     Button(action: {editMode = true}, label: {
                         Text("LS_edit" as LocalizedStringKey)
-                  //      Spacer()
                         Image(systemName:"pencil")
                     })
                 }
             }
-            
             ToolbarItem(placement: .primaryAction) {
                 if editMode{
                     Button(action: {
                         editMode = false
+               //         ec.updatAllTitelsView.toggle()
                         saveContext()
                     }, label: {
                         Text("LS_done" as LocalizedStringKey)
@@ -292,6 +291,7 @@ struct Book2View: View {
         url.stopAccessingSecurityScopedResource()
         saveContext()
         updayitView.toggle()
+   //     ec.updatAllTitelsView.toggle()
     //   ec.updatLibrary.toggle()
     }
     func addSong(name: String, startSide: String, endPage: String, author: String?) {

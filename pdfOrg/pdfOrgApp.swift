@@ -10,6 +10,8 @@ import SwiftUI
 @main
 struct pdfOrgApp: App {
     @StateObject private var store = Store()
+    @FetchRequest(sortDescriptors: [])
+    private var songs: FetchedResults<Song>
     let persistenceController = PersistenceController.shared
 
     var body: some Scene {

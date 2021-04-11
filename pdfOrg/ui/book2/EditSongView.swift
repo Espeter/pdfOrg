@@ -94,13 +94,14 @@ struct EditSongView: View {
         song!.startPage = ecb.startPage
         song!.endPage = ecb.endPage
         song!.author =  ecb.label
-    
+      
         updayitView.toggle()
     }
     
     private func saveContext(){
         do{
             try viewContext.save()
+       
         }
         catch {
             let error = error as NSError

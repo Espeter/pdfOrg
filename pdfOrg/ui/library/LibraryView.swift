@@ -363,7 +363,7 @@ struct LibraryView: View {
             }
             
         }
-        print("dictionary: \(dictionary)")
+  //      print("dictionary: \(dictionary)")
         oldGeometryProxy = geometry
         return dictionary
         

@@ -17,7 +17,7 @@ class Titles {
     //    }
     
     init(songs: FetchedResults<Song>) {
-        
+        print("initTitles")
         self.songs = songs
         self.array = []
         
@@ -31,17 +31,32 @@ class Titles {
         }
     }
     
-    func getSegmentTitles(by alphabet: [String] ) -> [String: [Song]] {
+    func getSegmentTitles(by alphabet: [String], songs: FetchedResults<Song> ) -> [String: [Song]] {
+        print("kkddff")
+        
+//        self.array = []
+//
+//        songs.forEach{ song in
+//            if song.book?.id != "supergeheimmesBuchDasNurIchKennenDarf42MahahahahahahaGeheim" {
+//            array.append(song)
+//            }
+//        }
+//        array.sort {
+//            $0.title ?? "" < $1.title ?? ""
+//        }
+//        print(array.count)
+        
         
         var dictionary: [String: [Song]] = [:]
         
         alphabet.forEach{ char in
             dictionary[char] = []
         }
-        self.array.forEach{ song in
+        songs.forEach{ song in
+         
             let firstLetter = song.title?.first?.lowercased()
             
-            if firstLetter != nil {
+            if firstLetter != nil && song.book?.id != "supergeheimmesBuchDasNurIchKennenDarf42MahahahahahahaGeheim"{
             if (dictionary[firstLetter!] != nil) {
                 dictionary[firstLetter!]?.append(song)
             } else {
@@ -49,14 +64,27 @@ class Titles {
             }
             }
         }
+
         return dictionary
     }
     
-    func getSearchResult(searchTerms: String) -> [Song] {
+    func getSearchResult(searchTerms: String, songs: FetchedResults<Song> ) -> [Song] {
+        
+        
+//        self.array = []
+//        
+//        songs.forEach{ song in
+//            if song.book?.id != "supergeheimmesBuchDasNurIchKennenDarf42MahahahahahahaGeheim" {
+//            array.append(song)
+//            }
+//        }
+//        array.sort {
+//            $0.title ?? "" < $1.title ?? ""
+//        }
         
         var titles: [Song] = []
         
-        array.forEach { song in
+        songs.forEach { song in
             
             var splitSearchText = searchTerms.components(separatedBy: " ")
             let splitSearchTextCount = splitSearchText.count
@@ -102,7 +130,7 @@ class Titles {
                 comparedWords = comparedWords + 1
             }
             
-            if comparedWords >= splitSearchTextCount {
+            if comparedWords >= splitSearchTextCount && song.book?.id != "supergeheimmesBuchDasNurIchKennenDarf42MahahahahahahaGeheim" {
                 titles.append(song)
             }
         }

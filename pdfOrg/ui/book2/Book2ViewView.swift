@@ -102,6 +102,9 @@ struct Book2ViewView: View {
             song = nil
             getSong()
         }
+//        .onDisappear{
+//            ec.updatAllTitelsView.toggle()
+//        }
         .onTapGesture {
             ec.showingPopupAppSong = false
             ec.presentationModeBook = true
@@ -126,8 +129,13 @@ struct Book2ViewView: View {
         newSong.title = titel
         saveContext()
         
-        song = newSong
+       
         updayitView.toggle()
+        ec.updateGigInfoView.toggle()
+        print("ec.updateGigInfoView")
+        print(ec.updateGigInfoView)
+        song = newSong
+    
     }
     
     private func saveContext(){

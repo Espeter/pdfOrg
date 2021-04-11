@@ -249,11 +249,24 @@ class Collections {
         
         var soughtGig = Gig()
         
+        var gigIsFaund: Bool = false
+        
         array.forEach{ gig in
             if gig.title == collection {
                 soughtGig = gig
+                gigIsFaund = true
             }
         }
+    
+        if collection == "Favorites" && !gigIsFaund{
+          let newGig = Gig(context: viewContext)
+            newGig.title = "Favorites"
+            saveContext()
+            soughtGig = newGig
+        }
+        
+        
+        
         return soughtGig
     }
     

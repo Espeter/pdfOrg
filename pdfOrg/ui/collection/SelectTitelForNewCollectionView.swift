@@ -10,7 +10,8 @@ import SwiftUI
 struct SelectTitelForNewCollectionView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
-    
+    @FetchRequest(sortDescriptors: [])
+    private var songs: FetchedResults<Song>
     @State private var collection: Gig?
     @State private var searchText: String = ""
     @Binding var titelsToBeAdded: [Song]
@@ -71,7 +72,7 @@ struct SelectTitelForNewCollectionView: View {
                         }.padding(.top, -17)
                     } else {
                         List {
-                            ForEach(titels.getSearchResult(searchTerms: searchText), id: \.self) { (song: Song) in
+                            ForEach(titels.getSearchResult(searchTerms: searchText, songs: songs), id: \.self) { (song: Song) in
                                 
                                 NavigationLink(destination: AddTitelPresentationView(titel: song, isInAddMod: true, titelsToBeAdded: $titelsToBeAdded, book: song.book ?? Book(), pageIndex: song.startPage ?? "1", isLandscape: false)) {
                                     AddTitelRowView(titel: song, titelsToBeAdded: $titelsToBeAdded)
