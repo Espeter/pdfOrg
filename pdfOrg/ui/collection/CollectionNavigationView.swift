@@ -56,7 +56,7 @@ struct CollectionNavigationView: View {
                         HStack{
                             Image(systemName: "square.and.arrow.down")
                                 .foregroundColor(Color(UIColor.systemBlue))
-                            Text("Import Collection from .txt")
+                            Text("LS_Import Collection from .txt" as LocalizedStringKey)
                             Spacer()
                             Image(systemName: "info.circle").foregroundColor(Color(UIColor.systemBlue))
                                 .onTapGesture {
@@ -84,7 +84,7 @@ struct CollectionNavigationView: View {
 
                         Image(systemName: "star.fill")
                             .foregroundColor( Color(UIColor.systemBlue))//faworitenssssisActive ? Color(UIColor.yellow) : Color(UIColor.systemBlue))
-                        Text("Faworiten")
+                        Text("LS_Faworiten" as LocalizedStringKey)
                     }}
                     }
                     Divider()

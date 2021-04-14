@@ -40,6 +40,7 @@
 "LS_copy Collection" = "Copy Collection";
 "LS_copy %@" = "Copy %@";
 "LS_%@(copy)" = "%@(copy)";
+"LS_Import Collection from .txt" = "Import Collection from .txt";
 //"LS_not oll Books exist" = "Not all Books exist";
 "LS_Thes Books dasent exist: %@" = "These Books don't exist: %@";
 "LS_Oky" = "Okay";
@@ -50,6 +51,7 @@
 "LS_understood" = "understood";
 "LS_how to import Collectin" = "how to import Collectin" ;
 "LS_error when loading the collection" = "error when loading the collection";
+"LS_Faworiten" = "Faworiten";
 
 //Book2
 "LS_settings" = "Settings";

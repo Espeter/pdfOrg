@@ -27,7 +27,7 @@ struct BookPresentationView: View {
                                                         HStack{
                                                        //     Image(systemName: "lessthan")
                                                             Image(systemName: "chevron.left")
-                                                            Text("back")
+                                                            Text("LS_back" as LocalizedStringKey)
                                                         }
                                                     }
                                                 }

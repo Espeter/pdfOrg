@@ -44,7 +44,7 @@ struct CollectionView: View {
 
                     CollectionPDFView(allTitelsView: $allTitelsView, song: $titel, songInGig: $titelInCollection, pageIndex: $pageIndex, collection: $collection, Collections: collections, reload: $reload)       .alert(isPresented: $deleteCollectionAlert) {
                         Alert(title: Text("LS_delit \(collection.name)" as LocalizedStringKey),
-                              message: Text("LS_delitCollectionText \(collection.name)"),
+                              message: Text("LS_delitCollectionText \(collection.name)" as LocalizedStringKey),
                               primaryButton: .destructive(Text("LS_delit" as LocalizedStringKey),
                                                           action: {
                                                             collections.delete(gig: collection.gig)
@@ -96,7 +96,7 @@ struct CollectionView: View {
                 VStack{
                     CollectionPDFView(allTitelsView: $allTitelsView, song: $titel, songInGig: $titelInCollection, pageIndex: $pageIndex, collection: $collection, Collections: collections, reload: $reload)       .alert(isPresented: $deleteCollectionAlert) {
                         Alert(title: Text("LS_delit \(collection.name)" as LocalizedStringKey),
-                              message: Text("LS_delitCollectionText \(collection.name)"),
+                              message: Text("LS_delitCollectionText \(collection.name)" as LocalizedStringKey),
                               primaryButton: .destructive(Text("LS_delit" as LocalizedStringKey),
                                                           action: {
                                                             collections.delete(gig: collection.gig)

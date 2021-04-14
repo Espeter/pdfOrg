@@ -52,7 +52,7 @@ struct LibraryView: View {
                         ForEach(allLabels, id: \.self){ label in
                             
                             HStack{
-                                if label == "-" || label == ""{
+                                if label == ""{
                                     //   Text("LS_no Label" as LocalizedStringKey)
                                     //                                        .font(.title)
                                     //                                        .padding()

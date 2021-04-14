@@ -34,8 +34,12 @@ struct TitelCollectionVeiw: View {
 //                }).padding(.leading, 20)
 //            }
         } else {
-   //         SearchBar(text: $name)
-            Text("\(titel)").bold().font(.largeTitle).padding(.leading, 20).padding(.bottom, -1)
+            if titel == "Favorites" {
+             
+                Text("LS_Faworiten" as LocalizedStringKey).bold().font(.largeTitle).padding(.leading, 20).padding(.bottom, -1)
+            } else {
+                Text("\(titel)").bold().font(.largeTitle).padding(.leading, 20).padding(.bottom, -1)
+            }
         }
 //        .alert(isPresented: $alertisPresented) {
 //            Alert(title: Text("LS_rename: %@" as LocalizedStringKey),
