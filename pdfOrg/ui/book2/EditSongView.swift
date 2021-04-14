@@ -20,6 +20,8 @@ struct EditSongView: View {
     
     @Binding var updayitView: Bool
     
+    @Binding var error: Bool
+    
     var body: some View {
         
         VStack(alignment: .leading){
@@ -77,25 +79,38 @@ struct EditSongView: View {
     }
     
     private   func add(){
-        let newSong = Song(context: viewContext)
-        newSong.title = ecb.titelName
-        newSong.startPage = ecb.startPage
-        newSong.endPage = ecb.endPage
-        newSong.author =  ecb.label
-        newSong.book = book
-        newSong.id = UUID()
-        newSong.isFavorit = false
-        updayitView.toggle()
-        song = newSong
+        
+        if Int(ecb.startPage) != nil && Int(ecb.endPage) != nil {
+            let newSong = Song(context: viewContext)
+            newSong.title = ecb.titelName
+            newSong.startPage = ecb.startPage
+            newSong.endPage = ecb.endPage
+            newSong.author =  ecb.label
+            newSong.book = book
+            newSong.id = UUID()
+            newSong.isFavorit = false
+            updayitView.toggle()
+            song = newSong
+        } else {
+            error = true
+            ecb.startPage = String(page)
+            ecb.endPage = String(page)
+        }
     }
     private func additSong() {
-    
+        
+        if Int(ecb.startPage) != nil && Int(ecb.endPage) != nil {
         song!.title = ecb.titelName
         song!.startPage = ecb.startPage
         song!.endPage = ecb.endPage
         song!.author =  ecb.label
       
         updayitView.toggle()
+        } else {
+            error = true
+            ecb.startPage = String(page)
+            ecb.endPage = String(page)
+        }
     }
     
     private func saveContext(){

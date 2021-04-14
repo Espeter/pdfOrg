@@ -28,36 +28,59 @@ struct Book2View: View {
     
     @State var error: Bool = false
     @State var error2: Bool = false
+    @State var error3: Bool = false
+    @State var error4: Bool = false
     @State var errorMessage: String = ""
+    @State var errorMessage3: String = ""
     
     @State var infoIsVisible: Bool = false
     
     var body: some View {
         VStack(alignment: .leading){
-            if updayitView{
-                TitelCollectionVeiw(editMode: $editMode2, titel: umwantler(binding: $book.title, fallback: "error_book.titel not faund"), name: $newName)
-                    .alert(isPresented: $error) {
-                        Alert(title: Text("LS_error" as LocalizedStringKey),
-                              message: error2 ? Text("LS_error Text import \(errorMessage)" as LocalizedStringKey) : Text(errorMessage) ,
-                              primaryButton: .default(Text("LS_More information" as LocalizedStringKey),
-                                                      action: {
-                                                        infoIsVisible.toggle()
-                                                      }),
-                              secondaryButton: .cancel(Text("LS_Oky" as LocalizedStringKey))
-                        )
-                    }
-            } else {
-                TitelCollectionVeiw(editMode: $editMode2, titel: umwantler(binding: $book.title, fallback: "error_book.titel not faund"), name: $newName)
-                    .alert(isPresented: $error) {
-                        Alert(title: Text("LS_error" as LocalizedStringKey),
-                              message: error2 ? Text("LS_error Text import \(errorMessage)" as LocalizedStringKey) : Text(errorMessage) ,
-                              primaryButton: .default(Text("LS_More information" as LocalizedStringKey),
-                                                      action: {
-                                                        infoIsVisible.toggle()
-                                                      }),
-                              secondaryButton: .cancel(Text("LS_Oky" as LocalizedStringKey))
-                        )
-                    }
+            HStack{
+                if updayitView{
+                    TitelCollectionVeiw(editMode: $editMode2, titel: umwantler(binding: $book.title, fallback: "error_book.titel not faund"), name: $newName)
+                        .alert(isPresented: $error) {
+                            Alert(title: Text("LS_error" as LocalizedStringKey),
+                                  message: error2 ? Text("LS_error Text import \(errorMessage)" as LocalizedStringKey) : Text(errorMessage) ,
+                                  primaryButton: .default(Text("LS_More information" as LocalizedStringKey),
+                                                          action: {
+                                                            infoIsVisible.toggle()
+                                                          }),
+                                  secondaryButton: .cancel(Text("LS_Oky" as LocalizedStringKey))
+                            )
+                        }
+                } else {
+                    TitelCollectionVeiw(editMode: $editMode2, titel: umwantler(binding: $book.title, fallback: "error_book.titel not faund"), name: $newName)
+                        .alert(isPresented: $error) {
+                            Alert(title: Text("LS_error" as LocalizedStringKey),
+                                  message: error2 ? Text("LS_error Text import \(errorMessage)" as LocalizedStringKey) : Text(errorMessage) ,
+                                  primaryButton: .default(Text("LS_More information" as LocalizedStringKey),
+                                                          action: {
+                                                            infoIsVisible.toggle()
+                                                          }),
+                                  secondaryButton: .cancel(Text("LS_Oky" as LocalizedStringKey))
+                            )
+                        }
+                }
+                Text("").alert(isPresented: $error3) {
+                    Alert(title: Text("LS_error" as LocalizedStringKey),
+                          message: Text("LS_error Text import no Int as number of pages. in row: \(errorMessage3)" as LocalizedStringKey),
+                          primaryButton: .default(Text("LS_More information" as LocalizedStringKey),
+                                                  action: {
+                                                    infoIsVisible.toggle()
+                                                  }),
+                          secondaryButton: .cancel(Text("LS_Oky" as LocalizedStringKey))
+                    )
+                }
+                Text("")
+                .alert(isPresented: $error4) {
+                    Alert(title: Text("LS_error" as LocalizedStringKey),
+                          message: Text("LS_a page number must be an int" as LocalizedStringKey),
+                          dismissButton: .default(Text("LS_Oky" as LocalizedStringKey))
+                         )
+                }
+
             }
             EmptyView()
             GeometryReader { geometry in
@@ -82,7 +105,7 @@ struct Book2View: View {
                             .sheet(isPresented: $bookSettings) {
                                 BookSetings(book: $book, bookSettings: $bookSettings, updayitView: $updayitView, label: book.label ?? "", id: book.id ?? "error_no Book id", ofSet: book.pageOfset ?? "0", orientation: Int(book.isLandscape), title: book.title ?? "error_no Book name")
                             }
-                        BookListOfSongsView(book: $book, updayitView: $updayitView, song: $song, page: $page, editMode: $editMode)
+                        BookListOfSongsView(book: $book, updayitView: $updayitView, song: $song, page: $page, editMode: $editMode, error: $error4)
                             .alert(isPresented: $delitBook) {
                                 Alert(title: Text("LS_delete \"\(book.title!)\"" as LocalizedStringKey),
                                       message: Text("LS_delete Book text \(String(book.songs?.count ?? 0))" as LocalizedStringKey),
@@ -121,7 +144,7 @@ struct Book2View: View {
                             .sheet(isPresented: $bookSettings) {
                                 BookSetings(book: $book, bookSettings: $bookSettings, updayitView: $updayitView, label: book.label ?? "", id: book.id ?? "error_no Book id", ofSet: book.pageOfset ?? "0", orientation: Int(book.isLandscape), title: book.title ?? "error_no Book name")
                             }
-                        BookListOfSongsView(book: $book, updayitView: $updayitView, song: $song, page: $page, editMode: $editMode)
+                        BookListOfSongsView(book: $book, updayitView: $updayitView, song: $song, page: $page, editMode: $editMode, error: $error4)
                             .alert(isPresented: $delitBook) {
                                 Alert(title: Text("LS_delete \"\(book.title!)\"" as LocalizedStringKey),
                                       message: Text("LS_delete Book text \(String(book.songs?.count ?? 0))" as LocalizedStringKey),
@@ -145,22 +168,22 @@ struct Book2View: View {
             self.page = 1 - (Int(book.pageOfset ?? "0") ?? 0)
             print("fooo5")
         }
-//        .onDisappear{
-//        //    ec.updatLibrary.toggle()
-//        }
+        //        .onDisappear{
+        //        //    ec.updatLibrary.toggle()
+        //        }
         .fileImporter(isPresented: $openFile, allowedContentTypes: [.text])
         { (res) in
             do {
                 let fileUrl = try res.get()
                 importSongs(url: fileUrl)
-            
+                
                 
             }
             catch {
                 print("error")
             }
         }
-       
+        
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 if editMode {
@@ -184,7 +207,7 @@ struct Book2View: View {
                 if editMode{
                     Button(action: {
                         editMode = false
-               //         ec.updatAllTitelsView.toggle()
+                        //         ec.updatAllTitelsView.toggle()
                         saveContext()
                     }, label: {
                         Text("LS_done" as LocalizedStringKey)
@@ -254,7 +277,10 @@ struct Book2View: View {
         
         var txt = String()
         var importErrorMessage: String = ""
+        var i = 0
         error2 = false
+        error3 = false
+        errorMessage3 = ""
         
         do{
             guard url.startAccessingSecurityScopedResource() else {
@@ -266,18 +292,35 @@ struct Book2View: View {
             importErrorMessage = error.localizedDescription
             print(error)
         }
-        print("Hallo")
+        
         txt.enumerateLines(invoking: { (line, stop) -> () in
+            i = i + 1
             let lineSplit = line.components(separatedBy:";")
             
-            if lineSplit.count == 3 {
-                addSong(name: lineSplit[0], startSide: lineSplit[1], endPage: lineSplit[2], author: nil)
-            } else if lineSplit.count == 4 {
-                addSong(name: lineSplit[0], startSide: lineSplit[1],endPage: lineSplit[2], author: lineSplit[3])
+            print("Int lineSplit[1]: \(lineSplit[1])")
+            print("Int lineSplit[2]: \(lineSplit[2])")
+            
+            if Int(lineSplit[1]) != nil && Int(lineSplit[2]) != nil {
+                
+                if lineSplit.count == 3 {
+                    addSong(name: lineSplit[0], startSide: lineSplit[1], endPage: lineSplit[2], author: nil)
+                } else if lineSplit.count == 4 {
+                    addSong(name: lineSplit[0], startSide: lineSplit[1],endPage: lineSplit[2], author: lineSplit[3])
+                } else {
+                    if errorMessage == "" {
+                        importErrorMessage =  "die zeilte mit \"\(lineSplit[0])\" hat nicht alle notwenidigen informazionen"
+                        error2 = true
+                    }
+                }
             } else {
-                if errorMessage == "" {
-                    importErrorMessage =  "die zeilte mit \"\(lineSplit[0])\" hat nicht alle notwenidigen informazionen"
-                    error2 = true
+                error3 = true
+                
+              
+                
+                if errorMessage3 == "" {
+                    errorMessage3 = "\(i)"
+                } else {
+                    errorMessage3 =  errorMessage3 + ", \(i)"
                 }
             }
         })
@@ -289,10 +332,17 @@ struct Book2View: View {
         }
         
         url.stopAccessingSecurityScopedResource()
-        saveContext()
-        updayitView.toggle()
-   //     ec.updatAllTitelsView.toggle()
-    //   ec.updatLibrary.toggle()
+        
+        if error3 {
+            viewContext.rollback()
+        } else {
+            saveContext()
+            updayitView.toggle()
+        }
+        
+        
+        //     ec.updatAllTitelsView.toggle()
+        //   ec.updatLibrary.toggle()
     }
     func addSong(name: String, startSide: String, endPage: String, author: String?) {
         
@@ -367,5 +417,13 @@ struct Book2View: View {
         let sortedSongs = songs.sorted {$0.title ?? "0" < $1.title ?? "0"}
         
         return sortedSongs
+    }
+    
+ 
+}
+
+extension String {
+    var isInt: Bool {
+        return Int(self) != nil
     }
 }

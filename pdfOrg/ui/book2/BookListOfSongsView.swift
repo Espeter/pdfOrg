@@ -21,17 +21,20 @@ struct BookListOfSongsView: View {
 
     @Binding var editMode: Bool
     
+    @Binding var error: Bool
+    
     var body: some View {
         VStack{
             if updayitView {
                 if editMode {
-                    EditSongView(book: book, song: $song, page: $page, updayitView: $updayitView)
+                    EditSongView(book: book, song: $song, page: $page, updayitView: $updayitView, error: $error)
+                      
                 } else {
                     Text("")
                 }
             } else {
                 if editMode {
-                    EditSongView(book: book, song: $song, page: $page, updayitView: $updayitView)
+                    EditSongView(book: book, song: $song, page: $page, updayitView: $updayitView, error: $error)
                     
                 } else {
                     Text("")

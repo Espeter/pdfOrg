@@ -78,6 +78,8 @@
 "LS_first Page: " = "first Page: ";
 "LS_last Page" = "last Page";
 "LS_how to import" = "how to import";
+"LS_error Text import no Int as number of pages. in row: %@" = "error Text import no Int as number of pages. in row: %@";
+"LS_a page number must be an int" = "a page number must be an int";
 
 //Library
 "LS_Library" = "Library";
