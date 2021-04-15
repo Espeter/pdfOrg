@@ -83,9 +83,9 @@
 "LS_how to import" = "importieren Index?";
 "LS_error Text import no Int as number of pages. in row: %@" = "Fehler Text Seitenzahl in Zeile: %@ falsch";
 "LS_a page number must be an int" = "Eine Seitenzahl muss eine Zahl sein";
-“LS_delete Book text %@+” = “"Bist Du sicher, dass Du dieses Buch löschen möchtest?\n Die Auswirkung wäre,dass auch alle %@ Titel des Buches gelöscht und aus den Sammlungen entfernt werden.“;
-“LS_delete titels text %@+” = Bist Du sicher, dass Du alle Titel %@ löschen möchtest und aus den Sammlungen entfernt werden.“;
-“LS_delete titel text %@” = “Bist Du sicher, dass Du  %@ löschen möchtest und aus den Sammlungen entfernt wird.“;
+"LS_delete Book text %@+" = "Bist Du sicher, dass Du dieses Buch löschen möchtest?\n Die Auswirkung wäre,dass auch alle %@ Titel des Buches gelöscht und aus den Sammlungen entfernt werden.";
+"LS_delete titels text %@+" = "Bist Du sicher, dass Du alle Titel %@ löschen möchtest und aus den Sammlungen entfernt werden.";
+"LS_delete titel text %@" = "Bist Du sicher, dass Du  %@ löschen möchtest und aus den Sammlungen entfernt wird.";
 
 //Library
 "LS_Library" = "Bibliothek";

@@ -82,9 +82,9 @@
 "LS_how to import" = "How to Import";
 "LS_error Text import no Int as number of pages. in row: %@" = "error in row: %@, no integer as number of pages ";
 "LS_a page number must be an int" = "a page number must be an integer";
-“LS_delete Book text %@+” = “Are you sure you want to delete this book?\n the consequence would be that all %@ titles are also deleted and all the collections thereby emptied.“;
-“LS_delete titels text %@+” = “Are you sure that you want to delete all %@ titles and all the collections thereby emptied.“;
-“LS_delete titel text %@” = “Are you sure that you want to delete %@ and all the collections thereby emptied.“;
+"LS_delete Book text %@+" = "Are you sure you want to delete this book?\n the consequence would be that all %@ titles are also deleted and all the collections thereby emptied.";
+"LS_delete titels text %@+" = "Are you sure that you want to delete all %@ titles and all the collections thereby emptied.";
+"LS_delete titel text %@" = "Are you sure that you want to delete %@ and all the collections thereby emptied.";
 
 //Library
 "LS_Library" = "Library";
