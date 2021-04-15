@@ -13,6 +13,9 @@ struct Book2View: View {
     
     @Environment(\.managedObjectContext) var viewContext
     
+    @FetchRequest(sortDescriptors: [])
+    private var gigs: FetchedResults<Gig>
+    
     @State var book: Book
     @State var editMode: Bool = false
     @State var editMode2: Bool = false
@@ -20,7 +23,7 @@ struct Book2View: View {
     @State var song: Song?
     @State var page: Int = 1
     
-    @State var delitBook: Bool = false
+    @State var delitBookAlert: Bool = false
     @State var deleteSongsAlert: Bool = false
     @State var updayitView: Bool = false
     @State var openFile: Bool = false
@@ -89,13 +92,14 @@ struct Book2View: View {
                         Book2ViewView(book: book, page: $page, song: $song, updayitView: $updayitView)
                             .alert(isPresented: $deleteSongsAlert) {
                                 Alert(title: Text("LS_delet oll Titels" as LocalizedStringKey),
-                                      message: Text("LS_delete titels text \(String(book.songs?.count ?? 0))" as LocalizedStringKey),
+                                      message: Text("LS_delete titels text \(String(book.songs?.count ?? 0))+" as LocalizedStringKey),
                                       primaryButton: .destructive(Text("LS_delit" as LocalizedStringKey),
                                                                   action: {
                                                                     ec.navigationLinkActive = false
                                                                     book.songs?.forEach{ song in
                                                                         viewContext.delete(song as! Song)
                                                                     }
+                                                                    delitEmtiGigs()
                                                                     saveContext()
                                                                     updayitView.toggle()
                                                                   }),
@@ -106,13 +110,14 @@ struct Book2View: View {
                                 BookSetings(book: $book, bookSettings: $bookSettings, updayitView: $updayitView, label: book.label ?? "", id: book.id ?? "error_no Book id", ofSet: book.pageOfset ?? "0", orientation: Int(book.isLandscape), title: book.title ?? "error_no Book name")
                             }
                         BookListOfSongsView(book: $book, updayitView: $updayitView, song: $song, page: $page, editMode: $editMode, error: $error4)
-                            .alert(isPresented: $delitBook) {
+                            .alert(isPresented: $delitBookAlert) {
                                 Alert(title: Text("LS_delete \"\(book.title!)\"" as LocalizedStringKey),
-                                      message: Text("LS_delete Book text \(String(book.songs?.count ?? 0))" as LocalizedStringKey),
+                                      message: Text("LS_delete Book text \(String(book.songs?.count ?? 0))+" as LocalizedStringKey),
                                       primaryButton: .destructive(Text("LS_delit" as LocalizedStringKey),
                                                                   action: {
                                                                     ec.navigationLinkActive = false
                                                                     viewContext.delete(book)
+                                                                    delitEmtiGigs()
                                                                     saveContext()
                                                                   }),
                                       secondaryButton: .cancel(Text("LS_back" as LocalizedStringKey))
@@ -128,13 +133,14 @@ struct Book2View: View {
                         Book2ViewView(book: book, page: $page, song: $song, updayitView: $updayitView)
                             .alert(isPresented: $deleteSongsAlert) {
                                 Alert(title: Text("LS_delet oll Titels" as LocalizedStringKey),
-                                      message: Text("LS_delete titels text \(String(book.songs?.count ?? 0))" as LocalizedStringKey),
+                                      message: Text("LS_delete titels text \(String(book.songs?.count ?? 0))+" as LocalizedStringKey),
                                       primaryButton: .destructive(Text("LS_delit" as LocalizedStringKey),
                                                                   action: {
                                                                     ec.navigationLinkActive = false
                                                                     book.songs?.forEach{ song in
                                                                         viewContext.delete(song as! Song)
                                                                     }
+                                                                    delitEmtiGigs()
                                                                     saveContext()
                                                                     updayitView.toggle()
                                                                   }),
@@ -145,13 +151,14 @@ struct Book2View: View {
                                 BookSetings(book: $book, bookSettings: $bookSettings, updayitView: $updayitView, label: book.label ?? "", id: book.id ?? "error_no Book id", ofSet: book.pageOfset ?? "0", orientation: Int(book.isLandscape), title: book.title ?? "error_no Book name")
                             }
                         BookListOfSongsView(book: $book, updayitView: $updayitView, song: $song, page: $page, editMode: $editMode, error: $error4)
-                            .alert(isPresented: $delitBook) {
+                            .alert(isPresented: $delitBookAlert) {
                                 Alert(title: Text("LS_delete \"\(book.title!)\"" as LocalizedStringKey),
-                                      message: Text("LS_delete Book text \(String(book.songs?.count ?? 0))" as LocalizedStringKey),
+                                      message: Text("LS_delete Book text \(String(book.songs?.count ?? 0))+" as LocalizedStringKey),
                                       primaryButton: .destructive(Text("LS_delit" as LocalizedStringKey),
                                                                   action: {
                                                                     ec.navigationLinkActive = false
                                                                     viewContext.delete(book)
+                                                                    delitEmtiGigs()
                                                                     saveContext()
                                                                   }),
                                       secondaryButton: .cancel(Text("LS_back" as LocalizedStringKey))
@@ -242,7 +249,7 @@ struct Book2View: View {
                             Spacer()
                             Image(systemName:"trash")
                         })
-                        Button(action: {delitBook.toggle()}, label: {
+                        Button(action: {delitBookAlert.toggle()}, label: {
                             Text("LS_delit Book" as LocalizedStringKey)
                             Spacer()
                             Image(systemName:"trash")
@@ -256,6 +263,13 @@ struct Book2View: View {
             }
         }
     }
+    
+    func delitEmtiGigs() {
+        
+        let collections = Collections(gigs: gigs)
+        collections.delitEmtiGigs()
+    }
+    
     // Qelle: https://forums.swift.org/t/promoting-binding-value-to-binding-value/31055
     func umwantler<T>(binding: Binding<T?>, fallback: T) -> Binding<T> {
         return Binding(get: {

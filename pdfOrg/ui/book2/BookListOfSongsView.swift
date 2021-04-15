@@ -10,7 +10,10 @@ import SwiftUI
 struct BookListOfSongsView: View {
     @EnvironmentObject var ec : EnvironmentController
     @EnvironmentObject var ecb : EnvironmentControllerBook
-
+    
+    @FetchRequest(sortDescriptors: [])
+    private var gigs: FetchedResults<Gig>
+    
     @Environment(\.managedObjectContext) var viewContext
 
     @Binding var book: Book
@@ -22,6 +25,10 @@ struct BookListOfSongsView: View {
     @Binding var editMode: Bool
     
     @Binding var error: Bool
+    
+    @State var allert: Bool = false
+    
+    @State var theOffsets: IndexSet?
     
     var body: some View {
         VStack{
@@ -70,7 +77,19 @@ struct BookListOfSongsView: View {
                                         Spacer()
                                     }.font(.footnote)
                                 }
-                            })
+                            })     .alert(isPresented: $allert) {
+                                Alert(title: Text("LS_delete \"\(song.title ?? "")\"" as LocalizedStringKey),
+                                      message: Text("LS_delete titel text\(song.title ?? "")" as LocalizedStringKey),
+                                      primaryButton: .destructive(Text("LS_delit" as LocalizedStringKey),
+                                                                  action: {
+                                                                    theOffsets!.map {getArraySong(book.songs!)[$0]}.forEach(viewContext.delete)
+                                                                    let collections = Collections(gigs: gigs)
+                                                                    collections.delitEmtiGigs()
+                                                                     updayitView.toggle()
+                                                                  }),
+                                      secondaryButton: .cancel(Text("LS_back" as LocalizedStringKey))
+                                )
+                            }
                         }.onDelete(perform: delete)                    }
                 }
             } else {
@@ -110,11 +129,18 @@ struct BookListOfSongsView: View {
 
         }
     }
+    
+    func delit() {
+        allert = true
+    }
+    
     private func delete(offsets: IndexSet) {
         withAnimation {
-            offsets.map {getArraySong(book.songs!)[$0]}.forEach(viewContext.delete)
-            updayitView.toggle()
-         //   saveContext()
+            theOffsets = offsets
+            delit()
+            
+  
+       
         }
     }
 

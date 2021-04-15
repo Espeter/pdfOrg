@@ -30,6 +30,18 @@ class Collections {
         }
     }
     
+    func delitEmtiGigs() {
+        
+        array.forEach { gig in
+            
+            if gig.songsInGig?.count == 0 && gig.title != "Favorites" {
+                print("viewContext.delete(\(gig))")
+                viewContext.delete(gig)
+            }
+        }
+       // saveContext()
+    }
+    
     func importCollection(url: URL, books: FetchedResults<Book>) -> (Int,[String])? {
         
         var txt = String()
