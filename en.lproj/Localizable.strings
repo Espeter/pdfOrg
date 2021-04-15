@@ -1,4 +1,4 @@
-/* 
+/*
   Localizable.strings
   pdfOrg
 
@@ -51,7 +51,7 @@
 "LS_understood" = "understood";
 "LS_how to import Collectin" = "how to import Collectin" ;
 "LS_error when loading the collection" = "error when loading the collection";
-"LS_Faworiten" = "Faworiten";
+"LS_Faworiten" = "Favorites";
 
 //Book2
 "LS_settings" = "Settings";
@@ -77,26 +77,23 @@
 "LS_add" = "Add";
 "LS_Titel Name: " = "Titel Name: " ;
 "LS_Titel Label: " = "Label: ";
-"LS_first Page: " = "first Page: ";
-"LS_last Page" = "last Page";
-"LS_how to import" = "how to import";
-"LS_error Text import no Int as number of pages. in row: %@" = "error Text import no Int as number of pages. in row: %@";
-"LS_a page number must be an int" = "a page number must be an int";
+"LS_first Page: " = "First Page: ";
+"LS_last Page" = "Last Page";
+"LS_how to import" = "How to Import";
+"LS_error Text import no Int as number of pages. in row: %@" = "error in row: %@, no integer as number of pages ";
+"LS_a page number must be an int" = "a page number must be an integer";
+“LS_delete Book text %@+” = “Are you sure you want to delete this book?\n the consequence would be that all %@ titles are also deleted and all the collections thereby emptied.“;
+“LS_delete titels text %@+” = “Are you sure that you want to delete all %@ titles and all the collections thereby emptied.“;
+“LS_delete titel text %@” = “Are you sure that you want to delete %@ and all the collections thereby emptied.“;
 
 //Library
 "LS_Library" = "Library";
-"LS_delete \"%@\"" = "delete \"%@\"";
+"LS_delete \"%@\"" = "Delete \"%@\"";
 "LS_delete Book text %@" = "are you sure you want to delete this book?\n the consequence would be that all %@ titels are also deleted.";
 "LS_add Book" = "add Book";
 "LS_sort by" = "sort by";
 "LS_Alphabetical" = "Alphabetical";
 "LS_Store" = "Store";
-"LS_error" = "error";
+"LS_error" = "Error";
 "LS_More information" = "More information";
-"LS_error Text import %@" = "Datei entspricht nicht dem geforderten formart. In Zeile %@";
-
-
-// New
-"LS_delete Book text  %@+" = "Are you sure you want to delete this book?\n the consequence would be that all %@ titels are also deleted and all the collections thereby emptied.";
-"LS_delete titels text %@+" = "Are you sure that you want to delete all %@ titles and all the collections thereby emptied.";
-"LS_delete titel text %@" = "LS_Are you sure that you want to delete %@ and all the collections thereby emptied. ";
+"LS_error Text import %@" = "This file has an wrong format in row %@";

@@ -1,4 +1,4 @@
-/* 
+/*
   Localizable.strings
   pdfOrg
 
@@ -41,6 +41,7 @@
 "LS_copy Collection" = "Kopiere Sammlung";
 "LS_copy %@" = "Kopiere %@";
 "LS_%@(copy)" = "%@(kopieren)";
+"LS_Import Collection from .txt" = "Laden Sammlung aus .txt";
 //"LS_not oll Books exist" = "Nicht alle Bücher existieren";
 "LS_Thes Books dasent exist: %@" = "Diese Bücher existieren nicht: %@";
 "LS_Oky" = "Okay";
@@ -49,8 +50,9 @@
 "LS_delete complete collection" = "Löschen der Sammlung";
 "LS_no title in Collection" = "Kein Titel in der Sammlung";
 "LS_understood" = "Verstanden";
-"LS_how to import Collectin" = "how to import Collectin" ;
+"LS_how to import Collectin" = "importieren Sammlung?" ;
 "LS_error when loading the collection" = "fehler beim laden der Samlung";
+"LS_Faworiten" = "Favoriten";
 
 //Book2
 "LS_settings" = "Einstellungen";
@@ -73,13 +75,17 @@
 "LS_id already exists" = "ID existiert bereits";
 "LS_this ID already exists" = "Diese ID existiert bereits";
 "LS_Book Name: " = "Buch Name: ";
-
 "LS_add" = "Hinzufügen";
 "LS_Titel Name: " = "Titel Name: " ;
-"LS_Titel Label: " = "Beschribung: ";
-"LS_first Page: " = "erste seite: ";
-"LS_last Page" = "letzste seit";
-"LS_how to import" = "wie importiere index ";
+"LS_Titel Label: " = "Beschreibung: ";
+"LS_first Page: " = "erste Seite: ";
+"LS_last Page" = "letzte Seite";
+"LS_how to import" = "importieren Index?";
+"LS_error Text import no Int as number of pages. in row: %@" = "Fehler Text Seitenzahl in Zeile: %@ falsch";
+"LS_a page number must be an int" = "Eine Seitenzahl muss eine Zahl sein";
+“LS_delete Book text %@+” = “"Bist Du sicher, dass Du dieses Buch löschen möchtest?\n Die Auswirkung wäre,dass auch alle %@ Titel des Buches gelöscht und aus den Sammlungen entfernt werden.“;
+“LS_delete titels text %@+” = Bist Du sicher, dass Du alle Titel %@ löschen möchtest und aus den Sammlungen entfernt werden.“;
+“LS_delete titel text %@” = “Bist Du sicher, dass Du  %@ löschen möchtest und aus den Sammlungen entfernt wird.“;
 
 //Library
 "LS_Library" = "Bibliothek";
@@ -90,6 +96,6 @@
 "LS_Alphabetical" = "Alphabetisch";
 "LS_Store" = "Store";
 "LS_error" = "Fehler";
-"LS_More information" = "mehr informationen";
-"LS_error Text import %@" = "Datei entspricht nicht dem geforderten formart. In Zeile %@";
+"LS_More information" = "mehr Informationen";
+"LS_error Text import %@" = "Datei entspricht in Zeile %@ nicht dem geforderten Format.";
 
