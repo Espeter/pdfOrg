@@ -314,29 +314,35 @@ struct Book2View: View {
             print("Int lineSplit[1]: \(lineSplit[1])")
             print("Int lineSplit[2]: \(lineSplit[2])")
             
-            if Int(lineSplit[1]) != nil && Int(lineSplit[2]) != nil {
-                
                 if lineSplit.count == 3 {
+                    if Int(lineSplit[1]) != nil && Int(lineSplit[2]) != nil {
                     addSong(name: lineSplit[0], startSide: lineSplit[1], endPage: lineSplit[2], author: nil)
+                    } else {
+                            error3 = true
+                            if errorMessage3 == "" {
+                                errorMessage3 = "\(i)"
+                            } else {
+                                errorMessage3 =  errorMessage3 + ", \(i)"
+                            }
+                    }
                 } else if lineSplit.count == 4 {
-                    addSong(name: lineSplit[0], startSide: lineSplit[1],endPage: lineSplit[2], author: lineSplit[3])
+                    if Int(lineSplit[1]) != nil && Int(lineSplit[2]) != nil {
+                        addSong(name: lineSplit[0], startSide: lineSplit[1],endPage: lineSplit[2], author: lineSplit[3])
+                    } else {
+                            error3 = true
+                            if errorMessage3 == "" {
+                                errorMessage3 = "\(i)"
+                            } else {
+                                errorMessage3 =  errorMessage3 + ", \(i)"
+                            }
+                    }
                 } else {
                     if errorMessage == "" {
                         importErrorMessage =  "die zeilte mit \"\(lineSplit[0])\" hat nicht alle notwenidigen informazionen"
                         error2 = true
                     }
                 }
-            } else {
-                error3 = true
-                
-              
-                
-                if errorMessage3 == "" {
-                    errorMessage3 = "\(i)"
-                } else {
-                    errorMessage3 =  errorMessage3 + ", \(i)"
-                }
-            }
+            
         })
         
         if importErrorMessage != "" {

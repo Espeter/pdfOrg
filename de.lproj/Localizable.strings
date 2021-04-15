@@ -1,11 +1,9 @@
 /*
   Localizable.strings
   pdfOrg
-
   Created by Carl Espeter on 23.02.21.
   
 */
-
 "LS_all" = "Alles";
 "LS_label" = "Label";
 "LS_title" = "Titel";
@@ -15,8 +13,6 @@
 "LS_Restore Purchases" = "Einkauf wiederherstellen";
 "LS_back" = "Zurück";
 "LS_too many books" = "max. Anzhal Bücher überschritten";
-
-
 //Collection
 "LS_collection" = "Sammlung";
 "LS_Collections" = "Sammlungen";
@@ -35,7 +31,7 @@
 "LS_delit %@" = "Löschen %@";
 "LS_back" = "Zurück";
 "LS_delitCollectionText %@" = "Bis Du sicher,dass Du %@ löschge willst?";
-"LS_All Titels" = "Alle Titels";
+"LS_All Titels" = "Alle Titel";
 "LS_edit Name" = "Bearbeiten Name";
 "LS_rename: %@" = "Umbenennen: %@";
 "LS_copy Collection" = "Kopiere Sammlung";
@@ -53,13 +49,12 @@
 "LS_how to import Collectin" = "importieren Sammlung?" ;
 "LS_error when loading the collection" = "fehler beim laden der Samlung";
 "LS_Faworiten" = "Favoriten";
-
 //Book2
 "LS_settings" = "Einstellungen";
-"LS_delit Book" = "Löschen des Buchs";
-"LS_delit contents of Book" = "Löschen Index des Buchs";
-"LS_uplod contents" = "export Index ";
-"LS_donlod contents" = "import Index";
+"LS_delit Book" = "Löschen Buch";
+"LS_delit contents of Book" = "Löschen Index des Buches";
+"LS_uplod contents" = "Export Index ";
+"LS_donlod contents" = "Import Index";
 "LS_delet oll Titels" = "Löschen aller Titel";
 "LS_delete titels text %@" = "Bist Du sicher, dass Du alle Titel %@ löschen möchtest";
 "LS_save" = "Sichern";
@@ -78,15 +73,14 @@
 "LS_add" = "Hinzufügen";
 "LS_Titel Name: " = "Titel Name: " ;
 "LS_Titel Label: " = "Beschreibung: ";
-"LS_first Page: " = "erste Seite: ";
-"LS_last Page" = "letzte Seite";
-"LS_how to import" = "importieren Index?";
+"LS_first Page: " = "Erste Seite: ";
+"LS_last Page" = "Letzte Seite";
+"LS_how to import" = "Importieren Index?";
 "LS_error Text import no Int as number of pages. in row: %@" = "Fehler Text Seitenzahl in Zeile: %@ falsch";
 "LS_a page number must be an int" = "Eine Seitenzahl muss eine Zahl sein";
 "LS_delete Book text %@+" = "Bist Du sicher, dass Du dieses Buch löschen möchtest?\n Die Auswirkung wäre,dass auch alle %@ Titel des Buches gelöscht und aus den Sammlungen entfernt werden.";
 "LS_delete titels text %@+" = "Bist Du sicher, dass Du alle Titel %@ löschen möchtest und aus den Sammlungen entfernt werden.";
 "LS_delete titel text %@" = "Bist Du sicher, dass Du  %@ löschen möchtest und aus den Sammlungen entfernt wird.";
-
 //Library
 "LS_Library" = "Bibliothek";
 "LS_delete \"%@\"" = "Lösche \"%@\"";
@@ -98,4 +92,3 @@
 "LS_error" = "Fehler";
 "LS_More information" = "mehr Informationen";
 "LS_error Text import %@" = "Datei entspricht in Zeile %@ nicht dem geforderten Format.";
-

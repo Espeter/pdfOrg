@@ -36,7 +36,7 @@ struct SearchBar: UIViewRepresentable {
         let searchBar = UISearchBar(frame: .zero)
         searchBar.delegate = context.coordinator
         searchBar.searchBarStyle = .minimal
-        searchBar.placeholder = "Titel or Label"//TODO: as LocalizedStringKey
+        searchBar.placeholder = "Titel or Label" //as LocalizedStringKey
         return searchBar
     }
 
