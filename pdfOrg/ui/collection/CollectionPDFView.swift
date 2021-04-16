@@ -75,7 +75,6 @@ struct CollectionPDFView: View {
             ec.song = song
             ec.pageIndexString = pageIndex
             ec.songInGig = songInGig
-            print("songInGig: \(songInGig.teitel)")
             ec.gig = songInGig.gig!
             ec.presentationModeGig = true
         }

@@ -112,7 +112,6 @@ struct SelectTitelForNewCollectionView: View {
             newTitelInCollection.song = titel
             newTitelInCollection.position = Int64(titelsInCollection.count + 1)
             newTitelInCollection.gig = collection
-            print("collection \(collection?.title)")
             titelsInCollection.append(newTitelInCollection)
         }
         titelsToBeAdded = []

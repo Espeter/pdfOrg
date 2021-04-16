@@ -26,8 +26,8 @@ struct TitelRowInEditMod: View {
         HStack{
             
             if titelInColetion.song != nil {
-            Text("\(titelInColetion.position).").font(.title3)//.padding()
-            
+       //     Text("\(titelInColetion.position).").font(.title3)//.padding()
+                Text("\(getPosion()).").font(.title3)//.padding()
             VStack(alignment: .leading){
                 HStack{
                     Text(titelInColetion.song!.title ?? "error_no Titel")
@@ -63,6 +63,20 @@ struct TitelRowInEditMod: View {
             }
         }
     }
+    
+    private func getPosion() -> String {    // TODO: bauche ich das überhopt?
+        
+        var posisheen: String = "1"
+        titelsInColetion.forEach { song in
+          
+            if song == titelInColetion {
+              
+                posisheen = String(Int(song.position))
+        }
+        }
+        return posisheen
+    }
+    
     
     private func songNotFaund() -> Bool {
         

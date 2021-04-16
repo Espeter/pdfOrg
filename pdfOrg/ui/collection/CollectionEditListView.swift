@@ -111,6 +111,10 @@ struct CollectionEditListView: View {
         titelsInCollection.insert(element, at: destinationNew )
         
         renewPosition(songsInGig: titelsInCollection)
+        
+        reload.toggle()
+       
+        
     }
     
     private func renewPosition(songsInGig: [SongInGig]) {
