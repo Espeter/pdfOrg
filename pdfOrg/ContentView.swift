@@ -8,7 +8,17 @@
 import SwiftUI
 import CoreData
 
+
 struct ContentView: View {
+    @FetchRequest(sortDescriptors: [])
+    private var gigs: FetchedResults<Gig>
+    var body: some View {
+        ContentView2(collections: Collections(gigs: gigs))
+        
+    }
+}
+
+struct ContentView2: View {
     
     @EnvironmentObject var ec : EnvironmentController
     @Environment(\.managedObjectContext) private var viewContext
@@ -24,19 +34,20 @@ struct ContentView: View {
     
   //  @State var upDaedCollection: Bool = false
  
+    @State var collections: Collections
     
     var body: some View {
         
         if ec.presentationMode == false && ec.presentationModeBook == false && ec.presentationModeGig == false {
             TabView(selection: $ec.tabTag){
                 if ec.updatLibrary {
-                    LibraryView(allLabels: getAllLabels(), segmentBooksByLabel: getSegmentBooksByLabel())
+                    LibraryView(allLabels: getAllLabels(), segmentBooksByLabel: getSegmentBooksByLabel(), collections: $collections)
                         .tabItem {
                             Text("LS_Library" as LocalizedStringKey)
                             Image(systemName: "books.vertical")
                         }.tag(1)
                 } else {
-                    LibraryView(allLabels: getAllLabels(), segmentBooksByLabel: getSegmentBooksByLabel())
+                    LibraryView(allLabels: getAllLabels(), segmentBooksByLabel: getSegmentBooksByLabel(), collections: $collections)
                         .tabItem {
                             Text("LS_Library" as LocalizedStringKey)
                             Image(systemName: "books.vertical")
@@ -52,7 +63,7 @@ struct ContentView: View {
 //                        Image(systemName: "doc.text")
 //                    }.tag(3)
                 if songsFR.count > 0 {
-                    CollectionNavigationView(collections: Collections(gigs: gigs), titles: Titles(songs: songsFR))
+                    CollectionNavigationView(collections: collections, faworitenGig: collections.get(collection: "Favorites"), titles: Titles(songs: songsFR))
                     .tabItem {
                         
                         Image(systemName: "doc.text")
@@ -68,7 +79,7 @@ struct ContentView: View {
         } else{
             GigPresentationView(song: ec.song, pageIndex: ec.pageIndexString, songInGig: ec.songInGig, gig: ec.gig)
         }
-       
+        
     }
     
     func getFavoritGig() -> Gig {

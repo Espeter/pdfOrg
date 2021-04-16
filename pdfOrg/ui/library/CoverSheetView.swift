@@ -13,14 +13,15 @@ struct CoverSheetView: View {
     
     @State var book: Book
 //    @State var selectedSong: Song?
-    
+    @Binding var collections: Collections
+
     var body: some View {
         
         if book.coverSheet != nil {
             VStack{
                 if ec.currentBook != nil {
                     
-                    NavigationLink(destination: Book2View(book: ec.currentBook!).environmentObject(EnvironmentControllerBook()), isActive: $ec.navigationLinkActive) { EmptyView() }.animation(nil)
+                    NavigationLink(destination: Book2View(book: ec.currentBook!, collections: $collections).environmentObject(EnvironmentControllerBook()), isActive: $ec.navigationLinkActive) { EmptyView() }.animation(nil)
                 }
                 ZStack(alignment: .topTrailing) {
                     Image(uiImage: UIImage(data: book.coverSheet!)!)

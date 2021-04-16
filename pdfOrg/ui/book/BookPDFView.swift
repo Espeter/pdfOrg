@@ -171,6 +171,7 @@ struct BookPDFView: View {
             }
         }
         renewPosition(songsInGig: gig.songsInGig!)
+        ec.reload.toggle()
         saveContext()
     }
     
@@ -187,6 +188,7 @@ struct BookPDFView: View {
         
         gig.addToSongsInGig(newSongInGig)
         renewPosition(songsInGig: gig.songsInGig!)
+        ec.reload.toggle()
         saveContext()
     }
     

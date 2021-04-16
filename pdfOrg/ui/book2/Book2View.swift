@@ -37,7 +37,7 @@ struct Book2View: View {
     @State var errorMessage3: String = ""
     
     @State var infoIsVisible: Bool = false
-    
+    @Binding var collections: Collections
     var body: some View {
         VStack(alignment: .leading){
             HStack{
@@ -89,7 +89,7 @@ struct Book2View: View {
             GeometryReader { geometry in
                 if geometry.size.width > geometry.size.height {
                     HStack {
-                        Book2ViewView(book: book, page: $page, song: $song, updayitView: $updayitView)
+                        Book2ViewView(book: book, page: $page, song: $song, updayitView: $updayitView, collections: $collections)
                             .alert(isPresented: $deleteSongsAlert) {
                                 Alert(title: Text("LS_delet oll Titels" as LocalizedStringKey),
                                       message: Text("LS_delete titels text \(String(book.songs?.count ?? 0))+" as LocalizedStringKey),
@@ -130,7 +130,7 @@ struct Book2View: View {
                 }
                 else {
                     VStack{
-                        Book2ViewView(book: book, page: $page, song: $song, updayitView: $updayitView)
+                        Book2ViewView(book: book, page: $page, song: $song, updayitView: $updayitView, collections: $collections)
                             .alert(isPresented: $deleteSongsAlert) {
                                 Alert(title: Text("LS_delet oll Titels" as LocalizedStringKey),
                                       message: Text("LS_delete titels text \(String(book.songs?.count ?? 0))+" as LocalizedStringKey),

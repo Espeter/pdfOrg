@@ -28,7 +28,7 @@ struct CollectionView: View {
 
     @State var name: String = ""
     
-    @State var reload: Bool = false
+    @Binding var reload: Bool// = false
     @State var lastSongDeleted: Bool = false
     @Binding var allTitelsView: Bool
 
@@ -76,7 +76,7 @@ struct CollectionView: View {
                                 )
                             }
                         } else {
-                            CollectionListView(titel: $titel, titelInCollection: $titelInCollection, pageIndex: $pageIndex, collection: $collection, reload: $reload)        .alert(isPresented: $lastSongDeleted) {
+                            CollectionListView(titel: $titel, titelInCollection: $titelInCollection, pageIndex: $pageIndex, collection: $collection, collections: $collections, reload: $reload)        .alert(isPresented: $lastSongDeleted) {
                                 Alert(title: Text("LS_delit Collection" as LocalizedStringKey),
                                       message: Text("It is not Posibel to haf a Collection whis aut a associated Titel" as LocalizedStringKey),
                                       primaryButton: .cancel(Text("LS_back" as LocalizedStringKey)),
@@ -126,7 +126,7 @@ struct CollectionView: View {
                             )
                         }
                     } else {
-                        CollectionListView(titel: $titel, titelInCollection: $titelInCollection, pageIndex: $pageIndex, collection: $collection, reload: $reload)        .alert(isPresented: $lastSongDeleted) {
+                        CollectionListView(titel: $titel, titelInCollection: $titelInCollection, pageIndex: $pageIndex, collection: $collection, collections: $collections, reload: $reload)        .alert(isPresented: $lastSongDeleted) {
                             Alert(title: Text("LS_delit Collection" as LocalizedStringKey),
                                   message: Text("It is not Posibel to haf a Collection whis aut a associated Titel" as LocalizedStringKey),
                                   primaryButton: .cancel(Text("LS_back" as LocalizedStringKey)),

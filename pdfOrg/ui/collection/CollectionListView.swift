@@ -12,11 +12,16 @@ struct CollectionListView: View {
     @FetchRequest(sortDescriptors: [])
     var books: FetchedResults<Book>
     
+    @FetchRequest(sortDescriptors: [])
+    var gigs: FetchedResults<Gig>
+    
     @Binding var titel: Song
     @Binding var titelInCollection: SongInGig
     @Binding var pageIndex: String
     
     @Binding var collection: Collection
+    @Binding var collections: Collections
+
     
     @Binding var reload: Bool
     
@@ -30,7 +35,7 @@ struct CollectionListView: View {
     var body: some View {
         List() {
             
-            ForEach(collection.titelsInCollection) { songInGig in
+            ForEach(collection.getTitelsInCollection(titel: collection.name, collections: collections )) { songInGig in
                 
                 if songInGig.song != nil {
                     

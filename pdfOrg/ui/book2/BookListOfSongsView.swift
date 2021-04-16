@@ -77,7 +77,8 @@ struct BookListOfSongsView: View {
                                         Spacer()
                                     }.font(.footnote)
                                 }
-                            })     .alert(isPresented: $allert) {
+                              
+                            }).alert(isPresented: $allert) {
                                 Alert(title: Text("LS_delete \"\(song.title ?? "")\"" as LocalizedStringKey),
                                       message: Text("LS_delete titel text\(song.title ?? "")" as LocalizedStringKey),
                                       primaryButton: .destructive(Text("LS_delit" as LocalizedStringKey),
@@ -90,7 +91,8 @@ struct BookListOfSongsView: View {
                                       secondaryButton: .cancel(Text("LS_back" as LocalizedStringKey))
                                 )
                             }
-                        }.onDelete(perform: delete)                    }
+                        }.onDelete(perform: delete)
+                    }
                 }
             } else {
                 ScrollViewReader { scroll in

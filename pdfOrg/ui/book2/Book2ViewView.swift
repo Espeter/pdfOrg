@@ -24,7 +24,7 @@ struct Book2ViewView: View {
     
     @Binding var song: Song?
     @Binding var updayitView: Bool
-    
+    @Binding var collections: Collections
     var body: some View {
         ZStack(alignment: .topTrailing) {
             
@@ -200,40 +200,48 @@ struct Book2ViewView: View {
     
     func removeSongInFavoritGig() {
         
-        let gig = getFavoritGig()
+//        let gig = getFavoritGig()
+//
+//        songsInGig.forEach { songInGig in
+//
+//            if songInGig.song == song && songInGig.gig == gig {
+//
+//                gig.removeFromSongsInGig(songInGig)
+//
+//            }
+//        }
+//        renewPosition(songsInGig: gig.songsInGig!)
+//        song?.isFavorit = false
+//        saveContext()
+//        updayitView.toggle()
         
-        songsInGig.forEach { songInGig in
-            
-            if songInGig.song == song && songInGig.gig == gig {
-                
-                gig.removeFromSongsInGig(songInGig)
-                
-            }
-        }
-        renewPosition(songsInGig: gig.songsInGig!)
+        collections.removeFavorites(song: song!)
         song?.isFavorit = false
         saveContext()
         updayitView.toggle()
-        
+        ec.reload.toggle()
+        print("\(ec.reload)")
     }
     
     func addSongToFavoritGig() {
         
-        let gig = getFavoritGig()
-        
-        let newSongInGig = SongInGig(context: viewContext)
-        newSongInGig.song = song
-        
-        let position = gig.songsInGig!.count + 1
-        
-        newSongInGig.position = Int64(position)
-        
-        gig.addToSongsInGig(newSongInGig)
-        renewPosition(songsInGig: gig.songsInGig!)
+  //      let _ = getFavoritGig()
+//
+//        let newSongInGig = SongInGig(context: viewContext)
+//        newSongInGig.song = song
+//
+//        let position = gig.songsInGig!.count + 1
+//
+//        newSongInGig.position = Int64(position)
+//
+//        gig.addToSongsInGig(newSongInGig)
+//        renewPosition(songsInGig: gig.songsInGig!)
+        collections.addToFavorites(song: song!)
+        ec.reload.toggle()
+        print("\(ec.reload)")
         song?.isFavorit = true
         saveContext()
         updayitView.toggle()
-        
     }
     func getFavoritGig() -> Gig {
         

@@ -68,6 +68,30 @@ class Collection {
     //        return copy
     //    }
     
+    func getTitelsInCollection(titel: String /*, gigs: FetchedResults<Gig>*/, collections: Collections) -> [SongInGig] {
+        
+        var faworits: [SongInGig] = []
+        
+        if titel == "Favorites" {
+            
+          let gig = collections.get(collection: "Favorites")
+          
+            gig.songsInGig?.forEach { songsInGig in
+                faworits.append(songsInGig as! SongInGig)
+            }
+            
+        } else {
+            faworits = titelsInCollection
+        }
+        
+        
+        faworits.sort{
+            $0.position < $1.position
+        }
+        
+        return faworits
+    }
+    
     func songIsCollection(songInGig: SongInGig, books: FetchedResults<Book>) -> Bool {
         
         var songIsCollection = false

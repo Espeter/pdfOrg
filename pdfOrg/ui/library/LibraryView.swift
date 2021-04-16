@@ -39,8 +39,10 @@ struct LibraryView: View {
     
     @State var oldGeometryProxy: GeometryProxy?
     
+    @Binding var collections: Collections
     
     var body: some View {
+        
         NavigationView(){
             //        ScrollView {
             VStack{
@@ -95,7 +97,7 @@ struct LibraryView: View {
                                     }
                                     ForEach(segmentBooksByLabel[label]!, id: \.self) { (book: Book) in
                                         
-                                        CoverSheetView(book: book)
+                                        CoverSheetView(book: book, collections: $collections)
                                     }
                                 }.frame(height: 300).padding(.bottom, -20)
                             }
@@ -170,7 +172,7 @@ struct LibraryView: View {
                                         }
                                         ForEach(getSegmentBooks(geometry: geometry)[i] ?? [], id: \.self) { (book: Book) in
                                      
-                                            CoverSheetView(book: book)
+                                            CoverSheetView(book: book, collections: $collections)
                                         }
                                         Spacer()
                                         if (geometry.size.width >= 100.0){

@@ -217,9 +217,9 @@ class Collections {
     func addToFavorites(song: Song) {
         
         let favorit = get(collection: "Favorites")
-        
+  
         if favorit.title ==  "Favorites" {
-            
+      
             let newSongInGig = SongInGig(context: viewContext)
             
             newSongInGig.song = song
@@ -228,10 +228,11 @@ class Collections {
             favorit.addToSongsInGig(newSongInGig)
             
             song.isFavorit = true
-            
+
         } else {
             let newGig = Gig(context: viewContext)
             newGig.title = "Favorites"
+            newGig.songsInGig = NSSet()
             array.append(newGig)
             addToFavorites(song: song)
         }
@@ -250,7 +251,7 @@ class Collections {
             if songInGig.song == song {
                 favoritGig.removeFromSongsInGig(songInGig)
                 song.isFavorit = false
-                
+       //         viewContext.delete(songInGig)
             }
         }
         favoritCollection.renewPosition()
@@ -269,12 +270,13 @@ class Collections {
                 gigIsFaund = true
             }
         }
-    
         if collection == "Favorites" && !gigIsFaund{
           let newGig = Gig(context: viewContext)
             newGig.title = "Favorites"
+            newGig.songsInGig = NSSet()
             saveContext()
             soughtGig = newGig
+            array.append(newGig)
         }
         
         
