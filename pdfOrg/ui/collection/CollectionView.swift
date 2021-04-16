@@ -165,6 +165,14 @@ struct CollectionView: View {
                     })
                 }
             }
+            ToolbarItem(placement: .navigationBarTrailing) {
+                if !editMode &&  collection.name != "Favorites" {
+                    Button(action: {editMode.toggle()}, label: {
+                        Text("LS_edit" as LocalizedStringKey)
+                        Image(systemName:"pencil")
+                    })
+                }
+            }
             ToolbarItem(placement: .primaryAction) {
                 
                 if editMode {
@@ -173,13 +181,13 @@ struct CollectionView: View {
                     })
                 } else {
                     Menu{
-                        if collection.name != "Favorites" {
-                        Button(action: {editMode.toggle()}, label: {
-                            Text("LS_edit" as LocalizedStringKey)
-                            Spacer()
-                            Image(systemName:"pencil")
-                        })
-                        }
+//                        if collection.name != "Favorites" {
+//                        Button(action: {editMode.toggle()}, label: {
+//                            Text("LS_edit" as LocalizedStringKey)
+//                            Spacer()
+//                            Image(systemName:"pencil")
+//                        })
+//                        }
                         Button(action: {copyCollection.toggle()}, label: {
                             Text("LS_copy Collection" as LocalizedStringKey)
                             Spacer()
