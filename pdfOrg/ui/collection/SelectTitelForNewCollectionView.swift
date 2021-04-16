@@ -12,7 +12,7 @@ struct SelectTitelForNewCollectionView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(sortDescriptors: [])
     private var songs: FetchedResults<Song>
-    @State private var collection: Gig?
+    @State var collection: Gig?
     @State private var searchText: String = ""
     @Binding var titelsToBeAdded: [Song]
     @Binding var titelsInCollection: [SongInGig]
@@ -111,7 +111,8 @@ struct SelectTitelForNewCollectionView: View {
             let newTitelInCollection = SongInGig(context: viewContext)
             newTitelInCollection.song = titel
             newTitelInCollection.position = Int64(titelsInCollection.count + 1)
-            
+            newTitelInCollection.gig = collection
+            print("collection \(collection?.title)")
             titelsInCollection.append(newTitelInCollection)
         }
         titelsToBeAdded = []

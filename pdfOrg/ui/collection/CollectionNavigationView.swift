@@ -79,11 +79,7 @@ struct CollectionNavigationView: View {
                     }
                     }
                //     let faworitenGig = collections.get(collection: "Favorites")
-                    if ec.reload {
-                    Text("1faworitenGig.songsInGig!.count\(faworitenGig.songsInGig!.count)")
-                    } else {
-                        Text("2faworitenGig.songsInGig!.count\(faworitenGig.songsInGig!.count)")
-                    }
+                
                     if faworitenGig.title != nil {
                     if faworitenGig.songsInGig!.count > 0 {
 

@@ -63,7 +63,7 @@ struct CollectionView: View {
                     VStack{
                         Text("").padding(.top, -20).padding(.bottom, -20)
                         if editMode {
-                            CollectionEditListView( titelsInCollection: $collection.titelsInCollection, tilels: Titles(songs: songs), titel: $titel, collections: $collections, collection: $collection, reload:  $reload, lastSongDeleted: $lastSongDeleted)        .alert(isPresented: $lastSongDeleted) {
+                            CollectionEditListView( titelsInCollection: $collection.titelsInCollection, tilels: Titles(songs: songs), titel: $titel, collections: $collections, collection: $collection, titelInCollection: $titelInCollection, reload:  $reload, lastSongDeleted: $lastSongDeleted)        .alert(isPresented: $lastSongDeleted) {
                                 Alert(title: Text("LS_delit Collection" as LocalizedStringKey),
                                       message: Text("It is not Posibel to haf a Collection whis aut a associated Titel" as LocalizedStringKey),
                                       primaryButton: .cancel(Text("LS_back" as LocalizedStringKey)),
@@ -113,7 +113,7 @@ struct CollectionView: View {
                     }
 
                     if editMode {
-                        CollectionEditListView( titelsInCollection: $collection.titelsInCollection, tilels: Titles(songs: songs), titel: $titel, collections: $collections, collection:  $collection, reload:  $reload, lastSongDeleted: $lastSongDeleted)        .alert(isPresented: $lastSongDeleted) {
+                        CollectionEditListView( titelsInCollection: $collection.titelsInCollection, tilels: Titles(songs: songs), titel: $titel, collections: $collections, collection:  $collection, titelInCollection: $titelInCollection, reload:  $reload, lastSongDeleted: $lastSongDeleted)        .alert(isPresented: $lastSongDeleted) {
                             Alert(title: Text("LS_delit Collection" as LocalizedStringKey),
                                   message: Text("It is not Posibel to haf a Collection whis aut a associated Titel" as LocalizedStringKey),
                                   primaryButton: .cancel(Text("LS_back" as LocalizedStringKey)),

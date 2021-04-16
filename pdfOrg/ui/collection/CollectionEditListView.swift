@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CollectionEditListView: View {
+    @EnvironmentObject var ec : EnvironmentController
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(sortDescriptors: [])
     private var songs: FetchedResults<Song>
@@ -18,7 +19,7 @@ struct CollectionEditListView: View {
     @Binding var collections: Collections
     @Binding var collection: Collection
     
-    
+    @Binding var titelInCollection: SongInGig
     @State private var titelsToBeAdded: [Song] = []
     var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","#"]
     
@@ -57,7 +58,7 @@ struct CollectionEditListView: View {
 
                     //    let tilels = Titles(songs: titelsInCollection)
 
-                    SelectTitelForNewCollectionView(titelsToBeAdded: $titelsToBeAdded, titelsInCollection: $titelsInCollection, isActive: $addingTitel, segmentTitels: tilels.getSegmentTitles(by: alphabet, songs: songs), titels: tilels)
+                    SelectTitelForNewCollectionView(collection: collection.gig, titelsToBeAdded: $titelsToBeAdded, titelsInCollection: $titelsInCollection, isActive: $addingTitel, segmentTitels: tilels.getSegmentTitles(by: alphabet, songs: songs), titels: tilels)
                             .environment(\.managedObjectContext, viewContext)
                     }
             
@@ -88,6 +89,10 @@ struct CollectionEditListView: View {
                     newPosichen = newPosichen - 1
                 }
                 
+                print("newPosichen: \(newPosichen)")
+                print("titelsInCollection[Int(newPosichen)]: \(titelsInCollection.count)")
+                 
+                titelInCollection = titelsInCollection[Int(newPosichen)]
                 titel = titelsInCollection[Int(newPosichen)].song!
             } else {
                 lastSongDeleted.toggle()
