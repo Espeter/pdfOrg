@@ -13,12 +13,15 @@ struct InfoImportIndexView: View {
     
     var body: some View {
         NavigationView(){
-        Text("ToDo: how to import text")
+            VStack{
+            Text("LS_how to import Text" as LocalizedStringKey).font(.title3).padding()
+            Spacer()
+            }
             .navigationBarTitle("LS_how to import" as LocalizedStringKey)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button(action: {isVisibel.toggle()}, label: {
-                        Text("LS_quit" as LocalizedStringKey)
+                        Text("LS_back" as LocalizedStringKey)
                     })
                 }
             }

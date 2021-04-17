@@ -243,6 +243,13 @@ struct CollectionView: View {
         collection.save(newName: name)
         editMode = false
         copyOfTitelsInCollection = collection.titelsInCollection
+        
+        collections.array.forEach{ kollection in
+            
+            if kollection == collection.gig {
+                kollection.title = collection.gig.title
+            }
+        }
     }
     
     private func quit() {

@@ -12,7 +12,7 @@
 "LS_Buy" = "Kaufen";
 "LS_Restore Purchases" = "Einkauf wiederherstellen";
 "LS_back" = "Zurück";
-"LS_too many books" = "max. Anzhal Bücher überschritten";
+"LS_too many books" = "max. Anzahl Bücher überschritten";
 //Collection
 "LS_collection" = "Sammlung";
 "LS_Collections" = "Sammlungen";
@@ -46,9 +46,19 @@
 "LS_delete complete collection" = "Löschen der Sammlung";
 "LS_no title in Collection" = "Kein Titel in der Sammlung";
 "LS_understood" = "Verstanden";
-"LS_how to import Collectin" = "importieren Sammlung?" ;
+"LS_how to import Collectin" = "Importieren Sammlung?" ;
 "LS_error when loading the collection" = "fehler beim laden der Samlung";
 "LS_Faworiten" = "Favoriten";
+"LS_how to import Collection text" = " Sammlungsdateien müssten im UTF-8 Format erstellt sein, die Extention .txt oder .csv besitzen  und die Struktur \n\n<SammlungsTitel> als ersten Datensatz und dann die Liste 
+<Titel>;<Buch-ID> \n\n je Satz beinhalten. Z.B. \n
+Songs From Herbie
+The Sorceror ;RealBook1 Bb
+Watermelon Man ;RealBook3 Bb
+Dolphin Dance ;RealBook1 Bb
+One Finger Snap ;RealBook1 Bb
+Maiden Voyage ;RealBook1 Bb
+Tell Me A Bedtime Story ;RealBook1 Bb
+Butterfly ;RealBook1 Bb";
 //Book2
 "LS_settings" = "Einstellungen";
 "LS_delit Book" = "Löschen Buch";
@@ -58,13 +68,13 @@
 "LS_delet oll Titels" = "Löschen aller Titel";
 "LS_delete titels text %@" = "Bist Du sicher, dass Du alle Titel %@ löschen möchtest";
 "LS_save" = "Sichern";
-"LS_Info Text of Book id" = "Info Text der  Buch ID";
+"LS_Info Text of Book id" = "Identifikation des Buches beim Austausch von Sammlungen";
 "LS_Numer of songs: " = "Anzahl der Titel: ";
 "LS_Book pdf Name: " = "PDF-Name des Buches: ";
 "LS_Book Id: " = "Buch ID: ";
 "LS_Book Label: " = "Buch Label: ";
-"LS_Info Text of Book Label" = "Info Text des Buch-Labels";
-"LS_Info Text of Page of Set" = "Info Text des Buch-Offsets";
+"LS_Info Text of Book Label" = "Strukurierung der Bibliothek";
+"LS_Info Text of Page of Set" = "OffSet zur Seitenzahl, z.B. um das Vorwort zu überspringen";
 "LS_Orientation : " = "Ausrichtung: ";
 "LS_page of set: " = "Seiten Offset: ";
 "LS_id already exists" = "ID existiert bereits";
@@ -81,6 +91,9 @@
 "LS_delete Book text %@+" = "Bist Du sicher, dass Du dieses Buch löschen möchtest?\n Die Auswirkung wäre,dass auch alle %@ Titel des Buches gelöscht und aus den Sammlungen entfernt werden.";
 "LS_delete titels text %@+" = "Bist Du sicher, dass Du alle Titel %@ löschen möchtest und aus den Sammlungen entfernt werden.";
 "LS_delete titel text %@" = "Bist Du sicher, dass Du  %@ löschen möchtest und aus den Sammlungen entfernt wird.";
+"LS_how to import Text" = "Index Dateien müssten im UTF-8 Format erstellt sein, die Extention .txt oder .csv besitzen  und die Struktur \n\n<Titel>;<StartSeitenZahl>;<letzteSeitenZahl>;<Anmerkung> \n\n je Satz beinhalten. Z.B. \n
+Einleitung;3;5;Author P.Müller
+Marktübersicht;6;13; Author: G. Meier";
 //Library
 "LS_Library" = "Bibliothek";
 "LS_delete \"%@\"" = "Lösche \"%@\"";
@@ -92,4 +105,4 @@
 "LS_error" = "Fehler";
 "LS_More information" = "mehr Informationen";
 "LS_error Text import %@" = "Datei entspricht in Zeile %@ nicht dem geforderten Format.";
-"LS_too many books text" = "zufile Bücher Text";
+"LS_too many books text" = "Die maximale Anzahl von drei Büchern in der Free Version von pdfOrga ist erreicht. Zum Erwerb der unbegrenzte Version auf Kaufen drücken";

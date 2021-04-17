@@ -20,19 +20,7 @@ struct TitelCollectionVeiw: View {
         if editMode {
             
             TextField("\(titel)", text: $name).font(.largeTitle).padding(.leading, 20).padding(.bottom, -1).foregroundColor(Color(UIColor.systemGray))
-  //          Text("\(titel)").bold().font(.largeTitle).padding(.leading, 20).padding(.bottom, -1)
-            
-            
-//          SearchBar(text: $name)
-//            HStack{
-//            Text("\(titel)").bold().font(.largeTitle).padding(.leading, 20).padding(.bottom, -1)
-//                Button(action: {alertisPresented.toggle()}, label: {
-//                    HStack{
-//                        Image(systemName: "pencil.circle")
-//                    Text("edit Name" as LocalizedStringKey)
-//                    }
-//                }).padding(.leading, 20)
-//            }
+
         } else {
             if titel == "Favorites" {
              
