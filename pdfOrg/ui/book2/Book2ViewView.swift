@@ -131,7 +131,7 @@ struct Book2ViewView: View {
         
        
         updayitView.toggle()
-        ec.updateGigInfoView.toggle()
+     //   ec.updateGigInfoView.toggle()
         print("ec.updateGigInfoView")
         print(ec.updateGigInfoView)
         song = newSong
@@ -219,8 +219,8 @@ struct Book2ViewView: View {
         song?.isFavorit = false
         saveContext()
         updayitView.toggle()
-        ec.reload.toggle()
-        print("\(ec.reload)")
+    //    ec.reload.toggle()
+    //    print("\(ec.reload)")
     }
     
     func addSongToFavoritGig() {
@@ -237,8 +237,8 @@ struct Book2ViewView: View {
 //        gig.addToSongsInGig(newSongInGig)
 //        renewPosition(songsInGig: gig.songsInGig!)
         collections.addToFavorites(song: song!)
-        ec.reload.toggle()
-        print("\(ec.reload)")
+    //    ec.reload.toggle()
+   //     print("\(ec.reload)")
         song?.isFavorit = true
         saveContext()
         updayitView.toggle()
