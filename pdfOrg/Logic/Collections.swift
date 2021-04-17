@@ -56,7 +56,7 @@ class Collections {
             return (1, [error.localizedDescription])
         }
         
-        var position: Int64 = 0
+        var position: Int64 = 1
         var importetSongs: [(teitel: String,bookId: String)] = []
         var titel: String = ""
         

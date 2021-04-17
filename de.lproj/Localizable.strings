@@ -73,7 +73,7 @@ Butterfly ;RealBook1 Bb";
 "LS_Book pdf Name: " = "PDF-Name des Buches: ";
 "LS_Book Id: " = "Buch ID: ";
 "LS_Book Label: " = "Buch Label: ";
-"LS_Info Text of Book Label" = "Strukurierung der Bibliothek";
+"LS_Info Text of Book Label" = "Strukturierung der Bibliothek";
 "LS_Info Text of Page of Set" = "OffSet zur Seitenzahl, z.B. um das Vorwort zu überspringen";
 "LS_Orientation : " = "Ausrichtung: ";
 "LS_page of set: " = "Seiten Offset: ";
