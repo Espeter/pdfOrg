@@ -51,6 +51,7 @@
 		C385D49F25B4A88D000D1452 /* EnvironmentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C385D49E25B4A88D000D1452 /* EnvironmentController.swift */; };
 		C385D4A825B4BC2A000D1452 /* PresentationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C385D4A725B4BC2A000D1452 /* PresentationView.swift */; };
 		C38B8A5C26187A11003EC173 /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38B8A5B26187A11003EC173 /* StoreView.swift */; };
+		C3922B05262AFC4A00EB632B /* EnvironmentControllerLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3922B04262AFC4A00EB632B /* EnvironmentControllerLibrary.swift */; };
 		C393F0E525EFCF7B000738FC /* TitelRowInEditMod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C393F0E425EFCF7B000738FC /* TitelRowInEditMod.swift */; };
 		C397F1C325B1DE3B006735EF /* GigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C397F1C225B1DE3B006735EF /* GigView.swift */; };
 		C397F1C825B1E47A006735EF /* SelectGigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C397F1C725B1E47A006735EF /* SelectGigView.swift */; };
@@ -141,6 +142,7 @@
 		C385D49E25B4A88D000D1452 /* EnvironmentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentController.swift; sourceTree = "<group>"; };
 		C385D4A725B4BC2A000D1452 /* PresentationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationView.swift; sourceTree = "<group>"; };
 		C38B8A5B26187A11003EC173 /* StoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreView.swift; sourceTree = "<group>"; };
+		C3922B04262AFC4A00EB632B /* EnvironmentControllerLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentControllerLibrary.swift; sourceTree = "<group>"; };
 		C393F0E425EFCF7B000738FC /* TitelRowInEditMod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitelRowInEditMod.swift; sourceTree = "<group>"; };
 		C397F1C225B1DE3B006735EF /* GigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigView.swift; sourceTree = "<group>"; };
 		C397F1C725B1E47A006735EF /* SelectGigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectGigView.swift; sourceTree = "<group>"; };
@@ -357,6 +359,7 @@
 			children = (
 				C385D49E25B4A88D000D1452 /* EnvironmentController.swift */,
 				C341ECCD261E53CF00A2C447 /* EnvironmentControllerBook.swift */,
+				C3922B04262AFC4A00EB632B /* EnvironmentControllerLibrary.swift */,
 				C385D4A625B4BC17000D1452 /* presentation */,
 				C3F0F9C125ACA3F90004B66B /* extensions */,
 				C3F0F9BB25AC9DF80004B66B /* library */,
@@ -580,6 +583,7 @@
 				C379904A25B34E3700D58D28 /* AllSongsView.swift in Sources */,
 				C3D57F2A25B9DA4F00339082 /* SelectGigSongView.swift in Sources */,
 				C38B8A5C26187A11003EC173 /* StoreView.swift in Sources */,
+				C3922B05262AFC4A00EB632B /* EnvironmentControllerLibrary.swift in Sources */,
 				C36A6E6925AEF7AE005EB5F1 /* BookInfoView.swift in Sources */,
 				C3F0F98A25AC98960004B66B /* ContentView.swift in Sources */,
 				C3ACB53B25F7C12700754F71 /* TitelCollectionVeiw.swift in Sources */,

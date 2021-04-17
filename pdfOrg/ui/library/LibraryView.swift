@@ -35,7 +35,7 @@ struct LibraryView: View {
     
     @State var allLabels: [String]
     @State var segmentBooksByLabel: [String: [Book]]
-    @State var segmentBooks: [Int: [Book]]?
+ //   @State var segmentBooks: [Int: [Book]]?
     
     @State var oldGeometryProxy: GeometryProxy?
     
@@ -61,18 +61,25 @@ struct LibraryView: View {
                                     //                                        .padding(.bottom, -40)
                                     //                                        .multilineTextAlignment(.center)
                                 } else {
+                                   
+                                    
                                     Text(label)
                                         .font(.title)
                                         .padding()
                                         .padding(.bottom, -40)
                                         .multilineTextAlignment(.center)
+                                        .onTapGesture {
+                                            print("allLabels: \(allLabels)")
+                                            print("segmentBooksByLabel: \(segmentBooksByLabel)")
+                                            ec.updatLibrary.toggle()
+                                        }
                                 }
                                 Spacer()
                             }
                             ScrollView(.horizontal) {
                                 
                                 HStack(){
-                                    if label == "-" || label == "" {
+                                    if /*label == "-" ||*/ label == "" {
                                         VStack{
                                             Image(systemName: "plus.circle")
                                                 .foregroundColor( Color(UIColor.systemBlue))
@@ -97,13 +104,15 @@ struct LibraryView: View {
                                     }
                                     ForEach(segmentBooksByLabel[label]!, id: \.self) { (book: Book) in
                                         
-                                        CoverSheetView(book: book, collections: $collections)
+                                        CoverSheetView(book: book, collections: $collections, allLabels: $allLabels, segmentBooksByLabel: $segmentBooksByLabel)
                                     }
                                 }.frame(height: 300).padding(.bottom, -20)
                             }
                             Divider()
                             Spacer()
                             if ec.updateGigInfoView {
+                                Text("")
+                            } else {
                                 Text("")
                             }
                         }
@@ -172,8 +181,7 @@ struct LibraryView: View {
                                         }
                                         ForEach(getSegmentBooks(geometry: geometry)[i] ?? [], id: \.self) { (book: Book) in
                                      
-                                            CoverSheetView(book: book, collections: $collections)
-                                        }
+                                            CoverSheetView(book: book, collections: $collections, allLabels: $allLabels, segmentBooksByLabel: $segmentBooksByLabel)                                        }
                                         Spacer()
                                         if (geometry.size.width >= 100.0){
                                             Text("")
@@ -190,6 +198,7 @@ struct LibraryView: View {
             }.background(Color(UIColor.systemGray6))
             //.background(Color(UIColor.systemBlue).opacity(0.05))
             .navigationBarTitle("LS_Library" as LocalizedStringKey)//, displayMode: .inline)
+          //  .navigationBarTitle(ec.navigationLinkActive ? "1" : "2")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     if !isBought(for: Store.Prodakt.unlimitedBooks.rawValue) {
@@ -302,7 +311,7 @@ struct LibraryView: View {
             //            )
             .alert(isPresented: $tooManyBooksAlert) {
                 Alert(title: Text("LS_too many books" as LocalizedStringKey),
-                      message: Text("MUAHAHAHA"),
+                      message: Text("LS_too many books text" as LocalizedStringKey),
                       primaryButton: .cancel(Text("LS_back" as LocalizedStringKey)),
                       secondaryButton: .default(
                         Text("LS_Buy" as LocalizedStringKey),

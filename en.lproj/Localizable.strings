@@ -97,3 +97,4 @@
 "LS_error" = "Error";
 "LS_More information" = "More information";
 "LS_error Text import %@" = "This file has an wrong format in row %@";
+"LS_too many books text" = "too many books text";

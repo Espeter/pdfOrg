@@ -19,6 +19,7 @@ struct pdfOrgApp: App {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(EnvironmentController())
+                .environmentObject(EnvironmentControllerLibrary())
                 .environmentObject(store)
         }
     }

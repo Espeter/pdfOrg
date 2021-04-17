@@ -10,6 +10,7 @@ import SwiftUI
 struct BookSetings: View {
     @Environment(\.managedObjectContext) var viewContext
     @EnvironmentObject var ec : EnvironmentController
+ //   @EnvironmentObject var ecl : EnvironmentControllerLibrary
 
     @FetchRequest(sortDescriptors: [])
     var books: FetchedResults<Book>
@@ -27,6 +28,9 @@ struct BookSetings: View {
     let orientations = ["rectangle.portrait", "rectangle"]
     
     @State var idAlert: Bool = false
+    
+    @Binding var allLabels: [String]
+    @Binding var segmentBooksByLabel: [String: [Book]]
     
     var body: some View {
         NavigationView(){
@@ -140,14 +144,79 @@ struct BookSetings: View {
             self.book.pageOfset = ofSet
             self.book.title = title
 
+           allLabels = getAllLabels()
+           segmentBooksByLabel = getSegmentBooksByLabel()
+            
             saveContext()
-  
+    //        ec.updatLibrary.toggle()
             bookSettings = false
             updayitView.toggle()
-
-       //     ec.updatLibrary.toggle()
+ //           ecl.refrech.toggle()
+           
         }
     }
+    
+    private func getSegmentBooksByLabel() -> [String: [Book]] {
+        print("1getSegmentBooksByLabel()")
+        var dictionary: [String: [Book]] = [:]
+        
+        getAllLabels().forEach{ label in
+            dictionary[label] = []
+        }
+        
+        
+        
+        getBooksAlphabetical().forEach{ book in
+            
+            let bookLabel = book.label
+            if book.id != ec.gBookID {
+                dictionary[bookLabel ?? ""]?.append(book)
+            }
+        }
+        
+//        if dictionary["-"] == nil {
+//            dictionary["-"] = []
+//        }
+        
+        return dictionary
+    }
+    
+    private func getAllLabels() -> [String] {
+        print("1getAllLabels()")
+        var allLabels: [String] = []
+        
+        allLabels.append("")
+        
+        getBooksAlphabetical().forEach{ book in
+            
+            if !allLabels.contains(book.label ?? "") {
+                
+                allLabels.append(book.label ?? "")
+            }
+        }
+        
+        allLabels.sort {
+            $0 < $1
+        }
+        
+        print("allLabels: \(allLabels)")
+        return allLabels
+    }
+    
+    private func getBooksAlphabetical() -> [Book] {
+        print("1getBooksAlphabetical()")
+        var booksAlphabetical: [Book] = []
+        
+        books.forEach{ book in
+            booksAlphabetical.append(book)
+        }
+        
+        booksAlphabetical.sort{
+            $0.title! < $1.title!
+        }
+        return booksAlphabetical
+    }
+    
     private func saveContext(){
         do{
             try viewContext.save()

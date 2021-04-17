@@ -21,6 +21,7 @@ struct ContentView: View {
 struct ContentView2: View {
     
     @EnvironmentObject var ec : EnvironmentController
+    @EnvironmentObject var ecl : EnvironmentControllerLibrary
     @Environment(\.managedObjectContext) private var viewContext
     
     @FetchRequest(sortDescriptors: [])
@@ -65,10 +66,8 @@ struct ContentView2: View {
                 if songsFR.count > 0 {
                     CollectionNavigationView(collections: collections, faworitenGig: collections.get(collection: "Favorites"), titles: Titles(songs: songsFR))
                     .tabItem {
-                        
                         Image(systemName: "doc.text")
                         Text("LS_collection" as LocalizedStringKey)
-                      
                     }.tag(4)
                 }
             }
@@ -148,7 +147,7 @@ struct ContentView2: View {
             $0 < $1
         }
         
-        print(allLabels)
+        print("allLabels: \(allLabels)")
         return allLabels
     }
     

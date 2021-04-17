@@ -92,3 +92,4 @@
 "LS_error" = "Fehler";
 "LS_More information" = "mehr Informationen";
 "LS_error Text import %@" = "Datei entspricht in Zeile %@ nicht dem geforderten Format.";
+"LS_too many books text" = "zufile Bücher Text";

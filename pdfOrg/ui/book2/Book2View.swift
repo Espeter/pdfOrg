@@ -10,7 +10,7 @@ import SwiftUI
 struct Book2View: View {
     
     @EnvironmentObject var ec : EnvironmentController
-    
+    @EnvironmentObject var ecl : EnvironmentControllerLibrary
     @Environment(\.managedObjectContext) var viewContext
     
     @FetchRequest(sortDescriptors: [])
@@ -38,6 +38,10 @@ struct Book2View: View {
     
     @State var infoIsVisible: Bool = false
     @Binding var collections: Collections
+    
+    @Binding var allLabels: [String]
+    @Binding var segmentBooksByLabel: [String: [Book]]
+    
     var body: some View {
         VStack(alignment: .leading){
             HStack{
@@ -107,7 +111,8 @@ struct Book2View: View {
                                 )
                             }
                             .sheet(isPresented: $bookSettings) {
-                                BookSetings(book: $book, bookSettings: $bookSettings, updayitView: $updayitView, label: book.label ?? "", id: book.id ?? "error_no Book id", ofSet: book.pageOfset ?? "0", orientation: Int(book.isLandscape), title: book.title ?? "error_no Book name")
+                                BookSetings(book: $book, bookSettings: $bookSettings, updayitView: $updayitView, label: book.label ?? "", id: book.id ?? "error_no Book id", ofSet: book.pageOfset ?? "0", orientation: Int(book.isLandscape), title: book.title ?? "error_no Book name", allLabels: $allLabels, segmentBooksByLabel: $segmentBooksByLabel)
+                                
                             }
                         BookListOfSongsView(book: $book, updayitView: $updayitView, song: $song, page: $page, editMode: $editMode, error: $error4)
                             .alert(isPresented: $delitBookAlert) {
@@ -148,7 +153,8 @@ struct Book2View: View {
                                 )
                             }
                             .sheet(isPresented: $bookSettings) {
-                                BookSetings(book: $book, bookSettings: $bookSettings, updayitView: $updayitView, label: book.label ?? "", id: book.id ?? "error_no Book id", ofSet: book.pageOfset ?? "0", orientation: Int(book.isLandscape), title: book.title ?? "error_no Book name")
+                                BookSetings(book: $book, bookSettings: $bookSettings, updayitView: $updayitView, label: book.label ?? "", id: book.id ?? "error_no Book id", ofSet: book.pageOfset ?? "0", orientation: Int(book.isLandscape), title: book.title ?? "error_no Book name", allLabels: $allLabels, segmentBooksByLabel: $segmentBooksByLabel)
+                                    .environmentObject(ecl)
                             }
                         BookListOfSongsView(book: $book, updayitView: $updayitView, song: $song, page: $page, editMode: $editMode, error: $error4)
                             .alert(isPresented: $delitBookAlert) {
