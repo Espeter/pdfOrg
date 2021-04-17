@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct pdfOrgApp: App {
-    @StateObject private var store = Store()
+ ////   @StateObject private var store = Store()
 //    @FetchRequest(sortDescriptors: [])
 //    private var songs: FetchedResults<Song>
     let persistenceController = PersistenceController.shared
@@ -20,7 +20,7 @@ struct pdfOrgApp: App {
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(EnvironmentController())
                 .environmentObject(EnvironmentControllerLibrary())
-                .environmentObject(store)
+      ////          .environmentObject(store)
         }
     }
 }
