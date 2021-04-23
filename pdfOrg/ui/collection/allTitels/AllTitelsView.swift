@@ -11,7 +11,8 @@ struct AllTitelsView: View {
     
     @FetchRequest(sortDescriptors: [])
     private var songs: FetchedResults<Song>
-    
+    @EnvironmentObject var orientationInfo: OrientationInfo
+
     @State var tilels: Titles
     
     @State var selectedTitel: Song
@@ -25,7 +26,8 @@ struct AllTitelsView: View {
         GeometryReader { geometry in
             
             
-            if geometry.size.width > geometry.size.height {
+           // if geometry.size.width > geometry.size.height {
+            if orientationInfo.orientation == .landscape {
                 HStack{
                     AllTitelsPDFView(song: $selectedTitel, pageIndex: $pageIndex, collections: $collections, reload: $reload)
                     AllTitelsLiestView(selectedTitel: $selectedTitel, pageIndex: $pageIndex/*, segmentTitels: tilels.getSegmentTitles(by: alphabet, songs: songs)*/, titels: $tilels, reload: $reload)
