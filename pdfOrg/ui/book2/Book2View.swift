@@ -12,7 +12,7 @@ struct Book2View: View {
     @EnvironmentObject var ec : EnvironmentController
     @EnvironmentObject var ecl : EnvironmentControllerLibrary
     @Environment(\.managedObjectContext) var viewContext
-    
+    @EnvironmentObject var orientationInfo: OrientationInfo
     @FetchRequest(sortDescriptors: [])
     private var gigs: FetchedResults<Gig>
     
@@ -91,8 +91,11 @@ struct Book2View: View {
             }
             EmptyView()
             GeometryReader { geometry in
-                if geometry.size.width > geometry.size.height {
+          //      if geometry.size.width > geometry.size.height {
+                    if orientationInfo.orientation == .landscape {
+       //         if false {
                     HStack {
+                       
                         Book2ViewView(book: book, page: $page, song: $song, updayitView: $updayitView, collections: $collections)
                             .alert(isPresented: $deleteSongsAlert) {
                                 Alert(title: Text("LS_delet oll Titels" as LocalizedStringKey),
@@ -135,6 +138,7 @@ struct Book2View: View {
                 }
                 else {
                     VStack{
+                        Text("geometry.size.width: \(geometry.size.width) geometry.size.height: \(geometry.size.height)")
                         Book2ViewView(book: book, page: $page, song: $song, updayitView: $updayitView, collections: $collections)
                             .alert(isPresented: $deleteSongsAlert) {
                                 Alert(title: Text("LS_delet oll Titels" as LocalizedStringKey),

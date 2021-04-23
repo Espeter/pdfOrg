@@ -54,7 +54,7 @@ struct BookView: View {
                                         }
                                     })
                                     if updateView {
-                                        Text("").frame(width: 0, height: 0)
+                                        Text("")//.frame(width: 0, height: 0)
                                     }
                                 }.frame(width: 240)
         

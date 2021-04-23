@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CollectionView: View {
+    @EnvironmentObject var orientationInfo: OrientationInfo
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(sortDescriptors: [])
     private var songs: FetchedResults<Song>
@@ -39,7 +40,8 @@ struct CollectionView: View {
             
         GeometryReader { geometry in
         //    if collection.titels.count > 0 {
-            if geometry.size.width > geometry.size.height {
+ //           if geometry.size.width > geometry.size.height {
+            if orientationInfo.orientation == .landscape {
                 HStack {
 
                     CollectionPDFView(allTitelsView: $allTitelsView, song: $titel, songInGig: $titelInCollection, pageIndex: $pageIndex, collection: $collection, Collections: collections, reload: $reload)       .alert(isPresented: $deleteCollectionAlert) {

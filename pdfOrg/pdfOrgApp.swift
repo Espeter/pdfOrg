@@ -20,6 +20,7 @@ struct pdfOrgApp: App {
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(EnvironmentController())
                 .environmentObject(EnvironmentControllerLibrary())
+                .environmentObject(OrientationInfo())
       ////          .environmentObject(store)
         }
     }

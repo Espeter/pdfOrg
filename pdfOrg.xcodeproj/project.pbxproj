@@ -21,6 +21,7 @@
 		C330491D25ED3BD60004B31C /* SelectTitelForNewCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C330491C25ED3BD60004B31C /* SelectTitelForNewCollectionView.swift */; };
 		C33E56E325EC088E0098A5C9 /* Titles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33E56E225EC088E0098A5C9 /* Titles.swift */; };
 		C33E56E825EC23B10098A5C9 /* AddCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33E56E725EC23B10098A5C9 /* AddCollectionView.swift */; };
+		C33EBFED2632FB99000F1E77 /* OrientationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33EBFEC2632FB99000F1E77 /* OrientationInfo.swift */; };
 		C341ECC0261CF6EB00A2C447 /* InfoImportIndexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C341ECBF261CF6EB00A2C447 /* InfoImportIndexView.swift */; };
 		C341ECC6261CFB7000A2C447 /* InfoImportCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C341ECC5261CFB7000A2C447 /* InfoImportCollectionView.swift */; };
 		C341ECCE261E53CF00A2C447 /* EnvironmentControllerBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = C341ECCD261E53CF00A2C447 /* EnvironmentControllerBook.swift */; };
@@ -110,6 +111,7 @@
 		C330491C25ED3BD60004B31C /* SelectTitelForNewCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTitelForNewCollectionView.swift; sourceTree = "<group>"; };
 		C33E56E225EC088E0098A5C9 /* Titles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Titles.swift; sourceTree = "<group>"; };
 		C33E56E725EC23B10098A5C9 /* AddCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCollectionView.swift; sourceTree = "<group>"; };
+		C33EBFEC2632FB99000F1E77 /* OrientationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationInfo.swift; sourceTree = "<group>"; };
 		C341ECBF261CF6EB00A2C447 /* InfoImportIndexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoImportIndexView.swift; sourceTree = "<group>"; };
 		C341ECC5261CFB7000A2C447 /* InfoImportCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoImportCollectionView.swift; sourceTree = "<group>"; };
 		C341ECCD261E53CF00A2C447 /* EnvironmentControllerBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentControllerBook.swift; sourceTree = "<group>"; };
@@ -392,6 +394,7 @@
 				C32F80D325C3037000F8264C /* PDFPresentationView.swift */,
 				C32F80CE25C2FC7800F8264C /* PDFViewController.swift */,
 				C30AD37026137BD90084FBBF /* myTextField.swift */,
+				C33EBFEC2632FB99000F1E77 /* OrientationInfo.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -609,6 +612,7 @@
 				C3D6DE5B25F14A09006FA4D0 /* CollectionView.swift in Sources */,
 				C3F0F98825AC98960004B66B /* pdfOrgApp.swift in Sources */,
 				C33E56E825EC23B10098A5C9 /* AddCollectionView.swift in Sources */,
+				C33EBFED2632FB99000F1E77 /* OrientationInfo.swift in Sources */,
 				C3F0F9C325ACA43F0004B66B /* SearchBar.swift in Sources */,
 				C36FD139260677BD00D761E1 /* BookSetings.swift in Sources */,
 				C358570825F7967100EC7957 /* CollectionListView.swift in Sources */,
