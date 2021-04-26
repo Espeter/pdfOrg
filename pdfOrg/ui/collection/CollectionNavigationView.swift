@@ -72,10 +72,10 @@ struct CollectionNavigationView: View {
                     Divider()
                     if titles.array.count > 0 {
                         NavigationLink(destination: AllTitelsView(tilels: titles, selectedTitel: titles.array[0], collections: $collections, reload: $ec.updateGigInfoView) ,isActive: $allTitelsView) {
-                        
                         Image(systemName: "list.bullet")
                             .foregroundColor(allTitelsView ? Color(UIColor.white) : Color(UIColor.systemBlue))
                         Text("LS_All Titels" as LocalizedStringKey)
+                            Text("(\(songs.count))")
                     }
                     }
                //     let faworitenGig = collections.get(collection: "Favorites")

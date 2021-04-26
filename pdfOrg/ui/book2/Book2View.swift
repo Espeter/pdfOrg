@@ -138,7 +138,7 @@ struct Book2View: View {
                 }
                 else {
                     VStack{
-                        Text("geometry.size.width: \(geometry.size.width) geometry.size.height: \(geometry.size.height)")
+                        
                         Book2ViewView(book: book, page: $page, song: $song, updayitView: $updayitView, collections: $collections)
                             .alert(isPresented: $deleteSongsAlert) {
                                 Alert(title: Text("LS_delet oll Titels" as LocalizedStringKey),

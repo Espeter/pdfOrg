@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LibraryView: View {
     
-//    @EnvironmentObject private var store: Store
+    @EnvironmentObject private var store: Store
     @EnvironmentObject var ec : EnvironmentController
     
     @Environment(\.managedObjectContext) var viewContext
@@ -94,12 +94,12 @@ struct LibraryView: View {
                                                 .frame(width: 151.2, height: 35)
                                         }.padding()
                                         .onTapGesture {
-                            //                if books.count >= 3 && !isBought(for: Store.Prodakt.unlimitedBooks.rawValue) {    //TODO: muss wie der was kosten
+                                            if books.count >= 3 && !isBought(for: Store.Prodakt.unlimitedBooks.rawValue) {    //TODO: muss wie der was kosten
                                                 //                           if false {
-                                  //              tooManyBooksAlert.toggle()
-                                 //           } else {
+                                                tooManyBooksAlert.toggle()
+                                           } else {
                                                 openFile.toggle()
-                                 //           }
+                                           }
                                         }
                                     }
                                     ForEach(segmentBooksByLabel[label]!, id: \.self) { (book: Book) in
@@ -138,12 +138,12 @@ struct LibraryView: View {
                                             .frame(width: 151.2, height: 35)
                                     }.padding()
                                     .onTapGesture {
-                     //                   if books.count >= 3 && !isBought(for: Store.Prodakt.unlimitedBooks.rawValue) {    //TODO: muss wie der was kosten
+                                        if books.count >= 3 && !isBought(for: Store.Prodakt.unlimitedBooks.rawValue) {    //TODO: muss wie der was kosten
                                             //                           if false {
-                       //                     tooManyBooksAlert.toggle()
-                         //               } else {
+                                            tooManyBooksAlert.toggle()
+                                       } else {
                                             openFile.toggle()
-                           //             }
+                                        }
                                     }
                                         Spacer()
                                     }
@@ -171,12 +171,12 @@ struct LibraryView: View {
                                                     .frame(width: 151.2, height: 35)
                                             } .padding(.leading, 15)
                                             .onTapGesture {
-                    //                            if books.count >= 3 && !isBought(for: Store.Prodakt.unlimitedBooks.rawValue) {    //TODO: muss wie der was kosten
+                                               if books.count >= 3 && !isBought(for: Store.Prodakt.unlimitedBooks.rawValue) {    //TODO: muss wie der was kosten
                                                     //                           if false {
                                                     tooManyBooksAlert.toggle()
-                      //                          } else {
+                                                } else {
                                                     openFile.toggle()
-                        //                        }
+                                                }
                                             }
                                         }
                                         ForEach(getSegmentBooks(geometry: geometry)[i] ?? [], id: \.self) { (book: Book) in
@@ -200,26 +200,37 @@ struct LibraryView: View {
             .navigationBarTitle("LS_Library" as LocalizedStringKey)//, displayMode: .inline)
           //  .navigationBarTitle(ec.navigationLinkActive ? "1" : "2")
             .toolbar {
-//                ToolbarItem(placement: .navigationBarTrailing) {
-//                    if !isBought(for: Store.Prodakt.unlimitedBooks.rawValue) {
-//
-//                        Menu{
-//                            Button(action: {
-//                                store.purcheseProduct(store.product(for: Store.Prodakt.unlimitedBooks.rawValue)!)
-//                            }, label: {
-//                                Text("LS_Unlimited number of books \(store.product(for: Store.Prodakt.unlimitedBooks.rawValue)!.price.description(withLocale: store.product(for: Store.Prodakt.unlimitedBooks.rawValue)!.priceLocale) + " " + String(store.product(for: Store.Prodakt.unlimitedBooks.rawValue)!.priceLocale.currencySymbol ?? ""))" as LocalizedStringKey)
-//                            })
-//                            Button(action: {
-//                                store.restorePurchases()
-//                            }, label: {
-//                                Text("LS_Restore Purchases" as LocalizedStringKey)
-//                            })
-//                        }
-//                        label: {
-//                            Image(systemName: "cart")
-//                        }
-//                    }
-//                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    if !isBought(for: Store.Prodakt.unlimitedBooks.rawValue) {
+
+                        Menu{
+                            Button(action: {
+                                
+                                let product = store.product(for: Store.Prodakt.unlimitedBooks.rawValue)
+                                
+                                if product != nil {
+                                    store.purcheseProduct(product!)
+                                } else {
+                                    print("ERROR_no  store.product")
+                                }
+                                
+                                
+        
+                            }, label: {
+                            //    Text("LS_Unlimited number of books \(store.product(for: Store.Prodakt.unlimitedBooks.rawValue)!.price.description(withLocale: store.product(for: Store.Prodakt.unlimitedBooks.rawValue)!.priceLocale) + " " + String(store.product(for: Store.Prodakt.unlimitedBooks.rawValue)!.priceLocale.currencySymbol ?? ""))" as LocalizedStringKey)
+                                Text("LS_Unlimited number of books \("")" as LocalizedStringKey)
+                            })
+                            Button(action: {
+                                store.restorePurchases()
+                            }, label: {
+                                Text("LS_Restore Purchases" as LocalizedStringKey)
+                            })
+                        }
+                        label: {
+                            Image(systemName: "cart")
+                        }
+                    }
+                }
                 ToolbarItem(placement: .primaryAction) {
                     
                     Menu{
@@ -309,18 +320,23 @@ struct LibraryView: View {
             //                                        }
             //                                    }
             //            )
-//            .alert(isPresented: $tooManyBooksAlert) {
-//                Alert(title: Text("LS_too many books" as LocalizedStringKey),
-//                      message: Text("LS_too many books text" as LocalizedStringKey),
-//                      primaryButton: .cancel(Text("LS_back" as LocalizedStringKey)),
-//                      secondaryButton: .default(
-//                        Text("LS_Buy" as LocalizedStringKey),
-//                        action: {
-//
-//                            store.purcheseProduct(store.product(for: Store.Prodakt.unlimitedBooks.rawValue)!)
-//                        })
-//                )
-//            }
+            .alert(isPresented: $tooManyBooksAlert) {
+                Alert(title: Text("LS_too many books" as LocalizedStringKey),
+                      message: Text("LS_too many books text" as LocalizedStringKey),
+                      primaryButton: .cancel(Text("LS_back" as LocalizedStringKey)),
+                      secondaryButton: .default(
+                        Text("LS_Buy" as LocalizedStringKey),
+                        action: {
+
+                            let product = store.product(for: Store.Prodakt.unlimitedBooks.rawValue)
+                                                        
+                                                        if product != nil {
+                                                            store.purcheseProduct(product!)
+                                                        } else {
+                                                            print("ERROR_no  store.product")
+                                                        }                        })
+                )
+            }
 //            .sheet(isPresented: $storeOpen) {
 //                StoreView()
 //            }

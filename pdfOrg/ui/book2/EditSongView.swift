@@ -11,7 +11,6 @@ struct EditSongView: View {
     
     @EnvironmentObject var ec : EnvironmentController
     @EnvironmentObject var ecb : EnvironmentControllerBook
-
     
     @Environment(\.managedObjectContext) var viewContext
     @State var book: Book

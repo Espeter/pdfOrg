@@ -1,55 +1,58 @@
 /*
   Localizable.strings
   pdfOrg
+
   Created by Carl Espeter on 23.02.21.
   
 */
-"LS_all" = "Alles";
-"LS_label" = "Label";
-"LS_title" = "Titel";
-"LS_no Label" = "kein Label";
-"LS_Unlimited number of books %@" = "Unbegrenzte Anzahl von Büchern %@";
-"LS_Buy" = "Kaufen";
-"LS_Restore Purchases" = "Einkauf wiederherstellen";
-"LS_back" = "Zurück";
-"LS_too many books" = "max. Anzahl Bücher überschritten";
+
+"LS_all"  = "Alles";
+"LS_label"  = "Label";
+"LS_title"  = "Titel";
+"LS_no Label"  = "kein Label";
+"LS_Unlimited number of books %@"  = "Unbegrenzte Anzahl von Büchern %@";
+"LS_Buy"  = "Kaufen";
+"LS_Restore Purchases"  = "Einkauf wiederherstellen";
+"LS_back"  = "Zurück";
+"LS_too many books"  = "max. Anzahl Bücher überschritten";
+
 //Collection
-"LS_collection" = "Sammlung";
-"LS_Collections" = "Sammlungen";
-"LS_New Collection" = "Neue Sammlung";
-"LS_no Title found" = "Kein Titel gefunden";
-"LS_done" = "Fertig";
-"LS_quit" = "Abbrechen";
-"LS_Name of the Collection" = "Name der Sammlung";
-"LS_add Titel" = "Titel hinzufügen";
-"LS_add Titel to new Collection" = "Titel zur Sammlung hinzufügen";
-"LS_Titels" = "Titel";
-"LS_edit" = "Bearbeiten";
-"LS_delit Collection" = "Sammlung löschen";
-"LS_export as .txt" = "Export als .txt";
-"LS_delit" = "Löschen";
-"LS_delit %@" = "Löschen %@";
-"LS_back" = "Zurück";
-"LS_delitCollectionText %@" = "Bis Du sicher,dass Du %@ löschge willst?";
-"LS_All Titels" = "Alle Titel";
-"LS_edit Name" = "Bearbeiten Name";
-"LS_rename: %@" = "Umbenennen: %@";
-"LS_copy Collection" = "Kopiere Sammlung";
-"LS_copy %@" = "Kopiere %@";
-"LS_%@(copy)" = "%@(kopieren)";
-"LS_Import Collection from .txt" = "Laden Sammlung aus .txt";
-//"LS_not oll Books exist" = "Nicht alle Bücher existieren";
-"LS_Thes Books dasent exist: %@" = "Diese Bücher existieren nicht: %@";
-"LS_Oky" = "Okay";
-"LS_This Teitel is not faund in Book" = "Dieser Titel wurde nicht im Buch gefunden";
-"LS_It is not Posibel to haf a Collection whis aut a associated Titel" = "Es ist nicht möglich eine Sammlung ohne einen zugeordneten Titel zu haben";
-"LS_delete complete collection" = "Löschen der Sammlung";
-"LS_no title in Collection" = "Kein Titel in der Sammlung";
-"LS_understood" = "Verstanden";
-"LS_how to import Collectin" = "Importieren Sammlung?" ;
-"LS_error when loading the collection" = "fehler beim laden der Samlung";
-"LS_Faworiten" = "Favoriten";
-"LS_how to import Collection text" = " Sammlungsdateien müssten im UTF-8 Format erstellt sein, die Extention .txt oder .csv besitzen  und die Struktur \n\n<SammlungsTitel> als ersten Datensatz und dann die Liste 
+"LS_collection"  = "Sammlung";
+"LS_Collections"  = "Sammlungen";
+"LS_New Collection"  = "Neue Sammlung";
+"LS_no Title found"  = "Kein Titel gefunden";
+"LS_done"  = "Fertig";
+"LS_quit"  = "Abbrechen";
+"LS_Name of the Collection"  = "Name der Sammlung";
+"LS_add Titel"  = "Titel hinzufügen";
+"LS_add Titel to new Collection"  = "Titel zur Sammlung hinzufügen";
+"LS_Titels"  = "Titel";
+"LS_edit"  = "Bearbeiten";
+"LS_delit Collection"  = "Sammlung löschen";
+"LS_export as .txt"  = "Export als  .txt";
+"LS_delit"  = "Löschen";
+"LS_delit %@"  = "Löschen %@";
+"LS_back"  = "Zurück";
+"LS_delitCollectionText %@"  = "Bis Du sicher, dass Du %@ löschen willst?";
+"LS_All Titels"  = "Alle Titel";
+"LS_edit Name"  = "Bearbeiten Name";
+"LS_rename: %@"  = "Umbenennen: %@";
+"LS_copy Collection"  = "Kopiere Sammlung";
+"LS_copy %@"  = "Kopiere %@";
+"LS_%@(copy)"  = "%@(kopieren)";
+"LS_Import Collection from .txt"  = "Laden Sammlung aus  .txt";
+"LS_not oll Books exist" = "Nicht alle Bücher existieren";
+"LS_Thes Books dasent exist: %@"  = "Diese Bücher existieren nicht: %@";
+"LS_Oky"  = "Okay";
+"LS_This Teitel is not faund in Book"  = "Dieser Titel wurde nicht im Buch gefunden";
+"LS_It is not Posibel to haf a Collection whis aut a associated Titel"  = "Es ist nicht möglich eine Sammlung ohne einen zugeordneten Titel zu haben";
+"LS_delete complete collection"  = "Löschen der Sammlung";
+"LS_no title in Collection"  = "Kein Titel in der Sammlung";
+"LS_understood"  = "Verstanden";
+"LS_how to import Collectin"  = "Importieren Sammlung? ";
+"LS_error when loading the collection"  = "Fehler beim Laden der Sammlung";
+"LS_Faworiten"  = "Favoriten";
+"LS_how to import Collection text" = "Sammlungsdateien müssten im UTF-8 Format erstellt sein, die Extention .txt oder .csv besitzen  und die Struktur \n\n<SammlungsTitel> als ersten Datensatz und dann die Liste
 <Titel>;<Buch-ID> \n\n je Satz beinhalten. Z.B. \n
 Songs From Herbie
 The Sorceror ;RealBook1 Bb
@@ -59,50 +62,57 @@ One Finger Snap ;RealBook1 Bb
 Maiden Voyage ;RealBook1 Bb
 Tell Me A Bedtime Story ;RealBook1 Bb
 Butterfly ;RealBook1 Bb";
+
 //Book2
-"LS_settings" = "Einstellungen";
-"LS_delit Book" = "Löschen Buch";
-"LS_delit contents of Book" = "Löschen Index des Buches";
-"LS_uplod contents" = "Export Index ";
-"LS_donlod contents" = "Import Index";
-"LS_delet oll Titels" = "Löschen aller Titel";
-"LS_delete titels text %@" = "Bist Du sicher, dass Du alle Titel %@ löschen möchtest";
-"LS_save" = "Sichern";
-"LS_Info Text of Book id" = "Identifikation des Buches beim Austausch von Sammlungen";
-"LS_Numer of songs: " = "Anzahl der Titel: ";
-"LS_Book pdf Name: " = "PDF-Name des Buches: ";
-"LS_Book Id: " = "Buch ID: ";
-"LS_Book Label: " = "Buch Label: ";
-"LS_Info Text of Book Label" = "Strukturierung der Bibliothek";
-"LS_Info Text of Page of Set" = "OffSet zur Seitenzahl, z.B. um das Vorwort zu überspringen";
-"LS_Orientation : " = "Ausrichtung: ";
-"LS_page of set: " = "Seiten Offset: ";
-"LS_id already exists" = "ID existiert bereits";
-"LS_this ID already exists" = "Diese ID existiert bereits";
-"LS_Book Name: " = "Buch Name: ";
-"LS_add" = "Hinzufügen";
-"LS_Titel Name: " = "Titel Name: " ;
-"LS_Titel Label: " = "Beschreibung: ";
-"LS_first Page: " = "Erste Seite: ";
-"LS_last Page" = "Letzte Seite";
-"LS_how to import" = "Importieren Index?";
-"LS_error Text import no Int as number of pages. in row: %@" = "Fehler Text Seitenzahl in Zeile: %@ falsch";
-"LS_a page number must be an int" = "Eine Seitenzahl muss eine Zahl sein";
-"LS_delete Book text %@+" = "Bist Du sicher, dass Du dieses Buch löschen möchtest?\n Die Auswirkung wäre,dass auch alle %@ Titel des Buches gelöscht und aus den Sammlungen entfernt werden.";
-"LS_delete titels text %@+" = "Bist Du sicher, dass Du alle Titel %@ löschen möchtest und aus den Sammlungen entfernt werden.";
-"LS_delete titel text %@" = "Bist Du sicher, dass Du  %@ löschen möchtest und aus den Sammlungen entfernt wird.";
-"LS_how to import Text" = "Index Dateien müssten im UTF-8 Format erstellt sein, die Extention .txt oder .csv besitzen  und die Struktur \n\n<Titel>;<StartSeitenZahl>;<letzteSeitenZahl>;<Anmerkung> \n\n je Satz beinhalten. Z.B. \n
+"LS_settings"  = "Einstellungen";
+"LS_delit Book"  = "Löschen des Buches";
+"LS_delit contents of Book"  = "Löschen Index des Buches";
+"LS_uplod contents"  = "Export Index ";
+"LS_donlod contents"  = "Import Index";
+"LS_delet oll Titels"  = "Löschen aller Titel";
+"LS_delete titels text %@"  = "Bist Du sicher, dass Du alle Titel %@ löschen möchtest";
+"LS_save"  = "Sichern";
+"LS_Info Text of Book id"  = "Identifikation des Buches beim Austausch von Sammlungen";
+"LS_Numer of songs: "  = "Anzahl der Titel: ";
+"LS_Book pdf Name: "  = "PDF-Name des Buches: ";
+"LS_Book Id: "  = "Buch ID: ";
+"LS_Book Label: "  = "Buch Label: ";
+"LS_Info Text of Book Label"  = "Strukturierung der Bibliothek";
+"LS_Info Text of Page of Set"  = "OffSet zur Seitenzahl, z.B. um das Vorwort zu überspringen";
+"LS_Orientation : "  = "Ausrichtung: ";
+"LS_page of set: "  = "Seiten Offset: ";
+"LS_id already exists"  = "ID existiert bereits";
+"LS_this ID already exists"  = "Diese ID existiert bereits";
+"LS_Book Name: "  = "Buch Name: ";
+"LS_add"  = "Hinzufügen";
+"LS_Titel Name: "  = "Titel Name:  ";
+"LS_Titel Label: "  = "Beschreibung: ";
+"LS_first Page: "  = "Erste Seite: ";
+"LS_last Page"  = "Letzte Seite";
+"LS_how to import"  = "Importieren Index?";
+"LS_error Text import no Int as number of pages. in row: %@"  = "Fehler Text Seitenzahl in Zeile: %@ falsch";
+"LS_a page number must be an int"  = "Eine Seitenzahl muss eine Zahl sein";
+"LS_delete Book text %@+"  = "Bist Du sicher, dass Du dieses Buch löschen möchtest?\n Die Auswirkung wäre, dass auch alle %@ Titel des Buches gelöscht und aus den Sammlungen entfernt werden.";
+"LS_delete titels text %@+"  = "Bist Du sicher, dass Du alle Titel %@ löschen möchtest und aus den Sammlungen entfernt werden.";
+"LS_delete titel text %@"  = "Bist Du sicher, dass Du  %@ löschen möchtest und aus den Sammlungen entfernt wird.";
+"LS_how to import Text"  = "Index Dateien müssten im UTF-8 Format erstellt sein, die Extention .txt oder .csv besitzen  und die Struktur \n\n<Titel>;<StartSeitenZahl>;<letzteSeitenZahl>;<Anmerkung> \n\n je Satz beinhalten. Z.B. \n
 Einleitung;3;5;Author P.Müller
 Marktübersicht;6;13; Author: G. Meier";
+
+
+
 //Library
-"LS_Library" = "Bibliothek";
-"LS_delete \"%@\"" = "Lösche \"%@\"";
-"LS_delete Book text %@" = "Bist Du sicher, dass Du dieses Buch löschen möchtest?\n Die Auswirkung wäre,dass auch alle %@ Titel des Buches gelöscht werden.";
-"LS_add Book" = "Buch hinzufügen";
-"LS_sort by" = "Sortieren";
-"LS_Alphabetical" = "Alphabetisch";
-"LS_Store" = "Store";
-"LS_error" = "Fehler";
-"LS_More information" = "mehr Informationen";
-"LS_error Text import %@" = "Datei entspricht in Zeile %@ nicht dem geforderten Format.";
-"LS_too many books text" = "Die maximale Anzahl von drei Büchern in der Free Version von pdfOrga ist erreicht. Zum Erwerb der unbegrenzte Version auf Kaufen drücken";
+"LS_Library"  = "Bibliothek";
+"LS_delete \"%@\""  = "Lösche \"%@\"";
+"LS_delete Book text %@"  = "Bist Du sicher, dass Du dieses Buch löschen möchtest?\n Die Auswirkung wäre,dass auch alle %@ Titel des Buches gelöscht werden.";
+"LS_add Book"  = "Buch hinzufügen";
+"LS_sort by"  = "Sortieren";
+"LS_Alphabetical"  = "Alphabetisch";
+"LS_Store"  = "Store";
+"LS_error"  = "Fehler";
+"LS_More information"  = "Mehr Informationen";
+"LS_error Text import %@"  = "Datei entspricht in Zeile %@ nicht dem geforderten Format.";
+"LS_too many books text"  = "Die maximale Anzahl von drei Büchern in der Free Version von pdfOrga ist erreicht. Zum Erwerb der unbegrenzte Version auf Kaufen drücken";
+
+"LS_delete titel text %@)"  = "Bist du dir sicher das du %@ löschen möchtest? Dieser Titel wird dann auch aus allen Sammlungen gelöscht und diese werden auch gelöscht, wenn sie leer sind.";
+

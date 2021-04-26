@@ -47,7 +47,10 @@ struct AddCollectionView: View {
                     }, label: {
                         HStack{
                             Image(systemName: "plus.circle.fill").foregroundColor(Color(UIColor.systemGreen))
+                         
                             Text("LS_add Titel" as LocalizedStringKey).foregroundColor(Color(UIColor.systemBlue)).padding()
+                               
+                            
                         }.font(.title2)
                     })
                     ForEach(titelsInCollection){ titel in
