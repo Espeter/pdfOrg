@@ -155,8 +155,6 @@ extension Store: SKPaymentTransactionObserver {
             
         }
     }
-    
-    
 }
 
 extension Store: SKProductsRequestDelegate {

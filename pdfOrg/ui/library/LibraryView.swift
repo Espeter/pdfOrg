@@ -206,6 +206,10 @@ struct LibraryView: View {
                         Menu{
                             Button(action: {
                                 
+                                print("\(Store.Prodakt.unlimitedBooks.rawValue)")
+                                
+                                
+                                
                                 let product = store.product(for: Store.Prodakt.unlimitedBooks.rawValue)
                                 
                                 if product != nil {
