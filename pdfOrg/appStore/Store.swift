@@ -16,7 +16,9 @@ class Store: NSObject, ObservableObject {   //TODO: umbennenen IAPManger
     
     enum Prodakt: String, CaseIterable {
     //    case unlimitedBooks = "com.espeter.pdfOrg.unlimitedBooks.test3"
-       case unlimitedBooks = "unlimitedBooks"
+     //  case unlimitedBooks = "unlimitedBooks"
+        
+        case unlimitedBooks =  "com.espeter.pdforga.unlimitedBooks"
     }
     
     private let allProductIdentifiers = Set(Prodakt.allCases.compactMap({$0.rawValue}))
